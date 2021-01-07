@@ -1,3 +1,13 @@
 steps:
+  - name: gcr.io/cloud-builders/yarn
+    args: ['install']
+  - name: gcr.io/cloud-builders/yarn
+    args: ['build', '-o', '/build']
+    volumes:
+      - name: 'build'
+        path: '/build'
   - name: gcr.io/cloud-builders/gsutil
-    args: ["-m", "rsync", "-r", "-c", "-d", "./public", "gs://www.syrianmusic.us"]
+    args: ['-m', 'rsync', '-r', '-c', '-d', '/build', 'gs://www.syrianmusic.us']
+    volumes:
+      - name: 'build'
+        path: '/build'
