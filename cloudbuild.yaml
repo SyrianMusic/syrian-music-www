@@ -4,21 +4,21 @@ steps:
       - install
   - name: gcr.io/cloud-builders/yarn
     args: 
-      - 'build'
-      - '-o'
-      - '/build'
+      - build
+      - -o
+      - /build
     volumes:
-      - name: 'build'
-        path: '/build'
+      - name: build
+        path: /build
   - name: gcr.io/cloud-builders/gsutil
     args: 
-      - -m'
-      - rsync'
-      - -r'
-      - -c'
-      - -d'
-      - /build'
-      - gs://www.syrianmusic.us'
+      - -m
+      - rsync
+      - -r
+      - -c
+      - -d
+      - /build
+      - gs://www.syrianmusic.us
     volumes:
-      - name: 'build'
-        path: '/build'
+      - name: build
+        path: /build
