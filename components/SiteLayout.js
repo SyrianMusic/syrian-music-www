@@ -2,10 +2,10 @@ import Header from './Header';
 import PropTypes from 'prop-types';
 import theme from '../styles/theme';
 
-const SiteLayout = ({ children }) => (
+const SiteLayout = ({ className, children }) => (
   <>
     <Header className="component-SiteLayout-header" />
-    <main>{children}</main>
+    <main className={className}>{children}</main>
     <style global jsx>
       {`
         html {
