@@ -2,10 +2,10 @@ import Header from './Header';
 import PropTypes from 'prop-types';
 import theme from '../styles/theme';
 
-const SiteLayout = ({ children }) => (
+const SiteLayout = ({ className, children }) => (
   <>
-    <Header />
-    <main>{children}</main>
+    <Header className="component-SiteLayout-header" />
+    <main className={className}>{children}</main>
     <style global jsx>
       {`
         html {
@@ -58,11 +58,17 @@ const SiteLayout = ({ children }) => (
         main {
           flex: 1 0 auto;
         }
+
+        :global(.component-SiteLayout-header) {
+          margin: ${theme.pxToRem(70)} auto 0;
+          padding-left: ${theme.pxToRem(88)};
+          padding-right: ${theme.pxToRem(88)};
+        }
       `}
     </style>
     <style jsx>
       {`
-        .footer {
+        .component-SiteLayout-footer {
           flex-shrink: 0;
         }
       `}
