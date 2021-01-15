@@ -4,6 +4,10 @@ const theme = {
   breakpoint: {
     mobileToDesktop: 800,
   },
+  color: {
+    black: '#000',
+    salmon: '#ff7878',
+  },
   font: {
     mobile: {
       fontSizeMin: baseFontSize,

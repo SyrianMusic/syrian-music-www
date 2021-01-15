@@ -7,7 +7,7 @@ const EducationPage = () => {
   return (
     <>
       <Title title="Education and Preservation" />
-      <SiteLayout className="page-Education-SiteLayout">
+      <SiteLayout className="page-Education-SiteLayout" pathname="/education">
         <Hero
           className="page-Education-Hero"
           title="Education and Preservation"
@@ -16,7 +16,13 @@ const EducationPage = () => {
             width: 1461,
             height: 822,
           }}
-          content="The Syrian Music Preservation Initiative is a hub for Arabic music education, references, and workshops. Explore performance notes on specific performances by the organization, explanations on musical forms, translations, glossaries, and more."
+          content={
+            <>
+              The Syrian Music Preservation Initiative is a hub for Arabic music education,
+              references, and workshops. Explore performance notes on specific performances by the
+              organization, explanations on musical forms, translations, glossaries, and more.
+            </>
+          }
         />
       </SiteLayout>
       <style global jsx>

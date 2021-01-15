@@ -7,7 +7,7 @@ const HomePage = () => {
   return (
     <>
       <Title title="Home" />
-      <SiteLayout className="page-Home-SiteLayout">
+      <SiteLayout className="page-Home-SiteLayout" pathname="/">
         <Hero
           className="page-Home-Hero"
           title="Welcome to the Syrian Music Preservation Initiative"
@@ -21,7 +21,7 @@ const HomePage = () => {
               a non-profit organization dedicated to the preservation, protection and celebration of
               the musical traditions of classical Arabic music. The initiatives of this organization
               serve as both a connection to our history and as a source of pride for future
-              generations. <a href="#">Learn more.</a>
+              generations.
             </>
           }
         />
