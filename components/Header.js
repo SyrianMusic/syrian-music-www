@@ -1,6 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import Logo from './Logo';
+import Image from './Image';
 import theme from '../styles/theme';
 
 const Header = () => (
@@ -8,13 +7,18 @@ const Header = () => (
     <header className="header">
       <Link href="/">
         <a>
-          <Logo className="header__logo" />
+          <Image className="header__logo" src="/images/logo.svg" width={102} height={192} />
         </a>
       </Link>
       <nav className="header__nav" />
       <Link href="/">
         <a>
-          <Image src="/images/logo-text.svg" alt="" width={378} height={187} />
+          <Image
+            src="/images/logo-text.svg"
+            alt="Syrian Music Preservation Institute"
+            width={378}
+            height={187}
+          />
         </a>
       </Link>
     </header>
@@ -22,8 +26,13 @@ const Header = () => (
       .header {
         display: flex;
         margin: ${theme.pxToRem(70)} auto 0;
+        padding-left: ${theme.pxToRem(88)};
+        padding-right: ${theme.pxToRem(88)};
         width: 100%;
-        max-width: ${theme.pxToRem(theme.layout.maxWidth - 88 * 2)};
+      }
+
+      a {
+        overflow: hidden;
       }
 
       .header__nav {

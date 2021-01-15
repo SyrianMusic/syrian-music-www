@@ -1,8 +1,24 @@
+const baseFontSize = 16;
+
 const theme = {
-  layout: {
-    maxWidth: 1920,
+  breakpoint: {
+    mobileToDesktop: 800,
   },
-  pxToRem: (px) => `${px / 16}rem`,
+  font: {
+    mobile: {
+      fontSizeMin: baseFontSize,
+      fontSizeMax: 22,
+    },
+    desktop: {
+      fontSizeMin: 8,
+      fontSizeMax: baseFontSize,
+    },
+  },
+  layout: {
+    contentWidthMin: 320,
+    contentWidthMax: 1920,
+  },
+  pxToRem: (px) => `${px / baseFontSize}rem`,
 };
 
 export default theme;
