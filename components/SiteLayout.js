@@ -4,7 +4,7 @@ import theme from '../styles/theme';
 
 const SiteLayout = ({ children }) => (
   <>
-    <Header />
+    <Header className="site-layout__header" />
     <main>{children}</main>
     <style global jsx>
       {`
@@ -57,6 +57,12 @@ const SiteLayout = ({ children }) => (
 
         main {
           flex: 1 0 auto;
+        }
+
+        :global(.site-layout__header) {
+          margin: ${theme.pxToRem(70)} auto 0;
+          padding-left: ${theme.pxToRem(88)};
+          padding-right: ${theme.pxToRem(88)};
         }
       `}
     </style>
