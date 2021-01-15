@@ -1,15 +1,16 @@
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Image from './Image';
 
 const Header = ({ className }) => (
-  <header className={`header ${className}`}>
+  <header className={cx('component-Header-root', className)}>
     <Link href="/">
       <a>
-        <Image className="header__logo" src="/images/logo.svg" width={102} height={192} />
+        <Image src="/images/logo.svg" width={102} height={192} />
       </a>
     </Link>
-    <nav className="header__nav" />
+    <nav className="component-Header-nav" />
     <Link href="/">
       <a>
         <Image
@@ -21,16 +22,16 @@ const Header = ({ className }) => (
       </a>
     </Link>
     <style jsx>{`
-      .header {
+      .component-Header-root {
         display: flex;
         width: 100%;
       }
 
-      a {
+      .component-Header-root a {
         overflow: hidden;
       }
 
-      .header__nav {
+      .component-Header-nav {
         flex: 1;
       }
     `}</style>

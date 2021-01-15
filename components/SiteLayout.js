@@ -4,7 +4,7 @@ import theme from '../styles/theme';
 
 const SiteLayout = ({ children }) => (
   <>
-    <Header className="site-layout__header" />
+    <Header className="component-SiteLayout-header" />
     <main>{children}</main>
     <style global jsx>
       {`
@@ -59,7 +59,7 @@ const SiteLayout = ({ children }) => (
           flex: 1 0 auto;
         }
 
-        :global(.site-layout__header) {
+        :global(.component-SiteLayout-header) {
           margin: ${theme.pxToRem(70)} auto 0;
           padding-left: ${theme.pxToRem(88)};
           padding-right: ${theme.pxToRem(88)};
@@ -68,7 +68,7 @@ const SiteLayout = ({ children }) => (
     </style>
     <style jsx>
       {`
-        .footer {
+        .component-SiteLayout-footer {
           flex-shrink: 0;
         }
       `}

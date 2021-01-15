@@ -1,12 +1,19 @@
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 import theme from '../styles/theme';
 
 const Image = ({ className, alt, src, height, width }) => (
   <>
-    <img className={`image ${className}`} src={src} alt={alt} width={width} height={height} />
+    <img
+      className={cx('component-Image-root', className)}
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+    />
     <style jsx>
       {`
-        .image {
+        .component-Image-root {
           display: block;
           margin: 0;
           height: ${theme.pxToRem(height)};
