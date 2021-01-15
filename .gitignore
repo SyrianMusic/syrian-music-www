@@ -1,4 +1,5 @@
 hidden
+.DS_Store
 
 # Editor configs
 .vscode
