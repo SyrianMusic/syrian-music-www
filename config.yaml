@@ -1,4 +1,10 @@
 nav:
   - text: Education
     href: /education
+    description: >
+      Explore performance notes on specific performances by the organization, explanations on musical forms, glossaries, workshops, and more.
+    image:
+      src: /images/home-nav-item.jpg
+      width: 957
+      height: 539
     links: []

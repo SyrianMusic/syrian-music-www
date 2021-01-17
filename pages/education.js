@@ -1,5 +1,5 @@
-import SiteLayout from '../components/SiteLayout';
 import Hero from '../components/Hero';
+import SiteLayout from '../components/SiteLayout';
 import Title from '../components/Title';
 import theme from '../styles/theme';
 
