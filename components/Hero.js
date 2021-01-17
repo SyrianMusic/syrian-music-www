@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import Image from './Image';
 import theme from '../styles/theme';
+import Image from './Image';
 
 const Hero = ({ className, content, image, title }) => (
   <div className={cx('component-Hero-root', className)}>

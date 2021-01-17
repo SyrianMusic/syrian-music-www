@@ -1,33 +1,35 @@
-import cx from 'classnames';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import config from '../config.yaml';
-import Image from './Image';
 import theme from '../styles/theme';
+import Image from './Image';
 
 const Header = ({ className, pathname }) => (
-  <header className={cx('component-Header-root', className)}>
+  <header className={className}>
     <Link href="/">
-      <a className="component-Header-logo-link">
+      <a>
         <Image src="/images/logo.svg" width={102} height={192} />
       </a>
     </Link>
     <nav className="component-Header-nav">
       <ol>
         {config.nav.map(({ href, text }) => {
-          if (href === pathname) {
-            return <span key={text}>{text}</span>;
-          }
-          return (
-            <Link key={text} href={href}>
+          let navItem = (
+            <Link href={href}>
               <a className="link">{text}</a>
             </Link>
           );
+
+          if (href === pathname) {
+            navItem = <span>{text}</span>;
+          }
+
+          return <li key={text}>{navItem}</li>;
         })}
       </ol>
     </nav>
     <Link href="/">
-      <a className="component-Header-logo-text-link">
+      <a>
         <Image
           src="/images/logo-text.svg"
           alt="Syrian Music Preservation Initiative"
@@ -37,22 +39,22 @@ const Header = ({ className, pathname }) => (
       </a>
     </Link>
     <style jsx>{`
-      .component-Header-root {
+      header {
         display: flex;
         width: 100%;
       }
 
-      .component-Header-logo-link {
+      header > a:first-child {
         margin-right: ${theme.pxToRem(75)};
       }
 
-      .component-Header-nav {
+      nav {
         border-bottom: 1px solid black;
         margin-bottom: ${theme.pxToRem(22)};
         flex: 1;
       }
 
-      ol {
+      nav ol {
         display: flex;
         align-items: flex-end;
         font-size: ${theme.pxToRem(43)};
@@ -61,16 +63,16 @@ const Header = ({ className, pathname }) => (
         padding: 0 ${theme.pxToRem(35)} ${theme.pxToRem(42)} ${theme.pxToRem(55)};
       }
 
-      .component-Header-root :global(.header-link) {
+      nav ol li:not(:last-child) {
         margin-right: ${theme.pxToRem(50)};
       }
 
-      .component-Header-logo-text-link {
-        margin-left: ${theme.pxToRem(66)};
+      nav ol li span {
+        color: ${theme.color.salmon};
       }
 
-      span {
-        color: ${theme.color.salmon};
+      header > a:last-child {
+        margin-left: ${theme.pxToRem(66)};
       }
     `}</style>
   </header>

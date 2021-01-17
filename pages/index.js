@@ -1,6 +1,7 @@
-import SiteLayout from '../components/SiteLayout';
 import Hero from '../components/Hero';
+import SiteLayout from '../components/SiteLayout';
 import Title from '../components/Title';
+import VisualNav from '../components/VisualNav';
 import theme from '../styles/theme';
 
 const HomePage = () => {
@@ -25,11 +26,13 @@ const HomePage = () => {
             </>
           }
         />
+        <VisualNav className="page-Home-visual-nav" />
       </SiteLayout>
       <style global jsx>
         {`
           main {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
           }
@@ -37,6 +40,10 @@ const HomePage = () => {
           :global(.page-Home-SiteLayout) :global(.page-Home-Hero) {
             margin: ${theme.pxToRem(108)} auto ${theme.pxToRem(235)};
             width: ${theme.pxToRem(1461)};
+          }
+
+          :global(.page-Home-SiteLayout) :global(.page-Home-visual-nav) {
+            margin-bottom: ${theme.pxToRem(390)};
           }
         `}
       </style>
