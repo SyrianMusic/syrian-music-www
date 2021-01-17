@@ -1,58 +1,9 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import config from '../config.yaml';
 import Image from './Image';
 import theme from '../styles/theme';
-
-const HeaderLink = ({ className, href, isActive, text }) => (
-  <li className={className}>
-    {isActive ? (
-      <span>{text}</span>
-    ) : (
-      <Link href={href}>
-        <a disabled={isActive}>{text}</a>
-      </Link>
-    )}
-    <style jsx>
-      {`
-        a {
-          color: inherit;
-          text-decoration-color: transparent;
-          transition: color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
-        }
-
-        a:hover {
-          text-decoration-color: ${theme.color.salmon};
-          color: ${theme.color.salmon};
-          text-decoration: underline;
-        }
-
-        span {
-          color: ${theme.color.salmon};
-        }
-      `}
-    </style>
-  </li>
-);
-
-HeaderLink.propTypes = {
-  className: PropTypes.string,
-  href: PropTypes.string.isRequired,
-  isActive: PropTypes.bool,
-  text: PropTypes.string.isRequired,
-};
-
-HeaderLink.defaultProps = {
-  className: undefined,
-  isActive: false,
-};
-
-const headerLinks = [
-  {
-    href: '/education',
-    text: 'Education',
-  },
-];
 
 const Header = ({ className, pathname }) => (
   <header className={cx('component-Header-root', className)}>
@@ -63,15 +14,16 @@ const Header = ({ className, pathname }) => (
     </Link>
     <nav className="component-Header-nav">
       <ol>
-        {headerLinks.map(({ href, text }) => (
-          <HeaderLink
-            key={text}
-            className="header-link"
-            href={href}
-            text={text}
-            isActive={href === pathname}
-          />
-        ))}
+        {config.nav.map(({ href, text }) => {
+          if (href === pathname) {
+            return <span key={text}>{text}</span>;
+          }
+          return (
+            <Link key={text} href={href}>
+              <a className="link">{text}</a>
+            </Link>
+          );
+        })}
       </ol>
     </nav>
     <Link href="/">
@@ -115,6 +67,10 @@ const Header = ({ className, pathname }) => (
 
       .component-Header-logo-text-link {
         margin-left: ${theme.pxToRem(66)};
+      }
+
+      span {
+        color: ${theme.color.salmon};
       }
     `}</style>
   </header>

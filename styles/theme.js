@@ -23,6 +23,7 @@ const theme = {
     contentWidthMax: 1920,
   },
   pxToRem: (px) => `${px / baseFontSize}rem`,
+  pxToEm: (px, base = baseFontSize) => `${px / base}em`,
 };
 
 export default theme;

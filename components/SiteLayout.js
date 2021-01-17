@@ -1,11 +1,13 @@
-import Header from './Header';
 import PropTypes from 'prop-types';
+import Header from './Header';
+import Footer from './Footer';
 import theme from '../styles/theme';
 
 const SiteLayout = ({ className, children, pathname }) => (
   <>
     <Header className="component-SiteLayout-header" pathname={pathname} />
     <main className={className}>{children}</main>
+    <Footer />
     <style global jsx>
       {`
         html {
