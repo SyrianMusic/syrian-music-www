@@ -4,6 +4,10 @@ const theme = {
   breakpoint: {
     mobileToDesktop: 800,
   },
+  color: {
+    black: '#000',
+    salmon: '#ff7878',
+  },
   font: {
     mobile: {
       fontSizeMin: baseFontSize,
@@ -19,6 +23,7 @@ const theme = {
     contentWidthMax: 1920,
   },
   pxToRem: (px) => `${px / baseFontSize}rem`,
+  pxToEm: (px, base = baseFontSize) => `${px / base}em`,
 };
 
 export default theme;

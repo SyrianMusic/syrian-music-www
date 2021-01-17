@@ -1,11 +1,13 @@
-import Header from './Header';
 import PropTypes from 'prop-types';
+import Header from './Header';
+import Footer from './Footer';
 import theme from '../styles/theme';
 
-const SiteLayout = ({ className, children }) => (
+const SiteLayout = ({ className, children, pathname }) => (
   <>
-    <Header className="component-SiteLayout-header" />
+    <Header className="component-SiteLayout-header" pathname={pathname} />
     <main className={className}>{children}</main>
+    <Footer />
     <style global jsx>
       {`
         html {
@@ -77,11 +79,15 @@ const SiteLayout = ({ className, children }) => (
 );
 
 SiteLayout.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node,
+  pathname: PropTypes.string,
 };
 
 SiteLayout.defaultProps = {
+  className: undefined,
   children: undefined,
+  pathname: undefined,
 };
 
 export default SiteLayout;

@@ -3,15 +3,11 @@ import PropTypes from 'prop-types';
 import Image from './Image';
 import theme from '../styles/theme';
 
-const Hero = ({ className }) => (
+const Hero = ({ className, content, image, title }) => (
   <div className={cx('component-Hero-root', className)}>
-    <h1>Welcome to the Syrian Music Preservation Initiative</h1>
-    <Image className="component-Hero-image" src="/images/home-hero.jpg" width={1457} height={820} />
-    <p>
-      a non-profit organization dedicated to the preservation, protection and celebration of the
-      musical traditions of classical Arabic music. The initiatives of this organization serve as
-      both a connection to our history and as a source of pride for future generations.
-    </p>
+    {title && <h1>{title}</h1>}
+    <Image className="component-Hero-image" {...image} />
+    {content && <p>{content}</p>}
     <style jsx>{`
       .component-Hero-root {
         width: 100%;
@@ -44,10 +40,15 @@ const Hero = ({ className }) => (
 
 Hero.propTypes = {
   className: PropTypes.string,
+  content: PropTypes.node,
+  image: PropTypes.shape(Image.propTypes).isRequired,
+  title: PropTypes.string,
 };
 
 Hero.defaultProps = {
   className: undefined,
+  content: undefined,
+  title: undefined,
 };
 
 export default Hero;
