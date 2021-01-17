@@ -22,8 +22,9 @@ const theme = {
     contentWidthMin: 320,
     contentWidthMax: 1920,
   },
-  pxToRem: (px) => `${px / baseFontSize}rem`,
   pxToEm: (px, base = baseFontSize) => `${px / base}em`,
+  pxToPercent: (px, base) => `${(px / base) * 100}%`,
+  pxToRem: (px) => `${px / baseFontSize}rem`,
 };
 
 export default theme;
