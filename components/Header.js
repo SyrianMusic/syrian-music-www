@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import config from '../config.yaml';
 import theme from '../styles/theme';
 import Image from './Image';
+import Nav from './Nav';
 
 const Header = ({ className, pathname }) => (
   <header className={className}>
     <Link href="/">
-      <a>
+      <a className="component-Header-logo">
         <Image src="/images/logo.svg" width={102} height={192} />
       </a>
     </Link>
-    <nav className="component-Header-nav">
-      <ol>
+    <Nav className="component-Header-nav">
+      <ul>
         {config.nav.map(({ href, text }) => {
           let navItem = (
             <Link href={href}>
@@ -26,10 +27,10 @@ const Header = ({ className, pathname }) => (
 
           return <li key={text}>{navItem}</li>;
         })}
-      </ol>
-    </nav>
+      </ul>
+    </Nav>
     <Link href="/">
-      <a>
+      <a className="component-Header-logo-text">
         <Image
           src="/images/logo-text.svg"
           alt="Syrian Music Preservation Initiative"
@@ -44,17 +45,17 @@ const Header = ({ className, pathname }) => (
         width: 100%;
       }
 
-      header > a:first-child {
+      .component-Header-logo {
         margin-right: ${theme.pxToRem(75)};
       }
 
-      nav {
+      :global(.component-Header-nav) {
         border-bottom: 1px solid black;
         margin-bottom: ${theme.pxToRem(22)};
         flex: 1;
       }
 
-      nav ol {
+      :global(.component-Header-nav) ul {
         display: flex;
         align-items: flex-end;
         font-size: ${theme.pxToRem(43)};
@@ -63,15 +64,11 @@ const Header = ({ className, pathname }) => (
         padding: 0 ${theme.pxToRem(35)} ${theme.pxToRem(42)} ${theme.pxToRem(55)};
       }
 
-      nav ol li:not(:last-child) {
+      :global(.component-Header-nav) ul li:not(:last-child) {
         margin-right: ${theme.pxToRem(50)};
       }
 
-      nav ol li span {
-        color: ${theme.color.salmon};
-      }
-
-      header > a:last-child {
+      .component-Header-logo-text {
         margin-left: ${theme.pxToRem(66)};
       }
     `}</style>

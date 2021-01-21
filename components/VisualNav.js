@@ -4,32 +4,44 @@ import PropTypes from 'prop-types';
 import config from '../config.yaml';
 import theme from '../styles/theme';
 import Image from './Image';
+import Nav from './Nav';
+import Typography from './Typography';
+
+const outerMargin = 155;
+const innerMargin = 50;
 
 const VisualNav = ({ className }) => (
-  <nav className={className}>
+  <Nav className={className}>
     <ul>
-      {config.nav.map((section, i) => (
-        <li key={section.text}>
-          <Link href={section.href}>
-            <a className={cx('link', { 'component-VisualNav-flipped': i % 2 != 0 })}>
-              <div>
-                <h3>{section.text}</h3>
-                <p>{section.description}</p>
-              </div>
-              <div>
-                {section.image && (
-                  <Image
-                    className="component-VisualNav-image"
-                    src={section.image.src}
-                    width={section.image.width}
-                    height={section.image.height}
-                  />
-                )}
-              </div>
-            </a>
-          </Link>
-        </li>
-      ))}
+      {config.nav.map((section, i) => {
+        const isFlipped = i % 2 != 0;
+        const textAlign = isFlipped ? 'right' : 'left';
+
+        return (
+          <li key={section.text}>
+            <Link href={section.href}>
+              <a className={cx({ flipped: isFlipped })}>
+                <div className="component-VisualNav-text">
+                  <Typography textAlign={textAlign} variant="h3">
+                    {section.text}
+                  </Typography>
+                  <Typography textAlign={textAlign}>{section.description}</Typography>
+                </div>
+                <div className="component-VisualNav-image-wrapper">
+                  {section.image && (
+                    <Image
+                      className="component-VisualNav-image"
+                      src={section.image.src}
+                      width={section.image.width}
+                      height={section.image.height}
+                    />
+                  )}
+                </div>
+              </a>
+            </Link>
+          </li>
+        );
+      })}
     </ul>
     <style jsx>
       {`
@@ -41,22 +53,21 @@ const VisualNav = ({ className }) => (
           margin-bottom: ${theme.pxToRem(130)};
         }
 
-        li a:link,
-        li a:visited,
-        li a:hover {
-          text-decoration: none;
-        }
-
         li a {
           display: grid;
           grid-template-columns: 50% 50%;
+          text-decoration: none;
         }
 
-        li a div:first-child {
-          margin: ${theme.pxToRem(96)} ${theme.pxToRem(115)} 0 ${theme.pxToRem(155)};
+        .component-VisualNav-text {
+          margin: ${theme.pxToRem(96)} ${theme.pxToRem(innerMargin)} 0 ${theme.pxToRem(outerMargin)};
         }
 
-        .component-VisualNav-flipped div:last-child {
+        .flipped .component-VisualNav-text {
+          margin: ${theme.pxToRem(96)} ${theme.pxToRem(outerMargin)} 0 ${theme.pxToRem(innerMargin)};
+        }
+
+        a.flipped .component-VisualNav-image-wrapper {
           grid-row: 1;
         }
 
@@ -64,20 +75,9 @@ const VisualNav = ({ className }) => (
           height: auto;
           width: 100%;
         }
-
-        h3 {
-          font-size: ${theme.pxToRem(70)};
-          line-height: ${theme.pxToRem(84)};
-          margin-bottom: 1em;
-        }
-
-        p {
-          font-size: ${theme.pxToRem(41)};
-          line-height: ${theme.pxToRem(49)};
-        }
       `}
     </style>
-  </nav>
+  </Nav>
 );
 
 VisualNav.propTypes = {

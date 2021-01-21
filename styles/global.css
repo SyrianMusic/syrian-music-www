@@ -9,6 +9,8 @@ body {
   font-weight:  300;
   font-style:   normal;
   font-stretch: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* https://www.a11yproject.com/posts/2013-01-11-how-to-hide-content/ */
