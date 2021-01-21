@@ -4,10 +4,8 @@ import Title from '../components/Title';
 import VisualNav from '../components/VisualNav';
 import theme from '../styles/theme';
 
-const horizontalPadding = 50;
-
 const HomePage = () => (
-  <SiteLayout className="page-Home-SiteLayout" pathname="/">
+  <SiteLayout pathname="/">
     <Title>Home</Title>
     <h1 className="visually-hidden">Home</h1>
     <Hero
@@ -29,19 +27,8 @@ const HomePage = () => (
     <VisualNav className="page-Home-visual-nav" />
     <style global jsx>
       {`
-        main {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .page-Home-SiteLayout > .page-Home-Hero {
-          margin: ${theme.pxToRem(108)} auto ${theme.pxToRem(235)};
-        }
-
-        .page-Home-SiteLayout > .page-Home-visual-nav {
-          margin-bottom: ${theme.pxToRem(390 + horizontalPadding * 2)};
+        .page-Home-Hero {
+          margin: 0 auto ${theme.pxToRem(235)};
         }
       `}
     </style>

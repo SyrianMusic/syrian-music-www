@@ -13,7 +13,7 @@ const innerMargin = 50;
 const VisualNav = ({ className }) => (
   <Nav className={className}>
     <ul>
-      {config.nav.map((section, i) => {
+      {Object.values(config.nav).map((section, i) => {
         const isFlipped = i % 2 != 0;
         const textAlign = isFlipped ? 'right' : 'left';
 

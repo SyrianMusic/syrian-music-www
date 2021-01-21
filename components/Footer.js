@@ -4,11 +4,11 @@ import config from '../config.yaml';
 import theme from '../styles/theme';
 import Nav from './Nav';
 
-const Footer = ({ pathname }) => (
-  <footer>
+const Footer = ({ className, pathname }) => (
+  <footer className={className}>
     <Nav className="component-Footer-nav">
       <ul>
-        {config.nav.map((section) => {
+        {Object.values(config.nav).map((section) => {
           let sectionLink = (
             <Link href={section.href}>
               <a className="link">{section.text}</a>
@@ -24,14 +24,26 @@ const Footer = ({ pathname }) => (
               {sectionLink}
 
               <ul>
-                {Array.isArray(section.links) &&
-                  section.links.map((link) => (
-                    <li key={link.text}>
-                      <Link href={`${section.href}${link.href}`}>
-                        <a className="link">{link.text}</a>
-                      </Link>
-                    </li>
-                  ))}
+                {section.links &&
+                  Object.values(section.links).map((link) => {
+                    let linkEl;
+
+                    if (/^\//.test(link.href)) {
+                      linkEl = (
+                        <Link href={`${section.href}${link.href}`}>
+                          <a>{link.text}</a>
+                        </Link>
+                      );
+                    } else {
+                      linkEl = (
+                        <a href={link.href} target="_blank" rel="noopener noreferrer">
+                          {link.text}
+                        </a>
+                      );
+                    }
+
+                    return <li key={link.text}>{linkEl}</li>;
+                  })}
               </ul>
             </li>
           );
@@ -69,10 +81,12 @@ const Footer = ({ pathname }) => (
 );
 
 Footer.propTypes = {
+  className: PropTypes.string,
   pathname: PropTypes.string,
 };
 
 Footer.defaultProps = {
+  className: undefined,
   pathname: undefined,
 };
 

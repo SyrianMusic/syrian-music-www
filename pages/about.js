@@ -2,24 +2,25 @@ import Image from '../components/Image';
 import SiteLayout from '../components/SiteLayout';
 import Title from '../components/Title';
 import Typography from '../components/Typography';
+import config from '../config.yaml';
 import theme from '../styles/theme';
 
 const gutterWidth = 236;
 
 const AboutPage = () => (
-  <SiteLayout pathname="/about">
+  <SiteLayout pathname={config.nav.about.href}>
     <Title>About</Title>
-    <Typography className="page-About-gutters page-About-title" variant="h1">
+    <Typography className="gutters page-About-title" variant="h1">
       About
     </Typography>
-    <Typography className="page-About-gutters">
+    <Typography className="gutters">
       The Syrian Music Preservation Initiative promotes and celebrates the diverse ethnic and
       regional musical traditions of Syria through preservation, innovation, research, and
       education. Its activities include music and dance performances, classes, workshops, and
       seminars, as well as digital resources and recordings.
     </Typography>
 
-    <section className="page-About-gutters">
+    <section className="gutters">
       <Typography variant="h1">Our Story</Typography>
       <Typography>
         The Syrian Music Preservation Initiative is dedicated to preserving and invigorating the
@@ -46,7 +47,7 @@ const AboutPage = () => (
       </Typography>
     </section>
 
-    <section className="page-About-gutter--right page-About-who-we-are">
+    <section className="gutter--right page-About-who-we-are">
       <Image
         className="page-About-who-we-are-image"
         src="/images/about-samer.jpg"
@@ -74,26 +75,12 @@ const AboutPage = () => (
     </section>
     <style jsx>
       {`
-        :global(.page-About-gutters) {
-          margin-left: ${theme.pxToRem(gutterWidth)};
-          margin-right: ${theme.pxToRem(gutterWidth)};
-        }
-
-        :global(.page-About-gutter--right) {
-          margin-right: ${theme.pxToRem(gutterWidth)};
-        }
-
-        :global(.page-About-title) {
-          margin-top: ${theme.pxToRem(130)};
-        }
-
         section {
           margin-top: ${theme.pxToRem(190)};
         }
 
         .page-About-who-we-are {
           display: flex;
-          margin-bottom: ${theme.pxToRem(370)};
         }
 
         :global(.page-About-who-we-are-image) {
