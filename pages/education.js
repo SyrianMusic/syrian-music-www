@@ -1,10 +1,11 @@
 import Hero from '../components/Hero';
 import SiteLayout from '../components/SiteLayout';
 import Title from '../components/Title';
+import config from '../config.yaml';
 import theme from '../styles/theme';
 
 const EducationPage = () => (
-  <SiteLayout className="page-Education-SiteLayout" pathname="/education">
+  <SiteLayout className="page-Education-SiteLayout" pathname={config.nav.education.href}>
     <Title>Education and Preservation</Title>
     <Hero
       className="page-Education-Hero"
@@ -31,7 +32,6 @@ const EducationPage = () => (
         }
 
         .page-Education-SiteLayout > .page-Education-Hero {
-          margin: ${theme.pxToRem(108)} auto ${theme.pxToRem(235)};
           width: ${theme.pxToRem(1461)};
         }
       `}

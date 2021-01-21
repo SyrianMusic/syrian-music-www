@@ -7,7 +7,7 @@ const SiteLayout = ({ className, children, pathname }) => (
   <>
     <Header className="component-SiteLayout-header" pathname={pathname} />
     <main className={className}>{children}</main>
-    <Footer pathname={pathname} />
+    <Footer className="component-SiteLayout-footer" pathname={pathname} />
     <style global jsx>
       {`
         html {
@@ -61,17 +61,16 @@ const SiteLayout = ({ className, children, pathname }) => (
           flex: 1 0 auto;
         }
 
-        :global(.component-SiteLayout-header) {
-          margin: ${theme.pxToRem(70)} auto 0;
+        .component-SiteLayout-header {
+          margin: ${theme.pxToRem(70)} auto ${theme.pxToRem(125)};
           padding-left: ${theme.pxToRem(88)};
           padding-right: ${theme.pxToRem(88)};
         }
-      `}
-    </style>
-    <style jsx>
-      {`
+
         .component-SiteLayout-footer {
           flex-shrink: 0;
+          margin: ${theme.pxToRem(190)} auto 0;
+          width: 100%;
         }
       `}
     </style>

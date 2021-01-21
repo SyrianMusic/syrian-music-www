@@ -14,7 +14,7 @@ const Header = ({ className, pathname }) => (
     </Link>
     <Nav className="component-Header-nav">
       <ul>
-        {config.nav.map(({ href, text }) => {
+        {Object.values(config.nav).map(({ href, text }) => {
           let navItem = (
             <Link href={href}>
               <a className="link">{text}</a>
