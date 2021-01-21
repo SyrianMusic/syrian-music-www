@@ -9,9 +9,9 @@ const horizontalPadding = 50;
 const HomePage = () => (
   <SiteLayout className="page-Home-SiteLayout" pathname="/">
     <Title>Home</Title>
+    <h1 className="visually-hidden">Home</h1>
     <Hero
       className="page-Home-Hero"
-      title={'Welcome to the Syrian Music Preservation\u00A0Initiative'}
       image={{
         src: '/images/home-hero.jpg',
         width: 1457,
@@ -19,10 +19,10 @@ const HomePage = () => (
       }}
       content={
         <>
-          a non-profit organization dedicated to the preservation, protection and celebration of the
-          musical traditions of classical Arabic music. The initiatives of this organization serve
-          as both a connection to our history and as a source of pride for future{'\u00A0'}
-          generations.
+          The Syrian Music Preservation Initiative promotes and celebrates the diverse ethnic and
+          regional musical traditions of Syria through preservation, innovation, research, and
+          education. Its activities include music and dance performances, classes, workshops, and
+          seminars, as well as digital resources and&nbsp;recordings.
         </>
       }
     />
