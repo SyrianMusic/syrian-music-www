@@ -1,14 +1,18 @@
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 
-const Title = ({ title }) => (
+const Title = ({ children }) => (
   <Head>
-    <title>{title} | Syrian Music Preservation Initiative</title>
+    <title>{children} | Syrian Music Preservation Initiative</title>
   </Head>
 );
 
 Title.propTypes = {
-  title: PropTypes.string.isRequired,
+  children: PropTypes.node,
+};
+
+Title.defaultProps = {
+  children: undefined,
 };
 
 export default Title;

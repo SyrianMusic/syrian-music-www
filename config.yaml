@@ -7,4 +7,19 @@ nav:
       src: /images/home-nav-item.jpg
       width: 957
       height: 539
-    links: []
+  - text: About
+    href: /about
+    description: >
+      Learn more about the SMPI, its story, mission, members, and more.
+    image:
+      src: /images/home-nav-item.jpg
+      width: 957
+      height: 539
+  # - text: Connect
+  #   href: /connect
+  #   description: >
+  #     Find out how to connect with us, donate, and become a member. We want to hear from you.
+  #   image:
+  #     src: /images/home-nav-item.jpg
+  #     width: 957
+  #     height: 539
