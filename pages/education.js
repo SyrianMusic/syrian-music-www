@@ -25,13 +25,8 @@ const EducationPage = () => (
     />
     <style global jsx>
       {`
-        main {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .page-Education-SiteLayout > .page-Education-Hero {
+        .page-Education-Hero {
+          margin: 0 auto;
           width: ${theme.pxToRem(1461)};
         }
       `}
