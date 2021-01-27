@@ -8,15 +8,20 @@ const variantMap = {
   body: 'p',
 };
 
-const Typography = ({ className, children, textAlign, variant }) => {
-  const Component = Object.keys(variantMap).includes(variant)
-    ? variantMap[variant]
-    : variantMap.body;
+const Typography = ({ className, children, as, textAlign, variant }) => {
+  let Component = variantMap.body;
+
+  if (as) {
+    Component = as;
+  } else if (Object.keys(variantMap).includes(variant)) {
+    Component = variantMap[variant];
+  }
 
   return (
     <Component
       className={cx(
         'component-Typography-root',
+        `variant-${variant}`,
         {
           [`text-align--${textAlign}`]: textAlign,
         },
@@ -24,36 +29,36 @@ const Typography = ({ className, children, textAlign, variant }) => {
       )}>
       {children}
       <style jsx>{`
-        h1,
-        h3 {
+        .variant-h1,
+        .variant-h3 {
           letter-spacing: -0.01em;
         }
 
-        h1 {
+        .variant-h1 {
           font-size: ${theme.pxToRem(85)};
           line-height: ${theme.pxToRem(102)};
         }
 
-        h1:not(:last-child) {
+        .variant-h1:not(:last-child) {
           margin-bottom: ${theme.pxToEm(60, 85)};
         }
 
-        h3 {
+        .variant-h3 {
           font-size: ${theme.pxToRem(70)};
           line-height: ${theme.pxToRem(84)};
         }
 
-        h3:not(:last-child) {
+        .variant-h3:not(:last-child) {
           margin-bottom: 1em;
         }
 
-        p {
+        .variant-body {
           font-size: ${theme.pxToRem(41)};
           line-height: ${theme.pxToRem(49)};
           letter-spacing: 0.01em;
         }
 
-        p:not(:last-child) {
+        .variant-body:not(:last-child) {
           margin-bottom: ${theme.pxToEm(35, 41)};
         }
 
@@ -91,6 +96,7 @@ const Typography = ({ className, children, textAlign, variant }) => {
 Typography.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  as: PropTypes.string,
   textAlign: PropTypes.oneOf(['left', 'center', 'right']),
   variant: PropTypes.oneOf(Object.keys(variantMap)),
 };
@@ -98,6 +104,7 @@ Typography.propTypes = {
 Typography.defaultProps = {
   className: undefined,
   children: undefined,
+  as: undefined,
   textAlign: 'right',
   variant: 'body',
 };

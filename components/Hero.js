@@ -6,9 +6,11 @@ import Video from './Video';
 const Hero = ({ className, children, image, subtitle, title, video }) => (
   <div className={className}>
     {title && <div className="component-Hero-title">{title}</div>}
-    {image && <Image className="component-Hero-image" {...image} />}
-    {video && <Video className="component-Hero-video" {...video} />}
-    {subtitle && <div className="component-Hero-subtitle">{subtitle}</div>}
+    <figure>
+      {image && <Image className="component-Hero-image" {...image} />}
+      {video && <Video className="component-Hero-video" {...video} />}
+    </figure>
+    {subtitle && <figcaption className="component-Hero-subtitle">{subtitle}</figcaption>}
     {children && <div className="component-Hero-description">{children}</div>}
     <style jsx>{`
       div {
@@ -26,7 +28,7 @@ const Hero = ({ className, children, image, subtitle, title, video }) => (
       .component-Hero-title,
       .component-Hero-subtitle,
       .component-Hero-description {
-        padding: 0 ${theme.pxToRem(50)};
+        padding: 0 ${theme.pxToRem(theme.layout.gutterWidth / 2)};
         text-align: right;
       }
 

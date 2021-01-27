@@ -8,6 +8,11 @@ nav:
       src: /images/home-nav-item.jpg
       width: 957
       height: 539
+    links:
+      - text: Takht al-Nagham
+        href: /
+      - text: Raqs al-Samah
+        href: /
   education:
     text: Education
     href: /education
