@@ -8,7 +8,7 @@ import Nav from './Nav';
 import Typography from './Typography';
 
 const outerMargin = 155;
-const innerMargin = 50;
+const innerMargin = 70;
 
 const VisualNav = ({ className }) => (
   <Nav className={className}>

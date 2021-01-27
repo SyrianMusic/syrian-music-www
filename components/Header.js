@@ -58,6 +58,7 @@ const Header = ({ className, pathname }) => (
       :global(.component-Header-nav) ul {
         display: flex;
         align-items: flex-end;
+        flex-wrap: wrap;
         font-size: ${theme.pxToRem(43)};
         line-height: ${theme.pxToRem(66)};
         height: 100%;

@@ -5,8 +5,6 @@ import Typography from '../components/Typography';
 import config from '../config.yaml';
 import theme from '../styles/theme';
 
-const gutterWidth = 236;
-
 const AboutPage = () => (
   <SiteLayout pathname={config.nav.about.href}>
     <Title>About</Title>
@@ -17,7 +15,7 @@ const AboutPage = () => (
       The Syrian Music Preservation Initiative promotes and celebrates the diverse ethnic and
       regional musical traditions of Syria through preservation, innovation, research, and
       education. Its activities include music and dance performances, classes, workshops, and
-      seminars, as well as digital resources and recordings.
+      seminars, as well as digital resources and&nbsp;recordings.
     </Typography>
 
     <section className="gutters">
@@ -28,13 +26,13 @@ const AboutPage = () => (
         Kurdish, Armenian and Syriac). Our performances promote the musical heritage of this region
         by presenting older works that are less known to the greater public as well as supporting
         contemporary exploration of the traditional forms by commissioning composers from Syria and
-        the diaspora. In this way, we celebrate the past, present and future of Syrian music.
+        the diaspora. In this way, we celebrate the past, present and future of Syrian&nbsp;music.
       </Typography>
       <Typography>
         We strive to preserve the Syrian compositional practices by researching their history and
         context, translating lyrics, providing transcriptions, documenting our performances, and
         most importantly, by making our digital resources accessible to artists, scholars and
-        communities worldwide.
+        communities&nbsp;worldwide.
       </Typography>
       <Typography>
         With our work on performance and preservation, we are building a community of music lovers,
@@ -43,7 +41,7 @@ const AboutPage = () => (
         soloists and composers from across the globe to support all three pillars of the
         organization. Through workshops, seminars, lectures and performance about musical traditions
         and historical context, we hope to grow a multi-generational, global community by making our
-        educational, archival and performance resources all available digitally.
+        educational, archival and performance resources all available&nbsp;digitally.
       </Typography>
     </section>
 
@@ -58,7 +56,7 @@ const AboutPage = () => (
         <Typography variant="h1">Who We Are</Typography>
         <Typography>
           A native of Syria, Dr. Samer Ali is a physician, Arab-violinist, musical director of Takht
-          al-Nagham and founder and president of the Syrian Music Preservation Initiative.
+          al-Nagham and founder and president of the Syrian Music Preservation&nbsp;Initiative.
         </Typography>
         <Typography>
           Samer led Takht al-Nagham in New York City at Alwan for the Arts, Scandinavia House, and
@@ -69,7 +67,7 @@ const AboutPage = () => (
           Mukhtar Babayev. He studied the Arab violin and classical music traditions with Ali Farran
           and Ziad Ajjan (both students of prolific scholar Mahmoud Ajjan), composer Khaleel Haj
           Hussein, violinist and oudist Simon Shaheen, violinist Anwar Hariri, and scholar and
-          oudist Muhammad Qadri Dalal.
+          oudist Muhammad Qadri&nbsp;Dalal.
         </Typography>
       </div>
     </section>

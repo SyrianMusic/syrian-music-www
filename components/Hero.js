@@ -1,14 +1,21 @@
 import PropTypes from 'prop-types';
 import theme from '../styles/theme';
 import Image from './Image';
+import Video from './Video';
 
-const Hero = ({ className, content, image, title }) => (
+const Hero = ({ className, children, image, subtitle, title, video }) => (
   <div className={className}>
-    {title && <h1>{title}</h1>}
-    <Image className="component-Hero-image" {...image} />
-    {content && <p>{content}</p>}
+    {title && <div className="component-Hero-title">{title}</div>}
+    <figure>
+      {image && <Image className="component-Hero-image" {...image} />}
+      {video && <Video className="component-Hero-video" {...video} />}
+    </figure>
+    {subtitle && <figcaption className="component-Hero-subtitle">{subtitle}</figcaption>}
+    {children && <div className="component-Hero-description">{children}</div>}
     <style jsx>{`
       div {
+        margin-left: auto;
+        margin-right: auto;
         width: 100%;
       }
 
@@ -18,36 +25,31 @@ const Hero = ({ className, content, image, title }) => (
         }
       }
 
-      h1,
-      p {
-        padding: 0 ${theme.pxToRem(50)};
+      .component-Hero-title,
+      .component-Hero-subtitle,
+      .component-Hero-description {
+        padding: 0 ${theme.pxToRem(theme.layout.gutterWidth / 2)};
         text-align: right;
       }
 
       @media (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-        h1,
-        p {
+        .component-Hero-title,
+        .component-Hero-subtitle,
+        .component-Hero-description {
           padding: 0;
         }
       }
 
-      h1 {
-        font-size: ${theme.pxToRem(65)};
-        line-height: ${theme.pxToRem(78)};
-        letter-spacing: -0.01em;
-      }
-
-      div :global(.component-Hero-image) {
-        margin-top: ${theme.pxToRem(45)};
-        margin-bottom: ${theme.pxToRem(66)};
+      div :global(.component-Hero-image),
+      div :global(.component-Hero-video) {
+        margin-top: ${theme.pxToRem(24)};
+        margin-bottom: ${theme.pxToRem(24)};
         height: auto;
         width: 100%;
       }
 
-      p {
-        font-size: ${theme.pxToRem(43)};
-        line-height: ${theme.pxToRem(52)};
-        letter-spacing: 0.01em;
+      .component-Hero-description {
+        margin-top: ${theme.pxToRem(66)};
       }
     `}</style>
   </div>
@@ -55,15 +57,20 @@ const Hero = ({ className, content, image, title }) => (
 
 Hero.propTypes = {
   className: PropTypes.string,
-  content: PropTypes.node,
-  image: PropTypes.shape(Image.propTypes).isRequired,
-  title: PropTypes.string,
+  children: PropTypes.node,
+  image: PropTypes.shape(Image.propTypes),
+  subtitle: PropTypes.node,
+  title: PropTypes.node,
+  video: PropTypes.shape(Video.propTypes),
 };
 
 Hero.defaultProps = {
   className: undefined,
-  content: undefined,
+  children: undefined,
+  image: undefined,
+  subtitle: undefined,
   title: undefined,
+  video: undefined,
 };
 
 export default Hero;
