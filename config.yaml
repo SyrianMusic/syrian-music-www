@@ -1,4 +1,13 @@
 nav:
+  performance:
+    text: Performance
+    href: /performance
+    description: >
+      Learn more about the performing arms of SMPI: Takht al-Nagham and Raqs al-Samah. Get updates on upcoming events.
+    image:
+      src: /images/home-nav-item.jpg
+      width: 957
+      height: 539
   education:
     text: Education
     href: /education

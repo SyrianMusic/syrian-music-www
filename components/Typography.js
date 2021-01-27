@@ -24,6 +24,11 @@ const Typography = ({ className, children, textAlign, variant }) => {
       )}>
       {children}
       <style jsx>{`
+        h1,
+        h3 {
+          letter-spacing: -0.01em;
+        }
+
         h1 {
           font-size: ${theme.pxToRem(85)};
           line-height: ${theme.pxToRem(102)};
@@ -45,6 +50,7 @@ const Typography = ({ className, children, textAlign, variant }) => {
         p {
           font-size: ${theme.pxToRem(41)};
           line-height: ${theme.pxToRem(49)};
+          letter-spacing: 0.01em;
         }
 
         p:not(:last-child) {
