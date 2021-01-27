@@ -1,7 +1,7 @@
-import SiteLayout from '../components/SiteLayout';
-import Title from '../components/Title';
-import Typography from '../components/Typography';
-import config from '../config.yaml';
+import SiteLayout from '../../components/SiteLayout';
+import Title from '../../components/Title';
+import Typography from '../../components/Typography';
+import config from '../../config.yaml';
 
 const pageConfig = config.nav.connect;
 
