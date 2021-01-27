@@ -1,8 +1,8 @@
-import Hero from '../components/Hero';
-import SiteLayout from '../components/SiteLayout';
-import Title from '../components/Title';
-import Typography from '../components/Typography';
-import config from '../config.yaml';
+import Hero from '../../components/Hero';
+import SiteLayout from '../../components/SiteLayout';
+import Title from '../../components/Title';
+import Typography from '../../components/Typography';
+import config from '../../config.yaml';
 
 const EducationPage = () => (
   <SiteLayout className="page-Education-SiteLayout" pathname={config.nav.education.href}>
