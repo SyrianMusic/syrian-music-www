@@ -22,6 +22,19 @@ nav:
       src: /images/home-nav-item.jpg
       width: 957
       height: 539
+    links:
+      - text: Archive
+        href: /
+      - text: Musical Figures
+        href: /
+      - text: Recourse and Reference
+        href: /
+      - text: Glossary
+        href: /
+      - text: Workshops
+        href: /
+      - text: Musical Instruments
+        href: /
   about:
     text: About
     href: /about
