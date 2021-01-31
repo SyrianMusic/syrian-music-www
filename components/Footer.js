@@ -24,7 +24,8 @@ const Footer = ({ className, pathname }) => (
               {sectionLink}
 
               <ul>
-                {section.links &&
+                {section.text !== 'Education' &&
+                  section.links &&
                   Object.values(section.links).map((link) => {
                     let linkEl;
 

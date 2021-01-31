@@ -1,7 +1,9 @@
 import Hero from '../../components/Hero';
+import EducationNav from '../../components/EducationNav';
 import SiteLayout from '../../components/SiteLayout';
 import Title from '../../components/Title';
 import Typography from '../../components/Typography';
+import theme from '../../styles/theme';
 import config from '../../config.yaml';
 
 const EducationPage = () => (
@@ -21,6 +23,12 @@ const EducationPage = () => (
         explanations on musical forms, translations, glossaries, and&nbsp;more.
       </Typography>
     </Hero>
+    <EducationNav />
+    <style global jsx>{`
+      .page-Education-Hero {
+        margin-bottom: ${theme.pxToRem(230)};
+      }
+    `}</style>
   </SiteLayout>
 );
 
