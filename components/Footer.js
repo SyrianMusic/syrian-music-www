@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import config from '../config.yaml';
 import theme from '../styles/theme';
 import Nav from './Nav';
+import Typography from './Typography';
 
 const Footer = ({ className, pathname }) => (
   <footer className={className}>
@@ -51,6 +52,10 @@ const Footer = ({ className, pathname }) => (
         })}
       </ul>
     </Nav>
+    <Typography className="component-Footer-copyright">
+      Copyright © 2017-2021 Syrian Music Preservation Initiative Corp. 501 (c)(3) not-for-profit
+      organization
+    </Typography>
     <style jsx>
       {`
         footer {
@@ -75,6 +80,12 @@ const Footer = ({ className, pathname }) => (
 
         :global(.component-Footer-nav) ul li ul {
           margin-top: 1em;
+        }
+
+        footer :global(.component-Footer-copyright) {
+          margin-top: ${theme.pxToRem(100)};
+          margin-left: auto;
+          max-width: ${theme.pxToRem(1000)};
         }
       `}
     </style>
