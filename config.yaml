@@ -23,17 +23,19 @@ nav:
       width: 957
       height: 539
     links:
-      - text: Archive
+      - text: Musical Figures and Bios
         href: /
-      - text: Musical Figures
+      - text: Transcriptions
         href: /
-      - text: Recourse and Reference
+      - text: Musical Forms
         href: /
-      - text: Glossary
+      - text: Maqams
+        href: /
+      - text: Ouds
+        href: /
+      - text: Resources & References
         href: /
       - text: Workshops
-        href: /
-      - text: Musical Instruments
         href: /
   about:
     text: About
