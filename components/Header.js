@@ -42,6 +42,7 @@ const Header = ({ className, pathname }) => (
     <style jsx>{`
       header {
         display: flex;
+        flex-shrink: 0;
         width: 100%;
       }
 
