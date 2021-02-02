@@ -35,7 +35,7 @@ const Header = ({ className, pathname }) => (
           src="/images/logo-text.svg"
           alt="Syrian Music Preservation Initiative"
           width={378}
-          height={187}
+          height={188}
         />
       </a>
     </Link>
