@@ -18,7 +18,7 @@ steps:
       - -c
       - -d
       - /build
-      - gs://www.syrianmusic.us
+      - gs://syrianmusic.org
     volumes:
       - name: build
         path: /build
