@@ -15,8 +15,8 @@ const EducationNav = ({ className }) => (
             as="div">
             {link.text}
           </Typography>
-          <Typography className="component-EducationNav-coming-soon" variant="h1" as="div">
-            Coming Soon
+          <Typography className="component-EducationNav-link-description">
+            {link.description}
           </Typography>
         </li>
       ))}
@@ -31,18 +31,22 @@ const EducationNav = ({ className }) => (
         padding: ${theme.pxToRem(126)} 0 ${theme.pxToRem(63)};
       }
 
-      li :global(.component-EducationNav-coming-soon) {
-        opacity: 0.5;
+      li :global(.component-EducationNav-link-description) {
         text-align: left;
       }
 
       @media (min-width: ${theme.breakpoint.mobileToDesktop}px) {
         ol li {
           display: grid;
+          align-items: center;
           grid-template-columns: 50% 50%;
         }
 
-        li :global(.component-EducationNav-coming-soon) {
+        li :global(.component-EducationNav-link-text:not(:last-child)) {
+          margin-bottom: 0;
+        }
+
+        li :global(.component-EducationNav-link-description) {
           text-align: right;
         }
       }
