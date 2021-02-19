@@ -80,7 +80,7 @@ const PerformancePage = () => (
           display: flex;
           flex-direction: column;
           align-items: flex-end;
-          padding: ${theme.pxToRem(100)} ${theme.pxToRem(theme.layout.gutterWidth / 2)}
+          padding: ${theme.pxToRem(100)} ${theme.pxToRem(theme.layout.gutterWidth.mobile)}
             ${theme.pxToRem(225)};
         }
 
@@ -96,8 +96,8 @@ const PerformancePage = () => (
           article {
             flex-direction: row;
             align-items: flex-start;
-            padding-left: ${theme.pxToRem(theme.layout.gutterWidth)};
-            padding-right: ${theme.pxToRem(theme.layout.gutterWidth)};
+            padding-left: ${theme.pxToRem(theme.layout.gutterWidth.desktop)};
+            padding-right: ${theme.pxToRem(theme.layout.gutterWidth.desktop)};
           }
 
           article > div:not(:first-child) {

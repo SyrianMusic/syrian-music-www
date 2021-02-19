@@ -21,7 +21,10 @@ const theme = {
   layout: {
     contentWidthMin: 320,
     contentWidthMax: 960, // 1920 / 2
-    gutterWidth: 236,
+    gutterWidth: {
+      mobile: 76.27,
+      desktop: 236,
+    },
   },
   pxToEm: (px, base = baseFontSize * 2) => `${px / base}em`,
   pxToPercent: (px, base) => `${(px / base) * 100}%`,
