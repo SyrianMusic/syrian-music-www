@@ -17,10 +17,12 @@ const HomePage = () => (
         height: 820,
       }}>
       <Typography>
-        The Syrian Music Preservation Initiative promotes and celebrates the diverse ethnic and
-        regional musical traditions of Syria through preservation, innovation, research, and
-        education. Its activities include music and dance performances, classes, workshops, and
-        seminars, as well as digital resources and&nbsp;recordings.
+        Welcome to the Syrian Music Preservation Initiative where we promote and celebrate the
+        diverse ethnic and regional musical traditions of Syria. At SMPI we pursue activities around
+        preservation of, innovation to, research and education about the music which is dear to our
+        hearts. We have a broad range of offerings including musical and dance performances, classes
+        and workshops, seminars as well as digital resources and recordings. We encourage you to
+        explore our&nbsp;site.
       </Typography>
     </Hero>
     <VisualNav className="page-Home-visual-nav" />
