@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import config from '../config.yaml';
@@ -7,7 +8,7 @@ import Typography from './Typography';
 
 const Footer = ({ className, pathname }) => (
   <footer className={className}>
-    <Nav className="component-Footer-nav">
+    <Nav className={cx('component-Footer-nav', 'gutters')}>
       <ul>
         {Object.values(config.nav).map((section) => {
           let sectionLink = (
@@ -52,21 +53,22 @@ const Footer = ({ className, pathname }) => (
         })}
       </ul>
     </Nav>
-    <Typography className="component-Footer-copyright">
-      Copyright © 2017-2021 Syrian Music Preservation Initiative Corp. 501 (c)(3) not-for-profit
-      organization
+    <Typography className={cx('component-Footer-copyright', 'gutters')} textAlign="center">
+      Copyright ©2017–{new Date(Date.now()).getFullYear()} Syrian Music Preservation Initiative
+      Corp. 501 (c)(3) not-for-profit organization
     </Typography>
     <style jsx>
       {`
         footer {
           font-size: ${theme.pxToRem(44)};
           line-height: ${theme.pxToRem(53)};
-          padding: 0 ${theme.pxToRem(155)} ${theme.pxToRem(114)};
+          padding-bottom: 2em;
+          width: 100%;
         }
 
         :global(.component-Footer-nav) > ul {
           display: flex;
-          justify-content: flex-end;
+          justify-content: space-between;
         }
 
         :global(.component-Footer-nav) > ul > li:not(:last-child) {
@@ -83,9 +85,9 @@ const Footer = ({ className, pathname }) => (
         }
 
         footer :global(.component-Footer-copyright) {
+          font-size: ${theme.pxToRem(30)};
+          line-height: ${theme.pxToRem(53)};
           margin-top: ${theme.pxToRem(100)};
-          margin-left: auto;
-          max-width: ${theme.pxToRem(1000)};
         }
       `}
     </style>
