@@ -3,7 +3,7 @@ nav:
     text: Performance
     href: /performance
     description: >
-      Learn more about the performing arms of SMPI: Takht al-Nagham and Raqs al-Samah. Get updates on upcoming events.
+      Learn more about past and future performances of Takht al-Nagham.
     image:
       src: /images/home-nav-item.jpg
       width: 957
@@ -17,7 +17,9 @@ nav:
     text: Education
     href: /education
     description: >
-      Explore performance notes on specific performances by the organization, explanations on musical forms, glossaries, workshops, and more.
+      Learn about Syrian music through biographies, transcriptions, lyrical translation and
+       musicological analysis. An exploration of this tradition from any level. Explore additional
+       resources, workshops and our beautiful oud collection.
     image:
       src: /images/home-nav-item.jpg
       width: 957
@@ -41,7 +43,7 @@ nav:
     text: About
     href: /about
     description: >
-      Learn more about the SMPI, its story, mission, members, and more.
+      Learn more about the SMPI mission, members, and more.
     image:
       src: /images/home-nav-item.jpg
       width: 957
@@ -50,12 +52,12 @@ nav:
     text: Connect
     href: /connect
     description: >
-      Find out how to connect with us, donate, and become a member. We want to hear from you.
+      Join our community by following us on social media, signing up for our newsletter, volunteering or donating.
     image:
       src: /images/home-nav-item.jpg
       width: 957
       height: 539
-    links: 
+    links:
       donate:
         text: Donate
         href: https://secure.squarespace.com/checkout/donate?donatePageId=5bc627f90852298e0d320f3d&ss_cid=98821902-8f9b-4383-bf30-abb211822fb7&ss_cvr=f522a8b6-588a-417b-b949-6da49a78d160%7C1583903323850%7C1585024825658%7C1585072215232%7C18
