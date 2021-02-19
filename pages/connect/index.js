@@ -9,10 +9,8 @@ const ConnectPage = () => (
   <SiteLayout className="gutters" pathname={pageConfig.href}>
     <Title>Connect</Title>
     <Typography variant="h1">Connect</Typography>
-    <Typography variant="h1" as="p">
-      We want to hear from&nbsp;you!
-    </Typography>
-    <Typography variant="h1" as="p">
+    <Typography>We want to hear from&nbsp;you!</Typography>
+    <Typography>
       Email us at{' '}
       <a href="mailto:info@syrianmusic.org" target="_blank" rel="noopener noreferrer">
         info@syrianmusic.org
@@ -23,7 +21,7 @@ const ConnectPage = () => (
       </a>
       .
     </Typography>
-    <Typography variant="h1" as="p">
+    <Typography>
       Follow us on{' '}
       <a href={pageConfig.links.instagram.href} target="_blank" rel="noopener noreferrer">
         Instagram
