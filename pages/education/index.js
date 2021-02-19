@@ -14,8 +14,18 @@ const EducationPage = () => (
       title={<Typography variant="h3">Education and Preservation</Typography>}
       image={{
         src: '/images/education-hero.jpg',
-        width: 1461,
-        height: 822,
+        srcSet: [
+          {
+            densityFactor: 2,
+            src: '/images/education-hero@2x.jpg',
+          },
+          {
+            densityFactor: 3,
+            src: '/images/education-hero@3x.jpg',
+          },
+        ],
+        width: 730,
+        height: 410,
       }}>
       <Typography>
         The Syrian Music Preservation Initiative is a hub for Arabic music education, references,
