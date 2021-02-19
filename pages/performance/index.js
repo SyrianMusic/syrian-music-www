@@ -13,17 +13,10 @@ const PerformancePage = () => (
     <Title>Performance</Title>
     <h1 className="visually-hidden">Performance</h1>
     <Hero
-      title={
-        <Typography className="page-Performance-title" variant="h3" as="div">
-          <span>
-            <h2>Featured performance</h2>
-          </span>
-          <span>Zakhrafa زخرفة</span>
-        </Typography>
-      }
+      title={<Typography variant="h3">Performance</Typography>}
       subtitle={
         <Typography className="page-Performance-subtitle" variant="h3" as="div">
-          <span>Brooklyn Maqam</span>
+          <span>Zakhrafa زخرفة</span>
           <span>March 2019</span>
         </Typography>
       }
