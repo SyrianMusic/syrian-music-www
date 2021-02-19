@@ -54,6 +54,7 @@ const AboutPage = () => (
       />
       <div className="page-About-who-we-are-text">
         <Typography variant="h1">Who We Are</Typography>
+        <Typography variant="h3">Samer Ali, Founder and Artistic Director</Typography>
         <Typography>
           A native of Syria, Dr. Samer Ali is a physician, Arab-violinist, musical director of Takht
           al-Nagham and founder and president of the Syrian Music Preservation&nbsp;Initiative.
