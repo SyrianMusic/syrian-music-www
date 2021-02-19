@@ -5,9 +5,14 @@ nav:
     description: >
       Learn more about past and future performances of Takht al-Nagham.
     image:
-      src: /images/home-nav-item.jpg
-      width: 957
-      height: 539
+      src: /images/home-nav-performance.jpg
+      width: 480
+      height: 316
+      srcSet:
+        - densityFactor: 2
+          src: /images/home-nav-performance@2x.jpg
+        - densityFactor: 3
+          src: /images/home-nav-performance@3x.jpg
     links:
       - text: Takht al-Nagham
         href: /
@@ -21,9 +26,14 @@ nav:
        musicological analysis. An exploration of this tradition from any level. Explore additional
        resources, workshops and our beautiful oud collection.
     image:
-      src: /images/home-nav-item.jpg
-      width: 957
-      height: 539
+      src: /images/home-nav-education.jpg
+      width: 480
+      height: 316
+      srcSet:
+        - densityFactor: 2
+          src: /images/home-nav-education@2x.jpg
+        - densityFactor: 3
+          src: /images/home-nav-education@3x.jpg
     links:
       - text: Musical Figures and Bios
         href: /
@@ -45,18 +55,28 @@ nav:
     description: >
       Learn more about the SMPI mission, members, and more.
     image:
-      src: /images/home-nav-item.jpg
-      width: 957
-      height: 539
+      src: /images/home-nav-about.jpg
+      width: 480
+      height: 316
+      srcSet:
+        - densityFactor: 2
+          src: /images/home-nav-about@2x.jpg
+        - densityFactor: 3
+          src: /images/home-nav-about@3x.jpg
   connect:
     text: Connect
     href: /connect
     description: >
       Join our community by following us on social media, signing up for our newsletter, volunteering or donating.
     image:
-      src: /images/home-nav-item.jpg
-      width: 957
-      height: 539
+      src: /images/home-nav-connect.jpg
+      width: 480
+      height: 316
+      srcSet:
+        - densityFactor: 2
+          src: /images/home-nav-connect@2x.jpg
+        - densityFactor: 3
+          src: /images/home-nav-connect@3x.jpg
     links:
       donate:
         text: Donate

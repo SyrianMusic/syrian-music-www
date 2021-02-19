@@ -32,6 +32,7 @@ const VisualNav = ({ className }) => (
                     <Image
                       className="component-VisualNav-image"
                       src={section.image.src}
+                      srcSet={section.image.srcSet}
                       width={section.image.width}
                       height={section.image.height}
                     />

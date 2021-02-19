@@ -2,27 +2,37 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import theme from '../styles/theme';
 
-const Image = ({ className, alt, src, height, width }) => (
-  <>
-    <img
-      className={cx('component-Image-root', className)}
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-    />
-    <style jsx>
-      {`
-        .component-Image-root {
-          display: block;
-          margin: 0;
-          height: ${theme.pxToRem(height)};
-          width: ${theme.pxToRem(width)};
-        }
-      `}
-    </style>
-  </>
-);
+const Image = ({ className, alt, height, width, src, srcSet: srcSetProp }) => {
+  let srcSet;
+
+  if (srcSetProp) {
+    srcSet = srcSetProp.map(({ densityFactor, src }) => `${src} ${densityFactor}x`).join(', ');
+    srcSet = `${src}, ${srcSet}`;
+  }
+
+  return (
+    <>
+      <img
+        className={cx('component-Image-root', className)}
+        src={src}
+        srcSet={srcSet}
+        alt={alt}
+        width={width}
+        height={height}
+      />
+      <style jsx>
+        {`
+          .component-Image-root {
+            display: block;
+            margin: 0;
+            height: ${theme.pxToRem(height)};
+            width: ${theme.pxToRem(width)};
+          }
+        `}
+      </style>
+    </>
+  );
+};
 
 Image.propTypes = {
   className: PropTypes.string,
@@ -30,11 +40,18 @@ Image.propTypes = {
   height: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
   src: PropTypes.string.isRequired,
+  srcSet: PropTypes.arrayOf(
+    PropTypes.shape({
+      densityFactor: PropTypes.number.isRequired,
+      src: PropTypes.string.isRequired,
+    }),
+  ),
 };
 
 Image.defaultProps = {
   className: undefined,
   alt: '',
+  srcSet: undefined,
 };
 
 export default Image;
