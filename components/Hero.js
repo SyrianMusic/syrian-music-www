@@ -28,7 +28,7 @@ const Hero = ({ className, children, image, subtitle, title, video }) => (
       .component-Hero-title,
       .component-Hero-subtitle,
       .component-Hero-description {
-        padding: 0 ${theme.pxToRem(theme.layout.gutterWidth / 2)};
+        padding: 0 ${theme.pxToRem(theme.layout.gutterWidth.mobile)};
         text-align: right;
       }
 

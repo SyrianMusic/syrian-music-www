@@ -10,16 +10,31 @@ const App = ({ Component, pageProps }) => (
     <style global jsx>
       {`
         .gutters {
-          margin-left: ${theme.pxToRem(theme.layout.gutterWidth)};
-          margin-right: ${theme.pxToRem(theme.layout.gutterWidth)};
+          margin-left: ${theme.pxToRem(theme.layout.gutterWidth.mobile)};
+          margin-right: ${theme.pxToRem(theme.layout.gutterWidth.mobile)};
         }
 
         .gutter--left {
-          margin-left: ${theme.pxToRem(theme.layout.gutterWidth)};
+          margin-left: ${theme.pxToRem(theme.layout.gutterWidth.mobile)};
         }
 
         .gutter--right {
-          margin-right: ${theme.pxToRem(theme.layout.gutterWidth)};
+          margin-right: ${theme.pxToRem(theme.layout.gutterWidth.mobile)};
+        }
+
+        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          .gutters {
+            margin-left: ${theme.pxToRem(theme.layout.gutterWidth.desktop)};
+            margin-right: ${theme.pxToRem(theme.layout.gutterWidth.desktop)};
+          }
+
+          .gutter--left {
+            margin-left: ${theme.pxToRem(theme.layout.gutterWidth.desktop)};
+          }
+
+          .gutter--right {
+            margin-right: ${theme.pxToRem(theme.layout.gutterWidth.desktop)};
+          }
         }
       `}
     </style>

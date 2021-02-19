@@ -10,6 +10,7 @@ const Image = ({ className, alt, height, width, src, srcSet: srcSetProp }) => {
     srcSet = `${src}, ${srcSet}`;
   }
 
+  console.log({ width, rem: theme.pxToRem(width) });
   return (
     <>
       <img

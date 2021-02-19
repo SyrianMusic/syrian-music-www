@@ -61,11 +61,11 @@ const VisualNav = ({ className }) => (
         }
 
         .component-VisualNav-text {
-          margin: ${theme.pxToRem(96)} ${theme.pxToRem(innerMargin)} 0 ${theme.pxToRem(outerMargin)};
+          margin: ${theme.pxToRem(96)} ${theme.pxToRem(theme.layout.gutterWidth.mobile)} 0;
         }
 
         .flipped .component-VisualNav-text {
-          margin: ${theme.pxToRem(96)} ${theme.pxToRem(outerMargin)} 0 ${theme.pxToRem(innerMargin)};
+          margin: ${theme.pxToRem(96)} ${theme.pxToRem(theme.layout.gutterWidth.mobile)} 0;
         }
 
         a.flipped .component-VisualNav-image-wrapper {
@@ -75,6 +75,18 @@ const VisualNav = ({ className }) => (
         li a :global(.component-VisualNav-image) {
           height: auto;
           width: 100%;
+        }
+
+        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          .component-VisualNav-text {
+            margin-right: ${theme.pxToRem(innerMargin)};
+            margin-left: ${theme.pxToRem(outerMargin)};
+          }
+
+          .flipped .component-VisualNav-text {
+            margin-right: ${theme.pxToRem(outerMargin)};
+            margin-left: ${theme.pxToRem(innerMargin)};
+          }
         }
       `}
     </style>
