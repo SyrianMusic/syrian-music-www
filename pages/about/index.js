@@ -1,4 +1,4 @@
-import Image from '../../components/Image';
+import Bio from '../../components/Bio';
 import SiteLayout from '../../components/SiteLayout';
 import Title from '../../components/Title';
 import Typography from '../../components/Typography';
@@ -45,32 +45,12 @@ const AboutPage = () => (
       </Typography>
     </section>
 
-    <section className="gutter--right page-About-who-we-are">
-      <Image
-        className="page-About-who-we-are-image"
-        src="/images/about-samer.jpg"
-        width={739}
-        height={1108}
-      />
-      <div className="page-About-who-we-are-text">
-        <Typography variant="h1">Who We Are</Typography>
-        <Typography variant="h3">Samer Ali, Founder and Artistic Director</Typography>
-        <Typography>
-          A native of Syria, Dr. Samer Ali is a physician, Arab-violinist, musical director of Takht
-          al-Nagham and founder and president of the Syrian Music Preservation&nbsp;Initiative.
-        </Typography>
-        <Typography>
-          Samer led Takht al-Nagham in New York City at Alwan for the Arts, Scandinavia House, and
-          Roulette Intermedium; and featured Syria&apos;s celebrated soprano Lubana al-Quntar at the
-          Kennedy Center in Washington D.C. He currently performs with the National Arab Orchestra
-          and the New York Arabic Orchestra. He began studying western classical violin at the age
-          of eight with Fawaz al-Ali, and later pursued intensive conservatory studies with Ali
-          Mukhtar Babayev. He studied the Arab violin and classical music traditions with Ali Farran
-          and Ziad Ajjan (both students of prolific scholar Mahmoud Ajjan), composer Khaleel Haj
-          Hussein, violinist and oudist Simon Shaheen, violinist Anwar Hariri, and scholar and
-          oudist Muhammad Qadri&nbsp;Dalal.
-        </Typography>
-      </div>
+    <section className="page-About-who-we-are">
+      <Typography className="gutter--right" variant="h1">
+        Who We Are
+      </Typography>
+      <Bio className="page-About-bio" />
+      <Bio className="page-About-bio" flipped />
     </section>
     <style jsx>
       {`
@@ -78,18 +58,18 @@ const AboutPage = () => (
           margin-top: ${theme.pxToRem(190)};
         }
 
-        .page-About-who-we-are {
-          display: flex;
+        section :global(.page-About-bio .component-Bio-title) {
+          margin-top: 2em;
         }
 
-        :global(.page-About-who-we-are-image) {
-          align-self: flex-end;
+        section :global(.page-About-bio:nth-child(2) .component-Bio-title) {
+          margin-top: 0;
         }
 
-        .page-About-who-we-are-text {
-          margin-left: ${theme.pxToRem(40)};
-          margin-bottom: ${theme.pxToRem(35)};
-          flex: 1;
+        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          section :global(.page-About-bio .component-Bio-title) {
+            margin-top: 3em;
+          }
         }
       `}
     </style>
