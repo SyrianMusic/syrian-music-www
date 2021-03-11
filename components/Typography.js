@@ -35,17 +35,17 @@ const Typography = ({ className, children, as, textAlign, variant }) => {
         }
 
         .variant-h1 {
-          font-size: ${theme.pxToRem(85)};
-          line-height: ${theme.pxToRem(102)};
+          font-size: ${theme.pxToRem(42.5)};
+          line-height: ${theme.pxToRem(51)};
         }
 
         .variant-h1:not(:last-child) {
-          margin-bottom: ${theme.pxToEm(60, 85)};
+          margin-bottom: ${theme.pxToEm(30, 42.5)};
         }
 
         .variant-h3 {
-          font-size: ${theme.pxToRem(70)};
-          line-height: ${theme.pxToRem(84)};
+          font-size: ${theme.pxToRem(35)};
+          line-height: ${theme.pxToRem(42)};
         }
 
         .variant-h3:not(:last-child) {
@@ -53,13 +53,13 @@ const Typography = ({ className, children, as, textAlign, variant }) => {
         }
 
         .variant-body {
-          font-size: ${theme.pxToRem(41)};
-          line-height: ${theme.pxToRem(49)};
+          font-size: ${theme.pxToRem(20.5)};
+          line-height: ${theme.pxToRem(24.5)};
           letter-spacing: 0.01em;
         }
 
         .variant-body:not(:last-child) {
-          margin-bottom: ${theme.pxToEm(35, 41)};
+          margin-bottom: ${theme.pxToEm(17.5, 20.5)};
         }
 
         .text-align--left {
