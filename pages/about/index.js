@@ -13,7 +13,7 @@ const AboutPage = () => (
       About
     </Typography>
 
-    <section className="gutters">
+    <section className="gutters" id="mission">
       <Typography variant="h3" as="h1" textAlign="left">
         Mission
       </Typography>
@@ -25,7 +25,7 @@ const AboutPage = () => (
       </Typography>
     </section>
 
-    <section className="gutters">
+    <section className="gutters" id="our-story">
       <Typography variant="h3" as="h1" textAlign="left">
         Our Story
       </Typography>
@@ -54,7 +54,7 @@ const AboutPage = () => (
       </Typography>
     </section>
 
-    <section className="page-About-who-we-are">
+    <section className="page-About-who-we-are" id="who-we-are">
       <Typography className="gutters" variant="h3" as="h1" textAlign="left">
         Who We Are
       </Typography>

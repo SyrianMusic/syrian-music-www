@@ -15,9 +15,7 @@ nav:
           src: /images/instruments/syrian-tambourine@3x.png
     links:
       - text: Takht al-Nagham
-        href: /
-      - text: Raqs al-Samah
-        href: /
+        href: /#takht-al-nagham
   education:
     text: Education
     href: /education
@@ -57,7 +55,7 @@ nav:
       - text: Maqams
         href: /
         description: >
-          Maqams are the building block of all Syrian musicf.  Learn the foundations of each of the
+          Maqams are the building block of all Syrian music.  Learn the foundations of each of the
            maqams, why they are different and hear them in context of real pieces.
       - text: Ouds
         href: /
@@ -84,6 +82,13 @@ nav:
           src: /images/instruments/syrian-oud-side-profile@2x.png
         - densityFactor: 3
           src: /images/instruments/syrian-oud-side-profile@3x.png
+    links:
+      - text: Mission
+        href: /#mission
+      - text: Our Story
+        href: /#our-story
+      - text: Who We Are
+        href: /#who-we-are
   connect:
     text: Connect
     href: /connect
