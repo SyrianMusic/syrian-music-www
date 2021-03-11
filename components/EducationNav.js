@@ -28,7 +28,7 @@ const EducationNav = ({ className }) => (
 
       ol li {
         border-top: ${theme.pxToRem(1)} solid ${theme.color.black};
-        padding: ${theme.pxToRem(126)} 0 ${theme.pxToRem(63)};
+        padding: ${theme.pxToRem(63)} 0 ${theme.pxToRem(31.5)};
       }
 
       li :global(.component-EducationNav-link-description) {

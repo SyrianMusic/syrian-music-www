@@ -9,7 +9,12 @@ const Header = ({ className, pathname }) => (
   <header className={className}>
     <Link href="/">
       <a className="component-Header-logo">
-        <Image src="/images/logo.svg" width={102} height={192} />
+        <Image
+          alt="Syrian Music Preservation Initiative – Home"
+          src="/images/logos/syrian-music-preservation-initiative-logo-icon.svg"
+          width={51}
+          height={96}
+        />
       </a>
     </Link>
     <Nav className="component-Header-nav">
@@ -32,10 +37,10 @@ const Header = ({ className, pathname }) => (
     <Link href="/">
       <a className="component-Header-logo-text">
         <Image
-          src="/images/logo-text.svg"
-          alt="Syrian Music Preservation Initiative"
-          width={378}
-          height={188}
+          src="/images/logos/syrian-music-preservation-initiative-logo.svg"
+          alt="Syrian Music Preservation Initiative – Home"
+          width={189}
+          height={94}
         />
       </a>
     </Link>
@@ -47,12 +52,12 @@ const Header = ({ className, pathname }) => (
       }
 
       .component-Header-logo {
-        margin-right: ${theme.pxToRem(75)};
+        margin-right: ${theme.pxToRem(37.5)};
       }
 
       :global(.component-Header-nav) {
         border-bottom: 1px solid black;
-        margin-bottom: ${theme.pxToRem(22)};
+        margin-bottom: ${theme.pxToRem(11)};
         flex: 1;
       }
 
@@ -60,18 +65,18 @@ const Header = ({ className, pathname }) => (
         display: flex;
         align-items: flex-end;
         flex-wrap: wrap;
-        font-size: ${theme.pxToRem(43)};
-        line-height: ${theme.pxToRem(66)};
+        font-size: ${theme.pxToRem(21.5)};
+        line-height: ${theme.pxToRem(33)};
         height: 100%;
-        padding: 0 ${theme.pxToRem(35)} ${theme.pxToRem(42)} ${theme.pxToRem(55)};
+        padding: 0 ${theme.pxToRem(17.5)} ${theme.pxToRem(21)} ${theme.pxToRem(27.5)};
       }
 
       :global(.component-Header-nav) ul li:not(:last-child) {
-        margin-right: ${theme.pxToRem(50)};
+        margin-right: ${theme.pxToRem(25)};
       }
 
       .component-Header-logo-text {
-        margin-left: ${theme.pxToRem(66)};
+        margin-left: ${theme.pxToRem(33)};
       }
     `}</style>
   </header>

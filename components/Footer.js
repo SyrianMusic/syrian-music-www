@@ -53,15 +53,15 @@ const Footer = ({ className, pathname }) => (
         })}
       </ul>
     </Nav>
-    <Typography className={cx('component-Footer-copyright', 'gutters')} textAlign="center">
+    <Typography className="component-Footer-copyright" textAlign="center">
       Copyright ©2017–{new Date(Date.now()).getFullYear()} Syrian Music Preservation Initiative
       Corp. 501(c)(3) <nobr>not-for-profit</nobr>&nbsp;organization
     </Typography>
     <style jsx>
       {`
         footer {
-          font-size: ${theme.pxToRem(44)};
-          line-height: ${theme.pxToRem(53)};
+          font-size: ${theme.pxToRem(22)};
+          line-height: ${theme.pxToRem(26.5)};
           padding-bottom: 2em;
           width: 100%;
         }
@@ -72,7 +72,7 @@ const Footer = ({ className, pathname }) => (
         }
 
         :global(.component-Footer-nav) > ul > li:not(:last-child) {
-          margin-right: ${theme.pxToRem(100)};
+          margin-right: ${theme.pxToRem(50)};
         }
 
         :global(.component-Footer-nav) ul li a,
@@ -85,9 +85,10 @@ const Footer = ({ className, pathname }) => (
         }
 
         footer :global(.component-Footer-copyright) {
-          font-size: ${theme.pxToRem(30)};
-          line-height: ${theme.pxToRem(53)};
-          margin-top: ${theme.pxToRem(100)};
+          font-size: ${theme.pxToRem(16)};
+          line-height: ${theme.pxToRem(19)};
+          margin-top: ${theme.pxToRem(50)};
+          padding: 0 ${theme.pxToRem(theme.layout.gutterWidth.mobile)};
         }
       `}
     </style>

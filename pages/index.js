@@ -12,9 +12,19 @@ const HomePage = () => (
     <Hero
       className="page-Home-Hero"
       image={{
-        src: '/images/home-hero.jpg',
+        src: '/images/instruments/syrian-oud-black-background.png',
         width: 1457,
         height: 820,
+        srcSet: [
+          {
+            densityFactor: 2,
+            src: '/images/instruments/syrian-oud-black-background@2x.png',
+          },
+          {
+            densityFactor: 3,
+            src: '/images/instruments/syrian-oud-black-background@3x.png',
+          },
+        ],
       }}>
       <Typography>
         Welcome to the Syrian Music Preservation Initiative where we promote and celebrate the
@@ -29,7 +39,7 @@ const HomePage = () => (
     <style global jsx>
       {`
         .page-Home-Hero {
-          margin-bottom: ${theme.pxToRem(235)};
+          margin-bottom: ${theme.pxToRem(117.5)};
         }
       `}
     </style>

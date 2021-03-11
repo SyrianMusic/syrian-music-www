@@ -5,14 +5,14 @@ nav:
     description: >
       Learn more about past and future performances of Takht al-Nagham.
     image:
-      src: /images/home-nav-performance.jpg
-      width: 480
-      height: 316
+      src: /images/instruments/syrian-tambourine.png
+      width: 432
+      height: 287
       srcSet:
         - densityFactor: 2
-          src: /images/home-nav-performance@2x.jpg
+          src: /images/instruments/syrian-tambourine@2x.png
         - densityFactor: 3
-          src: /images/home-nav-performance@3x.jpg
+          src: /images/instruments/syrian-tambourine@3x.png
     links:
       - text: Takht al-Nagham
         href: /
@@ -26,14 +26,14 @@ nav:
        musicological analysis. An exploration of this tradition from any level. Explore additional
        resources, workshops and our beautiful oud collection.
     image:
-      src: /images/home-nav-education.jpg
-      width: 480
-      height: 316
+      src: /images/instruments/two-syrian-ouds.png
+      width: 432
+      height: 288
       srcSet:
         - densityFactor: 2
-          src: /images/home-nav-education@2x.jpg
+          src: /images/instruments/two-syrian-ouds@2x.png
         - densityFactor: 3
-          src: /images/home-nav-education@3x.jpg
+          src: /images/instruments/two-syrian-ouds@3x.png
     links:
       - text: Musical Figures and Bios
         href: /
@@ -76,14 +76,14 @@ nav:
     description: >
       Learn more about the SMPI mission, members, and more.
     image:
-      src: /images/home-nav-about.jpg
-      width: 480
-      height: 316
+      src: /images/instruments/syrian-oud-side-profile.png
+      width: 431.5
+      height: 286
       srcSet:
         - densityFactor: 2
-          src: /images/home-nav-about@2x.jpg
+          src: /images/instruments/syrian-oud-side-profile@2x.png
         - densityFactor: 3
-          src: /images/home-nav-about@3x.jpg
+          src: /images/instruments/syrian-oud-side-profile@3x.png
   connect:
     text: Connect
     href: /connect
@@ -91,14 +91,14 @@ nav:
       Join our community by following us on social media, signing up for our newsletter,
        volunteering or donating.
     image:
-      src: /images/home-nav-connect.jpg
-      width: 480
-      height: 316
+      src: /images/instruments/syrian-oud-strings.png
+      width: 432
+      height: 288
       srcSet:
         - densityFactor: 2
-          src: /images/home-nav-connect@2x.jpg
+          src: /images/instruments/syrian-oud-strings@2x.png
         - densityFactor: 3
-          src: /images/home-nav-connect@3x.jpg
+          src: /images/instruments/syrian-oud-strings@3x.png
     links:
       donate:
         text: Donate

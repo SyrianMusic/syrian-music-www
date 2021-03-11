@@ -21,7 +21,7 @@ const Hero = ({ className, children, image, subtitle, title, video }) => (
 
       @media (min-width: ${theme.breakpoint.mobileToDesktop}px) {
         div {
-          width: ${theme.pxToRem(1461)};
+          width: ${theme.pxToRem(730.5)};
         }
       }
 
@@ -42,14 +42,14 @@ const Hero = ({ className, children, image, subtitle, title, video }) => (
 
       div :global(.component-Hero-image),
       div :global(.component-Hero-video) {
-        margin-top: ${theme.pxToRem(24)};
-        margin-bottom: ${theme.pxToRem(24)};
+        margin-top: ${theme.pxToRem(12)};
+        margin-bottom: ${theme.pxToRem(12)};
         height: auto;
         width: 100%;
       }
 
       .component-Hero-description {
-        margin-top: ${theme.pxToRem(66)};
+        margin-top: ${theme.pxToRem(33)};
       }
     `}</style>
   </div>

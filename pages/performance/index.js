@@ -34,7 +34,7 @@ const PerformancePage = () => (
       <h1 className="visually-hidden">Performing Groups</h1>
       <article>
         <div>
-          <Image src="/images/takht-al-nagham-logo.svg" width={395} height={429} />
+          <Image src="/images/logos/takht-al-nagham-logo.svg" width={197.5} height={214.5} />
         </div>
         <div>
           <Typography variant="h3">Takht al-Nagham</Typography>
@@ -72,7 +72,7 @@ const PerformancePage = () => (
         }
 
         section {
-          margin-top: ${theme.pxToRem(100)};
+          margin-top: ${theme.pxToRem(50)};
         }
 
         article {
@@ -80,12 +80,12 @@ const PerformancePage = () => (
           display: flex;
           flex-direction: column;
           align-items: flex-end;
-          padding: ${theme.pxToRem(100)} ${theme.pxToRem(theme.layout.gutterWidth.mobile)}
-            ${theme.pxToRem(225)};
+          padding: ${theme.pxToRem(50)} ${theme.pxToRem(theme.layout.gutterWidth.mobile)}
+            ${theme.pxToRem(112.5)};
         }
 
         article > div:not(:first-child) {
-          margin-top: ${theme.pxToRem(50)};
+          margin-top: ${theme.pxToRem(25)};
         }
 
         article > div:last-child {
@@ -102,7 +102,7 @@ const PerformancePage = () => (
 
           article > div:not(:first-child) {
             margin-top: 0;
-            padding-left: ${theme.pxToRem(195)};
+            padding-left: ${theme.pxToRem(97.5)};
           }
         }
       `}

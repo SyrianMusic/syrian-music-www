@@ -4,7 +4,7 @@ import theme from '../styles/theme';
 import Image from './Image';
 import Typography from './Typography';
 
-const innerMargin = 40;
+const innerMargin = 20;
 
 const Bio = ({ className, flipped, image, text, title }) => {
   return (
@@ -35,7 +35,7 @@ const Bio = ({ className, flipped, image, text, title }) => {
 
           article :global(.component-Bio-image) {
             height: auto;
-            width: ${theme.pxToRem(370 * 2)};
+            width: ${theme.pxToRem(370)};
             margin-left: auto;
           }
 
