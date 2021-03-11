@@ -20,7 +20,7 @@ const theme = {
   },
   layout: {
     contentWidthMin: 320,
-    contentWidthMax: 960, // 1920 / 2
+    contentWidthMax: 960,
     gutterWidth: {
       mobile: 38,
       desktop: 118,
