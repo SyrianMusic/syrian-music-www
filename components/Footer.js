@@ -88,6 +88,7 @@ const Footer = ({ className, pathname }) => (
           font-size: ${theme.pxToRem(16)};
           line-height: ${theme.pxToRem(19)};
           margin-top: ${theme.pxToRem(50)};
+          padding: 0 ${theme.pxToRem(theme.layout.gutterWidth.mobile)};
         }
       `}
     </style>

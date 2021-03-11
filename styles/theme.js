@@ -10,7 +10,7 @@ const theme = {
   },
   font: {
     mobile: {
-      fontSizeMin: 3,
+      fontSizeMin: 6,
       fontSizeMax: rootFontSize,
     },
     desktop: {
