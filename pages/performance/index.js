@@ -32,7 +32,7 @@ const PerformancePage = () => (
     </Hero>
     <section>
       <h1 className="visually-hidden">Performing Groups</h1>
-      <article>
+      <article id="takht-al-nagham">
         <div>
           <Image src="/images/logos/takht-al-nagham-logo.svg" width={197.5} height={214.5} />
         </div>
