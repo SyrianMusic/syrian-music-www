@@ -22,7 +22,7 @@ const theme = {
     contentWidthMin: 320,
     contentWidthMax: 960, // 1920 / 2
     gutterWidth: {
-      mobile: 76.27,
+      mobile: 38,
       desktop: 118,
     },
   },

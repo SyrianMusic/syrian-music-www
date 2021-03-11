@@ -102,7 +102,7 @@ As President of the SMPI board, and member of Takht al-Nagham, Marissa helps to 
     <style jsx>
       {`
         section {
-          margin-top: ${theme.pxToRem(190)};
+          margin-top: ${theme.pxToRem(95)};
         }
 
         section :global(.page-About-bio .component-Bio-title) {
