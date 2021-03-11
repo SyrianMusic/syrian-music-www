@@ -23,7 +23,7 @@ const theme = {
     contentWidthMax: 960, // 1920 / 2
     gutterWidth: {
       mobile: 76.27,
-      desktop: 236,
+      desktop: 118,
     },
   },
   pxToEm: (px, base = rootFontSize) => `${px / base}em`,
