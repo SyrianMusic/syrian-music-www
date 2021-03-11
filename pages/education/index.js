@@ -36,7 +36,7 @@ const EducationPage = () => (
     <EducationNav />
     <style global jsx>{`
       .page-Education-Hero {
-        margin-bottom: ${theme.pxToRem(230)};
+        margin-bottom: ${theme.pxToRem(115)};
       }
     `}</style>
   </SiteLayout>
