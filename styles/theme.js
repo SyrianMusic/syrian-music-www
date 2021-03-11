@@ -1,5 +1,19 @@
 const rootFontSize = 16;
 
+const typography = {
+  body: {
+    fontSizeMobile: 12.5,
+    fontSizeDesktop: 17.5,
+    tagName: 'p',
+  },
+  h1: {
+    tagName: 'h1',
+  },
+  h3: {
+    tagName: 'h3',
+  },
+};
+
 const theme = {
   breakpoint: {
     mobileToDesktop: 550,
@@ -10,8 +24,8 @@ const theme = {
   },
   font: {
     mobile: {
-      fontSizeMin: 6,
-      fontSizeMax: rootFontSize,
+      fontSizeMin: rootFontSize,
+      fontSizeMax: rootFontSize * 2,
     },
     desktop: {
       fontSizeMin: rootFontSize * 0.5,
@@ -19,7 +33,7 @@ const theme = {
     },
   },
   layout: {
-    contentWidthMin: 320,
+    contentWidthMin: 375,
     contentWidthMax: 960,
     gutter: {
       mobile: {
@@ -36,6 +50,7 @@ const theme = {
   pxToEm: (px, base = rootFontSize) => `${px / base}em`,
   pxToPercent: (px, base) => `${(px / base) * 100}%`,
   pxToRem: (px) => `${px / rootFontSize}rem`,
+  typography,
 };
 
 export default theme;

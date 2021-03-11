@@ -1,21 +1,18 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import { fontSizeMd, fontSizeLg, fontSizeH3 } from '../styles/mixins';
+import { fontSizeLg, fontSizeH3 } from '../styles/mixins';
 import theme from '../styles/theme';
 
-const variantMap = {
-  h1: 'h1',
-  h3: 'h3',
-  body: 'p',
-};
-
-const Typography = ({ className, children, as, textAlign, size, variant }) => {
-  let Component = variantMap.body;
+const Typography = ({ className, children, as, size, textAlign, variant }) => {
+  let Component = theme.typography.body.tagName;
 
   if (as) {
     Component = as;
-  } else if (Object.keys(variantMap).includes(variant)) {
-    Component = variantMap[variant];
+  } else if (
+    Object.keys(theme.typography).includes(variant) &&
+    theme.typography[variant]?.tagName
+  ) {
+    Component = theme.typography[variant].tagName;
   }
 
   return (
@@ -32,13 +29,12 @@ const Typography = ({ className, children, as, textAlign, size, variant }) => {
       {children}
       <style jsx>{`
         .size--md {
-          ${fontSizeMd};
-          margin-bottom: 1em;
+          font-size: ${theme.pxToRem(theme.typography.body.fontSizeMobile)};
+          line-height: ${theme.pxToRem(15)};
+          margin-bottom: ${theme.pxToRem(17.5)};
         }
 
         .size--lg {
-          ${fontSizeLg};
-          margin-bottom: ${theme.pxToEm(17.5, 22.5)};
         }
 
         .variant--h1,
@@ -47,14 +43,9 @@ const Typography = ({ className, children, as, textAlign, size, variant }) => {
         }
 
         .variant--h1 {
-          font-size: ${theme.pxToRem(42.5)};
-          line-height: ${theme.pxToRem(51)};
-          margin-bottom: ${theme.pxToEm(30, 42.5)};
         }
 
         .variant--h3 {
-          ${fontSizeH3};
-          margin-bottom: 1em;
         }
 
         .component-Typography-root:last-child {
@@ -63,6 +54,29 @@ const Typography = ({ className, children, as, textAlign, size, variant }) => {
 
         .variant--body {
           letter-spacing: 0.01em;
+        }
+
+        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          .size--md {
+            font-size: ${theme.pxToRem(theme.typography.body.fontSizeDesktop)};
+            line-height: ${theme.pxToRem(21)};
+          }
+
+          .size--lg {
+            ${fontSizeLg};
+            margin-bottom: ${theme.pxToEm(17.5, 22.5)};
+          }
+
+          .variant--h1 {
+            font-size: ${theme.pxToRem(42.5)};
+            line-height: ${theme.pxToRem(51)};
+            margin-bottom: ${theme.pxToEm(30, 42.5)};
+          }
+
+          .variant--h3 {
+            ${fontSizeH3};
+            margin-bottom: 1em;
+          }
         }
 
         .text-align--left {
@@ -102,7 +116,7 @@ Typography.propTypes = {
   as: PropTypes.string,
   size: PropTypes.oneOf(['md', 'lg']),
   textAlign: PropTypes.oneOf(['left', 'center', 'right']),
-  variant: PropTypes.oneOf(Object.keys(variantMap)),
+  variant: PropTypes.oneOf(Object.keys(theme.typography)),
 };
 
 Typography.defaultProps = {
