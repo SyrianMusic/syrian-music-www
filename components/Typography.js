@@ -1,5 +1,6 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import { fontSizeMd, fontSizeLg } from '../styles/mixins';
 import theme from '../styles/theme';
 
 const variantMap = {
@@ -31,8 +32,7 @@ const Typography = ({ className, children, as, textAlign, size, variant }) => {
       {children}
       <style jsx>{`
         .size--md {
-          font-size: ${theme.pxToRem(17.5)};
-          line-height: ${theme.pxToRem(21)};
+          ${fontSizeMd};
         }
 
         .size--md:not(:last-child) {
@@ -40,8 +40,7 @@ const Typography = ({ className, children, as, textAlign, size, variant }) => {
         }
 
         .size--lg {
-          font-size: ${theme.pxToRem(22.5)};
-          line-height: ${theme.pxToRem(27)};
+          ${fontSizeLg};
         }
 
         .size--lg:not(:last-child) {

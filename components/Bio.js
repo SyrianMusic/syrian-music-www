@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { fontSizeLg } from '../styles/mixins';
 import theme from '../styles/theme';
 import Image from './Image';
 import Typography from './Typography';
@@ -66,6 +67,10 @@ const Bio = ({ className, image, name, text, title }) => {
             h3 :global(.component-Bio-name:not(:last-child)) {
               display: block;
               margin-bottom: 0;
+            }
+
+            h3 :global(.component-Bio-title) {
+              ${fontSizeLg};
             }
 
             .component-Bio-description {
