@@ -21,6 +21,13 @@ const theme = {
   layout: {
     contentWidthMin: 320,
     contentWidthMax: 960,
+    gutter: {
+      mobile: {
+        left: 45,
+        right: 48,
+      },
+      desktop: 118,
+    },
     gutterWidth: {
       mobile: 38,
       desktop: 118,

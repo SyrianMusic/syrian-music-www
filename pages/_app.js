@@ -10,30 +10,30 @@ const App = ({ Component, pageProps }) => (
     <style global jsx>
       {`
         .gutters {
-          margin-left: ${theme.pxToRem(theme.layout.gutterWidth.mobile)};
-          margin-right: ${theme.pxToRem(theme.layout.gutterWidth.mobile)};
+          margin-left: ${theme.pxToRem(theme.layout.gutter.mobile.left)};
+          margin-right: ${theme.pxToRem(theme.layout.gutter.mobile.right)};
         }
 
         .gutter--left {
-          margin-left: ${theme.pxToRem(theme.layout.gutterWidth.mobile)};
+          margin-left: ${theme.pxToRem(theme.layout.gutter.mobile.left)};
         }
 
         .gutter--right {
-          margin-right: ${theme.pxToRem(theme.layout.gutterWidth.mobile)};
+          margin-right: ${theme.pxToRem(theme.layout.gutter.mobile.right)};
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
           .gutters {
-            margin-left: ${theme.pxToRem(theme.layout.gutterWidth.desktop)};
-            margin-right: ${theme.pxToRem(theme.layout.gutterWidth.desktop)};
+            margin-left: ${theme.pxToRem(theme.layout.gutter.desktop)};
+            margin-right: ${theme.pxToRem(theme.layout.gutter.desktop)};
           }
 
           .gutter--left {
-            margin-left: ${theme.pxToRem(theme.layout.gutterWidth.desktop)};
+            margin-left: ${theme.pxToRem(theme.layout.gutter.desktop)};
           }
 
           .gutter--right {
-            margin-right: ${theme.pxToRem(theme.layout.gutterWidth.desktop)};
+            margin-right: ${theme.pxToRem(theme.layout.gutter.desktop)};
           }
         }
       `}

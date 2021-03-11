@@ -25,7 +25,9 @@ const VisualNav = ({ className }) => (
                   <Typography textAlign={textAlign} variant="h3">
                     {section.text}
                   </Typography>
-                  <Typography textAlign={textAlign}>{section.description}</Typography>
+                  <Typography size="lg" textAlign={textAlign}>
+                    {section.description}
+                  </Typography>
                 </div>
                 <div className="component-VisualNav-image-wrapper">
                   {section.image && (
@@ -61,11 +63,13 @@ const VisualNav = ({ className }) => (
         }
 
         .component-VisualNav-text {
-          margin: ${theme.pxToRem(48)} ${theme.pxToRem(theme.layout.gutterWidth.mobile)} 0;
+          margin: ${theme.pxToRem(48)} ${theme.pxToRem(theme.layout.gutter.mobile.right)} 0
+            ${theme.pxToRem(theme.layout.gutter.mobile.left)};
         }
 
         .flipped .component-VisualNav-text {
-          margin: ${theme.pxToRem(48)} ${theme.pxToRem(theme.layout.gutterWidth.mobile)} 0;
+          margin: ${theme.pxToRem(48)} ${theme.pxToRem(theme.layout.gutter.mobile.right)} 0
+            ${theme.pxToRem(theme.layout.gutter.mobile.left)};
         }
 
         a.flipped .component-VisualNav-image-wrapper {

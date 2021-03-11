@@ -2,25 +2,34 @@ import Bio from '../../components/Bio';
 import SiteLayout from '../../components/SiteLayout';
 import Title from '../../components/Title';
 import Typography from '../../components/Typography';
+import Rule from '../../components/Rule';
 import config from '../../config.yaml';
 import theme from '../../styles/theme';
 
 const AboutPage = () => (
   <SiteLayout pathname={config.nav.about.href}>
     <Title>About</Title>
-    <Typography className="gutters page-About-title" variant="h1">
+    <Typography className="gutters" variant="h3" as="h1" textAlign="center">
       About
-    </Typography>
-    <Typography className="gutters">
-      The Syrian Music Preservation Initiative promotes and celebrates the diverse ethnic and
-      regional musical traditions of Syria through preservation, innovation, research, and
-      education. Its activities include music and dance performances, classes, workshops, and
-      seminars, as well as digital resources and&nbsp;recordings.
     </Typography>
 
     <section className="gutters">
-      <Typography variant="h1">Our Story</Typography>
-      <Typography>
+      <Typography variant="h3" as="h1" textAlign="left">
+        Mission
+      </Typography>
+      <Typography size="lg" textAlign="left">
+        The Syrian Music Preservation Initiative promotes and celebrates the diverse ethnic and
+        regional musical traditions of Syria through preservation, innovation, research, and
+        education. Its activities include music and dance performances, classes, workshops, and
+        seminars, as well as digital resources and&nbsp;recordings.
+      </Typography>
+    </section>
+
+    <section className="gutters">
+      <Typography variant="h3" as="h1" textAlign="left">
+        Our Story
+      </Typography>
+      <Typography size="lg" textAlign="left">
         The Syrian Music Preservation Initiative is dedicated to preserving and invigorating the
         diverse ethnic and regional music traditions of Syria (including but not limited to Arabic,
         Kurdish, Armenian and Syriac). Our performances promote the musical heritage of this region
@@ -28,13 +37,13 @@ const AboutPage = () => (
         contemporary exploration of the traditional forms by commissioning composers from Syria and
         the diaspora. In this way, we celebrate the past, present and future of Syrian&nbsp;music.
       </Typography>
-      <Typography>
+      <Typography size="lg" textAlign="left">
         We strive to preserve the Syrian compositional practices by researching their history and
         context, translating lyrics, providing transcriptions, documenting our performances, and
         most importantly, by making our digital resources accessible to artists, scholars and
         communities&nbsp;worldwide.
       </Typography>
-      <Typography>
+      <Typography size="lg" textAlign="left">
         With our work on performance and preservation, we are building a community of music lovers,
         scholars and historians to help support our final goal: education. The performing arm of
         SMPI, Takht al-Nagham, is made up of both Syrian and non-Syrian performers and invites
@@ -46,12 +55,13 @@ const AboutPage = () => (
     </section>
 
     <section className="page-About-who-we-are">
-      <Typography className="gutter--right" variant="h1">
+      <Typography className="gutters" variant="h3" as="h1" textAlign="left">
         Who We Are
       </Typography>
       <Bio
         className="page-About-bio"
-        title="Samer Ali, Founder and Artistic Director"
+        name="Samer Ali"
+        title="Founder and Artistic Director"
         text={`A native of Syria, Samer Ali is a physician, violinist, composer, founder and artistic director of the Syrian Music Preservation Initiative.
 Samer has led Takht al-Nagham, SMPI’s ensemble, in New York at Alwan for the Arts, Scandinavia House, and Roulette Intermedium; as well as at the Kennedy center in Washington, DC with Syrian soprano Lubana al-Quntar.
 He began studying western classical violin at the age of eight with Fawaz al-Ali and Ali Farran, and later pursued intensive conservatory studies with Ali Mukhtar Babayev. He studied the Arab music traditions with Simon Shaheen, Anwar Hariri, and Muhammad Qadri Dalal.
@@ -74,9 +84,11 @@ In medicine, Samer received his M.D. from Syria and later graduated from medical
           height: 1107,
         }}
       />
+      <Rule className="page-About-rule" />
       <Bio
         className="page-About-bio"
-        title="Marissa Arciola, President"
+        name="Marissa Arciola"
+        title="President"
         text={`Marissa is a bassist, strategist and leader with a unique combination of artistic and business experience helping her build on founder Samer Ali’s vision of the SMPI.
 Marissa completed her undergraduate degree in double bass performance at the Eastman School of Music under the tutelage of renowned soloist, James VanDemark. During this time, she also studied with Curtis Buris of the National Symphony Orchestra.  While completing her MBA and MA in Arts Administration at SMU, Marissa continued to study bass with Thomas Lederer of the Dallas Symphony Orchestra.
 After her studies, Marissa has worked with a number of nonprofit organizations while playing with groups ranging from classical, rock, and Middle Eastern music.
@@ -102,20 +114,20 @@ As President of the SMPI board, and member of Takht al-Nagham, Marissa helps to 
     <style jsx>
       {`
         section {
-          margin-top: ${theme.pxToRem(95)};
+          margin-top: ${theme.pxToRem(102)};
         }
 
-        section :global(.page-About-bio .component-Bio-title) {
-          margin-top: 2em;
+        section :global(.page-About-bio:not(:last-child)) {
+          margin-bottom: ${theme.pxToRem(48)};
         }
 
-        section :global(.page-About-bio:nth-child(2) .component-Bio-title) {
-          margin-top: 0;
+        section :global(.page-About-rule) {
+          margin: ${theme.pxToRem(25 * 2)} ${theme.pxToRem(22 * 2)};
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          section :global(.page-About-bio .component-Bio-title) {
-            margin-top: 3em;
+          section :global(.page-About-rule) {
+            display: none;
           }
         }
       `}

@@ -1,5 +1,6 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import { fontSizeMd, fontSizeLg } from '../styles/mixins';
 import theme from '../styles/theme';
 
 const variantMap = {
@@ -8,7 +9,7 @@ const variantMap = {
   body: 'p',
 };
 
-const Typography = ({ className, children, as, textAlign, variant }) => {
+const Typography = ({ className, children, as, textAlign, size, variant }) => {
   let Component = variantMap.body;
 
   if (as) {
@@ -21,45 +22,56 @@ const Typography = ({ className, children, as, textAlign, variant }) => {
     <Component
       className={cx(
         'component-Typography-root',
-        `variant-${variant}`,
+        `variant--${variant}`,
         {
           [`text-align--${textAlign}`]: textAlign,
+          [`size--${size}`]: size,
         },
         className,
       )}>
       {children}
       <style jsx>{`
-        .variant-h1,
-        .variant-h3 {
+        .size--md {
+          ${fontSizeMd};
+        }
+
+        .size--md:not(:last-child) {
+          margin-bottom: 1em;
+        }
+
+        .size--lg {
+          ${fontSizeLg};
+        }
+
+        .size--lg:not(:last-child) {
+          margin-bottom: ${theme.pxToEm(17.5, 22.5)};
+        }
+
+        .variant--h1,
+        .variant--h3 {
           letter-spacing: -0.01em;
         }
 
-        .variant-h1 {
+        .variant--h1 {
           font-size: ${theme.pxToRem(42.5)};
           line-height: ${theme.pxToRem(51)};
         }
 
-        .variant-h1:not(:last-child) {
+        .variant--h1:not(:last-child) {
           margin-bottom: ${theme.pxToEm(30, 42.5)};
         }
 
-        .variant-h3 {
+        .variant--h3 {
           font-size: ${theme.pxToRem(35)};
           line-height: ${theme.pxToRem(42)};
         }
 
-        .variant-h3:not(:last-child) {
+        .variant--h3:not(:last-child) {
           margin-bottom: 1em;
         }
 
-        .variant-body {
-          font-size: ${theme.pxToRem(20.5)};
-          line-height: ${theme.pxToRem(24.5)};
+        .variant--body {
           letter-spacing: 0.01em;
-        }
-
-        .variant-body:not(:last-child) {
-          margin-bottom: ${theme.pxToEm(17.5, 20.5)};
         }
 
         .text-align--left {
@@ -97,6 +109,7 @@ Typography.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   as: PropTypes.string,
+  size: PropTypes.oneOf(['md', 'lg']),
   textAlign: PropTypes.oneOf(['left', 'center', 'right']),
   variant: PropTypes.oneOf(Object.keys(variantMap)),
 };
@@ -105,6 +118,7 @@ Typography.defaultProps = {
   className: undefined,
   children: undefined,
   as: undefined,
+  size: 'md',
   textAlign: 'right',
   variant: 'body',
 };

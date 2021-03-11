@@ -35,7 +35,7 @@ nav:
         - densityFactor: 3
           src: /images/instruments/two-syrian-ouds@3x.png
     links:
-      - text: Musical Figures and Bios
+      - text: Musical Figures & Bios
         href: /
         description: >
           Learn about the people who have influenced the course of the Syrian musical tradition,
@@ -57,7 +57,7 @@ nav:
       - text: Maqams
         href: /
         description: >
-          Maqams are the building block of all Syrian music.  Learn the foundations of each of the
+          Maqams are the building block of all Syrian musicf.  Learn the foundations of each of the
            maqams, why they are different and hear them in context of real pieces.
       - text: Ouds
         href: /

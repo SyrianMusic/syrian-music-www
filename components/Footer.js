@@ -11,14 +11,20 @@ const Footer = ({ className, pathname }) => (
     <Nav className={cx('component-Footer-nav', 'gutters')}>
       <ul>
         {Object.values(config.nav).map((section) => {
+          const sectionText = (
+            <Typography size="lg" textAlign="left">
+              {section.text}
+            </Typography>
+          );
+
           let sectionLink = (
             <Link href={section.href}>
-              <a className="link">{section.text}</a>
+              <a className="link">{sectionText}</a>
             </Link>
           );
 
           if (pathname === section.href) {
-            sectionLink = <span>{section.text}</span>;
+            sectionLink = <span>{sectionText}</span>;
           }
 
           return (
@@ -29,18 +35,23 @@ const Footer = ({ className, pathname }) => (
                 {section.text !== 'Education' &&
                   section.links &&
                   Object.values(section.links).map((link) => {
+                    const linkText = (
+                      <Typography size="lg" textAlign="left">
+                        {link.text}
+                      </Typography>
+                    );
                     let linkEl;
 
                     if (/^\//.test(link.href)) {
                       linkEl = (
                         <Link href={`${section.href}${link.href}`}>
-                          <a>{link.text}</a>
+                          <a>{linkText}</a>
                         </Link>
                       );
                     } else {
                       linkEl = (
                         <a href={link.href} target="_blank" rel="noopener noreferrer">
-                          {link.text}
+                          {linkText}
                         </a>
                       );
                     }
@@ -60,8 +71,6 @@ const Footer = ({ className, pathname }) => (
     <style jsx>
       {`
         footer {
-          font-size: ${theme.pxToRem(22)};
-          line-height: ${theme.pxToRem(26.5)};
           padding-bottom: 2em;
           width: 100%;
         }
@@ -87,8 +96,15 @@ const Footer = ({ className, pathname }) => (
         footer :global(.component-Footer-copyright) {
           font-size: ${theme.pxToRem(16)};
           line-height: ${theme.pxToRem(19)};
-          margin-top: ${theme.pxToRem(50)};
-          padding: 0 ${theme.pxToRem(theme.layout.gutterWidth.mobile)};
+          margin: ${theme.pxToRem(50)} auto 0;
+          padding: 0 ${theme.pxToRem(12)};
+          width: ${theme.pxToRem(352 * 2)};
+        }
+
+        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          footer :global(.component-Footer-copyright) {
+            padding: 0 ${theme.pxToRem(theme.layout.gutter.desktop)};
+          }
         }
       `}
     </style>

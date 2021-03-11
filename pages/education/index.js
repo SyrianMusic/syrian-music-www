@@ -27,7 +27,7 @@ const EducationPage = () => (
         width: 730,
         height: 411,
       }}>
-      <Typography>
+      <Typography size="lg">
         The Syrian Music Preservation Initiative is a hub for Arabic music education, references,
         and workshops. Explore performance notes on specific performances by the organization,
         explanations on musical forms, translations, glossaries, and&nbsp;more.
