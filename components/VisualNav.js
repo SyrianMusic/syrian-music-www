@@ -7,8 +7,8 @@ import Image from './Image';
 import Nav from './Nav';
 import Typography from './Typography';
 
-const outerMargin = 155;
-const innerMargin = 70;
+const outerMargin = 77.5;
+const innerMargin = 35;
 
 const VisualNav = ({ className }) => (
   <Nav className={className}>
@@ -51,7 +51,7 @@ const VisualNav = ({ className }) => (
         }
 
         li:not(:last-child) {
-          margin-bottom: ${theme.pxToRem(130)};
+          margin-bottom: ${theme.pxToRem(65)};
         }
 
         li a {
@@ -61,11 +61,11 @@ const VisualNav = ({ className }) => (
         }
 
         .component-VisualNav-text {
-          margin: ${theme.pxToRem(96)} ${theme.pxToRem(theme.layout.gutterWidth.mobile)} 0;
+          margin: ${theme.pxToRem(48)} ${theme.pxToRem(theme.layout.gutterWidth.mobile)} 0;
         }
 
         .flipped .component-VisualNav-text {
-          margin: ${theme.pxToRem(96)} ${theme.pxToRem(theme.layout.gutterWidth.mobile)} 0;
+          margin: ${theme.pxToRem(48)} ${theme.pxToRem(theme.layout.gutterWidth.mobile)} 0;
         }
 
         a.flipped .component-VisualNav-image-wrapper {

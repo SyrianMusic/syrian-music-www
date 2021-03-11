@@ -53,7 +53,7 @@ const Footer = ({ className, pathname }) => (
         })}
       </ul>
     </Nav>
-    <Typography className={cx('component-Footer-copyright', 'gutters')} textAlign="center">
+    <Typography className="component-Footer-copyright" textAlign="center">
       Copyright ©2017–{new Date(Date.now()).getFullYear()} Syrian Music Preservation Initiative
       Corp. 501(c)(3) <nobr>not-for-profit</nobr>&nbsp;organization
     </Typography>
