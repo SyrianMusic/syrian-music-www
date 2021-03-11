@@ -46,16 +46,6 @@ const PerformancePage = () => (
           </Typography>
         </div>
       </article>
-      <article>
-        <div>
-          <Typography variant="h3">Raqs al-Samah</Typography>
-          <Typography>
-            Samah Dance (Raqs al-Samah in Arabic) is a Syrian dance that was created to accompany
-            the Muwashahat genre centuries ago. It is a group dance designed as an interaction
-            between males and females in an elegant and eloquent expressive&nbsp;milieu.
-          </Typography>
-        </div>
-      </article>
     </section>
     <style jsx>
       {`
