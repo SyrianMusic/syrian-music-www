@@ -26,7 +26,7 @@ const HomePage = () => (
           },
         ],
       }}>
-      <Typography>
+      <Typography size="lg">
         Welcome to the Syrian Music Preservation Initiative where we promote and celebrate the
         diverse ethnic and regional musical traditions of Syria. At SMPI we pursue activities around
         preservation of, innovation to, research and education about the music which is dear to our

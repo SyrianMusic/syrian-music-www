@@ -2,15 +2,20 @@ import SiteLayout from '../../components/SiteLayout';
 import Title from '../../components/Title';
 import Typography from '../../components/Typography';
 import config from '../../config.yaml';
+import theme from '../../styles/theme';
 
 const pageConfig = config.nav.connect;
 
 const ConnectPage = () => (
   <SiteLayout className="gutters" pathname={pageConfig.href}>
     <Title>Connect</Title>
-    <Typography variant="h1">Connect</Typography>
-    <Typography>We want to hear from&nbsp;you!</Typography>
-    <Typography>
+    <Typography className="page-Connect-title" variant="h3" as="h1" textAlign="center">
+      Connect
+    </Typography>
+    <Typography size="lg" textAlign="left">
+      We want to hear from&nbsp;you!
+    </Typography>
+    <Typography size="lg" textAlign="left">
       Email us at{' '}
       <a href="mailto:info@syrianmusic.org" target="_blank" rel="noopener noreferrer">
         info@syrianmusic.org
@@ -21,7 +26,7 @@ const ConnectPage = () => (
       </a>
       .
     </Typography>
-    <Typography>
+    <Typography size="lg" textAlign="left">
       Follow us on{' '}
       <a href={pageConfig.links.instagram.href} target="_blank" rel="noopener noreferrer">
         Instagram
@@ -32,6 +37,11 @@ const ConnectPage = () => (
       </a>
       .
     </Typography>
+    <style jsx>{`
+      .page-Connect-title {
+        margin-bottom: ${theme.pxToRem(101)};
+      }
+    `}</style>
   </SiteLayout>
 );
 

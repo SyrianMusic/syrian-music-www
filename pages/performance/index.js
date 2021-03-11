@@ -24,7 +24,7 @@ const PerformancePage = () => (
         title: 'Zakhrafa زخرفة',
         id: 'n6VjsvT6o3s',
       }}>
-      <Typography>
+      <Typography size="lg">
         Zakhrafa, composed by Samer Ali, was performed during the first anniversary celebration of
         Brooklyn Maqam, a new community organization devoted to the middle-eastern music scene in
         New&nbsp;York.

@@ -11,11 +11,11 @@ const EducationNav = ({ className }) => (
           <Typography
             className="component-EducationNav-link-text"
             textAlign="left"
-            variant="h1"
+            variant="h3"
             as="div">
             {link.text}
           </Typography>
-          <Typography className="component-EducationNav-link-description">
+          <Typography className="component-EducationNav-link-description" size="lg">
             {link.description}
           </Typography>
         </li>
