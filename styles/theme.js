@@ -1,4 +1,4 @@
-const baseFontSize = 8;
+const rootFontSize = 16;
 
 const theme = {
   breakpoint: {
@@ -11,11 +11,11 @@ const theme = {
   font: {
     mobile: {
       fontSizeMin: 3,
-      fontSizeMax: baseFontSize,
+      fontSizeMax: rootFontSize,
     },
     desktop: {
-      fontSizeMin: baseFontSize * 0.5,
-      fontSizeMax: baseFontSize,
+      fontSizeMin: rootFontSize * 0.5,
+      fontSizeMax: rootFontSize,
     },
   },
   layout: {
@@ -26,9 +26,9 @@ const theme = {
       desktop: 236,
     },
   },
-  pxToEm: (px, base = baseFontSize * 2) => `${px / base}em`,
+  pxToEm: (px, base = rootFontSize) => `${px / base}em`,
   pxToPercent: (px, base) => `${(px / base) * 100}%`,
-  pxToRem: (px) => `${px / (baseFontSize * 2)}rem`,
+  pxToRem: (px) => `${px / rootFontSize}rem`,
 };
 
 export default theme;

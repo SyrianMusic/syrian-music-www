@@ -62,14 +62,14 @@ const SiteLayout = ({ className, children, pathname }) => (
         }
 
         .component-SiteLayout-header {
-          margin: ${theme.pxToRem(70)} auto ${theme.pxToRem(125)};
-          padding-left: ${theme.pxToRem(88)};
-          padding-right: ${theme.pxToRem(88)};
+          margin: ${theme.pxToRem(35)} auto ${theme.pxToRem(62.5)};
+          padding-left: ${theme.pxToRem(44)};
+          padding-right: ${theme.pxToRem(44)};
         }
 
         .component-SiteLayout-footer {
           flex-shrink: 0;
-          margin: ${theme.pxToRem(190)} auto 0;
+          margin: ${theme.pxToRem(95)} auto 0;
           width: 100%;
         }
       `}
