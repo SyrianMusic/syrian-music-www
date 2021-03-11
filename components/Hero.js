@@ -1,4 +1,4 @@
-import cx from 'classNames';
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 import theme from '../styles/theme';
 import Image from './Image';

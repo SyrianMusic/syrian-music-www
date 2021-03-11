@@ -6,28 +6,30 @@ import Typography from './Typography';
 const Bio = ({ className, image, name, text, title }) => {
   return (
     <article className={className}>
-      <div className="component-Bio-text">
-        <h3>
-          <Typography className="component-Bio-name" as="span" size="lg" textAlign="left">
-            {name}
-            {title && ' '}
-          </Typography>
-          <Typography className="component-Bio-title" as="span" size="md" textAlign="left">
-            {title}
-          </Typography>
-        </h3>
-        {/* TODO: Create util for rendering paragraphs */}
-        {text
-          .trim()
-          .split('\n')
-          .map((p) => (
-            <Typography key={p.substring(0, 20)} textAlign="left">
-              {p.trim()}
-            </Typography>
-          ))}
-      </div>
+      <h3>
+        <Typography className="component-Bio-name" as="span" size="lg" textAlign="left">
+          {name}
+          {title && ' '}
+        </Typography>
+        <Typography className="component-Bio-title" as="span" size="md" textAlign="left">
+          {title}
+        </Typography>
+      </h3>
 
-      <Image className="component-Bio-image" {...image} />
+      <div className="component-Bio-description">
+        <div className="component-Bio-text">
+          {/* TODO: Create util for rendering paragraphs */}
+          {text
+            .trim()
+            .split('\n')
+            .map((p) => (
+              <Typography key={p.substring(0, 20)} textAlign="left">
+                {p.trim()}
+              </Typography>
+            ))}
+        </div>
+        <Image className="component-Bio-image" {...image} />
+      </div>
 
       <style jsx>
         {`
@@ -45,7 +47,7 @@ const Bio = ({ className, image, name, text, title }) => {
           }
 
           .component-Bio-text > :global(p:last-child) {
-            margin-bottom: ${theme.pxToRem(18)};
+            margin-bottom: ${theme.pxToRem(18 * 2)};
           }
 
           article :global(.component-Bio-image) {
@@ -56,16 +58,19 @@ const Bio = ({ className, image, name, text, title }) => {
 
           @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
             article {
-              display: flex;
-              align-items: flex-start;
-              padding-right: ${theme.pxToRem(theme.layout.gutter.desktop)};
-              padding-left: 0;
+              padding-left: ${theme.pxToRem(theme.layout.gutter.desktop)};
+              padding-right: ${theme.pxToRem(80)};
             }
 
             h3 :global(.component-Bio-name),
             h3 :global(.component-Bio-name:not(:last-child)) {
               display: block;
               margin-bottom: 0;
+            }
+
+            .component-Bio-description {
+              display: flex;
+              align-items: flex-start;
             }
 
             .component-Bio-text {

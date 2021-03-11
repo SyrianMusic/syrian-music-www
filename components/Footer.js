@@ -96,7 +96,15 @@ const Footer = ({ className, pathname }) => (
         footer :global(.component-Footer-copyright) {
           font-size: ${theme.pxToRem(16)};
           line-height: ${theme.pxToRem(19)};
-          margin-top: ${theme.pxToRem(50)};
+          margin: ${theme.pxToRem(50)} auto 0;
+          padding: 0 ${theme.pxToRem(12)};
+          width: ${theme.pxToRem(352 * 2)};
+        }
+
+        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          footer :global(.component-Footer-copyright) {
+            padding: 0 ${theme.pxToRem(theme.layout.gutter.desktop)};
+          }
         }
       `}
     </style>
