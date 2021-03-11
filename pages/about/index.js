@@ -59,19 +59,19 @@ In Damascus, he co-founded Awj Ensemble, and has continued to perform in the US 
 In medicine, Samer received his M.D. from Syria and later graduated from medical residency in Anatomic and Clinical Pathology at Mount Sinai Hospital. He is currently a Surgical Pathology Fellow at Lenox Hill Hospital in New York.
 `}
         image={{
-          src: '/images/samer-ali-headshot-about.jpg',
+          src: '/images/people/samer-ali.png',
           srcSet: [
             {
               densityFactor: 2,
-              src: '/images/samer-ali-headshot-about@2x.jpg',
+              src: '/images/people/samer-ali@2x.png',
             },
             {
               densityFactor: 3,
-              src: '/images/samer-ali-headshot-about@3x.jpg',
+              src: '/images/people/samer-ali@3x.png',
             },
           ],
-          width: 372,
-          height: 494,
+          width: 317,
+          height: 1107,
         }}
       />
       <Bio
@@ -82,19 +82,19 @@ Marissa completed her undergraduate degree in double bass performance at the Eas
 After her studies, Marissa has worked with a number of nonprofit organizations while playing with groups ranging from classical, rock, and Middle Eastern music.
 As President of the SMPI board, and member of Takht al-Nagham, Marissa helps to move the organization forward both programmatically and financially, by putting a focus on the digital initiatives, prioritizing projects and growing donation and fundraising prospects.`}
         image={{
-          src: '/images/marissa-arciola-headshot-about.jpg',
+          src: '/images/people/marissa-arciola.png',
           srcSet: [
             {
               densityFactor: 2,
-              src: '/images/marissa-arciola-headshot-about@2x.jpg',
+              src: '/images/people/marissa-arciola@2x.png',
             },
             {
               densityFactor: 3,
-              src: '/images/marissa-arciola-headshot-about@3x.jpg',
+              src: '/images/people/marissa-arciola@3x.png',
             },
           ],
-          width: 372,
-          height: 494,
+          width: 317,
+          height: 1107,
         }}
         flipped
       />
