@@ -13,19 +13,19 @@ const EducationPage = () => (
       className="page-Education-Hero"
       title={<Typography variant="h3">Education and Preservation</Typography>}
       image={{
-        src: '/images/education-hero.jpg',
+        src: '/images/instruments/syrian-qanun.png',
         srcSet: [
           {
             densityFactor: 2,
-            src: '/images/education-hero@2x.jpg',
+            src: '/images/instruments/syrian-qanun@2x.png',
           },
           {
             densityFactor: 3,
-            src: '/images/education-hero@3x.jpg',
+            src: '/images/instruments/syrian-qanun@3x.png',
           },
         ],
         width: 730,
-        height: 410,
+        height: 411,
       }}>
       <Typography>
         The Syrian Music Preservation Initiative is a hub for Arabic music education, references,
