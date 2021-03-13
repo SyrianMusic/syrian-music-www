@@ -71,6 +71,6 @@ export default {
         ],
       },
     ],
-    people: ['samer-ali', 'marissa-arciola', 'fouad-salloum', 'hanna-madbak'],
+    people: ['samer-ali', 'marissa-arciola', 'fouad-salloum', 'hanna-madbak', 'homam-ibrahim'],
   },
 };

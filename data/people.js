@@ -251,6 +251,7 @@ export default {
             _key: 'hanna-madbak-1-1',
             text:
               "Hanna Madbak grew up in Beirut, Lebanon. From an early age, he was immersed in the music of the region and developed a deep appreciation of it. Hanna is an avid listener and student of Arabic music and studied oud with the late Director of the Lebanese Conservatory, Bassam Saba. Hanna is a practicing attorney in New York and serves as SMPI's legal advisor as well as being a member of the Board.",
+            marks: [],
           },
         ],
         markDefs: [],
@@ -269,7 +270,43 @@ export default {
         },
       ],
       width: 370,
-      height: 354,
+      height: 534,
+    },
+  },
+  'homam-ibrahim': {
+    name: 'Homam Ibrahim',
+    title: 'Board Member',
+    bio: [
+      {
+        _type: 'block',
+        _key: 'homam-ibrahim-1',
+        style: 'normal',
+        children: [
+          {
+            _type: 'span',
+            _key: 'homam-ibrahim-1',
+            text:
+              'Homam Ibrahim was born in Latakia, Syria and began studying violin at the age of 10 with Bassam Yusuf. While playing with the Music Club of Latakia for many years, he developed a passion and an ear for music. In 2008, Homam came to the United States to pursue his medical training and he currently practices interventional cardiology at NYU. Homam feels strongly that preserving the history and tradition of Syrian music is important and sits on the board of SMPI to help move the many performance, research and education initiatives forward with planning and support.',
+            marks: [],
+          },
+        ],
+        markDefs: [],
+      },
+    ],
+    image: {
+      src: '/images/people/homam-ibrahim.png',
+      srcSet: [
+        {
+          densityFactor: 2,
+          src: '/images/people/homam-ibrahim@2x.png',
+        },
+        {
+          densityFactor: 3,
+          src: '/images/people/homam-ibrahim@3x.png',
+        },
+      ],
+      width: 370,
+      height: 489,
     },
   },
 };
