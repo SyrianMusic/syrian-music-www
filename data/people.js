@@ -237,4 +237,39 @@ export default {
       },
     ],
   },
+  'hanna-madbak': {
+    name: 'Hanna Madbak',
+    title: 'Legal Counsel',
+    bio: [
+      {
+        _type: 'block',
+        _key: 'hanna-madbak-1',
+        style: 'normal',
+        children: [
+          {
+            _type: 'span',
+            _key: 'hanna-madbak-1-1',
+            text:
+              "Hanna Madbak grew up in Beirut, Lebanon. From an early age, he was immersed in the music of the region and developed a deep appreciation of it. Hanna is an avid listener and student of Arabic music and studied oud with the late Director of the Lebanese Conservatory, Bassam Saba. Hanna is a practicing attorney in New York and serves as SMPI's legal advisor as well as being a member of the Board.",
+          },
+        ],
+        markDefs: [],
+      },
+    ],
+    image: {
+      src: '/images/people/hanna-madbak.png',
+      srcSet: [
+        {
+          densityFactor: 2,
+          src: '/images/people/hanna-madbak@2x.png',
+        },
+        {
+          densityFactor: 3,
+          src: '/images/people/hanna-madbak@3x.png',
+        },
+      ],
+      width: 370,
+      height: 354,
+    },
+  },
 };
