@@ -1,4 +1,4 @@
-const nonBreakingSpace = '\u00a0';
+import { nonBreakingSpace } from '../utils/unicode';
 
 export default {
   about: {
@@ -71,6 +71,6 @@ export default {
         ],
       },
     ],
-    people: ['samer-ali', 'marissa-arciola'],
+    people: ['samer-ali', 'marissa-arciola', 'fouad-salloum'],
   },
 };

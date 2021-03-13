@@ -1,3 +1,4 @@
+import React from 'react';
 import Person from '../../components/Person';
 import Rule from '../../components/Rule';
 import SiteLayout from '../../components/SiteLayout';
@@ -22,9 +23,9 @@ const AboutPage = () => (
         Mission
       </Typography>
 
-      {pageData.mission.map(({ key, children } = {}) => {
+      {pageData.mission.map(({ _key, children } = {}) => {
         return (
-          <Typography key={key} size="lg" textAlign="left">
+          <Typography key={_key} size="lg" textAlign="left">
             {children.map(portableTextMap)}
           </Typography>
         );
@@ -35,9 +36,9 @@ const AboutPage = () => (
       <Typography variant="h3" as="h1" textAlign="left">
         Our Story
       </Typography>
-      {pageData.story.map(({ key, children } = {}) => {
+      {pageData.story.map(({ _key, children } = {}) => {
         return (
-          <Typography key={key} size="lg" textAlign="left">
+          <Typography key={_key} size="lg" textAlign="left">
             {children.map(portableTextMap)}
           </Typography>
         );
@@ -50,10 +51,10 @@ const AboutPage = () => (
       </Typography>
       {pageData.people.map((id, i) => {
         return (
-          <>
+          <React.Fragment key={id}>
             <Person className="page-About-person" {...data.people[id]} />
             {i !== pageData.people.length - 1 && <Rule className="page-About-rule" />}
-          </>
+          </React.Fragment>
         );
       })}
     </section>

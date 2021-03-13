@@ -1,3 +1,5 @@
+import { apostrophe } from '../utils/unicode';
+
 export default {
   'samer-ali': {
     name: 'Samer Ali',
@@ -6,6 +8,7 @@ export default {
       {
         _type: 'block',
         _key: 'samer-ali-1',
+        style: 'normal',
         children: [
           {
             _type: 'span',
@@ -20,12 +23,15 @@ export default {
       {
         _type: 'block',
         _key: 'samer-ali-2',
+        style: 'normal',
         children: [
           {
             _type: 'span',
             _key: 'samer-ali-2-1',
             text:
-              'Samer has led Takht al-Nagham, SMPI’s ensemble, in New York at Alwan for the Arts, Scandinavia House, and Roulette Intermedium; as well as at the Kennedy center in Washington, DC with Syrian soprano Lubana al-Quntar.',
+              'Samer has led Takht al-Nagham, SMPI' +
+              apostrophe +
+              's ensemble, in New York at Alwan for the Arts, Scandinavia House, and Roulette Intermedium; as well as at the Kennedy center in Washington, DC with Syrian soprano Lubana al-Quntar.',
             marks: [],
           },
         ],
@@ -34,6 +40,7 @@ export default {
       {
         _type: 'block',
         _key: 'samer-ali-3',
+        style: 'normal',
         children: [
           {
             _type: 'span',
@@ -48,6 +55,7 @@ export default {
       {
         _type: 'block',
         _key: 'samer-ali-4',
+        style: 'normal',
         children: [
           {
             _type: 'span',
@@ -62,6 +70,7 @@ export default {
       {
         _type: 'block',
         _key: 'samer-ali-5',
+        style: 'normal',
         children: [
           {
             _type: 'span',
@@ -97,12 +106,15 @@ export default {
       {
         _type: 'block',
         _key: 'marissa-arciola-1',
+        style: 'normal',
         children: [
           {
             _type: 'span',
             _key: 'marissa-arciola-1-1',
             text:
-              'Marissa is a bassist, strategist and leader with a unique combination of artistic and business experience helping her build on founder Samer Ali’s vision of the SMPI.',
+              'Marissa is a bassist, strategist and leader with a unique combination of artistic and business experience helping her build on founder Samer Ali' +
+              apostrophe +
+              's vision of the SMPI.',
             marks: [],
           },
         ],
@@ -111,6 +123,7 @@ export default {
       {
         _type: 'block',
         _key: 'marissa-arciola-2',
+        style: 'normal',
         children: [
           {
             _type: 'span',
@@ -125,6 +138,7 @@ export default {
       {
         _type: 'block',
         _key: 'marissa-arciola-3',
+        style: 'normal',
         children: [
           {
             _type: 'span',
@@ -139,6 +153,7 @@ export default {
       {
         _type: 'block',
         _key: 'marissa-arciola-4',
+        style: 'normal',
         children: [
           {
             _type: 'span',
@@ -166,5 +181,60 @@ export default {
       width: 317,
       height: 1107,
     },
+  },
+  'fouad-salloum': {
+    name: 'Fouad Salloum',
+    title: 'Vice President of the Board',
+    bio: [
+      {
+        _type: 'block',
+        _key: 'fouad-salloum-1',
+        style: 'normal',
+        children: [
+          {
+            _type: 'span',
+            _key: 'fouad-salloum-1-1',
+            text:
+              'Fouad Salloum is a New York based business manager and amateur musician playing various instruments including oud, qanun, buzuq and ney. In addition to music, Fouad' +
+              apostrophe +
+              's passions include painting and photography and he has worked with many musical groups in various capacities and many locations.',
+            marks: [],
+          },
+        ],
+        markDefs: [],
+      },
+
+      {
+        _type: 'block',
+        _key: 'fouad-salloum-2',
+        style: 'normal',
+        children: [
+          {
+            _type: 'span',
+            _key: 'fouad-salloum-2-1',
+            text:
+              'Also an instrument collector, Fouad has amassed a collection of ouds with a focus on the Syrian luthiers which can only be described as breathtaking.',
+            marks: [],
+          },
+        ],
+        markDefs: [],
+      },
+
+      {
+        _type: 'block',
+        _key: 'fouad-salloum-3',
+        style: 'normal',
+        children: [
+          {
+            _type: 'span',
+            _key: 'fouad-salloum-3-1',
+            text:
+              'Fouad shares his collection, appreciation of art and his expertise with SMPI as the Vice President of the board. ',
+            marks: [],
+          },
+        ],
+        markDefs: [],
+      },
+    ],
   },
 };

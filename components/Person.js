@@ -21,15 +21,15 @@ const Person = ({ className, bio, image, name, title }) => {
       <div className="component-Person-description">
         <div className="component-Person-text">
           {Array.isArray(bio) &&
-            bio.map(({ key, children } = {}) => {
+            bio.map(({ _key, children } = {}) => {
               return (
-                <Typography key={key} textAlign="left">
+                <Typography key={_key} textAlign="left">
                   {children.map(portableTextMap)}
                 </Typography>
               );
             })}
         </div>
-        <Image className="component-Person-image" {...image} />
+        {image && <Image className="component-Person-image" {...image} />}
       </div>
 
       <style jsx>
@@ -96,13 +96,14 @@ const Person = ({ className, bio, image, name, title }) => {
 Person.propTypes = {
   className: PropTypes.string,
   bio: portableTextPropType.isRequired,
-  image: PropTypes.shape(Image.propTypes).isRequired,
+  image: PropTypes.shape(Image.propTypes),
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
 Person.defaultProps = {
   className: undefined,
+  image: undefined,
 };
 
 export default Person;
