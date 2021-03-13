@@ -95,8 +95,8 @@ export default {
           src: '/images/people/samer-ali@3x.png',
         },
       ],
-      width: 317,
-      height: 1107,
+      width: 370,
+      height: 556,
     },
   },
   'marissa-arciola': {
@@ -178,8 +178,8 @@ export default {
           src: '/images/people/marissa-arciola@3x.png',
         },
       ],
-      width: 317,
-      height: 1107,
+      width: 370,
+      height: 494,
     },
   },
   'fouad-salloum': {
