@@ -3,33 +3,33 @@ import { fontSizeLg } from '../styles/mixins';
 import theme from '../styles/theme';
 import Image from './Image';
 import Typography from './Typography';
+import { portableTextMap, portableTextPropType } from '../utils/text';
 
-const Bio = ({ className, image, name, text, title }) => {
+const Person = ({ className, bio, image, name, title }) => {
   return (
     <article className={className}>
       <h3>
-        <Typography className="component-Bio-name" as="span" size="lg" textAlign="left">
+        <Typography className="component-Person-name" as="span" size="lg" textAlign="left">
           {name}
           {title && ' '}
         </Typography>
-        <Typography className="component-Bio-title" as="span" size="md" textAlign="left">
+        <Typography className="component-Person-title" as="span" size="md" textAlign="left">
           {title}
         </Typography>
       </h3>
 
-      <div className="component-Bio-description">
-        <div className="component-Bio-text">
-          {/* TODO: Create util for rendering paragraphs */}
-          {text
-            .trim()
-            .split('\n')
-            .map((p) => (
-              <Typography key={p.substring(0, 20)} textAlign="left">
-                {p.trim()}
-              </Typography>
-            ))}
+      <div className="component-Person-description">
+        <div className="component-Person-text">
+          {Array.isArray(bio) &&
+            bio.map(({ key, children } = {}) => {
+              return (
+                <Typography key={key} textAlign="left">
+                  {children.map(portableTextMap)}
+                </Typography>
+              );
+            })}
         </div>
-        <Image className="component-Bio-image" {...image} />
+        <Image className="component-Person-image" {...image} />
       </div>
 
       <style jsx>
@@ -43,15 +43,15 @@ const Bio = ({ className, image, name, text, title }) => {
             margin-bottom: ${theme.pxToRem(14.5)};
           }
 
-          h3 :global(.component-Bio-name) {
+          h3 :global(.component-Person-name) {
             color: ${theme.color.salmon};
           }
 
-          .component-Bio-text > :global(p:last-child) {
+          .component-Person-text > :global(p:last-child) {
             margin-bottom: ${theme.pxToRem(18 * 2)};
           }
 
-          article :global(.component-Bio-image) {
+          article :global(.component-Person-image) {
             height: auto;
             margin: 0 auto;
             width: ${theme.pxToRem(370)};
@@ -63,27 +63,27 @@ const Bio = ({ className, image, name, text, title }) => {
               padding-right: ${theme.pxToRem(80)};
             }
 
-            h3 :global(.component-Bio-name),
-            h3 :global(.component-Bio-name:not(:last-child)) {
+            h3 :global(.component-Person-name),
+            h3 :global(.component-Person-name:not(:last-child)) {
               display: block;
               margin-bottom: 0;
             }
 
-            h3 :global(.component-Bio-title) {
+            h3 :global(.component-Person-title) {
               ${fontSizeLg};
             }
 
-            .component-Bio-description {
+            .component-Person-description {
               display: flex;
               align-items: flex-start;
             }
 
-            .component-Bio-text {
+            .component-Person-text {
               flex: 1;
               margin-right: ${theme.pxToRem(28)};
             }
 
-            .component-Bio-text > :global(p:last-child) {
+            .component-Person-text > :global(p:last-child) {
               margin-bottom: 0;
             }
           }
@@ -93,16 +93,16 @@ const Bio = ({ className, image, name, text, title }) => {
   );
 };
 
-Bio.propTypes = {
+Person.propTypes = {
   className: PropTypes.string,
+  bio: portableTextPropType.isRequired,
   image: PropTypes.shape(Image.propTypes).isRequired,
   name: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
-Bio.defaultProps = {
+Person.defaultProps = {
   className: undefined,
 };
 
-export default Bio;
+export default Person;
