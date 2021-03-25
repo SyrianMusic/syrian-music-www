@@ -42,12 +42,13 @@ const ConnectPage = () => (
     <style jsx>{`
       div :global(.page-Connect-title) {
         margin-top: ${theme.pxToRem(8)};
-        margin-bottom: ${theme.pxToRem(23)};
+        margin-bottom: ${theme.pxToRem(24)};
       }
 
       @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
         div :global(.page-Connect-title) {
-          margin-bottom: ${theme.pxToRem(101)};
+          margin-top: ${theme.pxToRem(64)};
+          margin-bottom: ${theme.pxToRem(100)};
         }
       }
     `}</style>

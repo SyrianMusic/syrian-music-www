@@ -82,7 +82,7 @@ const Header = ({ className, pathname }) => {
           display: flex;
           flex-shrink: 0;
           flex-wrap: wrap;
-          margin: ${theme.pxToRem(18)} ${theme.pxToRem(25)} ${theme.pxToRem(21)};
+          margin: ${theme.pxToRem(18)} ${theme.pxToRem(24)} ${theme.pxToRem(20)};
         }
 
         .component-Header-logo-link {

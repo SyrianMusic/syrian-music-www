@@ -14,7 +14,7 @@ const pageData = data.pages.about;
 const AboutPage = () => (
   <SiteLayout pathname={config.nav.about.href}>
     <Title>About</Title>
-    <Typography className="gutters" variant="h3" as="h1" textAlign="center">
+    <Typography className="page-About-title" variant="h3" as="h1" textAlign="center">
       About
     </Typography>
 
@@ -60,8 +60,12 @@ const AboutPage = () => (
     </section>
     <style jsx>
       {`
+        :global(.page-About-title) {
+          margin-top: ${theme.pxToRem(8)};
+        }
+
         section {
-          margin-top: ${theme.pxToRem(102)};
+          margin-top: ${theme.pxToRem(48)};
         }
 
         section :global(.page-About-person:not(:last-child)) {
@@ -69,6 +73,14 @@ const AboutPage = () => (
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          :global(.page-About-title) {
+            margin-top: ${theme.pxToRem(64)};
+          }
+
+          section {
+            margin-top: ${theme.pxToRem(102)};
+          }
+
           section :global(.page-About-rule) {
             display: none;
           }

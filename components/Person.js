@@ -54,7 +54,7 @@ const Person = ({ className, bio, image, name, title }) => {
           article :global(.component-Person-image) {
             height: auto;
             margin: 0 auto;
-            width: ${theme.pxToRem(370)};
+            width: ${theme.pxToRem(185)};
           }
 
           @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
@@ -84,6 +84,10 @@ const Person = ({ className, bio, image, name, title }) => {
 
             .component-Person-text > :global(p:last-child) {
               margin-bottom: 0;
+            }
+
+            article :global(.component-Person-image) {
+              width: ${theme.pxToRem(370)};
             }
           }
         `}
