@@ -1,5 +1,6 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import { typography } from '../styles/mixins';
 import theme from '../styles/theme';
 
 const Typography = ({ className, children, as, size, textAlign, variant }) => {
@@ -59,8 +60,7 @@ const Typography = ({ className, children, as, size, textAlign, variant }) => {
         }
 
         .variant--h3 {
-          font-size: ${theme.pxToRem(theme.typography.h3.fontSizeMobile)};
-          line-height: ${theme.pxToRem(30)};
+          ${typography.h3.mobile};
           margin-bottom: ${theme.pxToEm(22.5, theme.typography.h3.fontSizeMobile)};
         }
 
@@ -83,8 +83,7 @@ const Typography = ({ className, children, as, size, textAlign, variant }) => {
           }
 
           .variant--h3 {
-            font-size: ${theme.pxToRem(theme.typography.h3.fontSizeDesktop)};
-            line-height: ${theme.pxToRem(42)};
+            ${typography.h3.desktop};
             margin-bottom: ${theme.pxToEm(22.5, theme.typography.h3.fontSizeDesktop)};
           }
         }
