@@ -26,7 +26,7 @@ const typography = {
 
 const theme = {
   breakpoint: {
-    mobileToDesktop: 550,
+    mobileToDesktop: 800,
   },
   color: {
     black: '#000',
@@ -35,10 +35,10 @@ const theme = {
   font: {
     mobile: {
       fontSizeMin: rootFontSize,
-      fontSizeMax: rootFontSize * 2,
+      fontSizeMax: rootFontSize * 1.5,
     },
     desktop: {
-      fontSizeMin: rootFontSize * 0.5,
+      fontSizeMin: rootFontSize * 0.75,
       fontSizeMax: rootFontSize,
     },
   },
@@ -47,8 +47,8 @@ const theme = {
     contentWidthMax: 960,
     gutter: {
       mobile: {
-        left: 45 * 2,
-        right: 48 * 2,
+        left: 45,
+        right: 48,
       },
       desktop: 118,
     },
