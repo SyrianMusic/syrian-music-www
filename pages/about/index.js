@@ -68,10 +68,6 @@ const AboutPage = () => (
           margin-bottom: ${theme.pxToRem(48)};
         }
 
-        section :global(.page-About-rule) {
-          margin: ${theme.pxToRem(25 * 2)} ${theme.pxToRem(22 * 2)};
-        }
-
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
           section :global(.page-About-rule) {
             display: none;

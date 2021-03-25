@@ -23,8 +23,8 @@ const theme = {
     contentWidthMax: 960,
     gutter: {
       mobile: {
-        left: 45,
-        right: 48,
+        left: 45 * 2,
+        right: 48 * 2,
       },
       desktop: 118,
     },

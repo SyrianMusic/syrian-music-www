@@ -8,7 +8,7 @@ const Rule = ({ className }) => (
       hr {
         border-style: none;
         border-top: ${theme.pxToRem(1)} solid ${theme.color.black};
-        margin: 0;
+        margin: ${theme.pxToRem(25 * 2)} ${theme.pxToRem(22 * 2)};
       }
     `}</style>
   </>

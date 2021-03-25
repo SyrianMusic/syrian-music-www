@@ -42,7 +42,7 @@ const EducationNav = ({ className }) => (
           grid-template-columns: 50% 50%;
         }
 
-        li :global(.component-EducationNav-link-text:not(:last-child)) {
+        li :global(.component-EducationNav-link-text) {
           margin-bottom: 0;
         }
 
