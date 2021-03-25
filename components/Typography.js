@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import { fontSizeMd, fontSizeLg } from '../styles/mixins';
+import { fontSizeMd, fontSizeLg, fontSizeH3 } from '../styles/mixins';
 import theme from '../styles/theme';
 
 const variantMap = {
@@ -53,8 +53,7 @@ const Typography = ({ className, children, as, textAlign, size, variant }) => {
         }
 
         .variant--h3 {
-          font-size: ${theme.pxToRem(35)};
-          line-height: ${theme.pxToRem(42)};
+          ${fontSizeH3};
           margin-bottom: 1em;
         }
 
