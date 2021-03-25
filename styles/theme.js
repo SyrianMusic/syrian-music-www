@@ -2,14 +2,24 @@ const rootFontSize = 16;
 
 const typography = {
   body: {
-    fontSizeMobile: 12.5,
-    fontSizeDesktop: 17.5,
+    md: {
+      fontSizeMobile: 12.5,
+      fontSizeDesktop: 17.5,
+    },
+    lg: {
+      fontSizeMobile: 17.5,
+      fontSizeDesktop: 22.5,
+    },
     tagName: 'p',
   },
   h1: {
+    fontSizeMobile: 0, // No examples of this in design
+    fontSizeDesktop: 42.5,
     tagName: 'h1',
   },
   h3: {
+    fontSizeMobile: 25,
+    fontSizeDesktop: 35,
     tagName: 'h3',
   },
 };

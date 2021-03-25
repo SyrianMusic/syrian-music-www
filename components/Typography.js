@@ -1,6 +1,5 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import { fontSizeLg, fontSizeH3 } from '../styles/mixins';
 import theme from '../styles/theme';
 
 const Typography = ({ className, children, as, size, textAlign, variant }) => {
@@ -28,13 +27,23 @@ const Typography = ({ className, children, as, size, textAlign, variant }) => {
       )}>
       {children}
       <style jsx>{`
+        .component-Typography-root:last-child {
+          margin-bottom: 0;
+        }
+
+        .variant--body {
+          letter-spacing: 0.01em;
+          margin-bottom: 1em;
+        }
+
         .size--md {
-          font-size: ${theme.pxToRem(theme.typography.body.fontSizeMobile)};
+          font-size: ${theme.pxToRem(theme.typography.body.md.fontSizeMobile)};
           line-height: ${theme.pxToRem(15)};
-          margin-bottom: ${theme.pxToRem(17.5)};
         }
 
         .size--lg {
+          font-size: ${theme.pxToRem(theme.typography.body.lg.fontSizeMobile)};
+          line-height: ${theme.pxToRem(21)};
         }
 
         .variant--h1,
@@ -43,39 +52,40 @@ const Typography = ({ className, children, as, size, textAlign, variant }) => {
         }
 
         .variant--h1 {
+          /* No examples of this in design */
+          font-size: ${theme.pxToRem(theme.typography.h1.fontSizeMobile)};
+          line-height: ${theme.pxToRem(0)};
+          margin-bottom: ${theme.pxToEm(0, theme.typography.h1.fontSizeMobile)};
         }
 
         .variant--h3 {
-        }
-
-        .component-Typography-root:last-child {
-          margin-bottom: 0;
-        }
-
-        .variant--body {
-          letter-spacing: 0.01em;
+          font-size: ${theme.pxToRem(theme.typography.h3.fontSizeMobile)};
+          line-height: ${theme.pxToRem(30)};
+          margin-bottom: ${theme.pxToEm(22.5, theme.typography.h3.fontSizeMobile)};
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
           .size--md {
-            font-size: ${theme.pxToRem(theme.typography.body.fontSizeDesktop)};
+            font-size: ${theme.pxToRem(theme.typography.body.md.fontSizeDesktop)};
             line-height: ${theme.pxToRem(21)};
           }
 
           .size--lg {
-            ${fontSizeLg};
-            margin-bottom: ${theme.pxToEm(17.5, 22.5)};
+            font-size: ${theme.pxToRem(theme.typography.body.lg.fontSizeDesktop)};
+            line-height: ${theme.pxToRem(27)};
+            margin-bottom: ${theme.pxToEm(17.5, theme.typography.body.lg.fontSizeDesktop)};
           }
 
           .variant--h1 {
-            font-size: ${theme.pxToRem(42.5)};
+            font-size: ${theme.pxToRem(theme.typography.h1.fontSizeDesktop)};
             line-height: ${theme.pxToRem(51)};
-            margin-bottom: ${theme.pxToEm(30, 42.5)};
+            margin-bottom: ${theme.pxToEm(30, theme.typography.h1.fontSizeDesktop)};
           }
 
           .variant--h3 {
-            ${fontSizeH3};
-            margin-bottom: 1em;
+            font-size: ${theme.pxToRem(theme.typography.h3.fontSizeDesktop)};
+            line-height: ${theme.pxToRem(42)};
+            margin-bottom: ${theme.pxToEm(22.5, theme.typography.h3.fontSizeDesktop)};
           }
         }
 
