@@ -4,10 +4,13 @@ import PropTypes from 'prop-types';
 import config from '../config.yaml';
 import theme from '../styles/theme';
 import Nav from './Nav';
+import Rule from './Rule';
 import Typography from './Typography';
 
 const Footer = ({ className, pathname }) => (
   <footer className={className}>
+    <Rule />
+
     <Nav className={cx('component-Footer-nav', 'gutters')}>
       <ul>
         {Object.values(config.nav).map((section) => {
@@ -64,9 +67,9 @@ const Footer = ({ className, pathname }) => (
         })}
       </ul>
     </Nav>
-    <Typography className="component-Footer-copyright" textAlign="center">
-      Copyright ©2017–{new Date(Date.now()).getFullYear()} Syrian Music Preservation Initiative
-      Corp. 501(c)(3) <nobr>not-for-profit</nobr>&nbsp;organization
+    <Typography className={cx('component-Footer-copyright', 'gutters')} textAlign="center">
+      ©2017–{new Date(Date.now()).getFullYear()} Syrian Music Preservation Initiative Corp.
+      501(c)(3) <nobr>not-for-profit</nobr>&nbsp;organization
     </Typography>
     <style jsx>
       {`
@@ -77,11 +80,13 @@ const Footer = ({ className, pathname }) => (
 
         :global(.component-Footer-nav) > ul {
           display: flex;
-          justify-content: space-between;
+          flex-direction: column;
+          align-items: center;
         }
 
         :global(.component-Footer-nav) > ul > li:not(:last-child) {
-          margin-right: ${theme.pxToRem(50)};
+          font-size: ${theme.pxToRem(theme.typography.body.lg.fontSizeMobile)};
+          margin-bottom: 2em;
         }
 
         :global(.component-Footer-nav) ul li a,
@@ -90,20 +95,32 @@ const Footer = ({ className, pathname }) => (
         }
 
         :global(.component-Footer-nav) ul li ul {
-          margin-top: 1em;
+          display: none;
         }
 
         footer :global(.component-Footer-copyright) {
-          font-size: ${theme.pxToRem(16)};
-          line-height: ${theme.pxToRem(19)};
-          margin: ${theme.pxToRem(50)} auto 0;
-          padding: 0 ${theme.pxToRem(12)};
-          width: ${theme.pxToRem(352 * 2)};
+          margin-top: ${theme.pxToRem(48)};
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          :global(.component-Footer-nav) > ul {
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+          }
+
+          :global(.component-Footer-nav) > ul > li:not(:last-child) {
+            margin-right: ${theme.pxToRem(50)};
+          }
+
+          :global(.component-Footer-nav) ul li ul {
+            display: block;
+            margin-top: 1em;
+          }
+
           footer :global(.component-Footer-copyright) {
-            padding: 0 ${theme.pxToRem(theme.layout.gutter.desktop)};
+            font-size: ${theme.pxToRem(16)};
+            line-height: ${theme.pxToRem(19)};
           }
         }
       `}
