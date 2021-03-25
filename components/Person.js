@@ -63,8 +63,7 @@ const Person = ({ className, bio, image, name, title }) => {
               padding-right: ${theme.pxToRem(80)};
             }
 
-            h3 :global(.component-Person-name),
-            h3 :global(.component-Person-name:not(:last-child)) {
+            h3 :global(.component-Person-name) {
               display: block;
               margin-bottom: 0;
             }
