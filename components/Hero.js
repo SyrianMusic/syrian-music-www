@@ -7,11 +7,7 @@ import Video from './Video';
 
 const Hero = ({ className, children, image, subtitle, title, video }) => (
   <div className={cx('component-Hero-root', className)}>
-    <Typography
-      className={cx('component-Hero-title', 'gutters')}
-      variant="h3"
-      as="h1"
-      textAlign="center">
+    <Typography className="component-Hero-title" variant="h3" as="h1" textAlign="center">
       {title}
     </Typography>
     <figure>
@@ -22,23 +18,21 @@ const Hero = ({ className, children, image, subtitle, title, video }) => (
     {children && <div className={cx('component-Hero-description', 'gutters')}>{children}</div>}
     <style jsx>{`
       .component-Hero-root :global(.component-Hero-title) {
-        margin-bottom: ${theme.pxToRem(22 * 2)};
+        margin-bottom: ${theme.pxToRem(22)};
       }
 
       .component-Hero-root :global(.component-Hero-image),
       .component-Hero-root :global(.component-Hero-video) {
-        margin-bottom: ${theme.pxToRem(27.5 * 2)};
         height: auto;
         width: 100%;
       }
 
       .component-Hero-root :global(.component-Hero-subtitle) {
-        margin-left: ${theme.pxToRem(22 * 2)};
-        margin-right: ${theme.pxToRem(22 * 2)};
+        margin: ${theme.pxToRem(27.5)} ${theme.pxToRem(22)} 0;
       }
 
       .component-Hero-description {
-        margin-top: ${theme.pxToRem(25 * 2)};
+        margin-top: ${theme.pxToRem(25)};
       }
 
       @media (min-width: ${theme.breakpoint.mobileToDesktop}px) {

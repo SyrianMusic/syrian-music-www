@@ -3,11 +3,11 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import config from '../config.yaml';
+import { typography } from '../styles/mixins';
 import theme from '../styles/theme';
 import Image from './Image';
 import Nav from './Nav';
 import Typography from './Typography';
-import { typography } from '../styles/mixins';
 
 const Header = ({ className, pathname }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +63,7 @@ const Header = ({ className, pathname }) => {
           })}
         </ul>
         <button onClick={handleClose}>
-          <img src="/images/icons/close.svg" alt="Close the menu" height={30} width={30} />
+          <Image src="/images/icons/close.svg" alt="Close the menu" height={30} width={30} />
         </button>
       </Nav>
       <Link href="/">

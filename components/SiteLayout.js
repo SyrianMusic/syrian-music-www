@@ -63,7 +63,6 @@ const SiteLayout = ({ className, children, pathname }) => (
 
         .component-SiteLayout-footer {
           flex-shrink: 0;
-          margin: ${theme.pxToRem(95)} auto 0;
           width: 100%;
         }
       `}

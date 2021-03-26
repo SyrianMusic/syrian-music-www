@@ -1,17 +1,16 @@
-import Hero from '../../components/Hero';
 import EducationNav from '../../components/EducationNav';
+import Hero from '../../components/Hero';
 import SiteLayout from '../../components/SiteLayout';
 import Title from '../../components/Title';
-import Typography from '../../components/Typography';
-import theme from '../../styles/theme';
 import config from '../../config.yaml';
+import theme from '../../styles/theme';
 
 const EducationPage = () => (
   <SiteLayout className="page-Education-SiteLayout" pathname={config.nav.education.href}>
     <Title>Education and Preservation</Title>
     <Hero
       className="page-Education-Hero"
-      title={<Typography variant="h3">Education and Preservation</Typography>}
+      title="Education and Preservation"
       image={{
         src: '/images/instruments/syrian-qanun.png',
         srcSet: [
@@ -26,17 +25,17 @@ const EducationPage = () => (
         ],
         width: 730,
         height: 411,
-      }}>
-      <Typography size="lg">
-        The Syrian Music Preservation Initiative is a hub for Arabic music education, references,
-        and workshops. Explore performance notes on specific performances by the organization,
-        explanations on musical forms, translations, glossaries, and&nbsp;more.
-      </Typography>
-    </Hero>
-    <EducationNav />
+      }}></Hero>
+    <EducationNav className="page-Education-education-nav" />
     <style global jsx>{`
-      .page-Education-Hero {
-        margin-bottom: ${theme.pxToRem(115)};
+      @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+        .page-Education-Hero {
+          margin-bottom: ${theme.pxToRem(72)};
+        }
+
+        .page-Education-education-nav {
+          margin-bottom: ${theme.pxToRem(72)};
+        }
       }
     `}</style>
   </SiteLayout>

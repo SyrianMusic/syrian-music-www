@@ -64,6 +64,10 @@ const AboutPage = () => (
           margin-top: ${theme.pxToRem(26)};
         }
 
+        .page-About-who-we-are {
+          margin-bottom: ${theme.pxToRem(23)};
+        }
+
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
           section {
             margin-top: ${theme.pxToRem(102)};
@@ -75,6 +79,10 @@ const AboutPage = () => (
 
           section :global(.page-About-rule) {
             display: none;
+          }
+
+          .page-About-who-we-are {
+            margin-bottom: ${theme.pxToRem(96)};
           }
         }
       `}
