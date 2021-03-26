@@ -20,9 +20,8 @@ nav:
     text: Education
     href: /education
     description: >
-      Learn about Syrian music through biographies, transcriptions, lyrical translation and
-       musicological analysis. An exploration of this tradition from any level. Explore additional
-       resources, workshops and our beautiful oud collection.
+      Explore performance notes on specific performances by the organization, explanations on
+       musical forms, glossaries, workshops, and more.
     image:
       src: /images/instruments/two-syrian-ouds.png
       width: 432
@@ -33,46 +32,27 @@ nav:
         - densityFactor: 3
           src: /images/instruments/two-syrian-ouds@3x.png
     links:
-      - text: Musical Figures & Bios
+      - text: Biographies
         href: /
         description: >
-          Learn about the people who have influenced the course of the Syrian musical tradition,
-           including biographies, important works and historical context.
+          Learn about the people who have influenced the course of the Syrian musical tradition, including biographies, important works and historical context.
       - text: Transcriptions
         href: /
-        description: View SMPI’s archive of transcribed works.
-      - text: Lyrics & Translations
-        href: /
         description: >
-          Understanding the lyrics to pieces is key to unlocking the feelings within a piece.
-           Search through our lyrical database to find lyrics in Arabic translated into other
-           languages and some brief poetic analysis.
+          View our archive of transcribed works.
       - text: Musical Forms
         href: /
         description: >
-          Gain a deeper understanding of the key musical structures within Syrian (and Arab) musical
-           tradition.
-      - text: Maqams
-        href: /
-        description: >
-          Maqams are the building block of all Syrian music.  Learn the foundations of each of the
-           maqams, why they are different and hear them in context of real pieces.
+          Get a deeper understanding of the key musical structures within Syrian (and Arab) musical tradition.
       - text: Ouds
         href: /
-        description: View the beautiful Oud collection in our online museum.
-      - text: Resources & References
-        href: /
         description: >
-          Read from our digital library of books on Syrian music, forms and people in Arabic and
-           English and get additional information from some of our partner sites and organizations.
-      - text: Lessons & Workshops
-        href: /
-        description: Study with us virtually and in person!
+          View the beautiful Oud collection in our online museum.
   about:
     text: About
     href: /about
     description: >
-      Learn more about the SMPI mission, members, and more.
+      Learn more about our story, mission, members, and more.
     image:
       src: /images/instruments/syrian-oud-side-profile.png
       width: 431.5
@@ -93,8 +73,7 @@ nav:
     text: Connect
     href: /connect
     description: >
-      Join our community by following us on social media, signing up for our newsletter,
-       volunteering or donating.
+      Find out how to connect with us, donate, and become a member. We want to hear from you.
     image:
       src: /images/instruments/syrian-oud-strings.png
       width: 432

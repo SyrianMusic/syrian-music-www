@@ -8,7 +8,13 @@ const Rule = ({ className }) => (
       hr {
         border-style: none;
         border-top: ${theme.pxToRem(1)} solid ${theme.color.black};
-        margin: ${theme.pxToRem(25 * 2)} ${theme.pxToRem(22 * 2)};
+        margin: ${theme.pxToRem(25)} ${theme.pxToRem(22)};
+      }
+
+      @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+        hr {
+          margin: ${theme.pxToRem(25)} ${theme.pxToRem(47)};
+        }
       }
     `}</style>
   </>

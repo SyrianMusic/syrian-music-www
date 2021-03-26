@@ -6,29 +6,18 @@ import theme from '../styles/theme';
 import Image from './Image';
 import Nav from './Nav';
 import Typography from './Typography';
-
-const outerMargin = 77.5;
-const innerMargin = 35;
+import { gutters } from '../styles/mixins';
 
 const VisualNav = ({ className }) => (
   <Nav className={className}>
     <ul>
       {Object.values(config.nav).map((section, i) => {
         const isFlipped = i % 2 != 0;
-        const textAlign = isFlipped ? 'right' : 'left';
 
         return (
           <li key={section.text}>
             <Link href={section.href}>
               <a className={cx({ flipped: isFlipped })}>
-                <div className="component-VisualNav-text">
-                  <Typography textAlign={textAlign} variant="h3">
-                    {section.text}
-                  </Typography>
-                  <Typography size="lg" textAlign={textAlign}>
-                    {section.description}
-                  </Typography>
-                </div>
                 <div className="component-VisualNav-image-wrapper">
                   {section.image && (
                     <Image
@@ -40,6 +29,14 @@ const VisualNav = ({ className }) => (
                     />
                   )}
                 </div>
+                <div className="component-VisualNav-text">
+                  <Typography className="component-VisualNav-section-title" variant="h3">
+                    {section.text}
+                  </Typography>
+                  <Typography className="component-VisualNav-section-description" size="lg">
+                    {section.description}
+                  </Typography>
+                </div>
               </a>
             </Link>
           </li>
@@ -49,31 +46,21 @@ const VisualNav = ({ className }) => (
     <style jsx>
       {`
         li {
+          ${gutters.margin.mobile};
           border-top: ${theme.pxToRem(1)} solid ${theme.color.black};
         }
 
         li:not(:last-child) {
-          margin-bottom: ${theme.pxToRem(65)};
+          margin-bottom: ${theme.pxToRem(64)};
         }
 
         li a {
-          display: grid;
-          grid-template-columns: 50% 50%;
+          display: block;
           text-decoration: none;
         }
 
         .component-VisualNav-text {
-          margin: ${theme.pxToRem(48)} ${theme.pxToRem(theme.layout.gutter.mobile.right)} 0
-            ${theme.pxToRem(theme.layout.gutter.mobile.left)};
-        }
-
-        .flipped .component-VisualNav-text {
-          margin: ${theme.pxToRem(48)} ${theme.pxToRem(theme.layout.gutter.mobile.right)} 0
-            ${theme.pxToRem(theme.layout.gutter.mobile.left)};
-        }
-
-        a.flipped .component-VisualNav-image-wrapper {
-          grid-row: 1;
+          margin-top: ${theme.pxToRem(48)};
         }
 
         li a :global(.component-VisualNav-image) {
@@ -82,14 +69,36 @@ const VisualNav = ({ className }) => (
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          .component-VisualNav-text {
-            margin-right: ${theme.pxToRem(innerMargin)};
-            margin-left: ${theme.pxToRem(outerMargin)};
+          li {
+            margin-left: ${theme.pxToRem(48)};
+            margin-right: ${theme.pxToRem(48)};
           }
 
-          .flipped .component-VisualNav-text {
-            margin-right: ${theme.pxToRem(outerMargin)};
-            margin-left: ${theme.pxToRem(innerMargin)};
+          li a {
+            display: flex;
+          }
+
+          li a:not(.flipped) {
+            flex-direction: row-reverse;
+          }
+
+          .component-VisualNav-image-wrapper,
+          .component-VisualNav-text {
+            flex: 1;
+          }
+
+          .component-VisualNav-text {
+            margin-top: ${theme.pxToRem(48)};
+          }
+
+          :global(.component-VisualNav-section-title),
+          :global(.component-VisualNav-section-description) {
+            padding-left: ${theme.pxToRem(32)};
+            padding-right: ${theme.pxToRem(32)};
+          }
+
+          :global(.component-VisualNav-text .component-VisualNav-section-title) {
+            margin-bottom: ${theme.pxToRem(48)};
           }
         }
       `}

@@ -21,7 +21,7 @@ const Nav = ({ className, children }) => (
         filter: brightness(0.9);
       }
 
-      nav :global(span) {
+      nav :global(ul li > span) {
         color: ${theme.color.salmon};
       }
     `}</style>
