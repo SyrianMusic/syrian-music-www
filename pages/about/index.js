@@ -19,13 +19,13 @@ const AboutPage = () => (
     </Typography>
 
     <section className="gutters" id="mission">
-      <Typography variant="h3" as="h1" textAlign="left">
+      <Typography variant="h3" as="h1">
         Mission
       </Typography>
 
       {pageData.mission.map(({ _key, children } = {}) => {
         return (
-          <Typography key={_key} size="lg" textAlign="left">
+          <Typography key={_key} size="lg">
             {children.map(portableTextMap)}
           </Typography>
         );
@@ -33,12 +33,12 @@ const AboutPage = () => (
     </section>
 
     <section className="gutters" id="our-story">
-      <Typography variant="h3" as="h1" textAlign="left">
+      <Typography variant="h3" as="h1">
         Our Story
       </Typography>
       {pageData.story.map(({ _key, children } = {}) => {
         return (
-          <Typography key={_key} size="lg" textAlign="left">
+          <Typography key={_key} size="lg">
             {children.map(portableTextMap)}
           </Typography>
         );
@@ -46,7 +46,7 @@ const AboutPage = () => (
     </section>
 
     <section className="page-About-who-we-are" id="who-we-are">
-      <Typography className="gutters" variant="h3" as="h1" textAlign="left">
+      <Typography className="gutters" variant="h3" as="h1">
         Who We Are
       </Typography>
       {pageData.people.map((id, i) => {

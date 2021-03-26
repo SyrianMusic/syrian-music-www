@@ -13,11 +13,7 @@ const EducationNavLink = ({ text, href, description }) => {
 
   return (
     <li key={text} className={cx({ expanded: isExpanded }, 'gutters')}>
-      <Typography
-        className="component-EducationNavLink-text"
-        textAlign="left"
-        variant="h3"
-        as="div">
+      <Typography className="component-EducationNavLink-text" variant="h3" as="div">
         {text}
       </Typography>
 
@@ -30,12 +26,12 @@ const EducationNavLink = ({ text, href, description }) => {
       </button>
 
       <div className="component-EducationNavLink-details">
-        <Typography className="component-EducationNavLink-description" size="lg" textAlign="left">
+        <Typography className="component-EducationNavLink-description" size="lg">
           {description}
         </Typography>
 
         {href === '/' && (
-          <Typography className="component-EducationNavLink-coming-soon" size="lg" textAlign="left">
+          <Typography className="component-EducationNavLink-coming-soon" size="lg">
             Coming Soon
           </Typography>
         )}

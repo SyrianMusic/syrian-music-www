@@ -15,19 +15,14 @@ const VisualNav = ({ className }) => (
     <ul>
       {Object.values(config.nav).map((section, i) => {
         const isFlipped = i % 2 != 0;
-        const textAlign = isFlipped ? 'right' : 'left';
 
         return (
           <li key={section.text}>
             <Link href={section.href}>
               <a className={cx({ flipped: isFlipped })}>
                 <div className="component-VisualNav-text">
-                  <Typography textAlign={textAlign} variant="h3">
-                    {section.text}
-                  </Typography>
-                  <Typography size="lg" textAlign={textAlign}>
-                    {section.description}
-                  </Typography>
+                  <Typography variant="h3">{section.text}</Typography>
+                  <Typography size="lg">{section.description}</Typography>
                 </div>
                 <div className="component-VisualNav-image-wrapper">
                   {section.image && (

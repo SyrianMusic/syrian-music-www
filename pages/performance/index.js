@@ -27,7 +27,7 @@ const PerformancePage = () => (
         title: 'Zakhrafa زخرفة',
         id: 'n6VjsvT6o3s',
       }}>
-      <Typography size="lg" textAlign="left">
+      <Typography size="lg">
         Zakhrafa, composed by Samer Ali, was performed at Roulette Intermedium as part of the first
         anniversary celebration of Brooklyn Maqam Hang in 2019. The piece is in Nahawand Maqam and
         written in a new perspective of the Longa form. It features a newly-composed rhythm in 12/8
@@ -47,10 +47,8 @@ const PerformancePage = () => (
           height={214.5}
         />
         <div>
-          <Typography variant="h3" textAlign="left">
-            Takht al-Nagham
-          </Typography>
-          <Typography textAlign="left">
+          <Typography variant="h3">Takht al-Nagham</Typography>
+          <Typography>
             Takht al-nagham is SMPI&apos;s performing ensemble. Based in New York City, the group
             features a traditional Takht (Arab chamber music group). &ldquo;Nagham&rdquo; is the
             Arabic word for melody; it is commonly used as a synonym for the Arab Maqam system. The
@@ -61,7 +59,7 @@ const PerformancePage = () => (
             Syrian and non-Syrian musicians who perform without reading from sheet music, rely
             heavily on improvisations, and are deeply immersed in the Syrian musical tradition.
           </Typography>
-          <Typography textAlign="left">
+          <Typography>
             As a part of some performances Takht al-Nagham includes the Samah Dance. This dance
             (Raqs al-Samah in Arabic) is a centuries old Syrian dance that accompanies the
             Muwashahat musical form. It is a group dance designed as an interaction between males
@@ -70,7 +68,7 @@ const PerformancePage = () => (
             with the complex rhythmic and melodic content of every Muwashah piece. The development
             of Samah mirrors that of classical Syrian music.
           </Typography>
-          <Typography textAlign="left">
+          <Typography>
             The Takht al-Nagham logo was created by celebrated Syrian artist Mouneer al-Shaarani.
           </Typography>
         </div>

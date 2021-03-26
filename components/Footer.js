@@ -14,11 +14,7 @@ const Footer = ({ className, pathname }) => (
     <Nav className={cx('component-Footer-nav', 'gutters')}>
       <ul>
         {Object.values(config.nav).map((section) => {
-          const sectionText = (
-            <Typography size="lg" textAlign="left">
-              {section.text}
-            </Typography>
-          );
+          const sectionText = <Typography size="lg">{section.text}</Typography>;
 
           let sectionLink = (
             <Link href={section.href}>
@@ -38,11 +34,7 @@ const Footer = ({ className, pathname }) => (
                 {section.text !== 'Education' &&
                   section.links &&
                   Object.values(section.links).map((link) => {
-                    const linkText = (
-                      <Typography size="lg" textAlign="left">
-                        {link.text}
-                      </Typography>
-                    );
+                    const linkText = <Typography size="lg">{link.text}</Typography>;
                     let linkEl;
 
                     if (/^\//.test(link.href)) {

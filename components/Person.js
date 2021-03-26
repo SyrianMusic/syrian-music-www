@@ -9,11 +9,11 @@ const Person = ({ className, bio, image, name, title }) => {
   return (
     <article className={className}>
       <h3>
-        <Typography className="component-Person-name" as="span" size="lg" textAlign="left">
+        <Typography className="component-Person-name" as="span" size="lg">
           {name}
           {title && ' '}
         </Typography>
-        <Typography className="component-Person-title" as="span" size="md" textAlign="left">
+        <Typography className="component-Person-title" as="span" size="md">
           {title}
         </Typography>
       </h3>
@@ -22,11 +22,7 @@ const Person = ({ className, bio, image, name, title }) => {
         <div className="component-Person-text">
           {Array.isArray(bio) &&
             bio.map(({ _key, children } = {}) => {
-              return (
-                <Typography key={_key} textAlign="left">
-                  {children.map(portableTextMap)}
-                </Typography>
-              );
+              return <Typography key={_key}>{children.map(portableTextMap)}</Typography>;
             })}
         </div>
         {image && <Image className="component-Person-image" {...image} />}

@@ -133,7 +133,7 @@ Typography.defaultProps = {
   children: undefined,
   as: undefined,
   size: 'md',
-  textAlign: 'right',
+  textAlign: 'left',
   variant: 'body',
 };
 

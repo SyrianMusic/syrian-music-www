@@ -13,10 +13,8 @@ const ConnectPage = () => (
       <Typography className="page-Connect-title" variant="h3" as="h1" textAlign="center">
         Connect
       </Typography>
-      <Typography size="lg" textAlign="left">
-        We want to hear from&nbsp;you!
-      </Typography>
-      <Typography size="lg" textAlign="left">
+      <Typography size="lg">We want to hear from&nbsp;you!</Typography>
+      <Typography size="lg">
         Email us at{' '}
         <a href="mailto:info@syrianmusic.org" target="_blank" rel="noopener noreferrer">
           info@syrianmusic.org
@@ -27,7 +25,7 @@ const ConnectPage = () => (
         </a>
         .
       </Typography>
-      <Typography size="lg" textAlign="left">
+      <Typography size="lg">
         Follow us on{' '}
         <a href={pageConfig.links.instagram.href} target="_blank" rel="noopener noreferrer">
           Instagram
