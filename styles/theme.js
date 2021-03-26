@@ -52,10 +52,6 @@ const theme = {
       },
       desktop: 118,
     },
-    gutterWidth: {
-      mobile: 38,
-      desktop: 118,
-    },
   },
   pxToEm: (px, base = rootFontSize) => `${px / base}em`,
   pxToPercent: (px, base) => `${(px / base) * 100}%`,
