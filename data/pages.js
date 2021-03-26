@@ -1,4 +1,4 @@
-import { nonBreakingSpace } from '../utils/unicode';
+import { emDash, nonBreakingSpace } from '../utils/unicode';
 
 export default {
   about: {
@@ -31,7 +31,7 @@ export default {
             _type: 'span',
             _key: 'about-story-1-1',
             text:
-              'The Syrian Music Preservation Initiative is dedicated to preserving and invigorating the diverse ethnic and regional music traditions of Syria (including but not limited to Arabic, Kurdish, Armenian and Syriac).  Our performances promote the musical heritage of this region by presenting older works that are less known to the greater public as well as supporting contemporary exploration of the traditional forms by commissioning composers from Syria and the diaspora. In this way, we celebrate the past, present and future of Syrian music.' +
+              'The Syrian Music Preservation Initiative is dedicated to preserving and invigorating the diverse ethnic and regional music traditions of Syria (including but not limited to Arabic, Kurdish, Armenian and Syriac).  Our performances promote the musical heritage of this region by presenting older works that are less known to the greater public as well as supporting contemporary exploration of the traditional forms by commissioning composers from Syria and the diaspora. In this way, we celebrate the past, present and future of Syrian' +
               nonBreakingSpace +
               'music.',
             marks: [],
@@ -47,7 +47,9 @@ export default {
             _type: 'span',
             _key: 'about-story-2-1',
             text:
-              'We strive to preserve the Syrian compositional practices by researching their history and context, translating lyrics, providing transcriptions, documenting our performances, and--most importantly  by making our digital resources accessible to artists, scholars, and communities' +
+              'We strive to preserve the Syrian compositional practices by researching their history and context, translating lyrics, providing transcriptions, documenting our performances, and' +
+              emDash +
+              'most importantly  by making our digital resources accessible to artists, scholars, and communities' +
               nonBreakingSpace +
               'worldwide.',
             marks: [],
