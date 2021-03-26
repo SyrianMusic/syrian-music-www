@@ -26,7 +26,7 @@ const HomePage = () => (
           },
         ],
       }}>
-      <Typography size="lg">
+      <Typography className="page-Home-hero-description" size="lg">
         Welcome to the Syrian Music Preservation Initiative where we promote and celebrate the
         diverse ethnic and regional musical traditions of Syria. At SMPI we pursue activities around
         preservation of, innovation to, research and education about the music which is dear to our
@@ -38,8 +38,18 @@ const HomePage = () => (
     <VisualNav className="page-Home-visual-nav" />
     <style global jsx>
       {`
-        .page-Home-Hero {
-          margin-bottom: ${theme.pxToRem(117.5)};
+        .page-Home-Hero .page-Home-hero-description:last-child {
+          margin-bottom: ${theme.pxToRem(48)};
+        }
+
+        .page-Home-visual-nav {
+          margin-bottom: ${theme.pxToRem(39)};
+        }
+
+        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          .page-Home-Hero {
+            margin-bottom: ${theme.pxToRem(88)};
+          }
         }
       `}
     </style>

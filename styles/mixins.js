@@ -1,14 +1,26 @@
 import theme from './theme';
 
 export const gutters = {
-  mobile: `
-    margin-left: ${theme.pxToRem(theme.layout.gutter.mobile.left)};
-    margin-right: ${theme.pxToRem(theme.layout.gutter.mobile.right)};
-    `,
-  desktop: `
-    margin-left: ${theme.pxToRem(theme.layout.gutter.desktop)};
-    margin-right: ${theme.pxToRem(theme.layout.gutter.desktop)};
-    `,
+  margin: {
+    mobile: `
+      margin-left: ${theme.pxToRem(theme.layout.gutter.mobile.left)};
+      margin-right: ${theme.pxToRem(theme.layout.gutter.mobile.right)};
+      `,
+    desktop: `
+      margin-left: ${theme.pxToRem(theme.layout.gutter.desktop)};
+      margin-right: ${theme.pxToRem(theme.layout.gutter.desktop)};
+      `,
+  },
+  padding: {
+    mobile: `
+      padding-left: ${theme.pxToRem(theme.layout.gutter.mobile.left)};
+      padding-right: ${theme.pxToRem(theme.layout.gutter.mobile.right)};
+      `,
+    desktop: `
+      padding-left: ${theme.pxToRem(theme.layout.gutter.desktop)};
+      padding-right: ${theme.pxToRem(theme.layout.gutter.desktop)};
+      `,
+  },
 };
 
 export const typography = {

@@ -20,9 +20,8 @@ nav:
     text: Education
     href: /education
     description: >
-      Learn about Syrian music through biographies, transcriptions, lyrical translation and
-       musicological analysis. An exploration of this tradition from any level. Explore additional
-       resources, workshops and our beautiful oud collection.
+      Explore performance notes on specific performances by the organization, explanations on
+       musical forms, glossaries, workshops, and more.
     image:
       src: /images/instruments/two-syrian-ouds.png
       width: 432
@@ -53,7 +52,7 @@ nav:
     text: About
     href: /about
     description: >
-      Learn more about the SMPI mission, members, and more.
+      Learn more about our story, mission, members, and more.
     image:
       src: /images/instruments/syrian-oud-side-profile.png
       width: 431.5
@@ -74,8 +73,7 @@ nav:
     text: Connect
     href: /connect
     description: >
-      Join our community by following us on social media, signing up for our newsletter,
-       volunteering or donating.
+      Find out how to connect with us, donate, and become a member. We want to hear from you.
     image:
       src: /images/instruments/syrian-oud-strings.png
       width: 432
