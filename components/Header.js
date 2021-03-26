@@ -62,7 +62,7 @@ const Header = ({ className, pathname }) => {
             return <li key={text}>{navItem}</li>;
           })}
         </ul>
-        <button onClick={handleClose}>
+        <button className="component-Header-close-menu-button" onClick={handleClose}>
           <Image src="/images/icons/close.svg" alt="Close the menu" height={30} width={30} />
         </button>
       </Nav>
@@ -141,6 +141,11 @@ const Header = ({ className, pathname }) => {
           ${typography.h3.mobile};
           margin-bottom: 1em;
           text-align: right;
+        }
+
+        .component-Header-close-menu-button {
+          position: absolute;
+          bottom: ${theme.pxToRem(100)};
         }
 
         .component-Header-logo-text-link {
