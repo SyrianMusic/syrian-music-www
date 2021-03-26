@@ -18,8 +18,8 @@ const PerformancePage = () => (
       title="Performance"
       subtitle={
         <Typography className="page-Performance-subtitle" variant="h3" as="div">
-          <span>Zakhrafa زخرفة</span>
-          <span>March 2019</span>
+          <span>Zakhrafa</span>
+          <span>Roulette</span>
         </Typography>
       }
       video={{
@@ -27,9 +27,10 @@ const PerformancePage = () => (
         id: 'n6VjsvT6o3s',
       }}>
       <Typography size="lg" textAlign="left">
-        Zakhrafa, composed by Samer Ali, was performed during the first anniversary celebration of
-        Brooklyn Maqam, a new community organization devoted to the middle-eastern music scene in
-        New&nbsp;York.
+        Zakhrafa, composed by Samer Ali, was performed at Roulette Intermedium as part of the first
+        anniversary celebration of Brooklyn Maqam Hang in 2019. The piece is in Nahawand Maqam and
+        written in a new perspective of the Longa form. It features a newly-composed rhythm in 12/8
+        named&nbsp;Muzakhraf.
       </Typography>
     </Hero>
 
@@ -88,12 +89,13 @@ const PerformancePage = () => (
 
         section {
           margin-top: ${theme.pxToRem(50)};
+          margin-bottom: ${theme.pxToRem(23)};
         }
 
         article :global(.page-Performance-takht-al-nagham-logo) {
-          margin: 0 auto ${theme.pxToRem(46 * 2)};
+          margin: 0 auto ${theme.pxToRem(46)};
           height: auto;
-          width: ${theme.pxToRem(230 * 2)};
+          width: ${theme.pxToRem(230)};
         }
 
         article > div:last-child {
@@ -101,6 +103,10 @@ const PerformancePage = () => (
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          section {
+            margin-bottom: ${theme.pxToRem(75)};
+          }
+
           article :global(.page-Performance-takht-al-nagham-logo) {
             ${fontSizeH3};
             float: right;
