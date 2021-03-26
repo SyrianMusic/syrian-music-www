@@ -213,7 +213,7 @@ export default {
             _type: 'span',
             _key: 'fouad-salloum-2-1',
             text:
-              'Also an instrument collector, Fouad has amassed a collection of ouds with a focus on the Syrian luthiers which can only be described as breathtaking.',
+              'Also an instrument collector, Fouad has amassed a collection of ouds (with a focus on the Syrian luthiers) which can only be described as breathtaking.',
             marks: [],
           },
         ],
