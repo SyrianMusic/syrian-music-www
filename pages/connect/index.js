@@ -41,7 +41,6 @@ const ConnectPage = () => (
     </div>
     <style jsx>{`
       div :global(.page-Connect-title) {
-        margin-top: ${theme.pxToRem(8)};
         margin-bottom: ${theme.pxToRem(24)};
       }
 

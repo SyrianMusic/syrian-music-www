@@ -43,6 +43,7 @@ const AboutPage = () => (
           </Typography>
         );
       })}
+      h
     </section>
 
     <section className="page-About-who-we-are" id="who-we-are">
@@ -60,10 +61,6 @@ const AboutPage = () => (
     </section>
     <style jsx>
       {`
-        :global(.page-About-title) {
-          margin-top: ${theme.pxToRem(8)};
-        }
-
         section {
           margin-top: ${theme.pxToRem(48)};
         }
