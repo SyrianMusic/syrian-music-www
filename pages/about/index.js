@@ -43,7 +43,6 @@ const AboutPage = () => (
           </Typography>
         );
       })}
-      h
     </section>
 
     <section className="page-About-who-we-are" id="who-we-are">
@@ -62,11 +61,7 @@ const AboutPage = () => (
     <style jsx>
       {`
         section {
-          margin-top: ${theme.pxToRem(48)};
-        }
-
-        section :global(.page-About-person:not(:last-child)) {
-          margin-bottom: ${theme.pxToRem(48)};
+          margin-top: ${theme.pxToRem(26)};
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
@@ -76,6 +71,10 @@ const AboutPage = () => (
 
           section {
             margin-top: ${theme.pxToRem(102)};
+          }
+
+          section :global(.page-About-person:not(:last-child)) {
+            margin-bottom: ${theme.pxToRem(48)};
           }
 
           section :global(.page-About-rule) {
