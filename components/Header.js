@@ -153,8 +153,8 @@ const Header = ({ className, pathname }) => {
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          .header {
-            margin: ${theme.pxToRem(35)} ${theme.pxToRem(44)} ${theme.pxToRem(62.5)};
+          header {
+            margin: ${theme.pxToRem(35)} ${theme.pxToRem(40)} ${theme.pxToRem(65)};
           }
 
           .component-Header-logo-link {

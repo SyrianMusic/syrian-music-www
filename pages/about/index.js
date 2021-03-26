@@ -65,10 +65,6 @@ const AboutPage = () => (
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          :global(.page-About-title) {
-            margin-top: ${theme.pxToRem(64)};
-          }
-
           section {
             margin-top: ${theme.pxToRem(102)};
           }

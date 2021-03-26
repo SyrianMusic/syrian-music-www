@@ -46,7 +46,6 @@ const ConnectPage = () => (
 
       @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
         div :global(.page-Connect-title) {
-          margin-top: ${theme.pxToRem(64)};
           margin-bottom: ${theme.pxToRem(100)};
         }
       }
