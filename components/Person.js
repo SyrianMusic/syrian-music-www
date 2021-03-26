@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { fontSizeLg } from '../styles/mixins';
+import { typography } from '../styles/mixins';
 import theme from '../styles/theme';
 import Image from './Image';
 import Typography from './Typography';
@@ -65,7 +65,7 @@ const Person = ({ className, bio, image, name, title }) => {
             }
 
             h3 :global(.component-Person-title) {
-              ${fontSizeLg};
+              ${typography.lg.desktop};
             }
 
             .component-Person-description {

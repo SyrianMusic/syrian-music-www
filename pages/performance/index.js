@@ -6,7 +6,7 @@ import Title from '../../components/Title';
 import Typography from '../../components/Typography';
 import config from '../../config.yaml';
 import theme from '../../styles/theme';
-import { fontSizeH3 } from '../../styles/mixins';
+import { typography } from '../../styles/mixins';
 
 const pageConfig = config.nav.performance;
 
@@ -111,7 +111,7 @@ const PerformancePage = () => (
           }
 
           article :global(.page-Performance-takht-al-nagham-logo) {
-            ${fontSizeH3};
+            ${typography.h3.desktop};
             float: right;
             margin: 2em 0 ${theme.pxToRem(75)} ${theme.pxToRem(78)};
             width: ${theme.pxToRem(240)};
