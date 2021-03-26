@@ -14,7 +14,7 @@ const Hero = ({ className, children, image, subtitle, title, video }) => (
       {image && <Image className="component-Hero-image" {...image} />}
       {video && <Video className="component-Hero-video" {...video} />}
     </figure>
-    {subtitle && <figcaption className={cx('component-Hero-subtitle')}>{subtitle}</figcaption>}
+    {subtitle && <figcaption className="component-Hero-subtitle">{subtitle}</figcaption>}
     {children && <div className={cx('component-Hero-description', 'gutters')}>{children}</div>}
     <style jsx>{`
       .component-Hero-root :global(.component-Hero-title) {
@@ -27,7 +27,7 @@ const Hero = ({ className, children, image, subtitle, title, video }) => (
         width: 100%;
       }
 
-      .component-Hero-root :global(.component-Hero-subtitle) {
+      .component-Hero-subtitle {
         margin: ${theme.pxToRem(27.5)} ${theme.pxToRem(22)} 0;
       }
 
@@ -45,7 +45,8 @@ const Hero = ({ className, children, image, subtitle, title, video }) => (
         .component-Hero-title,
         .component-Hero-subtitle,
         .component-Hero-description {
-          margin: 0;
+          margin-left: 0;
+          margin-right: 0;
         }
       }
     `}</style>

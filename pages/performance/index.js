@@ -15,6 +15,7 @@ const PerformancePage = () => (
     <Title>Performance</Title>
 
     <Hero
+      className="page-Performance-hero"
       title="Performance"
       subtitle={
         <Typography className="page-Performance-subtitle" variant="h3" as="div">
@@ -103,6 +104,10 @@ const PerformancePage = () => (
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          :global(.page-Performance-hero) {
+            margin-bottom: ${theme.pxToRem(96)};
+          }
+
           section {
             margin-bottom: ${theme.pxToRem(75)};
           }
