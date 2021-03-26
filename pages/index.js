@@ -50,6 +50,10 @@ const HomePage = () => (
           .page-Home-Hero {
             margin-bottom: ${theme.pxToRem(88)};
           }
+
+          .page-Home-visual-nav {
+            margin-bottom: ${theme.pxToRem(75)};
+          }
         }
       `}
     </style>

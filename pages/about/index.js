@@ -8,6 +8,7 @@ import config from '../../config.yaml';
 import data from '../../data';
 import theme from '../../styles/theme';
 import { portableTextMap } from '../../utils/text';
+import { typography } from '../../styles/mixins';
 
 const pageData = data.pages.about;
 
@@ -25,7 +26,7 @@ const AboutPage = () => (
 
       {pageData.mission.map(({ _key, children } = {}) => {
         return (
-          <Typography key={_key} size="lg">
+          <Typography key={_key} className="page-About-mission">
             {children.map(portableTextMap)}
           </Typography>
         );
@@ -38,7 +39,7 @@ const AboutPage = () => (
       </Typography>
       {pageData.story.map(({ _key, children } = {}) => {
         return (
-          <Typography key={_key} size="lg">
+          <Typography key={_key} className="page-About-story">
             {children.map(portableTextMap)}
           </Typography>
         );
@@ -79,6 +80,11 @@ const AboutPage = () => (
 
           section :global(.page-About-rule) {
             display: none;
+          }
+
+          section :global(.page-About-mission),
+          section :global(.page-About-story) {
+            ${typography.lg.desktop};
           }
 
           .page-About-who-we-are {
