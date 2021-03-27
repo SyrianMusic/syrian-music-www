@@ -61,15 +61,8 @@ const SiteLayout = ({ className, children, pathname }) => (
           flex: 1 0 auto;
         }
 
-        .component-SiteLayout-header {
-          margin: ${theme.pxToRem(35)} auto ${theme.pxToRem(62.5)};
-          padding-left: ${theme.pxToRem(44)};
-          padding-right: ${theme.pxToRem(44)};
-        }
-
         .component-SiteLayout-footer {
           flex-shrink: 0;
-          margin: ${theme.pxToRem(95)} auto 0;
           width: 100%;
         }
       `}

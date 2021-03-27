@@ -8,24 +8,25 @@ import config from '../../config.yaml';
 import data from '../../data';
 import theme from '../../styles/theme';
 import { portableTextMap } from '../../utils/text';
+import { typography } from '../../styles/mixins';
 
 const pageData = data.pages.about;
 
 const AboutPage = () => (
   <SiteLayout pathname={config.nav.about.href}>
     <Title>About</Title>
-    <Typography className="gutters" variant="h3" as="h1" textAlign="center">
+    <Typography className="page-About-title" variant="h3" as="h1" textAlign="center">
       About
     </Typography>
 
     <section className="gutters" id="mission">
-      <Typography variant="h3" as="h1" textAlign="left">
+      <Typography variant="h3" as="h1">
         Mission
       </Typography>
 
       {pageData.mission.map(({ _key, children } = {}) => {
         return (
-          <Typography key={_key} size="lg" textAlign="left">
+          <Typography key={_key} className="page-About-mission">
             {children.map(portableTextMap)}
           </Typography>
         );
@@ -33,12 +34,12 @@ const AboutPage = () => (
     </section>
 
     <section className="gutters" id="our-story">
-      <Typography variant="h3" as="h1" textAlign="left">
+      <Typography variant="h3" as="h1">
         Our Story
       </Typography>
       {pageData.story.map(({ _key, children } = {}) => {
         return (
-          <Typography key={_key} size="lg" textAlign="left">
+          <Typography key={_key} className="page-About-story">
             {children.map(portableTextMap)}
           </Typography>
         );
@@ -46,7 +47,7 @@ const AboutPage = () => (
     </section>
 
     <section className="page-About-who-we-are" id="who-we-are">
-      <Typography className="gutters" variant="h3" as="h1" textAlign="left">
+      <Typography className="gutters" variant="h3" as="h1">
         Who We Are
       </Typography>
       {pageData.people.map((id, i) => {
@@ -61,16 +62,33 @@ const AboutPage = () => (
     <style jsx>
       {`
         section {
-          margin-top: ${theme.pxToRem(102)};
+          margin-top: ${theme.pxToRem(26)};
         }
 
-        section :global(.page-About-person:not(:last-child)) {
-          margin-bottom: ${theme.pxToRem(48)};
+        .page-About-who-we-are {
+          margin-bottom: ${theme.pxToRem(23)};
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          section {
+            margin-top: ${theme.pxToRem(102)};
+          }
+
+          section :global(.page-About-person:not(:last-child)) {
+            margin-bottom: ${theme.pxToRem(48)};
+          }
+
           section :global(.page-About-rule) {
             display: none;
+          }
+
+          section :global(.page-About-mission),
+          section :global(.page-About-story) {
+            ${typography.lg.desktop};
+          }
+
+          .page-About-who-we-are {
+            margin-bottom: ${theme.pxToRem(96)};
           }
         }
       `}
