@@ -112,9 +112,7 @@ export default {
             _type: 'span',
             _key: 'marissa-arciola-1-1',
             text:
-              'Marissa is a bassist, strategist and leader with a unique combination of artistic and business experience helping her build on founder Samer Ali' +
-              apostrophe +
-              's vision of the SMPI.',
+              'Marissa is a bassist, strategist and leader with a unique combination of artistic and business experience helping her build on founder Samer Ali’s vision of the SMPI.',
             marks: [],
           },
         ],
@@ -129,7 +127,7 @@ export default {
             _type: 'span',
             _key: 'marissa-arciola-2-1',
             text:
-              'Marissa completed her undergraduate degree in double bass performance at the Eastman School of Music under the tutelage of renowned soloist, James VanDemark. During this time, she also studied with Curtis Buris of the National Symphony Orchestra.  While completing her MBA and MA in Arts Administration at SMU, Marissa continued to study bass with Thomas Lederer of the Dallas Symphony Orchestra.',
+              'Marissa completed her undergraduate degree in double bass performance at the Eastman School of Music under the tutelage of renowned soloist, James VanDemark and Curtis Buris.  Marissa continued with music while completing her MBA and MA in Arts Administration at SMU, Marissa.',
             marks: [],
           },
         ],
@@ -213,7 +211,7 @@ export default {
             _type: 'span',
             _key: 'fouad-salloum-2-1',
             text:
-              'Also an instrument collector, Fouad has amassed a collection of ouds with a focus on the Syrian luthiers which can only be described as breathtaking.',
+              'Also an instrument collector, Fouad has amassed a collection of ouds (with a focus on the Syrian luthiers) which can only be described as breathtaking.',
             marks: [],
           },
         ],
