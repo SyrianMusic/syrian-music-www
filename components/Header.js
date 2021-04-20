@@ -1,22 +1,25 @@
 import cx from 'classnames';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import config from '../config.yaml';
 import { typography } from '../styles/mixins';
 import theme from '../styles/theme';
+import Button from './Button';
 import Image from './Image';
 import Nav from './Nav';
 import Typography from './Typography';
 
 const Header = ({ className, pathname }) => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
-  let handleClose;
+  const handleClose = () => setIsOpen(false);
 
-  if (isOpen) {
-    handleClose = () => setIsOpen(false);
-  }
+  const handleNavigate = (href) => () => {
+    router.push(href);
+    handleClose();
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -28,32 +31,24 @@ const Header = ({ className, pathname }) => {
 
   return (
     <header className={cx({ 'is-open': isOpen }, className)}>
-      <Link href="/">
-        <button className="component-Header-logo-link" onClick={handleClose}>
-          <Image
-            className="component-Header-logo"
-            alt="Syrian Music Preservation Initiative – Home"
-            src="/images/logos/syrian-music-preservation-initiative-logo-icon.svg"
-            width={51}
-            height={96}
-          />
-        </button>
-      </Link>
-      <button className="component-Header-menu-button" onClick={() => setIsOpen(!isOpen)}>
+      <Button className="component-Header-logo-link" onClick={handleNavigate('/')}>
+        <Image
+          className="component-Header-logo"
+          alt="Syrian Music Preservation Initiative – Home"
+          src="/images/logos/syrian-music-preservation-initiative-logo-icon.svg"
+          width={51}
+          height={96}
+        />
+      </Button>
+      <Button className="component-Header-menu-button" onClick={() => setIsOpen(!isOpen)}>
         <Typography size="lg" as="span">
           Menu
         </Typography>
-      </button>
+      </Button>
       <Nav className="component-Header-nav">
         <ul>
           {Object.values(config.nav).map(({ href, text }) => {
-            let navItem = (
-              <Link href={href}>
-                <button className="link" onClick={handleClose}>
-                  {text}
-                </button>
-              </Link>
-            );
+            let navItem = <Button onClick={handleNavigate(href)}>{text}</Button>;
 
             if (href === pathname) {
               navItem = <span>{text}</span>;
@@ -62,21 +57,19 @@ const Header = ({ className, pathname }) => {
             return <li key={text}>{navItem}</li>;
           })}
         </ul>
-        <button className="component-Header-close-menu-button" onClick={handleClose}>
+        <Button className="component-Header-close-menu-button" onClick={handleClose}>
           <Image src="/images/icons/close.svg" alt="Close the menu" height={30} width={30} />
-        </button>
+        </Button>
       </Nav>
-      <Link href="/">
-        <button className="component-Header-logo-text-link" onClick={handleClose}>
-          <Image
-            className="component-Header-logo-text"
-            src="/images/logos/syrian-music-preservation-initiative-logo.svg"
-            alt="Syrian Music Preservation Initiative – Home"
-            width={189}
-            height={94}
-          />
-        </button>
-      </Link>
+      <Button className="component-Header-logo-text-link" onClick={handleNavigate('/')}>
+        <Image
+          className="component-Header-logo-text"
+          src="/images/logos/syrian-music-preservation-initiative-logo.svg"
+          alt="Syrian Music Preservation Initiative – Home"
+          width={189}
+          height={94}
+        />
+      </Button>
       <style jsx>{`
         header {
           display: flex;
@@ -85,24 +78,16 @@ const Header = ({ className, pathname }) => {
           margin: ${theme.pxToRem(18)} ${theme.pxToRem(24)} ${theme.pxToRem(32)};
         }
 
-        .component-Header-logo-link {
+        header :global(.component-Header-logo-link) {
           margin-right: ${theme.pxToRem(27)};
         }
 
-        .component-Header-logo-link :global(.component-Header-logo) {
+        header :global(.component-Header-logo) {
           height: auto;
           width: ${theme.pxToRem(28)};
         }
 
-        button {
-          -webkit-appearance: none;
-          background: none;
-          border: none;
-          font: inherit;
-          padding: 0;
-        }
-
-        .component-Header-menu-button {
+        header :global(.component-Header-menu-button) {
           border-bottom: ${theme.pxToRem(1)} solid ${theme.color.black};
           display: flex;
           flex-direction: column;
@@ -112,7 +97,7 @@ const Header = ({ className, pathname }) => {
           padding: 0 0 ${theme.pxToRem(13)};
         }
 
-        header.is-open .component-Header-menu-button {
+        header.is-open :global(.component-Header-menu-button) {
           color: ${theme.color.salmon};
         }
 
@@ -143,16 +128,16 @@ const Header = ({ className, pathname }) => {
           text-align: right;
         }
 
-        .component-Header-close-menu-button {
+        header :global(.component-Header-close-menu-button) {
           position: absolute;
           bottom: ${theme.pxToRem(100)};
         }
 
-        .component-Header-logo-text-link {
+        header :global(.component-Header-logo-text-link) {
           margin-left: ${theme.pxToRem(25)};
         }
 
-        .component-Header-logo-text-link :global(.component-Header-logo-text) {
+        header :global(.component-Header-logo-text) {
           height: auto;
           width: ${theme.pxToRem(107.5)};
         }
@@ -162,15 +147,15 @@ const Header = ({ className, pathname }) => {
             margin: ${theme.pxToRem(35)} ${theme.pxToRem(40)} ${theme.pxToRem(65)};
           }
 
-          .component-Header-logo-link {
+          header :global(.component-Header-logo-link) {
             margin-right: ${theme.pxToRem(37.5)};
           }
 
-          .component-Header-logo-link :global(.component-Header-logo) {
+          header :global(.component-Header-logo-link .component-Header-logo) {
             width: ${theme.pxToRem(51)};
           }
 
-          .component-Header-menu-button {
+          header :global(.component-Header-menu-button) {
             display: none;
           }
 
@@ -196,15 +181,15 @@ const Header = ({ className, pathname }) => {
             margin-bottom: ${theme.pxToRem(24)};
           }
 
-          header :global(.component-Header-nav) > button {
+          header :global(.component-Header-close-menu-button) {
             display: none;
           }
 
-          .component-Header-logo-text-link {
+          header :global(.component-Header-logo-text-link) {
             margin-left: ${theme.pxToRem(33)};
           }
 
-          .component-Header-logo-text-link :global(.component-Header-logo-text) {
+          header :global(.component-Header-logo-text) {
             width: ${theme.pxToRem(189)};
           }
         }
