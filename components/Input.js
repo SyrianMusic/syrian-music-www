@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import * as mixins from '../styles/mixins';
 import theme from '../styles/theme';
 
-const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-const Input = ({ className, error, label, onChange, required, type, value }) => {
+const Input = ({ className, error, name, label, onBlur, onChange, required, type, value }) => {
   return (
     <div className={cx({ 'component-Input-has-error': error }, className)}>
       <div className="component-Input-label-wrapper">
         <label>
           {label} {required && <span>Required</span>}
-          <input onChange={onChange} type={type} value={value} />
+          <input name={name} onBlur={onBlur} onChange={onChange} type={type} value={value} />
         </label>
       </div>
 
@@ -107,6 +105,8 @@ Input.propTypes = {
   className: PropTypes.string,
   error: PropTypes.string,
   label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   type: PropTypes.oneOf(['email', 'text']),
@@ -116,6 +116,7 @@ Input.propTypes = {
 Input.defaultProps = {
   className: undefined,
   error: undefined,
+  onBlur: undefined,
   onChange: undefined,
   required: false,
   type: 'text',
