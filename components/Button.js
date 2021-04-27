@@ -12,12 +12,13 @@ const variants = {
   outlined: 'outlined',
 };
 
-const Button = ({ className, children, color, onClick, type, variant }) => (
+const Button = ({ className, children, color, disabled, onClick, type, variant }) => (
   <button
     className={cx(
       { [`color--${color}`]: color, [`variant--${variant}`]: variant !== 'none' },
       className,
     )}
+    disabled={disabled}
     onClick={onClick}
     type={type}>
     {children}
@@ -53,9 +54,15 @@ const Button = ({ className, children, color, onClick, type, variant }) => (
         color: ${theme.color.white};
       }
 
-      .color--white:focus,
-      .color--white:hover {
+      .color--white:disabled {
+        opacity: 0.5;
+      }
+
+      .color--white:enabled:active,
+      .color--white:enabled:focus,
+      .color--white:enabled:hover {
         background-color: ${theme.color.white};
+        color: ${theme.color.interactive};
       }
 
       .variant--outlined {
@@ -65,11 +72,6 @@ const Button = ({ className, children, color, onClick, type, variant }) => (
         background-color: transparent;
         padding: ${theme.pxToRem(8)};
         transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-      }
-
-      .variant--outlined:focus,
-      .variant--outlined:hover {
-        color: ${theme.color.salmon};
       }
 
       @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}) {
@@ -85,6 +87,7 @@ Button.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   color: PropTypes.oneOf(Object.keys(colors)),
+  disabled: PropTypes.bool,
   onClick: PropTypes.func,
   type: PropTypes.oneOf(['button', 'submit']),
   variant: PropTypes.oneOf(Object.keys(variants)),
@@ -94,6 +97,7 @@ Button.defaultProps = {
   className: undefined,
   children: undefined,
   color: 'none',
+  disabled: false,
   onClick: undefined,
   type: 'button',
   variant: 'none',

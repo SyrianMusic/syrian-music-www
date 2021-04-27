@@ -1,9 +1,13 @@
-import { convertCompilerOptionsFromJson } from 'typescript';
-
 const rootFontSize = 16;
 
 const typography = {
   body: {
+    xs: {
+      fontSizeMobile: 8,
+      lineHeightMobile: 10,
+      fontSizeDesktop: 10,
+      lineHeightDesktop: 12,
+    },
     sm: {
       fontSizeMobile: 10,
       lineHeightMobile: 12,
@@ -44,6 +48,9 @@ const typography = {
 const colors = {
   white: '#fff',
   dimGray: '#666',
+  spanishGray: '#999',
+  lightGray: '#ccc',
+  cultured: '#eee',
   black: '#000',
   firebrick: '#ab2323',
   lightCoral: '#ff7878',
@@ -56,9 +63,9 @@ const theme = {
   color: {
     ...colors,
     primary: colors.black,
-    secondary: undefined,
+    secondary: colors.spanishGray,
     interactive: colors.lightCoral,
-    disabled: undefined,
+    disabled: colors.cultured,
     error: colors.firebrick,
     salmon: colors.lightCoral,
   },

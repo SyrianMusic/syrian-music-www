@@ -31,6 +31,16 @@ export const layout = {
 };
 
 export const typography = {
+  xs: {
+    mobile: `
+        font-size: ${theme.pxToRem(theme.typography.body.xs.fontSizeMobile)};
+        line-height: ${theme.pxToRem(theme.typography.body.xs.lineHeightMobile)};
+        `,
+    desktop: `
+        font-size: ${theme.pxToRem(theme.typography.body.xs.fontSizeDesktop)};
+        line-height: ${theme.pxToRem(theme.typography.body.xs.lineHeightDesktop)};
+        `,
+  },
   sm: {
     mobile: `
         font-size: ${theme.pxToRem(theme.typography.body.sm.fontSizeMobile)};

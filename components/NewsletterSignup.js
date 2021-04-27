@@ -10,7 +10,11 @@ const onSubmit = (e) => {
   e.preventDefault();
 };
 
+const defaultEmail = '';
+
+
 const NewsletterSignup = ({ className }) => {
+  const [email, setEmail] = useState(defaultEmail);
   const [hasError, setHasError] = useState(false);
 
   let error;
@@ -18,6 +22,11 @@ const NewsletterSignup = ({ className }) => {
   if (hasError) {
     error = 'This is an error';
   }
+
+  const onEmailChange = e => {
+    const { value } = e.target;
+    setEmail(value);
+  };
 
   return (
     <form className={className} onSubmit={onSubmit}>
@@ -29,7 +38,10 @@ const NewsletterSignup = ({ className }) => {
         className="component-NewsletterSignup-input"
         error={error}
         label="Enter your email"
+        onChange={onEmailChange}
+        required
         type="email"
+        value={email}
       />
 
       <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
@@ -44,6 +56,7 @@ const NewsletterSignup = ({ className }) => {
 
       <Button
         className="component-NewsletterSignup-submit"
+        disabled={!email}
         type="submit"
         color={Button.colors.white}
         variant={Button.variants.outlined}
