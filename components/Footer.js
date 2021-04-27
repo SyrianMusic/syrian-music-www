@@ -66,6 +66,7 @@ const Footer = ({ className, pathname }) => (
     <style jsx>
       {`
         footer {
+          margin-top: ${theme.pxToRem(32)};
           padding-bottom: 2em;
           width: 100%;
         }

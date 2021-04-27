@@ -12,7 +12,6 @@ const onSubmit = (e) => {
 
 const defaultEmail = '';
 
-
 const NewsletterSignup = ({ className }) => {
   const [email, setEmail] = useState(defaultEmail);
   const [hasError, setHasError] = useState(false);
@@ -23,14 +22,14 @@ const NewsletterSignup = ({ className }) => {
     error = 'This is an error';
   }
 
-  const onEmailChange = e => {
+  const onEmailChange = (e) => {
     const { value } = e.target;
     setEmail(value);
   };
 
   return (
     <form className={className} onSubmit={onSubmit}>
-      <Typography className="component-NewsletterSignup-title" variant="h3">
+      <Typography className="component-NewsletterSignup-title" textAlign="center" variant="h3">
         Stay up to date
       </Typography>
 
@@ -77,6 +76,7 @@ const NewsletterSignup = ({ className }) => {
         form :global(.component-NewsletterSignup-title) {
           color: ${theme.color.white};
           margin-bottom: ${theme.pxToRem(8)};
+          width: 100%;
         }
 
         form :global(.component-NewsletterSignup-input) {
