@@ -38,13 +38,11 @@ const Typography = ({ className, children, as, size, textAlign, variant }) => {
         }
 
         .size--md {
-          font-size: ${theme.pxToRem(theme.typography.body.md.fontSizeMobile)};
-          line-height: ${theme.pxToRem(15)};
+          ${typography.md.mobile};
         }
 
         .size--lg {
-          font-size: ${theme.pxToRem(theme.typography.body.lg.fontSizeMobile)};
-          line-height: ${theme.pxToRem(21)};
+          ${typography.lg.mobile};
         }
 
         .variant--h1,
@@ -53,9 +51,7 @@ const Typography = ({ className, children, as, size, textAlign, variant }) => {
         }
 
         .variant--h1 {
-          /* No examples of this in design */
-          font-size: ${theme.pxToRem(theme.typography.h1.fontSizeMobile)};
-          line-height: ${theme.pxToRem(0)};
+          ${typography.h1.mobile};
           margin-bottom: ${theme.pxToEm(0, theme.typography.h1.fontSizeMobile)};
         }
 
@@ -66,19 +62,16 @@ const Typography = ({ className, children, as, size, textAlign, variant }) => {
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
           .size--md {
-            font-size: ${theme.pxToRem(theme.typography.body.md.fontSizeDesktop)};
-            line-height: ${theme.pxToRem(21)};
+            ${typography.md.desktop};
           }
 
           .size--lg {
-            font-size: ${theme.pxToRem(theme.typography.body.lg.fontSizeDesktop)};
-            line-height: ${theme.pxToRem(27)};
+            ${typography.lg.desktop};
             margin-bottom: ${theme.pxToEm(17.5, theme.typography.body.lg.fontSizeDesktop)};
           }
 
           .variant--h1 {
-            font-size: ${theme.pxToRem(theme.typography.h1.fontSizeDesktop)};
-            line-height: ${theme.pxToRem(51)};
+            ${typography.h1.desktop};
             margin-bottom: ${theme.pxToEm(30, theme.typography.h1.fontSizeDesktop)};
           }
 

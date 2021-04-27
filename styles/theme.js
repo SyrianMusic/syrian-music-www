@@ -4,22 +4,30 @@ const typography = {
   body: {
     md: {
       fontSizeMobile: 12.5,
+      lineHeightMobile: 15,
       fontSizeDesktop: 17.5,
+      lineHeightDesktop: 21,
     },
     lg: {
       fontSizeMobile: 17.5,
+      lineHeightMobile: 21,
       fontSizeDesktop: 22.5,
+      lineHeightDesktop: 27,
     },
     tagName: 'p',
   },
   h1: {
     fontSizeMobile: 0, // No examples of this in design
+    lineHeightMobile: 0, // No examples of this in design
     fontSizeDesktop: 42.5,
+    lineHeightDesktop: 51,
     tagName: 'h1',
   },
   h3: {
     fontSizeMobile: 25,
+    lineHeightMobile: 30,
     fontSizeDesktop: 35,
+    lineHeightDesktop: 42,
     tagName: 'h3',
   },
 };
