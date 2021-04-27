@@ -95,13 +95,13 @@ const Typography = ({ className, children, as, size, textAlign, variant }) => {
 
         .component-Typography-root :global(a:link),
         .component-Typography-root :global(a:visited) {
-          color: ${theme.color.salmon};
+          color: ${theme.color.interactive};
           text-decoration-color: transparent;
           transition: text-decoration-color 0.2s ease-in-out;
         }
 
         .component-Typography-root :global(a:hover) {
-          text-decoration-color: ${theme.color.salmon};
+          text-decoration-color: ${theme.color.interactive};
         }
 
         .component-Typography-root :global(a:active) {

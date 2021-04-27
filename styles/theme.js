@@ -1,7 +1,15 @@
+import { convertCompilerOptionsFromJson } from 'typescript';
+
 const rootFontSize = 16;
 
 const typography = {
   body: {
+    sm: {
+      fontSizeMobile: 10,
+      lineHeightMobile: 12,
+      fontSizeDesktop: 15,
+      lineHeightDesktop: 18,
+    },
     md: {
       fontSizeMobile: 12.5,
       lineHeightMobile: 15,
@@ -32,13 +40,27 @@ const typography = {
   },
 };
 
+// https://coolors.co/ff7878-000000-ffffff-666666-f63030
+const colors = {
+  white: '#fff',
+  dimGray: '#666',
+  black: '#000',
+  firebrick: '#ab2323',
+  lightCoral: '#ff7878',
+};
+
 const theme = {
   breakpoint: {
     mobileToDesktop: 800,
   },
   color: {
-    black: '#000',
-    salmon: '#ff7878',
+    ...colors,
+    primary: colors.black,
+    secondary: undefined,
+    interactive: colors.lightCoral,
+    disabled: undefined,
+    error: colors.firebrick,
+    salmon: colors.lightCoral,
   },
   font: {
     mobile: {

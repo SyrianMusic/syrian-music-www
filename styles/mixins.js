@@ -23,7 +23,24 @@ export const gutters = {
   },
 };
 
+export const layout = {
+  fullWidth: `
+    margin-left: calc(-100vw / 2 + ${theme.layout.contentWidthMax}px / 2);
+    margin-right: calc(-100vw / 2 + ${theme.layout.contentWidthMax}px / 2);
+  `,
+};
+
 export const typography = {
+  sm: {
+    mobile: `
+        font-size: ${theme.pxToRem(theme.typography.body.sm.fontSizeMobile)};
+        line-height: ${theme.pxToRem(theme.typography.body.sm.lineHeightMobile)};
+        `,
+    desktop: `
+        font-size: ${theme.pxToRem(theme.typography.body.sm.fontSizeDesktop)};
+        line-height: ${theme.pxToRem(theme.typography.body.sm.lineHeightDesktop)};
+        `,
+  },
   md: {
     mobile: `
         font-size: ${theme.pxToRem(theme.typography.body.md.fontSizeMobile)};

@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import config from '../config.yaml';
 import theme from '../styles/theme';
 import Nav from './Nav';
-import Rule from './Rule';
+import NewsletterSignup from './NewsletterSignup';
 import Typography from './Typography';
 
 const Footer = ({ className, pathname }) => (
   <footer className={className}>
-    <Rule />
+    <NewsletterSignup className="component-Footer-newsletter-signup" />
 
     <Nav className={cx('component-Footer-nav', 'gutters')}>
       <ul>
@@ -68,6 +68,14 @@ const Footer = ({ className, pathname }) => (
         footer {
           padding-bottom: 2em;
           width: 100%;
+        }
+
+        footer :global(.component-Footer-newsletter-signup) {
+          border-bottom: ${theme.pxToRem(1)} solid ${theme.color.black};
+        }
+
+        :global(.component-Footer-nav) {
+          padding-top: ${theme.pxToRem(25)};
         }
 
         :global(.component-Footer-nav) > ul {
