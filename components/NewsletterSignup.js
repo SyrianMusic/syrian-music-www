@@ -1,4 +1,4 @@
-import { useFormik } from 'formik';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import * as mixins from '../styles/mixins';
@@ -11,73 +11,78 @@ const errorMessages = {
   invalidEmail: 'Please provide a valid email address.',
 };
 
-const NewsletterSignupSchema = Yup.object().shape({
+const newsletterSignupSchema = Yup.object().shape({
   email: Yup.string().email(errorMessages.invalidEmail).required(errorMessages.invalidEmail),
 });
 
-const initialValues = {
-  email: '',
-};
-
 const NewsletterSignup = ({ className }) => {
-  const {
-    values,
-    errors,
-    touched,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    isSubmitting,
-    isValid,
-    resetForm,
-  } = useFormik({
-    initialValues,
-    validationSchema: NewsletterSignupSchema,
-    onSubmit: async (values) => {
-      console.log({ values });
-      resetForm();
-    },
-  });
+  const [touched, setTouched] = useState(false);
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState(null);
 
-  let error;
+  const validate = () => {
+    try {
+      newsletterSignupSchema.validateSync();
+      setError(null);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
-  if (errors.email && touched.email && errors.email) {
-    error = errors.email;
-  }
+  const onBlur = () => {
+    if (!touched) {
+      setTouched(true);
+      validate();
+    }
+  };
+
+  const onChange = (e) => {
+    setEmail(e.target.value);
+
+    if (touched) {
+      validate();
+    }
+  };
 
   return (
-    <form className={className} onSubmit={handleSubmit} noValidate>
+    <form
+      className={className}
+      action="https://syrianmusic.us1.list-manage.com/subscribe/post?u=8b74a47300fb2a26103dd07aa&amp;id=66a839666b"
+      method="POST"
+      target="_blank"
+      noValidate>
       <Typography className="component-NewsletterSignup-title" textAlign="center" variant="h3">
         Stay up to date
       </Typography>
 
       <Input
         className="component-NewsletterSignup-input"
-        error={error}
         label="Enter your email"
-        name="email"
-        onBlur={handleBlur}
-        onChange={handleChange}
-        required
+        name="EMAIL"
         type="email"
-        value={values.email}
+        onBlur={onBlur}
+        onChange={onChange}
+        value={email}
+        error={error}
+        required
       />
 
       <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+        <input type="text" name="SIGNUPCOMP" tabIndex="-1" value="Footer" readOnly />
         <input
           type="text"
-          name="b_8b74a47300fb2a26103dd07aa_66a839666b"
+          name="SIGNUPURL"
           tabIndex="-1"
-          value=""
+          value={typeof window !== 'undefined' ? window.location.href : ''}
           readOnly
         />
       </div>
 
       <Button
         className="component-NewsletterSignup-submit"
-        disabled={!isValid || values === initialValues || isSubmitting}
         type="submit"
         color={Button.colors.white}
+        disabled={!email}
         variant={Button.variants.outlined}>
         Sign up
       </Button>
