@@ -8,10 +8,13 @@ const Nav = ({ className, children }) => (
       nav :global(a:link),
       nav :global(a:visited) {
         color: inherit;
+        outline: none;
+        text-decoration: underline;
         text-decoration-color: transparent;
         transition: color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
       }
 
+      nav :global(a:focus),
       nav :global(a:hover) {
         color: ${theme.color.salmon};
         text-decoration-color: ${theme.color.salmon};

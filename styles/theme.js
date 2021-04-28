@@ -2,26 +2,58 @@ const rootFontSize = 16;
 
 const typography = {
   body: {
+    xs: {
+      fontSizeMobile: 8,
+      lineHeightMobile: 10,
+      fontSizeDesktop: 10,
+      lineHeightDesktop: 12,
+    },
+    sm: {
+      fontSizeMobile: 10,
+      lineHeightMobile: 12,
+      fontSizeDesktop: 15,
+      lineHeightDesktop: 18,
+    },
     md: {
       fontSizeMobile: 12.5,
+      lineHeightMobile: 15,
       fontSizeDesktop: 17.5,
+      lineHeightDesktop: 21,
     },
     lg: {
       fontSizeMobile: 17.5,
+      lineHeightMobile: 21,
       fontSizeDesktop: 22.5,
+      lineHeightDesktop: 27,
     },
     tagName: 'p',
   },
   h1: {
     fontSizeMobile: 0, // No examples of this in design
+    lineHeightMobile: 0, // No examples of this in design
     fontSizeDesktop: 42.5,
+    lineHeightDesktop: 51,
     tagName: 'h1',
   },
   h3: {
     fontSizeMobile: 25,
+    lineHeightMobile: 30,
     fontSizeDesktop: 35,
+    lineHeightDesktop: 42,
     tagName: 'h3',
   },
+};
+
+// https://coolors.co/ff7878-000000-ffffff-666666-f63030
+const colors = {
+  white: '#fff',
+  dimGray: '#666',
+  spanishGray: '#999',
+  lightGray: '#ccc',
+  cultured: '#eee',
+  black: '#000',
+  firebrick: '#ab2323',
+  lightCoral: '#ff7878',
 };
 
 const theme = {
@@ -29,8 +61,13 @@ const theme = {
     mobileToDesktop: 800,
   },
   color: {
-    black: '#000',
-    salmon: '#ff7878',
+    ...colors,
+    primary: colors.black,
+    secondary: colors.spanishGray,
+    interactive: colors.lightCoral,
+    disabled: colors.cultured,
+    error: colors.firebrick,
+    salmon: colors.lightCoral,
   },
   font: {
     mobile: {

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import config from '../config.yaml';
-import { typography } from '../styles/mixins';
+import * as mixins from '../styles/mixins';
 import theme from '../styles/theme';
 import Button from './Button';
 import Image from './Image';
@@ -48,7 +48,11 @@ const Header = ({ className, pathname }) => {
       <Nav className="component-Header-nav">
         <ul>
           {Object.values(config.nav).map(({ href, text }) => {
-            let navItem = <Button onClick={handleNavigate(href)}>{text}</Button>;
+            let navItem = (
+              <Button className="component-Header-nav-button" onClick={handleNavigate(href)}>
+                {text}
+              </Button>
+            );
 
             if (href === pathname) {
               navItem = <span>{text}</span>;
@@ -88,7 +92,8 @@ const Header = ({ className, pathname }) => {
         }
 
         header :global(.component-Header-menu-button) {
-          border-bottom: ${theme.pxToRem(1)} solid ${theme.color.black};
+          border-bottom: ${theme.pxToRem(1)} solid ${theme.color.primary};
+          color: ${theme.color.primary};
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -98,7 +103,7 @@ const Header = ({ className, pathname }) => {
         }
 
         header.is-open :global(.component-Header-menu-button) {
-          color: ${theme.color.salmon};
+          color: ${theme.color.interactive};
         }
 
         header :global(.component-Header-nav) {
@@ -123,9 +128,13 @@ const Header = ({ className, pathname }) => {
         }
 
         header :global(.component-Header-nav) li {
-          ${typography.h3.mobile};
+          ${mixins.typography.h3.mobile};
           margin-bottom: 1em;
           text-align: right;
+        }
+
+        header :global(.component-Header-nav-button) {
+          font-size: inherit;
         }
 
         header :global(.component-Header-close-menu-button) {
@@ -171,13 +180,11 @@ const Header = ({ className, pathname }) => {
             flex-wrap: wrap;
             align-items: flex-end;
             justify-content: space-around;
-            font-size: ${theme.pxToRem(21.5)};
-            line-height: ${theme.pxToRem(33)};
             height: 100%;
           }
 
           header :global(.component-Header-nav) li {
-            ${typography.lg.desktop};
+            ${mixins.typography.lg.desktop};
             margin-bottom: ${theme.pxToRem(24)};
           }
 
