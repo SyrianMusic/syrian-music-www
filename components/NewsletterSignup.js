@@ -20,13 +20,30 @@ const NewsletterSignup = ({ className }) => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState(null);
 
-  const validate = () => {
+  const isValid = ({ onSuccess, onError } = {}) => {
     try {
       newsletterSignupSchema.validateSync({ email });
-      setError(null);
+      if (typeof onSuccess === 'function') {
+        onSuccess();
+      }
+      return true;
     } catch (err) {
-      setError(err.message);
+      if (typeof onError === 'function') {
+        onError(err);
+      }
+      return false;
     }
+  };
+
+  const validate = () => {
+    isValid({
+      onSuccess: () => {
+        setError(null);
+      },
+      onError: (err) => {
+        setError(err.message);
+      },
+    });
   };
 
   const onBlur = () => {
@@ -82,7 +99,7 @@ const NewsletterSignup = ({ className }) => {
         className="component-NewsletterSignup-submit"
         type="submit"
         color={Button.colors.white}
-        disabled={!email}
+        disabled={!isValid()}
         variant={Button.variants.outlined}>
         Sign up
       </Button>
