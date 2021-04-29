@@ -22,7 +22,7 @@ const NewsletterSignup = ({ className }) => {
 
   const validate = () => {
     try {
-      newsletterSignupSchema.validateSync();
+      newsletterSignupSchema.validateSync({ email });
       setError(null);
     } catch (err) {
       setError(err.message);
