@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import * as mixins from '../styles/mixins';
@@ -7,42 +7,99 @@ import Button from './Button';
 import Input from './Input';
 import Typography from './Typography';
 
-const errorMessages = {
-  invalidEmail: 'Please provide a valid email address.',
+const MESSAGES = {
+  success:
+    'Thank you for signing up! Please follow the instructions in the next window to complete your registration.',
+  error: {
+    invalidEmail: 'Please provide a valid email address.',
+  },
 };
 
-const newsletterSignupSchema = Yup.object().shape({
-  email: Yup.string().email(errorMessages.invalidEmail).required(errorMessages.invalidEmail),
+const NEWSLETTER_SIGNUP_SCHEMA = Yup.object().shape({
+  email: Yup.string().email(MESSAGES.error.invalidEmail).required(MESSAGES.error.invalidEmail),
 });
 
+const INITIAL_STATE = {
+  email: '',
+  error: null,
+  handleSubmit: null,
+  submitted: false,
+  touched: false,
+};
+
 const NewsletterSignup = ({ className }) => {
-  const [touched, setTouched] = useState(false);
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState(null);
+  const [email, setEmail] = useState(INITIAL_STATE.email);
+  const [error, setError] = useState(INITIAL_STATE.error);
+  const [submitted, setSubmitted] = useState(INITIAL_STATE.submitted);
+  const [touched, setTouched] = useState(INITIAL_STATE.touched);
+
+  const isValid = ({ onSuccess, onError } = {}) => {
+    try {
+      NEWSLETTER_SIGNUP_SCHEMA.validateSync({ email });
+      if (typeof onSuccess === 'function') {
+        onSuccess();
+      }
+      return true;
+    } catch (err) {
+      if (typeof onError === 'function') {
+        onError(err);
+      }
+      return false;
+    }
+  };
 
   const validate = () => {
-    try {
-      newsletterSignupSchema.validateSync();
-      setError(null);
-    } catch (err) {
-      setError(err.message);
-    }
+    isValid({
+      onSuccess: () => {
+        setError(null);
+      },
+      onError: (err) => {
+        setError(err.message);
+      },
+    });
   };
 
   const onBlur = () => {
     if (!touched) {
       setTouched(true);
-      validate();
     }
   };
 
   const onChange = (e) => {
     setEmail(e.target.value);
+  };
 
+  useEffect(() => {
     if (touched) {
       validate();
     }
+  }, [email, touched]);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    e.target.submit();
   };
+
+  const resetForm = () => {
+    setEmail(INITIAL_STATE.email);
+    setError(INITIAL_STATE.error);
+    setSubmitted(INITIAL_STATE.submitted);
+    setTouched(INITIAL_STATE.touched);
+  };
+
+  let successMessage;
+
+  if (submitted) {
+    successMessage = (
+      <>
+        {MESSAGES.success}
+        <Button className="component-NewsletterSignup-resubmit" onClick={resetForm}>
+          Sign up another email address.
+        </Button>
+      </>
+    );
+  }
 
   return (
     <form
@@ -50,6 +107,7 @@ const NewsletterSignup = ({ className }) => {
       action="https://syrianmusic.us1.list-manage.com/subscribe/post?u=8b74a47300fb2a26103dd07aa&amp;id=66a839666b"
       method="POST"
       target="_blank"
+      onSubmit={onSubmit}
       noValidate>
       <Typography className="component-NewsletterSignup-title" textAlign="center" variant="h3">
         Stay up to date
@@ -59,11 +117,13 @@ const NewsletterSignup = ({ className }) => {
         className="component-NewsletterSignup-input"
         label="Enter your email"
         name="EMAIL"
-        type="email"
+        disabled={submitted}
+        error={error}
         onBlur={onBlur}
         onChange={onChange}
+        success={successMessage}
+        type="email"
         value={email}
-        error={error}
         required
       />
 
@@ -82,7 +142,7 @@ const NewsletterSignup = ({ className }) => {
         className="component-NewsletterSignup-submit"
         type="submit"
         color={Button.colors.white}
-        disabled={!email}
+        disabled={!isValid() || submitted}
         variant={Button.variants.outlined}>
         Sign up
       </Button>
@@ -106,6 +166,18 @@ const NewsletterSignup = ({ className }) => {
         form :global(.component-NewsletterSignup-input) {
           width: 80%;
           max-width: ${theme.pxToRem(360)};
+        }
+
+        form :global(.component-NewsletterSignup-resubmit) {
+          font: inherit;
+          color: ${theme.color.white};
+          text-decoration: underline;
+        }
+
+        form :global(.component-NewsletterSignup-resubmit):focus,
+        form :global(.component-NewsletterSignup-resubmit):hover {
+          color: ${theme.color.white};
+          text-decoration-color: ${theme.color.white};
         }
 
         form :global(.component-NewsletterSignup-submit) {

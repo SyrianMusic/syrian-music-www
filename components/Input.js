@@ -3,17 +3,49 @@ import PropTypes from 'prop-types';
 import * as mixins from '../styles/mixins';
 import theme from '../styles/theme';
 
-const Input = ({ className, error, name, label, onBlur, onChange, required, type, value }) => {
+const Input = ({
+  className,
+  disabled,
+  error,
+  name,
+  label,
+  onBlur,
+  onChange,
+  required,
+  success,
+  type,
+  value,
+}) => {
+  let message;
+
+  if (error) {
+    message = error;
+  } else if (success) {
+    message = success;
+  }
+
   return (
-    <div className={cx({ 'component-Input-has-error': error }, className)}>
-      <div className="component-Input-label-wrapper">
+    <div
+      className={cx(
+        { 'component-Input-error': error, 'component-Input-success': success },
+        className,
+      )}>
+      <div
+        className={cx({ 'component-Input-disabled': disabled }, 'component-Input-label-wrapper')}>
         <label>
           {label} {required && <span>Required</span>}
-          <input name={name} onBlur={onBlur} onChange={onChange} type={type} value={value} />
+          <input
+            name={name}
+            disabled={disabled}
+            onBlur={onBlur}
+            onChange={onChange}
+            type={type}
+            value={value}
+          />
         </label>
       </div>
 
-      <div className="component-Input-error-text">{error}</div>
+      <div className="component-Input-message">{message}</div>
 
       <style jsx>{`
         .component-Input-label-wrapper {
@@ -23,7 +55,13 @@ const Input = ({ className, error, name, label, onBlur, onChange, required, type
           transition: border-color 0.2s ease-in-out;
         }
 
-        .component-Input-has-error > .component-Input-label-wrapper {
+        .component-Input-disabled,
+        .component-Input-disabled input {
+          background-color: ${theme.color.lightGray};
+          cursor: not-allowed;
+        }
+
+        .component-Input-error > .component-Input-label-wrapper {
           border-color: ${theme.color.error};
         }
 
@@ -63,7 +101,7 @@ const Input = ({ className, error, name, label, onBlur, onChange, required, type
           width: 100%;
         }
 
-        .component-Input-error-text {
+        .component-Input-message {
           ${mixins.typography.sm.mobile};
           box-sizing: content-box;
           background-color: transparent;
@@ -73,9 +111,17 @@ const Input = ({ className, error, name, label, onBlur, onChange, required, type
           transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
         }
 
-        .component-Input-has-error .component-Input-error-text {
-          background-color: ${theme.color.error};
+        .component-Input-error .component-Input-message,
+        .component-Input-success .component-Input-message {
           color: ${theme.color.white};
+        }
+
+        .component-Input-error .component-Input-message {
+          background-color: ${theme.color.error};
+        }
+
+        .component-Input-success .component-Input-message {
+          background-color: ${theme.color.success};
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
@@ -91,7 +137,7 @@ const Input = ({ className, error, name, label, onBlur, onChange, required, type
             ${mixins.typography.lg.desktop};
           }
 
-          .component-Input-error-text {
+          .component-Input-error-message {
             ${mixins.typography.sm.desktop};
             min-height: ${theme.typography.body.sm.lineHeightDesktop}px;
           }
@@ -103,22 +149,26 @@ const Input = ({ className, error, name, label, onBlur, onChange, required, type
 
 Input.propTypes = {
   className: PropTypes.string,
-  error: PropTypes.string,
+  disabled: PropTypes.bool,
+  error: PropTypes.node,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   required: PropTypes.bool,
+  success: PropTypes.node,
   type: PropTypes.oneOf(['email', 'text']),
   value: PropTypes.any,
 };
 
 Input.defaultProps = {
   className: undefined,
+  disabled: false,
   error: undefined,
   onBlur: undefined,
   onChange: undefined,
   required: false,
+  success: undefined,
   type: 'text',
   value: undefined,
 };
