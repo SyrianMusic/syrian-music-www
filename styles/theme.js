@@ -54,6 +54,7 @@ const colors = {
   black: '#000',
   firebrick: '#ab2323',
   lightCoral: '#ff7878',
+  spanishVeridian: '#007f5c',
 };
 
 const theme = {
@@ -67,6 +68,7 @@ const theme = {
     interactive: colors.lightCoral,
     disabled: colors.cultured,
     error: colors.firebrick,
+    success: colors.spanishVeridian,
     salmon: colors.lightCoral,
   },
   font: {

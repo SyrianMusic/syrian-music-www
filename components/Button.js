@@ -35,6 +35,10 @@ const Button = ({ className, children, color, disabled, onClick, type, variant }
         transition: opacity 0.2s ease-in-out;
       }
 
+      button:disabled {
+        cursor: not-allowed;
+      }
+
       .color--none {
         color: ${theme.color.primary};
         text-decoration: underline;
