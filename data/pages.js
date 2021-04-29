@@ -57,6 +57,13 @@ export default {
         ],
       },
     ],
-    people: ['samer-ali', 'marissa-arciola', 'fouad-salloum', 'hanna-madbak', 'homam-ibrahim'],
+    people: [
+      'samer-ali',
+      'marissa-arciola',
+      'fouad-salloum',
+      'hanna-madbak',
+      'homam-ibrahim',
+      'karin-nangreave',
+    ],
   },
 };
