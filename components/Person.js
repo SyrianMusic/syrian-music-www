@@ -21,9 +21,11 @@ const Person = ({ className, bio, image, name, title }) => {
       <div className="component-Person-description">
         <div className="component-Person-text">
           {Array.isArray(bio) &&
-            bio.map(({ _key, children } = {}) => {
-              return <Typography key={_key}>{children.map(portableTextMap)}</Typography>;
-            })}
+            bio
+              .map((block, i) => block.format(i))
+              .map(({ _key, children } = {}) => {
+                return <Typography key={_key}>{children.map(portableTextMap)}</Typography>;
+              })}
         </div>
         {image && <Image className="component-Person-image" {...image} />}
       </div>
