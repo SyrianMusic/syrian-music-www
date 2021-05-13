@@ -29,28 +29,24 @@ export const Button = ({ className, children, color, disabled, onClick, type, va
         -webkit-appearance: none;
         background: none;
         border: none;
+        color: ${theme.color.primary};
         font: inherit;
         font-size: ${theme.pxToRem(theme.typography.body.lg.fontSizeMobile)};
         outline: none;
         padding: 0;
         cursor: pointer;
-        transition: opacity 0.2s ease-in-out;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        transition: all 0.2s ease-in-out;
       }
 
       button:disabled {
         cursor: not-allowed;
       }
 
-      .color--none {
-        color: ${theme.color.primary};
-        text-decoration: underline;
-        text-decoration-color: transparent;
-        transition: color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
-      }
-
-      .color--none:active,
-      .color--none:focus,
-      .color--none:hover {
+      button:active,
+      button:focus,
+      button:hover {
         color: ${theme.color.interactive};
         text-decoration-color: ${theme.color.interactive};
       }
@@ -60,24 +56,51 @@ export const Button = ({ className, children, color, disabled, onClick, type, va
         color: ${theme.color.white};
       }
 
-      .color--white:disabled {
+      button:disabled {
         opacity: 0.5;
       }
 
-      .color--white:enabled:active,
-      .color--white:enabled:focus,
-      .color--white:enabled:hover {
-        background-color: ${theme.color.white};
-        color: ${theme.color.interactive};
+      button:disabled:active,
+      button:disabled:focus,
+      button:disabled:hover {
+        color: ${theme.color.primary};
+        text-decoration-color: transparent;
+      }
+
+      .color--white:disabled:active,
+      .color--white:disabled:focus,
+      .color--white:disabled:hover {
+        color: ${theme.color.white};
       }
 
       .variant--outlined {
         border-width: ${theme.pxToRem(2)};
         border-style: solid;
-        color: ${theme.color.white};
         background-color: transparent;
         padding: ${theme.pxToRem(8)};
         transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+      }
+
+      .variant--outlined:enabled:active,
+      .variant--outlined:enabled:focus,
+      .variant--outlined:enabled:hover {
+        background-color: ${theme.color.primary};
+        border-color: ${theme.color.primary};
+        color: ${theme.color.white};
+        text-decoration-color: transparent;
+      }
+
+      .variant--outlined.color--white:enabled:active {
+        color: ${theme.color.white};
+      }
+
+      .variant--outlined.color--white:enabled:active,
+      .variant--outlined.color--white:enabled:focus,
+      .variant--outlined.color--white:enabled:hover {
+        background-color: ${theme.color.white};
+        border-color: ${theme.color.white};
+        color: ${theme.color.interactive};
+        text-decoration-color: transparent;
       }
 
       @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}) {

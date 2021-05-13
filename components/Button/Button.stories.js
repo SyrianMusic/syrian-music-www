@@ -77,3 +77,25 @@ DisabledWhite.argTypes = {
   color: { control: { type: null } },
   disabled: { control: { type: null } },
 };
+
+export const DisabledOutlined = Template.bind({});
+DisabledOutlined.args = {
+  disabled: true,
+  variant: 'outlined',
+};
+DisabledOutlined.argTypes = {
+  disabled: { control: { type: null } },
+  variant: { control: { type: null } },
+};
+
+export const DisabledOutlinedWhite = Template.bind({});
+DisabledOutlinedWhite.args = {
+  color: 'white',
+  disabled: true,
+  variant: 'outlined',
+};
+DisabledOutlinedWhite.argTypes = {
+  color: { control: { type: null } },
+  disabled: { control: { type: null } },
+  variant: { control: { type: null } },
+};
