@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import theme from '../styles/theme';
+import theme from '../../styles/theme';
 
 const colors = {
   none: 'none',
   white: 'white',
 };
+
+const types = ['button', 'submit'];
 
 const variants = {
   none: 'none',
@@ -93,7 +95,7 @@ Button.propTypes = {
   color: PropTypes.oneOf(Object.keys(colors)),
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  type: PropTypes.oneOf(['button', 'submit']),
+  type: PropTypes.oneOf(types),
   variant: PropTypes.oneOf(Object.keys(variants)),
 };
 
@@ -108,6 +110,7 @@ Button.defaultProps = {
 };
 
 Button.colors = colors;
+Button.types = types;
 Button.variants = variants;
 
 export default Button;
