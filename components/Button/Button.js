@@ -14,7 +14,7 @@ const variants = {
   outlined: 'outlined',
 };
 
-const Button = ({ className, children, color, disabled, onClick, type, variant }) => (
+export const Button = ({ className, children, color, disabled, onClick, type, variant }) => (
   <button
     className={cx(
       { [`color--${color}`]: color, [`variant--${variant}`]: variant !== 'none' },
