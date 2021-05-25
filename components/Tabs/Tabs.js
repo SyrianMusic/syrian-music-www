@@ -58,7 +58,7 @@ export const Tabs = ({ label, tabs }) => {
       </div>
       {panel}
       <style jsx>{`
-        .tabs__menu-toggle {
+        .tabs :global(.tabs__menu-toggle) {
           ${mixins.typography.h3.mobile}
           ${mixins.gutters.padding.mobile}
           display: flex;
@@ -67,17 +67,17 @@ export const Tabs = ({ label, tabs }) => {
           width: 100%;
         }
 
-        .tabs__menu-toggle svg line {
+        .tabs :global(.tabs__menu-toggle) svg line {
           transition: stroke 0.2s ease-in-out;
         }
 
-        .tabs__menu-toggle:active svg line,
-        .tabs__menu-toggle:focus svg line,
-        .tabs__menu-toggle:hover svg line {
+        .tabs :global(.tabs__menu-toggle):active svg line,
+        .tabs :global(.tabs__menu-toggle):focus svg line,
+        .tabs :global(.tabs__menu-toggle):hover svg line {
           stroke: ${theme.color.salmon};
         }
 
-        [role='tablist'] {
+        .tabs :global([role='tablist']) {
           background-color: ${theme.color.white};
           box-shadow: 0 8px 6px -6px ${theme.color.withOpacity(theme.color.black, 0.5)};
           display: none;
@@ -91,29 +91,30 @@ export const Tabs = ({ label, tabs }) => {
           flex-direction: column;
         }
 
-        [role='tablist'] button {
+        :global([role='tablist'] button) {
           ${mixins.gutters.padding.mobile}
           margin-bottom: 1em;
           text-align: left;
         }
 
-        [role='tablist'] button[aria-selected='true'] {
+        .tabs :global([role='tablist'] button[aria-selected='true']) {
           color: ${theme.color.salmon};
           pointer-events: none;
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          .tabs__menu-toggle,
-          .tabs__menu-toggle ~ hr {
+          .tabs :global(.tabs__menu-toggle),
+          .tabs :global(.tabs__menu-toggle ~ hr) {
             display: none;
           }
 
-          [role='tablist'] {
+          .tabs :global([role='tablist']) {
             box-shadow: none;
             display: flex;
+            position: initial;
           }
 
-          [role='tablist'] button {
+          .tabs :global([role='tablist'] button) {
             ${mixins.typography.lg.desktop}
             border-bottom: ${theme.pxToRem(1)} solid ${theme.color.black};
             flex: 1;
@@ -123,14 +124,14 @@ export const Tabs = ({ label, tabs }) => {
             text-decoration: none;
           }
 
-          [role='tablist'] button:active,
-          [role='tablist'] button:focus,
-          [role='tablist'] button:hover,
-          [role='tablist'] button[aria-selected='true'] {
+          .tabs :global([role='tablist'] button:active),
+          .tabs :global([role='tablist'] button:focus),
+          .tabs :global([role='tablist'] button:hover),
+          .tabs :global([role='tablist'] button[aria-selected='true']) {
             border-bottom-color: ${theme.color.salmon};
           }
 
-          [role='tablist'] button:not(:last-child) {
+          .tabs :global([role='tablist'] button:not(:last-child)) {
             margin-right: 1em;
           }
         }
