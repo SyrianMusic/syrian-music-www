@@ -31,15 +31,22 @@ const Footer = ({ className, pathname }) => (
               {sectionLink}
 
               <ul>
-                {section.text !== 'Education' &&
-                  section.links &&
+                {section.links &&
                   Object.values(section.links).map((link) => {
                     const linkText = <Typography size="lg">{link.text}</Typography>;
                     let linkEl;
 
-                    if (/^\//.test(link.href)) {
+                    if (link.href === '/') {
+                      return null;
+                    }
+
+                    const relativeLink = `${section.href}${link.href}`;
+
+                    if (pathname === relativeLink) {
+                      linkEl = <span>{linkText}</span>;
+                    } else if (/^\//.test(link.href)) {
                       linkEl = (
-                        <Link href={`${section.href}${link.href}`}>
+                        <Link href={relativeLink}>
                           <a>{linkText}</a>
                         </Link>
                       );

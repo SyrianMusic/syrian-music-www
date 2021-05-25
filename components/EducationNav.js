@@ -1,8 +1,10 @@
-import cx from 'classnames';
-import PropTypes from 'prop-types';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import cx from 'classnames';
+import Link from 'next/link';
 import config from '../config.yaml';
 import theme from '../styles/theme';
+import Button from './Button';
 import Image from './Image';
 import Nav from './Nav';
 import Rule from './Rule';
@@ -11,19 +13,19 @@ import Typography from './Typography';
 const EducationNavLink = ({ text, href, description }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  return (
-    <li key={text} className={cx({ expanded: isExpanded }, 'gutters')}>
+  let content = (
+    <div className="component-EducationNavLink-content">
       <Typography className="component-EducationNavLink-text" variant="h3" as="div">
         {text}
       </Typography>
 
-      <button onClick={() => setIsExpanded(!isExpanded)}>
+      <Button onClick={() => setIsExpanded(!isExpanded)}>
         <Image
           src={isExpanded ? '/images/icons/minus.svg' : '/images/icons/plus.svg'}
           height={26}
           width={26}
         />
-      </button>
+      </Button>
 
       <div className="component-EducationNavLink-details">
         <Typography className="component-EducationNavLink-description" size="lg">
@@ -36,12 +38,36 @@ const EducationNavLink = ({ text, href, description }) => {
           </Typography>
         )}
       </div>
-
       <style jsx>{`
-        li {
+        .component-EducationNavLink-content {
           display: flex;
           flex-wrap: wrap;
           justify-content: space-between;
+        }
+
+        div :global(.component-EducationNavLink-text),
+        .component-EducationNavLink-details {
+          flex: 1;
+        }
+
+        div :global(.component-EducationNavLink-text) {
+          margin-bottom: 0;
+        }
+      `}</style>
+    </div>
+  );
+
+  return (
+    <li key={text} className={cx({ expanded: isExpanded }, 'gutters')}>
+      {href === '/' ? (
+        content
+      ) : (
+        <Link href={`/education${href}`}>
+          <a>{content}</a>
+        </Link>
+      )}
+      <style jsx>{`
+        li {
           margin-top: ${theme.pxToRem(25)};
           margin-bottom: ${theme.pxToRem(25)};
         }
@@ -50,11 +76,15 @@ const EducationNavLink = ({ text, href, description }) => {
           margin-bottom: 0;
         }
 
+        li a {
+          text-decoration: none;
+        }
+
         li:not(.expanded) :global(.component-EducationNavLink-text) {
           margin-bottom: 0;
         }
 
-        li:not(.expanded) .component-EducationNavLink-details {
+        li:not(.expanded) :global(.component-EducationNavLink-details) {
           display: none;
         }
 
@@ -62,30 +92,17 @@ const EducationNavLink = ({ text, href, description }) => {
           color: ${theme.color.salmon};
         }
 
-        button {
-          -webkit-appearance: none;
-          background-color: transparent;
-          border: none;
-          padding: 0;
+        li :global(button) {
           height: ${theme.pxToRem(26)};
           width: ${theme.pxToRem(26)};
         }
 
         @media (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          li :global(.component-EducationNavLink-text) {
-            margin-bottom: 0;
-          }
-
-          button {
+          li :global(button) {
             display: none;
           }
 
-          li :global(.component-EducationNavLink-text),
-          .component-EducationNavLink-details {
-            flex: 1;
-          }
-
-          li:not(.expanded) .component-EducationNavLink-details {
+          li:not(.expanded) :global(.component-EducationNavLink-details) {
             display: block;
           }
 
