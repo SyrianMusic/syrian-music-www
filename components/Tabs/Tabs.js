@@ -59,8 +59,8 @@ export const Tabs = ({ label, tabs }) => {
       {panel}
       <style jsx>{`
         .tabs__menu-toggle {
-          ${mixins.typography.h3.mobile};
-          ${mixins.gutters.padding.mobile};
+          ${mixins.typography.h3.mobile}
+          ${mixins.gutters.padding.mobile}
           display: flex;
           justify-content: space-between;
           text-decoration: none;
@@ -102,14 +102,36 @@ export const Tabs = ({ label, tabs }) => {
           pointer-events: none;
         }
 
-        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}) {
+        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          .tabs__menu-toggle,
+          .tabs__menu-toggle ~ hr {
+            display: none;
+          }
+
           [role='tablist'] {
+            box-shadow: none;
             display: flex;
           }
 
           [role='tablist'] button {
+            ${mixins.typography.lg.desktop}
+            border-bottom: ${theme.pxToRem(1)} solid ${theme.color.black};
             flex: 1;
+            padding: ${theme.pxToEm(15, theme.typography.body.lg.fontSizeDesktop)} 0;
+            margin-bottom: ${theme.pxToEm(32, theme.typography.body.lg.fontSizeDesktop)};
             text-align: left;
+            text-decoration: none;
+          }
+
+          [role='tablist'] button:active,
+          [role='tablist'] button:focus,
+          [role='tablist'] button:hover,
+          [role='tablist'] button[aria-selected='true'] {
+            border-bottom-color: ${theme.color.salmon};
+          }
+
+          [role='tablist'] button:not(:last-child) {
+            margin-right: 1em;
           }
         }
       `}</style>
