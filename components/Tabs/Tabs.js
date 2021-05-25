@@ -141,7 +141,6 @@ export const Tabs = ({ label, tabs }) => {
 
 Tabs.propTypes = {
   label: PropTypes.string.isRequired,
-  selectedTab: PropTypes.string.isRequired,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -150,5 +149,3 @@ Tabs.propTypes = {
     }),
   ).isRequired,
 };
-
-Tabs.defaultProps = {};

@@ -113,6 +113,7 @@ export const Button = ({
         text-decoration-color: transparent;
       }
 
+      // TODO: Add px and check for visual regressions
       @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}) {
         button {
           font-size: ${theme.pxToRem(theme.typography.body.lg.fontSizeDesktop)};
