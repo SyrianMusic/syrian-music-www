@@ -48,7 +48,7 @@ const PerformancePage = () => (
         />
         <div>
           <Typography variant="h3">Takht al-Nagham</Typography>
-          <Typography>
+          <Typography size="lg">
             Takht al-nagham is SMPI&apos;s performing ensemble. Based in New York City, the group
             features a traditional Takht (Arab chamber music group). &ldquo;Nagham&rdquo; is the
             Arabic word for melody; it is commonly used as a synonym for the Arab Maqam system. The
@@ -59,7 +59,7 @@ const PerformancePage = () => (
             Syrian and non-Syrian musicians who perform without reading from sheet music, rely
             heavily on improvisations, and are deeply immersed in the Syrian musical tradition.
           </Typography>
-          <Typography>
+          <Typography size="lg">
             As a part of some performances Takht al-Nagham includes the Samah Dance. This dance
             (Raqs al-Samah in Arabic) is a centuries old Syrian dance that accompanies the
             Muwashahat musical form. It is a group dance designed as an interaction between males
@@ -68,7 +68,7 @@ const PerformancePage = () => (
             with the complex rhythmic and melodic content of every Muwashah piece. The development
             of Samah mirrors that of classical Syrian music.
           </Typography>
-          <Typography>
+          <Typography size="lg">
             The Takht al-Nagham logo was created by celebrated Syrian artist Mouneer al-Shaarani.
           </Typography>
         </div>
