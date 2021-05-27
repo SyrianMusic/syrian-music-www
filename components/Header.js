@@ -114,7 +114,7 @@ const Header = ({ className, pathname }) => {
           background-color: white;
           display: flex;
           flex-direction: column;
-          align-items: flex-end;
+          align-items: flex-start;
           justify-content: space-between;
           height: calc(100vh - ${theme.pxToRem(76)});
           margin-top: ${theme.pxToRem(76)};
@@ -130,7 +130,6 @@ const Header = ({ className, pathname }) => {
         header :global(.component-Header-nav) li {
           ${mixins.typography.h3.mobile};
           margin-bottom: 1em;
-          text-align: right;
         }
 
         header :global(.component-Header-nav-button) {
