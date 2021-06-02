@@ -146,5 +146,3 @@ Button.defaultProps = {
 Button.colors = colors;
 Button.types = types;
 Button.variants = variants;
-
-export default Button;
