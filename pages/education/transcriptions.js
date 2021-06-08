@@ -5,34 +5,57 @@ import Tabs from '../../components/Tabs';
 import Title from '../../components/Title';
 import transcriptions from '../../data/transcriptions';
 
-const transcriptionsByForm = Object.entries(transcriptions).reduce((acc, [id, transcription]) => {
-  const { composer, filename, form, maqam } = transcription;
-  const sectionId = `form-${form}`.toLowerCase().replace(' ', '-');
-  const section = acc[sectionId];
-  const item = {
-    id,
-    text: `${form} ${maqam} - ${composer.first} ${composer.last}`,
-    href: `/transcriptions/${filename}`,
-  };
+const createSections = ({ renderSectionId, renderTitle, renderText }) =>
+  Object.entries(transcriptions).reduce((acc, [id, transcription]) => {
+    const sectionId = renderSectionId(transcription).toLowerCase().replace(' ', '-');
+    const section = acc[sectionId];
+    const item = {
+      id,
+      text: renderText(transcription),
+      href: `/transcriptions/${transcription.filename}`,
+    };
 
-  if (!section) {
+    if (!section) {
+      return {
+        ...acc,
+        [sectionId]: {
+          id: sectionId,
+          title: renderTitle(transcription),
+          items: [item],
+        },
+      };
+    }
     return {
       ...acc,
       [sectionId]: {
-        id: sectionId,
-        title: form,
-        items: [item],
+        ...section,
+        items: [...section.items, item],
       },
     };
-  }
-  return {
-    ...acc,
-    [sectionId]: {
-      ...section,
-      items: [...section.items, item],
-    },
-  };
-}, {});
+  }, {});
+
+const getComposerLetter = ({ last }) => last.replace("'", '')[0];
+
+const transcriptionsByComposer = createSections({
+  renderSectionId: ({ composer }) => `composers-${getComposerLetter(composer)}`,
+  renderTitle: ({ composer }) => getComposerLetter(composer),
+  renderText: ({ composer, form, maqam }) =>
+    `${composer.first} ${composer.last} - ${form} ${maqam}`,
+});
+
+const transcriptionsByForm = createSections({
+  renderSectionId: ({ form }) => `form-${form}`,
+  renderTitle: ({ form }) => form,
+  renderText: ({ composer, form, maqam }) =>
+    `${form} ${maqam} - ${composer.first} ${composer.last}`,
+});
+
+const transcriptionsByMaqam = createSections({
+  renderSectionId: ({ maqam }) => `maqam-${maqam}`,
+  renderTitle: ({ maqam }) => maqam,
+  renderText: ({ composer, form, maqam }) =>
+    `${form} ${maqam} - ${composer.first} ${composer.last}`,
+});
 
 const tabs = [
   {
@@ -43,12 +66,12 @@ const tabs = [
   {
     id: 'composer',
     label: 'Composer',
-    panel: <div>Composer panel</div>,
+    panel: <SortedList sections={Object.values(transcriptionsByComposer)} />,
   },
   {
     id: 'maqam',
     label: 'Maqam',
-    panel: <div>Maqam panel</div>,
+    panel: <SortedList sections={Object.values(transcriptionsByMaqam)} />,
   },
 ];
 

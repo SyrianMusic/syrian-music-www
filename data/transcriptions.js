@@ -25,12 +25,6 @@ const maqams = {
 
 const transcriptions = [
   {
-    composer: composers.DARWISH_ALI,
-    form: forms.SAMAI,
-    maqam: maqams.NAHAWANT,
-    filename: 'DarwishAli_SamaiNahawand.pdf',
-  },
-  {
     composer: composers.FARRAN_ALI,
     form: forms.SAMAI,
     maqam: maqams.BAYATI,
@@ -41,6 +35,12 @@ const transcriptions = [
     form: forms.SAMAI,
     maqam: maqams.NAWA_ATHAR,
     filename: 'OweyssJamil_SamaiNawaAthar.pdf',
+  },
+  {
+    composer: composers.DARWISH_ALI,
+    form: forms.SAMAI,
+    maqam: maqams.NAHAWANT,
+    filename: 'DarwishAli_SamaiNahawand.pdf',
   },
 ];
 
