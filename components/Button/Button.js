@@ -14,7 +14,16 @@ const variants = {
   outlined: 'outlined',
 };
 
-export const Button = ({ className, children, color, disabled, onClick, type, variant }) => (
+export const Button = ({
+  className,
+  children,
+  color,
+  disabled,
+  onClick,
+  type,
+  variant,
+  ...props
+}) => (
   <button
     className={cx(
       { [`color--${color}`]: color, [`variant--${variant}`]: variant !== 'none' },
@@ -22,7 +31,8 @@ export const Button = ({ className, children, color, disabled, onClick, type, va
     )}
     disabled={disabled}
     onClick={onClick}
-    type={type}>
+    type={type}
+    {...props}>
     {children}
     <style jsx>{`
       button {
@@ -103,6 +113,7 @@ export const Button = ({ className, children, color, disabled, onClick, type, va
         text-decoration-color: transparent;
       }
 
+      // TODO: Add px and check for visual regressions
       @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}) {
         button {
           font-size: ${theme.pxToRem(theme.typography.body.lg.fontSizeDesktop)};
@@ -135,5 +146,3 @@ Button.defaultProps = {
 Button.colors = colors;
 Button.types = types;
 Button.variants = variants;
-
-export default Button;

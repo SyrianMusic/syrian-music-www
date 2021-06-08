@@ -46,12 +46,12 @@ const typography = {
 
 // https://coolors.co/ff7878-000000-ffffff-666666-f63030
 const colors = {
-  white: '#fff',
-  dimGray: '#666',
-  spanishGray: '#999',
-  lightGray: '#ccc',
-  cultured: '#eee',
-  black: '#000',
+  white: '#ffffff',
+  dimGray: '#666666',
+  spanishGray: '#999999',
+  lightGray: '#cccccc',
+  cultured: '#eeeeee',
+  black: '#000000',
   firebrick: '#ab2323',
   lightCoral: '#ff7878',
   spanishVeridian: '#007f5c',
@@ -70,6 +70,10 @@ const theme = {
     error: colors.firebrick,
     success: colors.spanishVeridian,
     salmon: colors.lightCoral,
+    withOpacity: (color, opacity = 1) => {
+      const opacityHex = Number(Math.floor(255 * opacity)).toString(16);
+      return `${color}${opacityHex}`;
+    },
   },
   font: {
     mobile: {
@@ -96,6 +100,9 @@ const theme = {
   pxToPercent: (px, base) => `${(px / base) * 100}%`,
   pxToRem: (px) => `${px / rootFontSize}rem`,
   typography,
+  zIndex: {
+    menuOverlay: 100000,
+  },
 };
 
 export default theme;

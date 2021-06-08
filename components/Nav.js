@@ -16,8 +16,8 @@ const Nav = ({ className, children }) => (
 
       nav :global(a:focus),
       nav :global(a:hover) {
-        color: ${theme.color.salmon};
-        text-decoration-color: ${theme.color.salmon};
+        color: ${theme.color.interactive};
+        text-decoration-color: ${theme.color.interactive};
       }
 
       nav :global(a:active) {
@@ -25,7 +25,7 @@ const Nav = ({ className, children }) => (
       }
 
       nav :global(ul li > span) {
-        color: ${theme.color.salmon};
+        color: ${theme.color.interactive};
       }
     `}</style>
   </nav>
