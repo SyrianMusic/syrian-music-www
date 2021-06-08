@@ -4,6 +4,7 @@ import SortedList from '../../components/SortedList';
 import Tabs from '../../components/Tabs';
 import Title from '../../components/Title';
 import transcriptions from '../../data/transcriptions';
+import theme from '../../styles/theme';
 
 const createSections = ({ renderSectionId, renderTitle, renderText, sortItems }) =>
   Object.entries(transcriptions)
@@ -135,28 +136,54 @@ const tabs = [
   {
     id: 'form',
     label: 'Form',
-    panel: <SortedList sections={sortSections(transcriptionsByForm)} />,
+    panel: (
+      <SortedList
+        className="page-Transcriptions-panel"
+        sections={sortSections(transcriptionsByForm)}
+      />
+    ),
   },
   {
     id: 'composer',
     label: 'Composer',
-    panel: <SortedList sections={sortSections(transcriptionsByComposer)} />,
+    panel: (
+      <SortedList
+        className="page-Transcriptions-panel"
+        sections={sortSections(transcriptionsByComposer)}
+      />
+    ),
   },
   {
     id: 'maqam',
     label: 'Maqam',
-    panel: <SortedList sections={sortSections(transcriptionsByMaqam)} />,
+    panel: (
+      <SortedList
+        className="page-Transcriptions-panel"
+        sections={sortSections(transcriptionsByMaqam)}
+      />
+    ),
   },
 ];
 
 const TranscriptionsPage = () => {
-  const selectedTab = '';
-
   return (
     <SiteLayout className="page-Transcriptions-SiteLayout" pathname="/education/transcriptions">
       <Title>Education and Preservation</Title>
       <Hero title="Transcriptions" />
-      <Tabs label={`transcriptions-by-${selectedTab}`} tabs={tabs} />
+      <Tabs renderLabel={({ selectedTab }) => `transcriptions-by-${selectedTab}`} tabs={tabs} />
+      <style jsx>
+        {`
+          :global(.page-Transcriptions-panel) {
+            padding: 0 ${theme.pxToRem(56)};
+          }
+
+          @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+            :global(.page-Transcriptions-panel) {
+              padding: 0;
+            }
+          }
+        `}
+      </style>
     </SiteLayout>
   );
 };
