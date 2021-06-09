@@ -9,6 +9,15 @@ const App = ({ Component, pageProps }) => (
       <link rel="stylesheet" href="/stylesheets/reset.css" />
       <link rel="stylesheet" href="/stylesheets/fonts.css" />
       <link rel="stylesheet" href="/stylesheets/global.css" />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PGPNB8B');`,
+        }}
+      />
     </Head>
     <Component {...pageProps} />
     <style global jsx>
