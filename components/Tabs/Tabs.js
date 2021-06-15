@@ -7,7 +7,7 @@ import PlusIcon from '../../icons/Plus';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
 
-export const Tabs = ({ label, tabs }) => {
+export const Tabs = ({ renderLabel, tabs }) => {
   const { id: initialSelectedTab } = tabs[0];
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,7 +44,7 @@ export const Tabs = ({ label, tabs }) => {
 
       <Rule />
 
-      <div role="tablist" aria-label={label}>
+      <div role="tablist" aria-label={renderLabel({ selectedTab })}>
         {tabs.map(({ id, label } = {}) => (
           <Button
             key={id}
@@ -141,7 +141,7 @@ export const Tabs = ({ label, tabs }) => {
 };
 
 Tabs.propTypes = {
-  label: PropTypes.string.isRequired,
+  renderLabel: PropTypes.func,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -149,4 +149,8 @@ Tabs.propTypes = {
       panel: PropTypes.node.isRequired,
     }),
   ).isRequired,
+};
+
+Tabs.defaultProps = {
+  renderLabel: ({ selectedTab }) => selectedTab,
 };

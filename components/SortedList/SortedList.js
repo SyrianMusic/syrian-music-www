@@ -7,7 +7,7 @@ export const SortedList = ({ className, sections }) => (
     {Array.isArray(sections) &&
       sections.map((section) => (
         <li key={section.id} className="component-SortedList-section">
-          <Typography className="component-SortedList-section-title" variant="h3">
+          <Typography className="component-SortedList-section-title" size="lg">
             {section.title}
           </Typography>
 

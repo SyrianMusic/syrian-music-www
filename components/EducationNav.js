@@ -13,14 +13,21 @@ import Typography from './Typography';
 const EducationNavLink = ({ text, href, description }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  let content = (
-    <div className="component-EducationNavLink-content">
-      <Typography className="component-EducationNavLink-text" variant="h3" as="div">
-        {text}
-      </Typography>
+  const descriptionEl = (
+    <Typography className="component-EducationNavLink-description" size="lg">
+      {description}
+    </Typography>
+  );
 
+  return (
+    <li key={text} className={cx({ expanded: isExpanded }, 'gutters')}>
       <Button onClick={() => setIsExpanded(!isExpanded)}>
+        <Typography className="component-EducationNavLink-title" variant="h3" as="div">
+          {text}
+        </Typography>
+
         <Image
+          className="component-EducationNavLink-button-icon"
           src={isExpanded ? '/images/icons/minus.svg' : '/images/icons/plus.svg'}
           height={26}
           width={26}
@@ -28,44 +35,20 @@ const EducationNavLink = ({ text, href, description }) => {
       </Button>
 
       <div className="component-EducationNavLink-details">
-        <Typography className="component-EducationNavLink-description" size="lg">
-          {description}
-        </Typography>
-
-        {href === '/' && (
-          <Typography className="component-EducationNavLink-coming-soon" size="lg">
-            Coming Soon
-          </Typography>
+        {href === '/' ? (
+          <>
+            {descriptionEl}
+            <Typography className="component-EducationNavLink-coming-soon" size="lg">
+              Coming Soon
+            </Typography>
+          </>
+        ) : (
+          <Link href={`/education${href}`}>
+            <a>{descriptionEl}</a>
+          </Link>
         )}
       </div>
-      <style jsx>{`
-        .component-EducationNavLink-content {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-        }
 
-        div :global(.component-EducationNavLink-text),
-        .component-EducationNavLink-details {
-          flex: 1;
-        }
-
-        div :global(.component-EducationNavLink-text) {
-          margin-bottom: 0;
-        }
-      `}</style>
-    </div>
-  );
-
-  return (
-    <li key={text} className={cx({ expanded: isExpanded }, 'gutters')}>
-      {href === '/' ? (
-        content
-      ) : (
-        <Link href={`/education${href}`}>
-          <a>{content}</a>
-        </Link>
-      )}
       <style jsx>{`
         li {
           margin-top: ${theme.pxToRem(25)};
@@ -80,30 +63,74 @@ const EducationNavLink = ({ text, href, description }) => {
           text-decoration: none;
         }
 
-        li:not(.expanded) :global(.component-EducationNavLink-text) {
+        li :global(button) {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+        }
+
+        li :global(button):active,
+        li :global(button):focus,
+        li :global(button):hover {
+          color: ${theme.color.primary};
+          text-decoration: none;
+        }
+
+        li:not(.expanded) :global(.component-EducationNavLink-title) {
           margin-bottom: 0;
         }
 
-        li:not(.expanded) :global(.component-EducationNavLink-details) {
+        li :global(.component-EducationNavLink-button-icon) {
+          height: ${theme.pxToRem(26)};
+          width: ${theme.pxToRem(26)};
+        }
+
+        li:not(.expanded) .component-EducationNavLink-details {
           display: none;
+        }
+
+        .component-EducationNavLink-details :global(a):link,
+        .component-EducationNavLink-details :global(a):visited {
+          color: ${theme.color.interactive};
         }
 
         li :global(.component-EducationNavLink-coming-soon) {
           color: ${theme.color.salmon};
         }
 
-        li :global(button) {
-          height: ${theme.pxToRem(26)};
-          width: ${theme.pxToRem(26)};
-        }
-
         @media (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          li {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+          }
+
           li :global(button) {
+            pointer-events: none;
+          }
+
+          li :global(.component-EducationNavLink-button-icon) {
             display: none;
           }
 
-          li:not(.expanded) :global(.component-EducationNavLink-details) {
+          li :global(button),
+          li .component-EducationNavLink-details {
+            flex: 1;
+          }
+
+          li:not(.expanded) .component-EducationNavLink-details {
             display: block;
+          }
+
+          .component-EducationNavLink-details :global(a):link,
+          .component-EducationNavLink-details :global(a):visited {
+            color: ${theme.color.primary};
+          }
+
+          .component-EducationNavLink-details :global(a):active,
+          .component-EducationNavLink-details :global(a):focus,
+          .component-EducationNavLink-details :global(a):hover {
+            color: ${theme.color.interactive};
           }
 
           li :global(.component-EducationNavLink-coming-soon) {
