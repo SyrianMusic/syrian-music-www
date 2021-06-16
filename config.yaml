@@ -32,14 +32,14 @@ nav:
         - densityFactor: 3
           src: /images/instruments/two-syrian-ouds@3x.png
     links:
-      - text: Biographies
-        href: /
-        description: >
-          Learn about the people who have influenced the course of the Syrian musical tradition, including biographies, important works and historical context.
       - text: Transcriptions
         href: /transcriptions
         description: >
           View our archive of transcribed works.
+      - text: Biographies
+        href: /
+        description: >
+          Learn about the people who have influenced the course of the Syrian musical tradition, including biographies, important works and historical context.
       - text: Musical Forms
         href: /
         description: >
