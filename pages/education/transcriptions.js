@@ -134,15 +134,16 @@ const sortSections = (sections) =>
 
 const tabs = [
   {
-    id: 'form',
-    label: 'Form',
+    id: 'maqam',
+    label: 'Maqam',
     panel: (
       <SortedList
         className="page-Transcriptions-panel"
-        sections={sortSections(transcriptionsByForm)}
+        sections={sortSections(transcriptionsByMaqam)}
       />
     ),
   },
+
   {
     id: 'composer',
     label: 'Composer',
@@ -154,12 +155,12 @@ const tabs = [
     ),
   },
   {
-    id: 'maqam',
-    label: 'Maqam',
+    id: 'form',
+    label: 'Form',
     panel: (
       <SortedList
         className="page-Transcriptions-panel"
-        sections={sortSections(transcriptionsByMaqam)}
+        sections={sortSections(transcriptionsByForm)}
       />
     ),
   },
