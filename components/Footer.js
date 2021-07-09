@@ -9,7 +9,7 @@ import Typography from './Typography';
 
 const Footer = ({ className, pathname }) => (
   <footer className={className}>
-    <NewsletterSignup className="component-Footer-newsletter-signup" />
+    <NewsletterSignup />
 
     <Nav className={cx('component-Footer-nav', 'gutters')}>
       <ul>
@@ -76,10 +76,6 @@ const Footer = ({ className, pathname }) => (
           margin-top: ${theme.pxToRem(32)};
           padding-bottom: 2em;
           width: 100%;
-        }
-
-        footer :global(.component-Footer-newsletter-signup) {
-          border-bottom: ${theme.pxToRem(1)} solid ${theme.color.black};
         }
 
         :global(.component-Footer-nav) {
