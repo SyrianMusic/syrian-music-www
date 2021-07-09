@@ -34,67 +34,125 @@ const Template = (args) => <Button {...args} />;
 export const Default = Template.bind({});
 Default.args = {};
 
-export const White = Template.bind({});
-White.args = {
-  color: 'white',
+export const Primary = Template.bind({});
+Primary.args = {
+  color: 'primary',
 };
-White.argTypess = {
+Primary.argTypess = {
   color: { control: { type: null } },
 };
 
-export const Outlined = Template.bind({});
-Outlined.args = {
-  variant: 'outlined',
-};
-Outlined.argTypes = {
-  variant: { control: { type: null } },
-};
-
-export const OutlinedWhite = Template.bind({});
-OutlinedWhite.args = {
-  color: 'white',
-  variant: 'outlined',
-};
-OutlinedWhite.argTypes = {
-  color: { control: { type: null } },
-  variant: { control: { type: null } },
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
+export const PrimaryDisabled = Template.bind({});
+PrimaryDisabled.args = {
+  color: 'primary',
   disabled: true,
 };
-Disabled.argTypes = {
-  disabled: { control: { type: null } },
-};
-
-export const DisabledWhite = Template.bind({});
-DisabledWhite.args = {
-  color: 'white',
-  disabled: true,
-};
-DisabledWhite.argTypes = {
+PrimaryDisabled.argTypes = {
   color: { control: { type: null } },
   disabled: { control: { type: null } },
 };
 
-export const DisabledOutlined = Template.bind({});
-DisabledOutlined.args = {
-  disabled: true,
-  variant: 'outlined',
+export const Secondary = Template.bind({});
+Secondary.args = {
+  color: 'secondary',
 };
-DisabledOutlined.argTypes = {
+Secondary.argTypess = {
+  color: { control: { type: null } },
+};
+
+export const SecondaryDisabled = Template.bind({});
+SecondaryDisabled.args = {
+  color: 'secondary',
+  disabled: true,
+};
+SecondaryDisabled.argTypes = {
+  color: { control: { type: null } },
+  disabled: { control: { type: null } },
+};
+
+export const FilledPrimary = Template.bind({});
+FilledPrimary.args = {
+  color: 'primary',
+  variant: 'filled',
+};
+FilledPrimary.argTypes = {
+  color: { control: { type: null } },
+  variant: { control: { type: null } },
+};
+
+export const FilledPrimaryDisabled = Template.bind({});
+FilledPrimaryDisabled.args = {
+  color: 'primary',
+  disabled: true,
+  variant: 'filled',
+};
+FilledPrimaryDisabled.argTypes = {
+  color: { control: { type: null } },
   disabled: { control: { type: null } },
   variant: { control: { type: null } },
 };
 
-export const DisabledOutlinedWhite = Template.bind({});
-DisabledOutlinedWhite.args = {
-  color: 'white',
+export const FilledSecondary = Template.bind({});
+FilledSecondary.args = {
+  color: 'secondary',
+  variant: 'filled',
+};
+FilledSecondary.argTypes = {
+  color: { control: { type: null } },
+  variant: { control: { type: null } },
+};
+
+export const FilledSecondaryDisabled = Template.bind({});
+FilledSecondaryDisabled.args = {
+  color: 'secondary',
+  disabled: true,
+  variant: 'filled',
+};
+FilledSecondaryDisabled.argTypes = {
+  color: { control: { type: null } },
+  disabled: { control: { type: null } },
+  variant: { control: { type: null } },
+};
+
+export const OutlinedPrimary = Template.bind({});
+OutlinedPrimary.args = {
+  color: 'primary',
+  variant: 'outlined',
+};
+OutlinedPrimary.argTypes = {
+  color: { control: { type: null } },
+  variant: { control: { type: null } },
+};
+
+export const OutlinedPrimaryDisabled = Template.bind({});
+OutlinedPrimaryDisabled.args = {
+  color: 'primary',
   disabled: true,
   variant: 'outlined',
 };
-DisabledOutlinedWhite.argTypes = {
+OutlinedPrimaryDisabled.argTypes = {
+  color: { control: { type: null } },
+  disabled: { control: { type: null } },
+  variant: { control: { type: null } },
+};
+
+export const OutlinedSecondary = Template.bind({});
+OutlinedSecondary.args = {
+  color: 'secondary',
+  variant: 'outlined',
+};
+OutlinedSecondary.argTypes = {
+  color: { control: { type: null } },
+  variant: { control: { type: null } },
+};
+
+export const OutlinedSecondaryDisabled = Template.bind({});
+OutlinedSecondaryDisabled.args = {
+  color: 'secondary',
+  disabled: true,
+  variant: 'outlined',
+};
+OutlinedSecondaryDisabled.argTypes = {
   color: { control: { type: null } },
   disabled: { control: { type: null } },
   variant: { control: { type: null } },

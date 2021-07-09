@@ -68,7 +68,8 @@ export const Input = ({
         input {
           font: inherit;
           ${mixins.typography.lg.mobile};
-          border: ${theme.pxToRem(1)} solid ${theme.color.secondary};
+          background-color: ${theme.color.withOpacity(theme.color.white, 0.9)};
+          border: ${theme.pxToRem(1)} solid ${theme.color.interactive};
           display: block;
           margin-top: ${theme.pxToRem(8)};
           outline: none;
@@ -80,20 +81,16 @@ export const Input = ({
         }
 
         input::placeholder {
-          color: ${theme.color.secondary};
-        }
-
-        input:not(:placeholder-shown) {
-          border-color: ${theme.color.primary};
+          color: ${theme.color.withOpacity(theme.color.primary, 0.4)};
         }
 
         input:focus {
-          border-color: ${theme.color.salmon};
+          border-color: ${theme.color.primary};
         }
 
         label {
           ${mixins.typography.sm.mobile};
-          background-color: ${theme.color.black};
+          background-color: ${theme.color.interactive};
           color: ${theme.color.white};
           position: absolute;
           top: 0;
@@ -117,38 +114,35 @@ export const Input = ({
           top: -${theme.pxToRem(theme.typography.body.sm.fontSizeMobile / 2)};
         }
 
-        input:focus + label {
-          background-color: ${theme.color.salmon};
-        }
-
         .component-Input-message {
           ${mixins.typography.sm.mobile};
           box-sizing: content-box;
           color: transparent;
+          display: inline-block;
           min-height: ${theme.typography.body.sm.lineHeightMobile}px;
           padding: ${theme.pxToRem(2)} ${theme.pxToRem(8)} ${theme.pxToRem(4)};
           transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
         }
 
         .component-Input-disabled input {
-          background-color: ${theme.color.withOpacity(theme.color.secondary, 0.4)};
-          border-color: ${theme.color.secondary};
+          background-color: ${theme.color.withOpacity(theme.color.dimGray, 0.2)};
+          border-color: ${theme.color.dimGray};
           cursor: not-allowed;
+        }
+
+        .component-Input-disabled input,
+        .component-Input-disabled input::placeholder {
+          color: ${theme.color.dimGray};
         }
 
         .component-Input-disabled label,
         .component-Input-disabled input:focus + label {
-          background-color: ${theme.color.secondary};
+          background-color: ${theme.color.dimGray};
         }
 
         .component-Input-error .component-Input-message,
         .component-Input-success .component-Input-message {
           color: ${theme.color.white};
-        }
-
-        .component-Input-error label,
-        .component-Input-error input:focus + label {
-          background-color: ${theme.color.error};
         }
 
         .component-Input-error .component-Input-message {
@@ -157,11 +151,6 @@ export const Input = ({
 
         .component-Input-error input {
           border-color: ${theme.color.error};
-        }
-
-        .component-Input-success label,
-        .component-Input-success input:focus + label {
-          background-color: ${theme.color.success};
         }
 
         .component-Input-success .component-Input-message {

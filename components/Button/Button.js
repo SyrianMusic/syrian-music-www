@@ -4,6 +4,8 @@ import theme from '../../styles/theme';
 
 const colors = {
   none: 'none',
+  primary: 'primary',
+  secondary: 'secondary',
   white: 'white',
 };
 
@@ -11,6 +13,7 @@ const types = ['button', 'submit'];
 
 const variants = {
   none: 'none',
+  filled: 'filled',
   outlined: 'outlined',
 };
 
@@ -39,7 +42,6 @@ export const Button = ({
         -webkit-appearance: none;
         background: none;
         border: none;
-        color: ${theme.color.primary};
         font: inherit;
         font-size: ${theme.pxToRem(theme.typography.body.lg.fontSizeMobile)};
         outline: none;
@@ -50,26 +52,7 @@ export const Button = ({
         transition: all 0.2s ease-in-out;
       }
 
-      button:disabled {
-        cursor: not-allowed;
-      }
-
-      button:active,
-      button:focus,
-      button:hover {
-        color: ${theme.color.interactive};
-        text-decoration-color: ${theme.color.interactive};
-      }
-
-      .color--white {
-        border-color: ${theme.color.white};
-        color: ${theme.color.white};
-      }
-
-      button:disabled {
-        opacity: 0.5;
-      }
-
+      button,
       button:disabled:active,
       button:disabled:focus,
       button:disabled:hover {
@@ -77,40 +60,90 @@ export const Button = ({
         text-decoration-color: transparent;
       }
 
-      .color--white:disabled:active,
-      .color--white:disabled:focus,
-      .color--white:disabled:hover {
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      button:enabled:active,
+      button:enabled:focus,
+      button:enabled:hover {
+        color: ${theme.color.interactive};
+        text-decoration-color: ${theme.color.interactive};
+      }
+
+      .color--primary,
+      .color--primary:disabled:active,
+      .color--primary:disabled:focus,
+      .color--primary:disabled:hover {
         color: ${theme.color.white};
       }
 
+      .variant--filled,
       .variant--outlined {
-        border-width: ${theme.pxToRem(2)};
-        border-style: solid;
-        background-color: transparent;
+        border: ${theme.pxToRem(2)} solid ${theme.color.primary};
         padding: ${theme.pxToRem(8)};
-        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        text-decoration: none;
       }
 
+      .variant--filled,
+      .variant--filled:disabled:active,
+      .variant--filled:disabled:focus,
+      .variant--filled:disabled:hover,
+      .variant--outlined:enabled:active,
+      .variant--outlined:enabled:focus,
+      .variant--outlined:enabled:hover {
+        color: ${theme.color.white};
+      }
+
+      .variant--filled,
       .variant--outlined:enabled:active,
       .variant--outlined:enabled:focus,
       .variant--outlined:enabled:hover {
         background-color: ${theme.color.primary};
-        border-color: ${theme.color.primary};
-        color: ${theme.color.white};
         text-decoration-color: transparent;
       }
 
-      .variant--outlined.color--white:enabled:active {
-        color: ${theme.color.white};
+      .variant--outlined,
+      .variant--filled:enabled:active,
+      .variant--filled:enabled:focus,
+      .variant--filled:enabled:hover {
+        color: ${theme.color.primary};
       }
 
-      .variant--outlined.color--white:enabled:active,
-      .variant--outlined.color--white:enabled:focus,
-      .variant--outlined.color--white:enabled:hover {
+      .variant--outlined {
+        background-color: transparent;
+      }
+
+      .variant--filled:enabled:active,
+      .variant--filled:enabled:focus,
+      .variant--filled:enabled:hover {
         background-color: ${theme.color.white};
         border-color: ${theme.color.white};
-        color: ${theme.color.interactive};
+      }
+
+      .variant--filled.color--primary,
+      .variant--outlined.color--primary:enabled:active,
+      .variant--outlined.color--primary:enabled:focus,
+      .variant--outlined.color--primary:enabled:hover {
+        background-color: ${theme.color.interactive};
+        border-color: ${theme.color.interactive};
+        color: ${theme.color.white};
         text-decoration-color: transparent;
+      }
+
+      .variant--outlined.color--primary,
+      .variant--outlined.color--primary:disabled:active,
+      .variant--outlined.color--primary:disabled:focus,
+      .variant--outlined.color--primary:disabled:hover,
+      .variant--filled.color--primary:enabled:active,
+      .variant--filled.color--primary:enabled:focus,
+      .variant--filled.color--primary:enabled:hover {
+        color: ${theme.color.interactive};
+      }
+
+      .variant--outlined.color--primary {
+        border-color: ${theme.color.interactive};
       }
 
       // TODO: Add px and check for visual regressions
@@ -136,7 +169,7 @@ Button.propTypes = {
 Button.defaultProps = {
   className: undefined,
   children: undefined,
-  color: 'none',
+  color: 'secondary',
   disabled: false,
   onClick: undefined,
   type: 'button',
