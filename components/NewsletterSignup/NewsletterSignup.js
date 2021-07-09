@@ -229,7 +229,7 @@ export const NewsletterSignup = ({ className, onSubmit }) => {
 
           .component-NewsletterSignup-input-wrapper {
             flex-direction: row;
-            align-items: baseline;
+            align-items: flex-start;
             width: ${(689 / theme.layout.contentWidthMax) * 100}%;
             max-width: ${theme.pxToRem(689)};
           }
@@ -247,8 +247,6 @@ export const NewsletterSignup = ({ className, onSubmit }) => {
                 inputPadding.bottom +
                 inputBorderWidth * 2,
             )};
-            position: relative;
-            top: -${theme.pxToRem(2)};
             width: ${theme.pxToRem(150)};
           }
         }
