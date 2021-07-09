@@ -68,12 +68,15 @@ export const Input = ({
         }
 
         input {
+          -webkit-appearance: none;
           font: inherit;
           ${mixins.typography.lg.mobile};
           background-color: ${theme.color.withOpacity(theme.color.white, 0.9)};
           border: ${theme.pxToRem(inputBorderWidth)} solid ${theme.color.interactive};
+          border-radius: 0;
           display: block;
           margin-top: ${theme.pxToRem(8)};
+          margin-bottom: 0;
           outline: none;
           padding: ${theme.pxToRem(inputPadding.top)} ${theme.pxToRem(inputPadding.left)}
             ${theme.pxToRem(inputPadding.bottom)};
