@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
 
-const inputPadding = {
+export const inputBorderWidth = 1;
+
+export const inputPadding = {
   top: 20,
   left: 16,
   bottom: 16,
@@ -69,7 +71,7 @@ export const Input = ({
           font: inherit;
           ${mixins.typography.lg.mobile};
           background-color: ${theme.color.withOpacity(theme.color.white, 0.9)};
-          border: ${theme.pxToRem(1)} solid ${theme.color.interactive};
+          border: ${theme.pxToRem(inputBorderWidth)} solid ${theme.color.interactive};
           display: block;
           margin-top: ${theme.pxToRem(8)};
           outline: none;

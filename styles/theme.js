@@ -52,8 +52,9 @@ const colors = {
   lightGray: '#cccccc',
   cultured: '#eeeeee',
   black: '#000000',
-  firebrick: '#ab2323',
+  red: '#f30000',
   lightCoral: '#ff7878',
+  linen: '#fbecdd',
   spanishVeridian: '#007f5c',
 };
 
@@ -67,7 +68,7 @@ const theme = {
     secondary: colors.spanishGray,
     interactive: colors.lightCoral,
     disabled: colors.cultured,
-    error: colors.firebrick,
+    error: colors.red,
     success: colors.spanishVeridian,
     salmon: colors.lightCoral,
     withOpacity: (color, opacity = 1) => {
