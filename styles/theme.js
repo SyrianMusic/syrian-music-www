@@ -45,6 +45,7 @@ const typography = {
 };
 
 // https://coolors.co/ff7878-000000-ffffff-666666-f63030
+// TODO: Organize colors by function: http://lonelyplanet.github.io/backpack-ui/?path=/story/styles--design-tokens
 const colors = {
   white: '#ffffff',
   dimGray: '#666666',
@@ -52,9 +53,10 @@ const colors = {
   lightGray: '#cccccc',
   cultured: '#eeeeee',
   black: '#000000',
-  red: '#f30000',
-  lightCoral: '#ff7878',
   linen: '#fbecdd',
+  windsorTan: '#a95b00',
+  lightCoral: '#ff7878',
+  red: '#f30000',
   spanishVeridian: '#007f5c',
 };
 
@@ -71,6 +73,7 @@ const theme = {
     error: colors.red,
     success: colors.spanishVeridian,
     salmon: colors.lightCoral,
+    accentTan: colors.windsorTan,
     withOpacity: (color, opacity = 1) => {
       const opacityHex = Number(Math.floor(255 * opacity)).toString(16);
       return `${color}${opacityHex}`;
