@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import Image from '../Image';
-import CaretIcon from '/icons/Caret';
-import Typography from '../Typography';
 import cx from 'classnames';
-import theme from '/styles/theme';
+import CaretIcon from '../../icons/Caret';
+import theme from '../../styles/theme';
+import Image from '../Image';
+import Typography from '../Typography';
 
 const formatDate = (date) => {
   const formatter = new Intl.DateTimeFormat('en-US', {
