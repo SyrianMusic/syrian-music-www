@@ -15,11 +15,8 @@ export default {
     },
     image: {
       defaultValue: {
+        src: eventImage1x,
         srcSet: [
-          {
-            densityFactor: 1,
-            src: eventImage1x,
-          },
           {
             densityFactor: 2,
             src: eventImage2x,
@@ -59,11 +56,8 @@ export const ImagePortrait = Template.bind({});
 ImagePortrait.storyName = 'Image: Portrait';
 ImagePortrait.args = {
   image: {
+    src: eventImagePortrait1x,
     srcSet: [
-      {
-        densityFactor: 1,
-        src: eventImagePortrait1x,
-      },
       {
         densityFactor: 2,
         src: eventImagePortrait2x,
