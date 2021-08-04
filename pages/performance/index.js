@@ -38,7 +38,7 @@ const PerformancePage = () => (
       </Typography>
     </Hero>
 
-    <section className="page-Performances-upcoming">
+    <section id="upcoming-performances" className="page-Performances-upcoming">
       <div className="page-Performances-upcoming-heading">
         <Typography className="page-Performances-upcoming-heading-text" variant="h3" as="h1">
           Upcoming <br />
