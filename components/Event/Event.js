@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import CaretIcon from '../../icons/Caret';
 import theme from '../../styles/theme';
+import { portableTextMap, portableTextPropType } from '../../utils/text';
 import Image from '../Image';
 import Typography from '../Typography';
 
@@ -69,15 +70,13 @@ export const Event = ({ className, cta, description, image, title, date, slug })
         </div>
         <CaretIcon className="component-Event-caret-icon" color={CaretIcon.colors.accentTan} />
       </a>
-      {description &&
-        description.split('\n').map((paragraph) => (
-          <Typography
-            key={paragraph.substring(0, 10)}
-            className="component-Event-description"
-            size="lg">
-            {paragraph}
+      {description.map(({ _key, children } = {}) => {
+        return (
+          <Typography key={_key} className="component-Event-description" size="lg">
+            {children.map(portableTextMap)}
           </Typography>
-        ))}
+        );
+      })}
       <Typography size="lg">
         <a href={cta.href} target="_blank" rel="noopener noreferrer">
           {cta.text || DEFAULT_CTA_TEXT}
@@ -171,7 +170,7 @@ Event.propTypes = {
     href: PropTypes.string.isRequired,
   }).isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
-  description: PropTypes.string,
+  description: portableTextPropType,
   image: PropTypes.shape(Image.propTypes).isRequired,
   slug: PropTypes.string,
 };

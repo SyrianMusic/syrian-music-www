@@ -1,4 +1,5 @@
 import cx from 'classnames';
+import events from '../../data/events';
 import Event from '../../components/Event';
 import Hero from '../../components/Hero';
 import Image from '../../components/Image';
@@ -45,32 +46,9 @@ const PerformancePage = () => (
         </Typography>
       </div>
 
-      <Event
-        className="page-Performances-event"
-        image={{
-          width: 432,
-          height: 688,
-          src: '/images/events/syrian-ornaments-takht-al-nagham-miami.png',
-          srcSet: [
-            {
-              densityFactor: 2,
-              src: '/images/events/syrian-ornaments-takht-al-nagham-miami@2x.png',
-            },
-            {
-              densityFactor: 3,
-              src: '/images/events/syrian-ornaments-takht-al-nagham-miami@3x.png',
-            },
-          ],
-        }}
-        title="Syrian Ornaments"
-        date={new Date(Date.UTC(2021, 8, 26, 0))}
-        description={
-          "Takht al-Nagham is Syrian Music Preservation Initiative's performing ensemble. Based in New York City, the group features a traditional Takht (Arab chamber music group). \u201CNagham\u201D is Arabic for melody, and is also used for the Maqam (Arab modal scale system). The Takht is committed to performing the classical and folk Syrian repertoire with traditional acoustic instruments and presents its sets (called Waslah) in the manner that they were originally performed. The Takht includes skilled Syrian and non-Syrian musicians who perform without reading from sheet music, rely heavily on improvisations, and are deeply immersed in the Syrian musical tradition. Takht al-Nagham is led by Founder and Artistic Director, Samer Ali.\r\nThis performance features acclaimed Syrian Oud virtuoso and musicologist Muhammed Qadri Dalal. Dalal visited Miami as a member of al-Kindi Ensemble with the landmark Whirling Dervishes of Damascus tours in 2001 and 2004, and now lives in Alexandria, Egypt."
-        }
-        cta={{
-          href: 'https://www.rhythmfoundation.com/#/events?event_id=38395',
-        }}
-      />
+      {events.map((event) => (
+        <Event className="page-Performances-event" key={event.id} {...event} />
+      ))}
     </section>
 
     <section className={cx('page-Performance-groups', 'gutters')}>
