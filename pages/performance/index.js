@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import Event from '../../components/Event';
 import Hero from '../../components/Hero';
 import Image from '../../components/Image';
@@ -6,8 +7,8 @@ import SiteLayout from '../../components/SiteLayout';
 import Title from '../../components/Title';
 import Typography from '../../components/Typography';
 import config from '../../config.yaml';
-import theme from '../../styles/theme';
 import { typography } from '../../styles/mixins';
+import theme from '../../styles/theme';
 
 const pageConfig = config.nav.performance;
 
@@ -45,6 +46,7 @@ const PerformancePage = () => (
       </div>
 
       <Event
+        className="page-Performances-event"
         image={{
           width: 432,
           height: 688,
@@ -71,10 +73,10 @@ const PerformancePage = () => (
       />
     </section>
 
-    <section className="gutters">
+    <section className={cx('page-Performance-groups', 'gutters')}>
       <h1 className="visually-hidden">Performing Groups</h1>
 
-      <Rule className="" />
+      <Rule className="page-Performance-rule" />
 
       <article id="takht-al-nagham">
         <Image
@@ -152,6 +154,18 @@ const PerformancePage = () => (
           display: flex;
         }
 
+        .page-Performances-upcoming :global(.page-Performances-event) {
+          margin-top: ${theme.pxToRem(36)};
+          margin-bottom: ${theme.pxToRem(48)};
+        }
+
+        .page-Performance-groups :global(.page-Performance-rule) {
+          border-top-color: ${theme.color.accentTan};
+          border-top-width: 2px;
+          margin-left: 0;
+          margin-right: 0;
+        }
+
         article :global(.page-Performance-takht-al-nagham-logo) {
           margin: 0 auto ${theme.pxToRem(46)};
           height: auto;
@@ -177,6 +191,11 @@ const PerformancePage = () => (
 
           .page-Performances-upcoming-heading:first-child:after {
             bottom: ${theme.pxToRem(8)};
+          }
+
+          .page-Performances-upcoming :global(.page-Performances-event) {
+            margin-top: ${theme.pxToRem(72)};
+            margin-bottom: ${theme.pxToRem(84)};
           }
 
           article :global(.page-Performance-takht-al-nagham-logo) {
