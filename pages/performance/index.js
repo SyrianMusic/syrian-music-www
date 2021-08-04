@@ -1,3 +1,4 @@
+import Event from '../../components/Event';
 import Hero from '../../components/Hero';
 import Image from '../../components/Image';
 import Rule from '../../components/Rule';
@@ -35,17 +36,54 @@ const PerformancePage = () => (
       </Typography>
     </Hero>
 
-    <Rule />
+    <section className="page-Performances-upcoming">
+      <div className="page-Performances-upcoming-heading">
+        <Typography className="page-Performances-upcoming-heading-text" variant="h3" as="h1">
+          Upcoming <br />
+          Performances
+        </Typography>
+      </div>
 
-    <section>
+      <Event
+        image={{
+          width: 432,
+          height: 688,
+          src: '/images/events/syrian-ornaments-takht-al-nagham-miami.png',
+          srcSet: [
+            {
+              densityFactor: 2,
+              src: '/images/events/syrian-ornaments-takht-al-nagham-miami@2x.png',
+            },
+            {
+              densityFactor: 3,
+              src: '/images/events/syrian-ornaments-takht-al-nagham-miami@3x.png',
+            },
+          ],
+        }}
+        title="Syrian Ornaments"
+        date={new Date(Date.UTC(2021, 8, 26, 0))}
+        description={
+          "Takht al-Nagham is Syrian Music Preservation Initiative's performing ensemble. Based in New York City, the group features a traditional Takht (Arab chamber music group). \u201CNagham\u201D is Arabic for melody, and is also used for the Maqam (Arab modal scale system). The Takht is committed to performing the classical and folk Syrian repertoire with traditional acoustic instruments and presents its sets (called Waslah) in the manner that they were originally performed. The Takht includes skilled Syrian and non-Syrian musicians who perform without reading from sheet music, rely heavily on improvisations, and are deeply immersed in the Syrian musical tradition. Takht al-Nagham is led by Founder and Artistic Director, Samer Ali.\r\nThis performance features acclaimed Syrian Oud virtuoso and musicologist Muhammed Qadri Dalal. Dalal visited Miami as a member of al-Kindi Ensemble with the landmark Whirling Dervishes of Damascus tours in 2001 and 2004, and now lives in Alexandria, Egypt."
+        }
+        cta={{
+          href: 'https://www.rhythmfoundation.com/#/events?event_id=38395',
+        }}
+      />
+    </section>
+
+    <section className="gutters">
       <h1 className="visually-hidden">Performing Groups</h1>
-      <article id="takht-al-nagham" className="gutters">
+
+      <Rule className="" />
+
+      <article id="takht-al-nagham">
         <Image
           className="page-Performance-takht-al-nagham-logo"
           src="/images/logos/takht-al-nagham-logo.svg"
           width={197.5}
           height={214.5}
         />
+
         <div>
           <Typography variant="h3">Takht al-Nagham</Typography>
           <Typography size="lg">
@@ -91,6 +129,29 @@ const PerformancePage = () => (
           margin-bottom: ${theme.pxToRem(23)};
         }
 
+        .page-Performances-upcoming {
+          margin-left: ${theme.pxToRem(25)};
+          margin-right: ${theme.pxToRem(25)};
+        }
+
+        :global(.page-Performances-upcoming-heading-text) {
+          max-width: 50%;
+        }
+
+        .page-Performances-upcoming-heading:first-child:after {
+          border-bottom: 2px solid ${theme.color.accentTan};
+          content: '';
+          display: block;
+          flex: 1;
+          position: relative;
+          bottom: ${theme.pxToRem(5)};
+          margin-left: ${theme.pxToRem(18)};
+        }
+
+        .page-Performances-upcoming-heading {
+          display: flex;
+        }
+
         article :global(.page-Performance-takht-al-nagham-logo) {
           margin: 0 auto ${theme.pxToRem(46)};
           height: auto;
@@ -108,6 +169,14 @@ const PerformancePage = () => (
 
           section {
             margin-bottom: ${theme.pxToRem(75)};
+          }
+
+          .page-Performances-upcoming-heading br {
+            display: none;
+          }
+
+          .page-Performances-upcoming-heading:first-child:after {
+            bottom: ${theme.pxToRem(8)};
           }
 
           article :global(.page-Performance-takht-al-nagham-logo) {

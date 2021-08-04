@@ -5,6 +5,8 @@ import theme from '../../styles/theme';
 import Image from '../Image';
 import Typography from '../Typography';
 
+const DEFAULT_CTA_TEXT = 'Get tickets';
+
 const formatDate = (date) => {
   const formatter = new Intl.DateTimeFormat('en-US', {
     month: 'long',
@@ -43,9 +45,13 @@ const formatDate = (date) => {
 
 export const Event = ({ className, cta, description, image, title, date, slug }) => (
   <div className={cx('component-Event-root', className)}>
-    <div className="component-Event-image-wrapper">
+    <a
+      className="component-Event-image-link"
+      href={cta.href}
+      target="_blank"
+      rel="noopener noreferrer">
       <Image className="component-Event-image" width={432} height={287} {...image} />
-    </div>
+    </a>
     <div className="component-Event-text">
       <a
         className="component-Event-heading-link"
@@ -63,12 +69,18 @@ export const Event = ({ className, cta, description, image, title, date, slug })
         </div>
         <CaretIcon className="component-Event-caret-icon" color={CaretIcon.colors.accentTan} />
       </a>
-      <Typography className="component-Event-description" size="lg">
-        {description}
-      </Typography>
+      {description &&
+        description.split('\n').map((paragraph) => (
+          <Typography
+            key={paragraph.substring(0, 10)}
+            className="component-Event-description"
+            size="lg">
+            {paragraph}
+          </Typography>
+        ))}
       <Typography size="lg">
         <a href={cta.href} target="_blank" rel="noopener noreferrer">
-          {cta.text}
+          {cta.text || DEFAULT_CTA_TEXT}
         </a>
       </Typography>
     </div>
@@ -78,7 +90,7 @@ export const Event = ({ className, cta, description, image, title, date, slug })
         flex-direction: column;
       }
 
-      .component-Event-image-wrapper,
+      .component-Event-image-link,
       .component-Event-root :global(.component-Event-image),
       .component-Event-text {
         width: 100%;
@@ -134,7 +146,7 @@ export const Event = ({ className, cta, description, image, title, date, slug })
           flex-direction: row;
         }
 
-        .component-Event-image-wrapper,
+        .component-Event-image-link,
         .component-Event-text {
           width: 50%;
         }
@@ -155,11 +167,10 @@ Event.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string.isRequired,
   cta: PropTypes.shape({
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
     href: PropTypes.string.isRequired,
   }).isRequired,
-  // fix prop type
-  date: PropTypes.date?.isRequired,
+  date: PropTypes.instanceOf(Date).isRequired,
   description: PropTypes.string,
   image: PropTypes.shape(Image.propTypes).isRequired,
   slug: PropTypes.string,
