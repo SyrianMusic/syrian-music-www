@@ -2,6 +2,9 @@ import { Event } from '../Event';
 import eventImage1x from './event-image.png';
 import eventImage2x from './event-image@2x.png';
 import eventImage3x from './event-image@3x.png';
+import eventImagePortrait1x from './event-image-portrait.png';
+import eventImagePortrait2x from './event-image-portrait@2x.png';
+import eventImagePortrait3x from './event-image-portrait@3x.png';
 
 export default {
   title: 'Event',
@@ -51,6 +54,27 @@ const Template = (args) => <Event {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};
+
+export const ImagePortrait = Template.bind({});
+ImagePortrait.storyName = 'Image: Portrait';
+ImagePortrait.args = {
+  image: {
+    srcSet: [
+      {
+        densityFactor: 1,
+        src: eventImagePortrait1x,
+      },
+      {
+        densityFactor: 2,
+        src: eventImagePortrait2x,
+      },
+      {
+        densityFactor: 3,
+        src: eventImagePortrait3x,
+      },
+    ],
+  },
+};
 
 export const Slug = Template.bind({});
 Slug.args = {
