@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import config from '../config.yaml';
 import * as mixins from '../styles/mixins';
 import theme from '../styles/theme';
+import { ruleStyle } from '../styles/variables';
 import Button from './Button';
 import Image from './Image';
 import Nav from './Nav';
@@ -169,7 +170,7 @@ const Header = ({ className, pathname }) => {
 
           header :global(.component-Header-nav) {
             display: block;
-            border-bottom: 1px solid black;
+            border-bottom: ${ruleStyle};
             margin-bottom: ${theme.pxToRem(11)};
             flex: 1;
           }

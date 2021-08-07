@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { ruleStyle } from '../styles/variables';
 import theme from '../styles/theme';
 
 const Rule = ({ className }) => (
@@ -7,7 +8,7 @@ const Rule = ({ className }) => (
     <style jsx>{`
       hr {
         border-style: none;
-        border-top: ${theme.pxToRem(1)} solid ${theme.color.black};
+        border-top: ${ruleStyle};
         margin: ${theme.pxToRem(25)} ${theme.pxToRem(22)};
       }
 
