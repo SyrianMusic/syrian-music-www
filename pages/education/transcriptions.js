@@ -54,6 +54,12 @@ const transcriptionsByComposer = createSections({
     if (composer1.last > composer2.last) {
       return 1;
     }
+    if (composer1.first < composer2.first) {
+      return -1;
+    }
+    if (composer1.first > composer2.first) {
+      return 1;
+    }
     if (form1 < form2) {
       return -1;
     }
@@ -91,6 +97,12 @@ const transcriptionsByForm = createSections({
     if (composer1.last > composer2.last) {
       return 1;
     }
+    if (composer1.first < composer2.first) {
+      return -1;
+    }
+    if (composer1.first > composer2.first) {
+      return 1;
+    }
     return 0;
   },
 });
@@ -114,6 +126,12 @@ const transcriptionsByMaqam = createSections({
       return -1;
     }
     if (composer1.last > composer2.last) {
+      return 1;
+    }
+    if (composer1.first < composer2.first) {
+      return -1;
+    }
+    if (composer1.first > composer2.first) {
       return 1;
     }
     return 0;
