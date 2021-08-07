@@ -1,4 +1,4 @@
-import EducationNav from '../../components/EducationNav';
+import EducationNav from './EducationNav';
 import Hero from '../../components/Hero';
 import SiteLayout from '../../components/SiteLayout';
 import Title from '../../components/Title';
