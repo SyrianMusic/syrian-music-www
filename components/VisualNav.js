@@ -31,7 +31,7 @@ const VisualNav = ({ className }) => (
                 </div>
                 <div className="component-VisualNav-text">
                   <Typography className="component-VisualNav-section-title" variant="h3">
-                    {section.text}
+                    {section.homeText ?? section.text}
                   </Typography>
                   <Typography className="component-VisualNav-section-description" size="lg">
                     {section.description}

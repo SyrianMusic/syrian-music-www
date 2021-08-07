@@ -1,18 +1,19 @@
 nav:
   performance:
     text: Performance
+    homeText: Upcoming Events
     href: /performance
     description: >
-      Learn more about past and future performances of Takht al-Nagham.
+      Learn about future Takht al-Nagham performances.
     image:
-      src: /images/instruments/syrian-tambourine.png
-      width: 432
-      height: 287
+      src: /images/takht-al-nagham/takht-al-nagham-1.png
+      width: 427
+      height: 294
       srcSet:
         - densityFactor: 2
-          src: /images/instruments/syrian-tambourine@2x.png
+          src: /images/takht-al-nagham/takht-al-nagham-1@2x.png
         - densityFactor: 3
-          src: /images/instruments/syrian-tambourine@3x.png
+          src: /images/takht-al-nagham/takht-al-nagham-1@3x.png
     links:
       - text: Takht al-Nagham
         href: /#takht-al-nagham
