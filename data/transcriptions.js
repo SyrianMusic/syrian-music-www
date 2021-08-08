@@ -136,7 +136,8 @@ const transcriptions = [
     composer: composers.HAJ_HUSSEIN_KHALIL,
     form: forms.MUWASHAH,
     maqam: maqams.RAHAT_AL_ARWAH,
-    filename: 'HajHusseinKhalil_MuwashahRahatal-Arwah.pdf',
+    title: 'Muwashah Ghazalon',
+    filename: 'HajHusseinKhalil_MuwashahGhazalon.pdf',
   },
   {
     composer: composers.JABAQJI_ABDULRAHMAN,
@@ -152,7 +153,15 @@ const transcriptions = [
   },
 ];
 
-const transcriptionsWithIds = transcriptions.reduce((acc, curr, index) => {
+const transcriptionsWithTitles = transcriptions.map((transcription) => {
+  if (!transcription.title) {
+    return { ...transcription, title: `${transcription.form} ${transcription.maqam}` };
+  }
+
+  return transcription;
+});
+
+const transcriptionsWithIds = transcriptionsWithTitles.reduce((acc, curr, index) => {
   return { ...acc, [`transcription-${index + 1}`]: curr };
 }, {});
 

@@ -6,7 +6,41 @@ import Title from '../../components/Title';
 import transcriptions from '../../data/transcriptions';
 import theme from '../../styles/theme';
 
-const createSections = ({ renderSectionId, renderTitle, renderText, sortItems }) =>
+const defaultRenderText = ({ composer, title }) => {
+  return `${title} - ${composer.first} ${composer.last}`;
+};
+
+const defaultSortItems = (
+  [, { composer: composer1, title: title1 }],
+  [, { composer: composer2, title: title2 }],
+) => {
+  if (title1 < title2) {
+    return -1;
+  }
+  if (title1 > title2) {
+    return 1;
+  }
+  if (composer1.last < composer2.last) {
+    return -1;
+  }
+  if (composer1.last > composer2.last) {
+    return 1;
+  }
+  if (composer1.first < composer2.first) {
+    return -1;
+  }
+  if (composer1.first > composer2.first) {
+    return 1;
+  }
+  return 0;
+};
+
+const createSections = ({
+  renderSectionId,
+  renderTitle,
+  renderText = defaultRenderText,
+  sortItems = defaultSortItems,
+}) =>
   Object.entries(transcriptions)
     .sort(sortItems)
     .reduce((acc, [id, transcription]) => {
@@ -42,11 +76,10 @@ const getComposerLetter = ({ last }) => last.replace("'", '')[0];
 const transcriptionsByComposer = createSections({
   renderSectionId: ({ composer }) => `composers-${getComposerLetter(composer)}`,
   renderTitle: ({ composer }) => getComposerLetter(composer),
-  renderText: ({ composer, form, maqam }) =>
-    `${composer.first} ${composer.last} - ${form} ${maqam}`,
+  renderText: ({ composer, title }) => `${composer.first} ${composer.last} - ${title}`,
   sortItems: (
-    [, { composer: composer1, form: form1, maqam: maqam1 }],
-    [, { composer: composer2, form: form2, maqam: maqam2 }],
+    [, { composer: composer1, title: title1 }],
+    [, { composer: composer2, title: title2 }],
   ) => {
     if (composer1.last < composer2.last) {
       return -1;
@@ -60,16 +93,10 @@ const transcriptionsByComposer = createSections({
     if (composer1.first > composer2.first) {
       return 1;
     }
-    if (form1 < form2) {
+    if (title1 < title2) {
       return -1;
     }
-    if (form1 > form2) {
-      return 1;
-    }
-    if (maqam1 < maqam2) {
-      return -1;
-    }
-    if (maqam1 > maqam2) {
+    if (title1 > title2) {
       return 1;
     }
     return 0;
@@ -79,63 +106,11 @@ const transcriptionsByComposer = createSections({
 const transcriptionsByForm = createSections({
   renderSectionId: ({ form }) => `form-${form}`,
   renderTitle: ({ form }) => form,
-  renderText: ({ composer, form, maqam }) =>
-    `${form} ${maqam} - ${composer.first} ${composer.last}`,
-  sortItems: (
-    [, { composer: composer1, maqam: maqam1 }],
-    [, { composer: composer2, maqam: maqam2 }],
-  ) => {
-    if (maqam1 < maqam2) {
-      return -1;
-    }
-    if (maqam1 > maqam2) {
-      return 1;
-    }
-    if (composer1.last < composer2.last) {
-      return -1;
-    }
-    if (composer1.last > composer2.last) {
-      return 1;
-    }
-    if (composer1.first < composer2.first) {
-      return -1;
-    }
-    if (composer1.first > composer2.first) {
-      return 1;
-    }
-    return 0;
-  },
 });
 
 const transcriptionsByMaqam = createSections({
   renderSectionId: ({ maqam }) => `maqam-${maqam}`,
   renderTitle: ({ maqam }) => maqam,
-  renderText: ({ composer, form, maqam }) =>
-    `${form} ${maqam} - ${composer.first} ${composer.last}`,
-  sortItems: (
-    [, { composer: composer1, form: form1 }],
-    [, { composer: composer2, form: form2 }],
-  ) => {
-    if (form1 < form2) {
-      return -1;
-    }
-    if (form1 > form2) {
-      return 1;
-    }
-    if (composer1.last < composer2.last) {
-      return -1;
-    }
-    if (composer1.last > composer2.last) {
-      return 1;
-    }
-    if (composer1.first < composer2.first) {
-      return -1;
-    }
-    if (composer1.first > composer2.first) {
-      return 1;
-    }
-    return 0;
-  },
 });
 
 const sortSections = (sections) =>
