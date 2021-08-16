@@ -1,0 +1,12 @@
+{
+  "name": "Syrian Music Preservation Initiative",
+  "short_name": "SMPI",
+  "start_url": "/",
+  "icons": [
+    { "src": "/images/icons/logo-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/images/icons/logo-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "display": "fullscreen"
+}
