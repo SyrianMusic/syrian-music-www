@@ -18,6 +18,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-PGPNB8B');`,
         }}
       />
+      <link rel="icon" href="/images/icons/logo.ico" sizes="any" />
+      <link rel="icon" href="/images/icons/logo.svg" type="image/svg+xml" />
+      <link rel="apple-touch-icon" href="/images/icons/logo-180.png" />
+      <link rel="manifest" href="/manifest.json" />
     </Head>
     <Component {...pageProps} />
     <style global jsx>
