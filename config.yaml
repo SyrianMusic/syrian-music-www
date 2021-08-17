@@ -19,19 +19,20 @@ nav:
         href: /#takht-al-nagham
   education:
     text: Education
+    homeText: Transcriptions
     href: /education
     description: >
       Explore performance notes on specific performances by the organization, explanations on
        musical forms, glossaries, workshops, and more.
     image:
-      src: /images/instruments/two-syrian-ouds.png
+      src: /images/sheet-music/open-book-with-syrian-sheet-music.png
       width: 432
       height: 288
       srcSet:
         - densityFactor: 2
-          src: /images/instruments/two-syrian-ouds@2x.png
+          src: /images/sheet-music/open-book-with-syrian-sheet-music@2x.png
         - densityFactor: 3
-          src: /images/instruments/two-syrian-ouds@3x.png
+          src: /images/sheet-music/open-book-with-syrian-sheet-music@3x.png
     links:
       - text: Transcriptions
         href: /transcriptions
@@ -98,4 +99,3 @@ nav:
       instagram:
         text: Instagram
         href: https://instagram.com/syrianmusicpi
-
