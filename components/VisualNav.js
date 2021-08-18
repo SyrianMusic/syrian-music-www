@@ -2,12 +2,11 @@ import cx from 'classnames';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import config from '../config.yaml';
-import { gutters } from '../styles/mixins';
 import theme from '../styles/theme';
-import { ruleStyle } from '../styles/variables';
 import Image from './Image';
 import Nav from './Nav';
 import Typography from './Typography';
+import { gutters } from '../styles/mixins';
 
 const VisualNav = ({ className }) => (
   <Nav className={className}>
@@ -48,7 +47,7 @@ const VisualNav = ({ className }) => (
       {`
         li {
           ${gutters.margin.mobile};
-          border-top: ${ruleStyle};
+          border-top: ${theme.pxToRem(1)} solid ${theme.color.black};
         }
 
         li:not(:last-child) {
