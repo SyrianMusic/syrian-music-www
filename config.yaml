@@ -55,6 +55,7 @@ nav:
           View the beautiful Oud collection in our online museum.
   about:
     text: About
+    homeText: Meet Our People
     href: /about
     description: >
       Learn more about our story, mission, members, and more.
