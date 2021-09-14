@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Hero from '../../components/Hero';
 import SiteLayout from '../../components/SiteLayout';
 import SortedList from '../../components/SortedList';
@@ -160,7 +161,7 @@ const tabs = [
   },
 ];
 
-const TranscriptionsPage = () => {
+const TranscriptionsPage = ({ data }) => {
   return (
     <SiteLayout className="page-Transcriptions-SiteLayout" pathname="/education/transcriptions">
       <Title>Education and Preservation</Title>
@@ -183,9 +184,13 @@ const TranscriptionsPage = () => {
   );
 };
 
+TranscriptionsPage.propTypes = {
+  data: PropTypes.shape({}).isRequired,
+};
+
 export const getStaticProps = async () => {
   const { data } = await CompositionAPI.getAllCompositions();
-  return { props: data };
+  return { props: { data } };
 };
 
 export default TranscriptionsPage;
