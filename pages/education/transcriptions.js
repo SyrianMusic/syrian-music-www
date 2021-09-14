@@ -4,6 +4,7 @@ import SortedList from '../../components/SortedList';
 import Tabs from '../../components/Tabs';
 import Title from '../../components/Title';
 import transcriptions from '../../data/transcriptions';
+import { CompositionAPI } from '../../music';
 import theme from '../../styles/theme';
 
 const defaultRenderText = ({ composer, title }) => {
@@ -180,6 +181,11 @@ const TranscriptionsPage = () => {
       </style>
     </SiteLayout>
   );
+};
+
+export const getStaticProps = async () => {
+  const { data } = await CompositionAPI.getAllCompositions();
+  return { props: data };
 };
 
 export default TranscriptionsPage;

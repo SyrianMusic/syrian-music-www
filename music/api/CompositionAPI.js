@@ -1,8 +1,8 @@
 import { BaseAPI } from '../../api';
-import * as queries from '../apollo/queries';
+import { ALL_COMPOSITIONS_QUERY } from './queries';
 
 export class CompositionAPI extends BaseAPI {
   static async getAllCompositions() {
-    return await super.query(queries.ALL_COMPOSITIONS_QUERY);
+    return await super.query(ALL_COMPOSITIONS_QUERY);
   }
 }
