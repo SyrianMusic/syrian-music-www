@@ -21,6 +21,7 @@ nav:
     text: Education
     homeText: Transcriptions
     href: /education
+    homeHref: /education/transcriptions
     description: >
       Explore compositions and download sheet music from a variety of composers in an easy to search layout.
     image:

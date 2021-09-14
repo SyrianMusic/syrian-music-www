@@ -1,14 +1,14 @@
-import cx from 'classnames';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import config from '../config.yaml';
-import theme from '../styles/theme';
-import Image from './Image';
-import Nav from './Nav';
-import Typography from './Typography';
-import { gutters } from '../styles/mixins';
+import cx from 'classnames';
+import Image from 'components/Image';
+import Nav from 'components/Nav';
+import Typography from 'components/Typography';
+import config from 'config.yaml';
+import { gutters } from 'styles/mixins';
+import theme from 'styles/theme';
 
-const VisualNav = ({ className }) => (
+export const HomeLinks = ({ className }) => (
   <Nav className={className}>
     <ul>
       {Object.values(config.nav).map((section, i) => {
@@ -16,12 +16,12 @@ const VisualNav = ({ className }) => (
 
         return (
           <li key={section.text}>
-            <Link href={section.href}>
+            <Link href={section.homeHref ?? section.href}>
               <a className={cx({ flipped: isFlipped })}>
-                <div className="component-VisualNav-image-wrapper">
+                <div className="component-HomeLinks-image-wrapper">
                   {section.image && (
                     <Image
-                      className="component-VisualNav-image"
+                      className="component-HomeLinks-image"
                       src={section.image.src}
                       srcSet={section.image.srcSet}
                       width={section.image.width}
@@ -29,11 +29,11 @@ const VisualNav = ({ className }) => (
                     />
                   )}
                 </div>
-                <div className="component-VisualNav-text">
-                  <Typography className="component-VisualNav-section-title" variant="h3">
+                <div className="component-HomeLinks-text">
+                  <Typography className="component-HomeLinks-section-title" variant="h3">
                     {section.homeText ?? section.text}
                   </Typography>
-                  <Typography className="component-VisualNav-section-description" size="lg">
+                  <Typography className="component-HomeLinks-section-description" size="lg">
                     {section.description}
                   </Typography>
                 </div>
@@ -59,11 +59,11 @@ const VisualNav = ({ className }) => (
           text-decoration: none;
         }
 
-        .component-VisualNav-text {
+        .component-HomeLinks-text {
           margin-top: ${theme.pxToRem(48)};
         }
 
-        li a :global(.component-VisualNav-image) {
+        li a :global(.component-HomeLinks-image) {
           height: auto;
           width: 100%;
         }
@@ -82,22 +82,22 @@ const VisualNav = ({ className }) => (
             flex-direction: row-reverse;
           }
 
-          .component-VisualNav-image-wrapper,
-          .component-VisualNav-text {
+          .component-HomeLinks-image-wrapper,
+          .component-HomeLinks-text {
             flex: 1;
           }
 
-          .component-VisualNav-text {
+          .component-HomeLinks-text {
             margin-top: ${theme.pxToRem(48)};
           }
 
-          :global(.component-VisualNav-section-title),
-          :global(.component-VisualNav-section-description) {
+          :global(.component-HomeLinks-section-title),
+          :global(.component-HomeLinks-section-description) {
             padding-left: ${theme.pxToRem(32)};
             padding-right: ${theme.pxToRem(32)};
           }
 
-          :global(.component-VisualNav-text .component-VisualNav-section-title) {
+          :global(.component-HomeLinks-text .component-HomeLinks-section-title) {
             margin-bottom: ${theme.pxToRem(48)};
           }
         }
@@ -106,12 +106,10 @@ const VisualNav = ({ className }) => (
   </Nav>
 );
 
-VisualNav.propTypes = {
+HomeLinks.propTypes = {
   className: PropTypes.string,
 };
 
-VisualNav.defaultProps = {
+HomeLinks.defaultProps = {
   className: undefined,
 };
-
-export default VisualNav;
