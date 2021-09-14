@@ -16,7 +16,7 @@ export const HomeLinks = ({ className }) => (
 
         return (
           <li key={section.text}>
-            <Link href={section.href}>
+            <Link href={section.homeHref ?? section.href}>
               <a className={cx({ flipped: isFlipped })}>
                 <div className="component-HomeLinks-image-wrapper">
                   {section.image && (
