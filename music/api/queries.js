@@ -4,6 +4,9 @@ export const ALL_COMPOSITIONS_QUERY = gql`
   query {
     compositionCollection {
       items {
+        sys {
+          id
+        }
         title
         composer {
           firstName
@@ -14,6 +17,9 @@ export const ALL_COMPOSITIONS_QUERY = gql`
         }
         form {
           name
+        }
+        transcription {
+          url
         }
       }
     }

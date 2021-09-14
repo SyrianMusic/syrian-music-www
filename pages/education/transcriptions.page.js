@@ -4,7 +4,6 @@ import SiteLayout from '../../components/SiteLayout';
 import SortedList from '../../components/SortedList';
 import Tabs from '../../components/Tabs';
 import Title from '../../components/Title';
-import transcriptions from '../../data/transcriptions';
 import { CompositionAPI } from '../../music';
 import theme from '../../styles/theme';
 
@@ -37,13 +36,26 @@ const defaultSortItems = (
   return 0;
 };
 
-const createSections = ({
-  renderSectionId,
-  renderTitle,
-  renderText = defaultRenderText,
-  sortItems = defaultSortItems,
-}) =>
-  Object.entries(transcriptions)
+const createSections = (
+  compositions,
+  { renderSectionId, renderTitle, renderText = defaultRenderText, sortItems = defaultSortItems },
+) =>
+  compositions
+    .map((composition) => {
+      return [
+        composition.sys.id,
+        {
+          composer: {
+            first: composition.composer.firstName,
+            last: composition.composer.lastName,
+          },
+          form: composition.form.name,
+          maqam: composition.maqam.name,
+          title: composition.title ?? `${composition.form.name} ${composition.maqam.name}`,
+          href: composition.transcription.url,
+        },
+      ];
+    })
     .sort(sortItems)
     .reduce((acc, [id, transcription]) => {
       const sectionId = renderSectionId(transcription).toLowerCase().replace(' ', '-');
@@ -51,7 +63,7 @@ const createSections = ({
       const item = {
         id,
         text: renderText(transcription),
-        href: `/transcriptions/${transcription.filename}`,
+        href: transcription.href,
       };
 
       if (!section) {
@@ -75,45 +87,48 @@ const createSections = ({
 
 const getComposerLetter = ({ last }) => last.replace("'", '')[0];
 
-const transcriptionsByComposer = createSections({
-  renderSectionId: ({ composer }) => `composers-${getComposerLetter(composer)}`,
-  renderTitle: ({ composer }) => getComposerLetter(composer),
-  renderText: ({ composer, title }) => `${composer.first} ${composer.last} - ${title}`,
-  sortItems: (
-    [, { composer: composer1, title: title1 }],
-    [, { composer: composer2, title: title2 }],
-  ) => {
-    if (composer1.last < composer2.last) {
-      return -1;
-    }
-    if (composer1.last > composer2.last) {
-      return 1;
-    }
-    if (composer1.first < composer2.first) {
-      return -1;
-    }
-    if (composer1.first > composer2.first) {
-      return 1;
-    }
-    if (title1 < title2) {
-      return -1;
-    }
-    if (title1 > title2) {
-      return 1;
-    }
-    return 0;
-  },
-});
+const getTranscriptionsByComposer = (compositions) =>
+  createSections(compositions, {
+    renderSectionId: ({ composer }) => `composers-${getComposerLetter(composer)}`,
+    renderTitle: ({ composer }) => getComposerLetter(composer),
+    renderText: ({ composer, title }) => `${composer.first} ${composer.last} - ${title}`,
+    sortItems: (
+      [, { composer: composer1, title: title1 }],
+      [, { composer: composer2, title: title2 }],
+    ) => {
+      if (composer1.last < composer2.last) {
+        return -1;
+      }
+      if (composer1.last > composer2.last) {
+        return 1;
+      }
+      if (composer1.first < composer2.first) {
+        return -1;
+      }
+      if (composer1.first > composer2.first) {
+        return 1;
+      }
+      if (title1 < title2) {
+        return -1;
+      }
+      if (title1 > title2) {
+        return 1;
+      }
+      return 0;
+    },
+  });
 
-const transcriptionsByForm = createSections({
-  renderSectionId: ({ form }) => `form-${form}`,
-  renderTitle: ({ form }) => form,
-});
+const getTranscriptionsByForm = (compositions) =>
+  createSections(compositions, {
+    renderSectionId: ({ form }) => `form-${form}`,
+    renderTitle: ({ form }) => form,
+  });
 
-const transcriptionsByMaqam = createSections({
-  renderSectionId: ({ maqam }) => `maqam-${maqam}`,
-  renderTitle: ({ maqam }) => maqam,
-});
+const getTranscriptionsByMaqam = (compositions) =>
+  createSections(compositions, {
+    renderSectionId: ({ maqam }) => `maqam-${maqam}`,
+    renderTitle: ({ maqam }) => maqam,
+  });
 
 const sortSections = (sections) =>
   Object.entries(sections)
@@ -127,41 +142,45 @@ const sortSections = (sections) =>
     })
     .map(([, value]) => value);
 
-const tabs = [
-  {
-    id: 'maqam',
-    label: 'Maqam',
-    panel: (
-      <SortedList
-        className="page-Transcriptions-panel"
-        sections={sortSections(transcriptionsByMaqam)}
-      />
-    ),
-  },
+const TranscriptionsPage = ({ compositionCollection }) => {
+  const transcriptionsByComposer = getTranscriptionsByComposer(compositionCollection.items);
+  const transcriptionsByMaqam = getTranscriptionsByMaqam(compositionCollection.items);
+  const transcriptionsByForm = getTranscriptionsByForm(compositionCollection.items);
 
-  {
-    id: 'composer',
-    label: 'Composer',
-    panel: (
-      <SortedList
-        className="page-Transcriptions-panel"
-        sections={sortSections(transcriptionsByComposer)}
-      />
-    ),
-  },
-  {
-    id: 'form',
-    label: 'Form',
-    panel: (
-      <SortedList
-        className="page-Transcriptions-panel"
-        sections={sortSections(transcriptionsByForm)}
-      />
-    ),
-  },
-];
+  const tabs = [
+    {
+      id: 'maqam',
+      label: 'Maqam',
+      panel: (
+        <SortedList
+          className="page-Transcriptions-panel"
+          sections={sortSections(transcriptionsByMaqam)}
+        />
+      ),
+    },
 
-const TranscriptionsPage = ({ data }) => {
+    {
+      id: 'composer',
+      label: 'Composer',
+      panel: (
+        <SortedList
+          className="page-Transcriptions-panel"
+          sections={sortSections(transcriptionsByComposer)}
+        />
+      ),
+    },
+    {
+      id: 'form',
+      label: 'Form',
+      panel: (
+        <SortedList
+          className="page-Transcriptions-panel"
+          sections={sortSections(transcriptionsByForm)}
+        />
+      ),
+    },
+  ];
+
   return (
     <SiteLayout className="page-Transcriptions-SiteLayout" pathname="/education/transcriptions">
       <Title>Education and Preservation</Title>
@@ -184,13 +203,38 @@ const TranscriptionsPage = ({ data }) => {
   );
 };
 
+const composerPropShape = {
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+};
+
+const formPropShape = {
+  name: PropTypes.string,
+};
+
+const maqamPropShape = {
+  name: PropTypes.string,
+};
+
+const compositionPropShape = {
+  composer: PropTypes.shape(composerPropShape),
+  form: PropTypes.shape(formPropShape),
+  maqam: PropTypes.shape(maqamPropShape),
+  title: PropTypes.string,
+  sys: PropTypes.shape({
+    id: PropTypes.string,
+  }),
+};
+
 TranscriptionsPage.propTypes = {
-  data: PropTypes.shape({}).isRequired,
+  compositionCollection: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.shape(compositionPropShape)),
+  }).isRequired,
 };
 
 export const getStaticProps = async () => {
   const { data } = await CompositionAPI.getAllCompositions();
-  return { props: { data } };
+  return { props: data };
 };
 
 export default TranscriptionsPage;
