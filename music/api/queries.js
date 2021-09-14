@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const ALL_COMPOSITIONS_QUERY = gql`
+export const ALL_MUSICAL_WORKS_QUERY = gql`
   query {
-    compositionCollection {
+    musicalWorkCollection {
       items {
         sys {
           id

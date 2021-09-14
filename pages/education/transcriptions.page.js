@@ -4,7 +4,7 @@ import SiteLayout from '../../components/SiteLayout';
 import SortedList from '../../components/SortedList';
 import Tabs from '../../components/Tabs';
 import Title from '../../components/Title';
-import { CompositionAPI } from '../../music';
+import { MusicalWorkAPI } from '../../music';
 import theme from '../../styles/theme';
 
 const defaultRenderText = ({ composer, title }) => {
@@ -37,22 +37,22 @@ const defaultSortItems = (
 };
 
 const createSections = (
-  compositions,
+  musicalWorks = [],
   { renderSectionId, renderTitle, renderText = defaultRenderText, sortItems = defaultSortItems },
 ) =>
-  compositions
+  musicalWorks
     .map((composition) => {
       return [
-        composition.sys.id,
+        composition?.sys?.id,
         {
           composer: {
-            first: composition.composer.firstName,
-            last: composition.composer.lastName,
+            first: composition?.composer?.firstName,
+            last: composition?.composer?.lastName,
           },
-          form: composition.form.name,
-          maqam: composition.maqam.name,
-          title: composition.title ?? `${composition.form.name} ${composition.maqam.name}`,
-          href: composition.transcription.url,
+          form: composition?.form?.name,
+          maqam: composition?.maqam?.name,
+          title: composition?.title,
+          href: composition?.transcription?.url,
         },
       ];
     })
@@ -87,8 +87,8 @@ const createSections = (
 
 const getComposerLetter = ({ last }) => last.replace("'", '')[0];
 
-const getTranscriptionsByComposer = (compositions) =>
-  createSections(compositions, {
+const getTranscriptionsByComposer = (musicalWorks) =>
+  createSections(musicalWorks, {
     renderSectionId: ({ composer }) => `composers-${getComposerLetter(composer)}`,
     renderTitle: ({ composer }) => getComposerLetter(composer),
     renderText: ({ composer, title }) => `${composer.first} ${composer.last} - ${title}`,
@@ -118,14 +118,14 @@ const getTranscriptionsByComposer = (compositions) =>
     },
   });
 
-const getTranscriptionsByForm = (compositions) =>
-  createSections(compositions, {
+const getTranscriptionsByForm = (musicalWorks) =>
+  createSections(musicalWorks, {
     renderSectionId: ({ form }) => `form-${form}`,
     renderTitle: ({ form }) => form,
   });
 
-const getTranscriptionsByMaqam = (compositions) =>
-  createSections(compositions, {
+const getTranscriptionsByMaqam = (musicalWorks) =>
+  createSections(musicalWorks, {
     renderSectionId: ({ maqam }) => `maqam-${maqam}`,
     renderTitle: ({ maqam }) => maqam,
   });
@@ -142,10 +142,10 @@ const sortSections = (sections) =>
     })
     .map(([, value]) => value);
 
-const TranscriptionsPage = ({ compositionCollection }) => {
-  const transcriptionsByComposer = getTranscriptionsByComposer(compositionCollection.items);
-  const transcriptionsByMaqam = getTranscriptionsByMaqam(compositionCollection.items);
-  const transcriptionsByForm = getTranscriptionsByForm(compositionCollection.items);
+const TranscriptionsPage = ({ musicalWorkCollection }) => {
+  const transcriptionsByComposer = getTranscriptionsByComposer(musicalWorkCollection?.items);
+  const transcriptionsByMaqam = getTranscriptionsByMaqam(musicalWorkCollection?.items);
+  const transcriptionsByForm = getTranscriptionsByForm(musicalWorkCollection?.items);
 
   const tabs = [
     {
@@ -227,13 +227,13 @@ const compositionPropShape = {
 };
 
 TranscriptionsPage.propTypes = {
-  compositionCollection: PropTypes.shape({
+  musicalWorkCollection: PropTypes.shape({
     items: PropTypes.arrayOf(PropTypes.shape(compositionPropShape)),
   }).isRequired,
 };
 
 export const getStaticProps = async () => {
-  const { data } = await CompositionAPI.getAllCompositions();
+  const { data } = await MusicalWorkAPI.getAllMusicalWorks();
   return { props: data };
 };
 

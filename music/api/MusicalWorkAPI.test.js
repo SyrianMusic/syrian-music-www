@@ -1,19 +1,19 @@
 import { BaseAPI } from '../../api';
-import { CompositionAPI } from './CompositionAPI';
+import { MusicalWorkAPI } from './MusicalWorkAPI';
 import * as queries from '../apollo/queries';
 
 jest.mock('../../api');
 
-describe('CompositionAPI', () => {
+describe('MusicalWorkAPI', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  describe('getAllCompositions', () => {
-    it('returns the result of the ALL_COMPOSITIONS_QUERY', async () => {
+  describe('getAllMusicalWorks', () => {
+    it('returns the result of the ALL_MUSICAL_WORKS_QUERY', async () => {
       const mockQuery = jest.spyOn(BaseAPI, 'query').mockImplementation(async () => true);
-      const actual = await CompositionAPI.getAllCompositions();
-      expect(BaseAPI.query).toHaveBeenCalledWith(queries.ALL_COMPOSITIONS_QUERY);
+      const actual = await MusicalWorkAPI.getAllMusicalWorks();
+      expect(BaseAPI.query).toHaveBeenCalledWith(queries.ALL_MUSICAL_WORKS_QUERY);
       expect(actual).toBe(true);
       mockQuery.mockRestore();
     });
@@ -23,7 +23,7 @@ describe('CompositionAPI', () => {
         throw new Error();
       });
       expect(async () => {
-        await await CompositionAPI.getAllCompositions();
+        await await MusicalWorkAPI.getAllMusicalWorks();
       }).rejects.toThrow();
       mockQuery.mockRestore();
     });

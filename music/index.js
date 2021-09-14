@@ -1,1 +1,1 @@
-export { CompositionAPI } from './api/CompositionAPI';
+export { MusicalWorkAPI } from './api/MusicalWorkAPI';
