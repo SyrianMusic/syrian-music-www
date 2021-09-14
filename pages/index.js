@@ -2,7 +2,7 @@ import Hero from 'components/Hero';
 import SiteLayout from 'components/SiteLayout';
 import Title from 'components/Title';
 import Typography from 'components/Typography';
-import { HomeLinks } from '../../components/HomeLinks';
+import { HomeLinks } from 'components/HomeLinks';
 import theme from 'styles/theme';
 
 const HomePage = () => (
