@@ -2,7 +2,7 @@ import Hero from 'components/Hero';
 import SiteLayout from 'components/SiteLayout';
 import Title from 'components/Title';
 import Typography from 'components/Typography';
-import VisualNav from 'components/VisualNav';
+import { HomeLinks } from './HomeLinks';
 import theme from 'styles/theme';
 
 export const HomePage = () => (
@@ -35,14 +35,14 @@ export const HomePage = () => (
         explore our&nbsp;site.
       </Typography>
     </Hero>
-    <VisualNav className="page-Home-visual-nav" />
+    <HomeLinks className="page-Home-links" />
     <style global jsx>
       {`
         .page-Home-Hero .page-Home-hero-description:last-child {
           margin-bottom: ${theme.pxToRem(48)};
         }
 
-        .page-Home-visual-nav {
+        .page-Home-links {
           margin-bottom: ${theme.pxToRem(39)};
         }
 
@@ -51,7 +51,7 @@ export const HomePage = () => (
             margin-bottom: ${theme.pxToRem(88)};
           }
 
-          .page-Home-visual-nav {
+          .page-Home-links {
             margin-bottom: ${theme.pxToRem(75)};
           }
         }
