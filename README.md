@@ -11,8 +11,6 @@
 *** github_username, repo_name, twitter_handle, email, project_title, project_description
 -->
 
-
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -27,8 +25,6 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 -->
-
-
 
 <p align="center">
     <!-- PROJECT LOGO
@@ -54,8 +50,6 @@
     -->
   </p>
 </p>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -83,9 +77,8 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
@@ -96,19 +89,18 @@
 
 ### Built With
 
-* [next.js](https://nextjs.org/)
-
-
+- [next.js](https://nextjs.org/)
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-* [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-* yarn
+- [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- yarn
   ```sh
   npm install --global yarn
   ```
@@ -128,9 +120,8 @@ To get a local copy up and running follow these simple steps.
    yarn
    ```
 
-
-
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 1. Start the dev server
@@ -138,39 +129,37 @@ To get a local copy up and running follow these simple steps.
    yarn dev
    ```
 
-
-
 <!-- ROADMAP
 ## Roadmap
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues).
 -->
 
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+2. Create your Feature Branch off of the `develop` branch (`git checkout -b feature/AmazingFeature develop`)
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+5. Open a Pull Request to the `develop` branch
 
 ### Releasing
+
 1. Create a release branch (e.g. release/1.0.0) with the changes you'd like to push to staging.
-2. After the changes have been approved, create a commit updating the version number in the `package.json`, and then tag this commit with the version number.<br>
+2. After the changes have been approved, create a commit (message `v0.0.0`) updating the version number in the `package.json`, and then tag this commit with the version number.<br>
    _See [Semantic versioning for end-user applications](https://medium.com/@u_glow/making-sense-of-semantic-versioning-for-end-user-software-applications-a3049d97478b) for guidance on versioning._
 3. Merge the branch into `main`.
-
+4. Merge `main` into `develop`.
 
 <!-- LICENSE
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 -->
-
 
 <!-- CONTACT
 ## Contact
@@ -180,7 +169,6 @@ Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
 Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
 -->
 
-
 <!-- ACKNOWLEDGEMENTS
 ## Acknowledgements
 
@@ -188,9 +176,6 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 * []()
 * []()
 -->
-
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
