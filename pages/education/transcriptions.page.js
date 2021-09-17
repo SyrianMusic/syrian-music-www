@@ -4,7 +4,7 @@ import SiteLayout from '../../components/SiteLayout';
 import SortedList from '../../components/SortedList';
 import Tabs from '../../components/Tabs';
 import Title from '../../components/Title';
-import { MusicalWorkAPI } from '../../music';
+import { MusicalWorkAPI } from '../../musicalWorks';
 import theme from '../../styles/theme';
 
 const defaultRenderText = ({ composer, title }) => {
