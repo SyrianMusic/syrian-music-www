@@ -149,11 +149,13 @@ Contributions are what make the open source community such an amazing place to b
 
 ### Releasing
 
-1. Create a release branch (e.g. release/1.0.0) with the changes you'd like to push to staging.
-2. After the changes have been approved, create a commit (message `v0.0.0`) updating the version number in the `package.json`, and then tag this commit with the version number.<br>
-   _See [Semantic versioning for end-user applications](https://medium.com/@u_glow/making-sense-of-semantic-versioning-for-end-user-software-applications-a3049d97478b) for guidance on versioning._
-3. Merge the branch into `main`.
-4. Merge `main` into `develop`.
+1. Create a release branch (e.g. `release/1.0.0`)[^1] with the changes you'd like to push to staging.
+2. After the changes have been approved, create a commit (message `v1.0.0`) updating the version number in the `package.json` .
+3. Tag this commit with the version number (e.g. `1.0.0`).
+4. Merge the branch into `main`.
+5. Merge `main` into `develop`.
+
+[^1]: See [Semantic versioning for end-user applications](https://medium.com/@u_glow/making-sense-of-semantic-versioning-for-end-user-software-applications-a3049d97478b) for guidance on versioning.
 
 <!-- LICENSE
 ## License
