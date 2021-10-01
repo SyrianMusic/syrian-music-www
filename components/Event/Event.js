@@ -124,7 +124,8 @@ export const Event = ({ className, cta, description, image, title, date, slug })
       .component-Event-heading-link:active,
       .component-Event-heading-link:focus,
       .component-Event-heading-link:hover {
-        text-decoration-color: ${theme.color.primary};
+        color: ${theme.color.interactive};
+        text-decoration-color: ${theme.color.interactive};
       }
 
       .component-Event-heading :global(.component-Event-title) {
@@ -152,6 +153,10 @@ export const Event = ({ className, cta, description, image, title, date, slug })
 
         .component-Event-text {
           padding-left: ${theme.pxToRem(62)};
+        }
+
+        .component-Event-text {
+          padding-top: 0;
         }
 
         .component-Event-root :global(.component-Event-description) {
