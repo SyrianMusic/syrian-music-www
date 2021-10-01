@@ -50,7 +50,7 @@ export default [
             _type: 'span',
             _key: 'event1-block2-child1',
             text:
-              'This performance will feature acclaimed Syrian Oud virtuoso and musicologist Mohamed Qadri Dalal. Dalal visited Miami as a member of al-Kindi Ensemble with the landmark Whirling Dervishes of Damascus tours in 2001 and 2004, and now lives in Alexandria, Egypt.',
+              'This performance will feature acclaimed Syrian Oud virtuoso and musicologist Mohamed Qadri Dalal. Mr. Dalal is originally from Aleppo and now lives in Alexandria, Egypt',
             marks: [],
           },
         ],
