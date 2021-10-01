@@ -72,7 +72,7 @@ export const Event = ({ className, cta, description, image, title, date, slug })
       </a>
       {description.map(({ _key, children } = {}) => {
         return (
-          <Typography key={_key} className="component-Event-description" size="lg">
+          <Typography key={_key} className="component-Event-description">
             {children.map(portableTextMap)}
           </Typography>
         );
