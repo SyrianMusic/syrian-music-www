@@ -155,6 +155,10 @@ export const Event = ({ className, cta, description, image, title, date, slug })
           padding-left: ${theme.pxToRem(62)};
         }
 
+        .component-Event-text {
+          padding-top: 0;
+        }
+
         .component-Event-root :global(.component-Event-description) {
           margin-top: ${theme.pxToRem(theme.typography.body.lg.lineHeightDesktop)};
         }
