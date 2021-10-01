@@ -11,15 +11,15 @@ export const MARKS = {
 export const portableTextMap = ({ _key, text, marks } = {}) => {
   let formattedText = text;
 
-  if (marks.includes(MARKS.BOLD)) {
+  if (marks?.includes(MARKS.BOLD)) {
     formattedText = <strong>{formattedText}</strong>;
   }
 
-  if (marks.includes(MARKS.ITALIC)) {
+  if (marks?.includes(MARKS.ITALIC)) {
     formattedText = <em>{formattedText}</em>;
   }
 
-  if (marks.includes(MARKS.UNDERLINE)) {
+  if (marks?.includes(MARKS.UNDERLINE)) {
     formattedText = <u>{formattedText}</u>;
   }
 
