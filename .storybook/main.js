@@ -8,4 +8,12 @@ module.exports = {
     '../styles/**/*.stories.mdx',
     '../styles/**/*.stories.js',
   ],
+  webpackFinal: async (config) => {
+    config.module.rules.push({
+      test: /\.ya?ml$/,
+      use: 'js-yaml-loader',
+    });
+
+    return config;
+  },
 };
