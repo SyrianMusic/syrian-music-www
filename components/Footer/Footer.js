@@ -3,127 +3,73 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import config from '../../config.yaml';
 import theme from '../../styles/theme';
-import * as mixins from '../../styles/mixins';
-import LogoLockup from '../../icons/LogoLockup';
-import FacebookIcon from '../../icons/Facebook';
-import InstagramIcon from '../../icons/Instagram';
-import YouTubeIcon from '../../icons/YouTube';
 import Nav from '../Nav';
 import NewsletterSignup from '../NewsletterSignup';
-import Rule from '../Rule';
 import Typography from '../Typography';
 
 export const Footer = ({ className, pathname }) => (
   <footer className={className}>
     <NewsletterSignup />
 
-    <div className="component-Footer-content">
-      <Nav className={cx('component-Footer-nav')}>
-        <ul>
-          <div className="component-Footer-text-links">
-            {Object.values(config.nav).map((section) => {
-              const sectionText = <Typography size="lg">{section.text}</Typography>;
+    <Nav className={cx('component-Footer-nav', 'gutters')}>
+      <ul>
+        {Object.values(config.nav).map((section) => {
+          const sectionText = <Typography size="lg">{section.text}</Typography>;
 
-              let sectionLink = (
-                <Link href={section.href}>
-                  <a className="component-Footer-section-title">{sectionText}</a>
-                </Link>
-              );
+          let sectionLink = (
+            <Link href={section.href}>
+              <a className="link">{sectionText}</a>
+            </Link>
+          );
 
-              if (pathname === section.href) {
-                sectionLink = <span className="component-Footer-section-title">{sectionText}</span>;
-              }
+          if (pathname === section.href) {
+            sectionLink = <span>{sectionText}</span>;
+          }
 
-              return (
-                <li key={section.text} className="component-Footer-section">
-                  {sectionLink}
+          return (
+            <li key={section.text}>
+              {sectionLink}
 
-                  <ul>
-                    {section.links &&
-                      Object.values(section.links).map((link) => {
-                        const { showInFooter = true } = link;
-                        if (!showInFooter) return null;
+              <ul>
+                {section.links &&
+                  Object.values(section.links).map((link) => {
+                    const linkText = <Typography size="lg">{link.text}</Typography>;
+                    let linkEl;
 
-                        const linkText = <Typography size="md">{link.text}</Typography>;
-                        let linkEl;
+                    if (link.href === '/') {
+                      return null;
+                    }
 
-                        if (link.href === '/') {
-                          return null;
-                        }
+                    const relativeLink = `${section.href}${link.href}`;
 
-                        const relativeLink = `${section.href}${link.href}`;
+                    if (pathname === relativeLink) {
+                      linkEl = <span>{linkText}</span>;
+                    } else if (/^\//.test(link.href)) {
+                      linkEl = (
+                        <Link href={relativeLink}>
+                          <a>{linkText}</a>
+                        </Link>
+                      );
+                    } else {
+                      linkEl = (
+                        <a href={link.href} target="_blank" rel="noopener noreferrer">
+                          {linkText}
+                        </a>
+                      );
+                    }
 
-                        if (pathname === relativeLink) {
-                          linkEl = <span>{linkText}</span>;
-                        } else if (/^\//.test(link.href)) {
-                          linkEl = (
-                            <Link href={relativeLink}>
-                              <a>{linkText}</a>
-                            </Link>
-                          );
-                        } else {
-                          linkEl = (
-                            <a href={link.href} target="_blank" rel="noopener noreferrer">
-                              {linkText}
-                            </a>
-                          );
-                        }
-
-                        return <li key={link.text}>{linkEl}</li>;
-                      })}
-                  </ul>
-                </li>
-              );
-            })}
-          </div>
-          <div className="component-Footer-icons">
-            <li className="component-Footer-logo-lockup">
-              <Link href="/">
-                <a>
-                  <LogoLockup className="component-Footer-logo-lockup-icon" />
-                </a>
-              </Link>
+                    return <li key={link.text}>{linkEl}</li>;
+                  })}
+              </ul>
             </li>
-            <div className="component-Footer-social-links">
-              <li>
-                <a
-                  href={config.nav.connect.links.facebook.href}
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  <FacebookIcon />
-                </a>
-              </li>
-              <li>
-                <a
-                  href={config.nav.connect.links.instagram.href}
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  <InstagramIcon />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.youtube.com/channel/UCyunR06UosVBwrHx7c6UYIw"
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  <YouTubeIcon />
-                </a>
-              </li>
-            </div>
-          </div>
-        </ul>
-      </Nav>
-
-      <Rule className={cx('component-Footer-rule', 'gutters')} />
-
-      <Typography
-        className={cx('component-Footer-copyright', 'gutters')}
-        textAlign="center"
-        size="sm">
-        ©2017–{new Date(Date.now()).getFullYear()} Syrian Music Preservation Initiative Corp.
-        501(c)(3) <nobr>not-for-profit</nobr>&nbsp;organization
-      </Typography>
-    </div>
+          );
+        })}
+      </ul>
+    </Nav>
+    <Typography className={cx('component-Footer-copyright', 'gutters')} textAlign="center">
+      ©2017–{new Date(Date.now()).getFullYear()} Syrian Music Preservation Initiative Corp.
+      501(c)(3) <nobr>not-for-profit</nobr>&nbsp;organization
+    </Typography>
     <style jsx>
       {`
         footer {
@@ -136,16 +82,15 @@ export const Footer = ({ className, pathname }) => (
           padding-top: ${theme.pxToRem(25)};
         }
 
-        :global(.component-Footer-nav) > ul,
-        .component-Footer-text-links {
+        :global(.component-Footer-nav) > ul {
           display: flex;
           flex-direction: column;
           align-items: center;
         }
 
-        .component-Footer-section {
+        :global(.component-Footer-nav) > ul > li:not(:last-child) {
           font-size: ${theme.pxToRem(theme.typography.body.lg.fontSizeMobile)};
-          margin-bottom: ${theme.pxToRem(24)};
+          margin-bottom: 2em;
         }
 
         :global(.component-Footer-nav) ul li a,
@@ -157,113 +102,29 @@ export const Footer = ({ className, pathname }) => (
           display: none;
         }
 
-        .component-Footer-logo-lockup {
-          display: none;
-        }
-
-        .component-Footer-social-links {
-          display: flex;
-          justify-content: space-between;
-          width: ${theme.pxToRem(182)};
-        }
-
-        .component-Footer-social-links li {
-          height: ${theme.pxToRem(45)};
-          width: ${theme.pxToRem(45)};
-        }
-
-        .component-Footer-social-links li :global(svg) {
-          height: auto;
-          width: 100%;
-        }
-
-        footer :global(.component-Footer-rule) {
-          border-color: ${theme.color.accentTan};
-          display: none;
-        }
-
         footer :global(.component-Footer-copyright) {
-          margin: ${theme.pxToRem(20)} auto 0;
-          width: ${theme.pxToPercent(236, theme.layout.contentWidthMin)};
+          margin-top: ${theme.pxToRem(48)};
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          .component-Footer-content {
-            ${mixins.layout.fullWidth};
-            padding-left: ${theme.pxToRem(25)};
-            padding-right: ${theme.pxToRem(25)};
-          }
-
-          footer :global(.component-Footer-nav),
-          footer :global(.component-Footer-rule) {
-            // TODO: Set this for header as well
-            max-width: ${theme.pxToRem(1118)};
-          }
-
-          footer :global(.component-Footer-nav) {
-            margin-left: auto;
-            margin-right: auto;
-            padding-top: ${theme.pxToRem(45)};
-          }
-
-          :global(.component-Footer-nav) > ul,
-          .component-Footer-text-links {
+          :global(.component-Footer-nav) > ul {
             flex-direction: row;
             align-items: flex-start;
             justify-content: space-between;
           }
 
-          .component-Footer-section {
-            margin-right: ${theme.pxToRem(20)};
+          :global(.component-Footer-nav) > ul > li:not(:last-child) {
+            margin-right: ${theme.pxToRem(50)};
           }
 
-          .component-Footer-section :global(a.component-Footer-section-title) {
-            color: ${theme.color.accentTan};
-          }
-
-          .component-Footer-section :global(a.component-Footer-section-title):active,
-          .component-Footer-section :global(a.component-Footer-section-title):focus,
-          .component-Footer-section :global(a.component-Footer-section-title):hover {
-            color: ${theme.color.interactive};
-          }
-
-          footer :global(.component-Footer-nav) ul li ul {
+          :global(.component-Footer-nav) ul li ul {
             display: block;
             margin-top: 1em;
           }
 
-          .component-Footer-text-links {
-            flex: 1;
-            order: 2;
-          }
-
-          .component-Footer-icons {
-            order: 1;
-            margin-right: ${theme.pxToRem(74.5)};
-          }
-
-          .component-Footer-logo-lockup {
-            display: block;
-          }
-
-          .component-Footer-logo-lockup :global(.component-Footer-logo-lockup-icon) {
-            width: ${theme.pxToRem(272)};
-          }
-
-          .component-Footer-social-links {
-            margin: ${theme.pxToRem(37.8)} auto 0;
-          }
-
-          footer :global(.component-Footer-rule) {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-          }
-
           footer :global(.component-Footer-copyright) {
-            margin: 0 auto;
-            width: 100%;
+            font-size: ${theme.pxToRem(16)};
+            line-height: ${theme.pxToRem(19)};
           }
         }
       `}
@@ -280,5 +141,3 @@ Footer.defaultProps = {
   className: undefined,
   pathname: undefined,
 };
-
-export default Footer;
