@@ -1,7 +1,7 @@
 import { DonatePage } from './DonatePage';
 
 export default {
-  title: 'Pages/DonatePage',
+  title: 'Pages/Donate',
   component: DonatePage,
 };
 
