@@ -20,10 +20,7 @@ export const ConnectPage = () => (
           info@syrianmusic.org
         </a>
         . To become a donor,{' '}
-        <a href={pageConfig.links.donate.href} target="_blank" rel="noopener noreferrer">
-          fill out our donation&nbsp;form
-        </a>
-        .
+        <a href={pageConfig.links.donate.href}>fill out our donation&nbsp;form</a>.
       </Typography>
       <Typography size="lg">
         Follow us on{' '}
