@@ -219,6 +219,16 @@ export const Footer = ({ className, pathname }) => (
             margin-right: ${theme.pxToRem(20)};
           }
 
+          .component-Footer-section :global(a.component-Footer-section-title) {
+            color: ${theme.color.accentTan};
+          }
+
+          .component-Footer-section :global(a.component-Footer-section-title):active,
+          .component-Footer-section :global(a.component-Footer-section-title):focus,
+          .component-Footer-section :global(a.component-Footer-section-title):hover {
+            color: ${theme.color.interactive};
+          }
+
           footer :global(.component-Footer-nav) ul li ul {
             display: block;
             margin-top: 1em;
