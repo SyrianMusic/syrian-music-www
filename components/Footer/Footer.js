@@ -13,8 +13,6 @@ import NewsletterSignup from '../NewsletterSignup';
 import Rule from '../Rule';
 import Typography from '../Typography';
 
-const FOOTER_CONTENT_MAX_WIDTH = 1118;
-
 export const Footer = ({ className, pathname }) => (
   <footer className={className}>
     <NewsletterSignup />
@@ -199,7 +197,7 @@ export const Footer = ({ className, pathname }) => (
           footer :global(.component-Footer-nav),
           footer :global(.component-Footer-rule) {
             // TODO: Set this for header as well
-            max-width: ${theme.pxToRem(FOOTER_CONTENT_MAX_WIDTH)};
+            max-width: ${theme.pxToRem(1118)};
           }
 
           footer :global(.component-Footer-nav) {
