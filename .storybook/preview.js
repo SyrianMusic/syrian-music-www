@@ -1,3 +1,7 @@
+import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
+
+console.log({ MINIMAL_VIEWPORTS });
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
@@ -8,4 +12,17 @@ export const parameters = {
     },
   },
   layout: 'fullscreen',
+  viewport: {
+    viewports: {
+      ...MINIMAL_VIEWPORTS,
+      mobile1: {
+        name: 'Small mobile',
+        styles: {
+          height: '812px',
+          width: '375px',
+        },
+        type: 'mobile',
+      },
+    },
+  },
 };
