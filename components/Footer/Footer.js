@@ -13,13 +13,6 @@ import NewsletterSignup from '../NewsletterSignup';
 import Rule from '../Rule';
 import Typography from '../Typography';
 
-// #   facebook:
-// #     text: Facebook
-// #     href: https://facebook.com/syrianmusicpi
-// #   instagram:
-// #     text: Instagram
-// #     href: https://instagram.com/syrianmusicpi
-
 const FOOTER_CONTENT_MAX_WIDTH = 1118;
 
 export const Footer = ({ className, pathname }) => (
@@ -50,6 +43,9 @@ export const Footer = ({ className, pathname }) => (
                   <ul>
                     {section.links &&
                       Object.values(section.links).map((link) => {
+                        const { showInFooter = true } = link;
+                        if (!showInFooter) return null;
+
                         const linkText = <Typography size="md">{link.text}</Typography>;
                         let linkEl;
 
@@ -92,17 +88,26 @@ export const Footer = ({ className, pathname }) => (
             </li>
             <div className="component-Footer-social-links">
               <li>
-                <a>
+                <a
+                  href={config.nav.connect.links.facebook.href}
+                  target="_blank"
+                  rel="noopener noreferrer">
                   <FacebookIcon />
                 </a>
               </li>
               <li>
-                <a>
+                <a
+                  href={config.nav.connect.links.instagram.href}
+                  target="_blank"
+                  rel="noopener noreferrer">
                   <InstagramIcon />
                 </a>
               </li>
               <li>
-                <a>
+                <a
+                  href="https://www.youtube.com/channel/UCyunR06UosVBwrHx7c6UYIw"
+                  target="_blank"
+                  rel="noopener noreferrer">
                   <YouTubeIcon />
                 </a>
               </li>
