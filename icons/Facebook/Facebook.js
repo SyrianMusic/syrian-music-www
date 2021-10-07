@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 
-export const Facebook = ({ height, width }) => (
+export const Facebook = ({ className, height, width }) => (
   <svg
+    className={className}
     data-name="Layer 2"
     xmlns="http://www.w3.org/2000/svg"
     width={width}

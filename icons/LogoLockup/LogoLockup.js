@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 
-export const LogoLockup = ({ height, width }) => (
+export const LogoLockup = ({ className, height, width }) => (
   <svg
+    className={className}
     xmlns="http://www.w3.org/2000/svg"
     width={width}
     height={height}
