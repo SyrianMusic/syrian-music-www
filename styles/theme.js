@@ -11,8 +11,8 @@ const typography = {
     sm: {
       fontSizeMobile: 10,
       lineHeightMobile: 12,
-      fontSizeDesktop: 15,
-      lineHeightDesktop: 18,
+      fontSizeDesktop: 18,
+      lineHeightDesktop: 20,
     },
     md: {
       fontSizeMobile: 12.5,

@@ -1,6 +1,9 @@
+import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
+
+console.log({ MINIMAL_VIEWPORTS });
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     expanded: true,
     matchers: {
@@ -8,4 +11,18 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+  layout: 'fullscreen',
+  viewport: {
+    viewports: {
+      ...MINIMAL_VIEWPORTS,
+      mobile1: {
+        name: 'Small mobile',
+        styles: {
+          height: '812px',
+          width: '375px',
+        },
+        type: 'mobile',
+      },
+    },
+  },
+};

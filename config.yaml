@@ -97,6 +97,8 @@ nav:
       facebook:
         text: Facebook
         href: https://facebook.com/syrianmusicpi
+        showInFooter: false
       instagram:
         text: Instagram
         href: https://instagram.com/syrianmusicpi
+        showInFooter: false

@@ -37,6 +37,10 @@ const Typography = ({ className, children, as, size, textAlign, variant }) => {
           margin-bottom: 1em;
         }
 
+        .size--sm {
+          ${typography.sm.mobile};
+        }
+
         .size--md {
           ${typography.md.mobile};
         }
@@ -61,6 +65,10 @@ const Typography = ({ className, children, as, size, textAlign, variant }) => {
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
+          .size--sm {
+            ${typography.sm.desktop};
+          }
+
           .size--md {
             ${typography.md.desktop};
           }
