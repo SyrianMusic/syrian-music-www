@@ -1,6 +1,6 @@
 import { BaseAPI } from '../../api';
 import { MusicalWorkAPI } from './MusicalWorkAPI';
-import * as queries from '../apollo/queries';
+import * as queries from './queries';
 
 jest.mock('../../api');
 
