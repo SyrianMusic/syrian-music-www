@@ -23,7 +23,7 @@ describe('MusicalWorkAPI', () => {
         throw new Error();
       });
       expect(async () => {
-        await await MusicalWorkAPI.getAllMusicalWorks();
+        await MusicalWorkAPI.getAllMusicalWorks();
       }).rejects.toThrow();
       mockQuery.mockRestore();
     });
