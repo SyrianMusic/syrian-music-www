@@ -124,7 +124,7 @@ Typography.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   as: PropTypes.string,
-  size: PropTypes.oneOf(['md', 'lg']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   textAlign: PropTypes.oneOf(['left', 'center', 'right']),
   variant: PropTypes.oneOf(Object.keys(theme.typography)),
 };
