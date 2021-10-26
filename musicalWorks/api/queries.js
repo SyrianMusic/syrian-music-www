@@ -1,5 +1,16 @@
 import { gql } from '@apollo/client';
 
+export const MUSICAL_WORK_QUERY = gql`
+  query musicalWork($id: String!) {
+    musicalWork(id: $id) {
+      sys {
+        id
+      }
+      title
+    }
+  }
+`;
+
 export const ALL_MUSICAL_WORKS_QUERY = gql`
   query {
     musicalWorkCollection {
