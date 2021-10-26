@@ -7,6 +7,10 @@ export const MUSICAL_WORK_QUERY = gql`
         id
       }
       title
+      composer {
+        firstName
+        lastName
+      }
     }
   }
 `;
