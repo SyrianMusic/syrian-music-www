@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import SiteLayout from '../../../components/SiteLayout';
 import Title from '../../../components/Title';
-import Typography from '../../../components/Typography';
+import Typography, { SectionHeader } from '../../../components/Typography';
 import { MusicalWorkAPI } from '../../../musicalWorks';
 import theme from '../../../styles/theme';
 import { musicalWorkPropShape } from './propTypes';
@@ -22,9 +22,9 @@ const TranscriptionPage = ({ musicalWork }) => {
         {composer}
       </Typography>
       <section className={cx('page-Transcription-transcription', 'gutters')}>
-        <Typography className="page-Transcription-title" variant="h3" as="h1">
+        <SectionHeader className="page-Transcription-transcription-header" as="h1">
           The Transcription
-        </Typography>
+        </SectionHeader>
 
         <embed
           title={`Transcription of ${musicalWork?.title} by ${composer}`}
