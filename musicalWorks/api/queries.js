@@ -11,6 +11,9 @@ export const MUSICAL_WORK_QUERY = gql`
         firstName
         lastName
       }
+      transcription {
+        url
+      }
     }
   }
 `;
@@ -32,9 +35,6 @@ export const ALL_MUSICAL_WORKS_QUERY = gql`
         }
         form {
           name
-        }
-        transcription {
-          url
         }
       }
     }
