@@ -27,6 +27,18 @@ const parseText = (node, id) => {
   return <Fragment key={id}>{el}</Fragment>;
 };
 
+const parseHeading = (node, id) => {
+  if (!Array.isArray(node?.content)) {
+    throw new Error();
+  }
+
+  return (
+    <Typography key={id} variant="h3">
+      {node.content.length > 0 && node.content.map(parseText)}
+    </Typography>
+  );
+};
+
 const parseParagraph = (node, id) => {
   if (!Array.isArray(node?.content)) {
     throw new Error();
@@ -39,6 +51,8 @@ const parseNode = (node, id = null) => {
   switch (node?.nodeType) {
     case 'document':
       return node.content.map(parseNode);
+    case 'heading-3':
+      return parseHeading(node, id);
     case 'paragraph':
       return parseParagraph(node, id);
     default:
