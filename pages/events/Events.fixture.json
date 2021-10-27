@@ -157,6 +157,26 @@
                 },
                 {
                   "nodeType": "text",
+                  "value": ". With a ",
+                  "marks": [],
+                  "data": {}
+                },
+                {
+                  "nodeType": "hyperlink",
+                  "data": {
+                    "uri": "https://syrianmusic.org"
+                  },
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "link",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                },
+                {
+                  "nodeType": "text",
                   "value": ".",
                   "marks": [],
                   "data": {}

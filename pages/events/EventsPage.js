@@ -19,7 +19,7 @@ const parseText = (node, id) => {
           el = <u>{el}</u>;
           break;
         default:
-          console.error('unhandled', mark);
+          console.error('parseText unhandled', mark);
       }
     });
   }
@@ -39,12 +39,34 @@ const parseHeading = (node, id) => {
   );
 };
 
+const parseContent = (node, id) => {
+  let content;
+  switch (node?.nodeType) {
+    case 'hyperlink':
+      if (Array.isArray(node?.content) && node.content.length > 0) {
+        content = node.content.map(parseContent);
+      }
+
+      return (
+        <a key={id} href={node?.data?.uri} target="_blank" rel="noopener noreferrer">
+          {content}
+        </a>
+      );
+    case 'text':
+      return parseText(node, id);
+    default:
+      console.error('parseContent unhandled', node);
+  }
+};
+
 const parseParagraph = (node, id) => {
   if (!Array.isArray(node?.content)) {
     throw new Error();
   }
 
-  return <Typography key={id}>{node.content.length > 0 && node.content.map(parseText)}</Typography>;
+  return (
+    <Typography key={id}>{node?.content?.length > 0 && node.content.map(parseContent)}</Typography>
+  );
 };
 
 const parseNode = (node, id = null) => {
