@@ -65,7 +65,9 @@ const parseParagraph = (node, id) => {
   }
 
   return (
-    <Typography key={id}>{node?.content?.length > 0 && node.content.map(parseContent)}</Typography>
+    <Typography key={id} size="lg">
+      {node?.content?.length > 0 && node.content.map(parseContent)}
+    </Typography>
   );
 };
 
