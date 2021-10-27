@@ -5,6 +5,8 @@ module.exports = {
     '../components/**/*.stories.js',
     '../icons/**/*.stories.mdx',
     '../icons/**/*.stories.js',
+    '../pages/**/*.stories.mdx',
+    '../pages/**/*.stories.js',
     '../styles/**/*.stories.mdx',
     '../styles/**/*.stories.js',
   ],
