@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import Button from '../../../components/Button';
 import SiteLayout from '../../../components/SiteLayout';
 import Title from '../../../components/Title';
 import Typography, { SectionHeader } from '../../../components/Typography';
@@ -22,6 +23,10 @@ const PdfWrapper = styled.div`
   }
 `;
 
+const PdfReloadButton = styled(Button)`
+  font-size: inherit !important;
+`;
+
 const TranscriptionSection = styled.section`
   margin-top: ${({ theme }) => theme.pxToRem(25)};
 
@@ -32,6 +37,7 @@ const TranscriptionSection = styled.section`
 
 const TranscriptionPage = ({ adobeKey, musicalWork }) => {
   const [isAdobeReady, setIsAdobeReady] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const composer = `${musicalWork?.composer?.firstName} ${musicalWork?.composer?.lastName}`;
   const title = `${musicalWork?.title} - ${composer}`;
 
@@ -45,23 +51,33 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
   const transcriptionUrl = musicalWork?.transcription?.url;
 
   useEffect(() => {
-    if (isAdobeReady && transcriptionUrl) {
-      const adobeDCView = new window.AdobeDC.View({
-        clientId: adobeKey,
-        divId: PDF_VIEWER_ID,
-      });
+    if (isAdobeReady && transcriptionUrl && !hasError) {
+      try {
+        const adobeDCView = new window.AdobeDC.View({
+          clientId: adobeKey,
+          divId: PDF_VIEWER_ID,
+        });
 
-      adobeDCView.previewFile(
-        {
-          content: {
-            location: { transcriptionUrl },
+        adobeDCView.previewFile(
+          {
+            content: {
+              location: { url: transcriptionUrl },
+            },
+            metaData: { fileName: `${title}.pdf` },
           },
-          metaData: { fileName: `${title}.pdf` },
-        },
-        { embedMode: 'SIZED_CONTAINER' },
-      );
+          { embedMode: 'SIZED_CONTAINER' },
+        );
+      } catch (e) {
+        // TODO: Send to error logger
+        console.error(e);
+        setHasError(true);
+      }
     }
-  }, [isAdobeReady, transcriptionUrl]);
+  }, [hasError, isAdobeReady, transcriptionUrl]);
+
+  const reloadPdf = useCallback(() => {
+    setHasError(false);
+  }, [setHasError]);
 
   return (
     <SiteLayout pathname={`/education/transcriptions/${musicalWork?.id}`}>
@@ -77,9 +93,15 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
         {composer}
       </Typography>
 
-      <TranscriptionSection className="gutters">
+      <TranscriptionSection id="transcription" className="gutters">
         <SectionHeader as="h1">The Transcription</SectionHeader>
 
+        {hasError && (
+          <div>
+            Sorry, we are having trouble loading this transcription.{' '}
+            <PdfReloadButton onClick={reloadPdf}>Try again.</PdfReloadButton>
+          </div>
+        )}
         <PdfWrapper>
           <div id={PDF_VIEWER_ID} />
         </PdfWrapper>
