@@ -1,12 +1,35 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 import cx from 'classnames';
 import SiteLayout from '../../../components/SiteLayout';
 import Title from '../../../components/Title';
 import Typography, { SectionHeader } from '../../../components/Typography';
 import { MusicalWorkAPI } from '../../../musicalWorks';
-import theme from '../../../styles/theme';
 import { musicalWorkPropShape } from './propTypes';
+
+const PDF_VIEWER_ID = 'pdf-viewer';
+
+const PdfWrapper = styled.div`
+  height: 0;
+  width: 100%;
+  padding-bottom: ${({ theme }) => theme.pxToPercent(11, 8.5)};
+  position: relative;
+
+  #${PDF_VIEWER_ID} {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+`;
+
+const TranscriptionSection = styled.section`
+  margin-top: ${({ theme }) => theme.pxToRem(25)};
+
+  ${({ theme }) => theme.mq.md} {
+    margin-top: ${({ theme }) => theme.pxToRem(42)};
+  }
+`;
 
 const TranscriptionPage = ({ adobeKey, musicalWork }) => {
   const [isAdobeReady, setIsAdobeReady] = useState(false);
@@ -22,7 +45,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
     if (isAdobeReady && musicalWork?.transcription?.url) {
       var adobeDCView = new window.AdobeDC.View({
         clientId: adobeKey,
-        divId: 'adobe-dc-view',
+        divId: PDF_VIEWER_ID,
       });
       adobeDCView.previewFile(
         {
@@ -44,46 +67,26 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
       className="page-Transcription-SiteLayout"
       pathname={`/education/transcriptions/${musicalWork?.id}`}>
       <script src="https://documentcloud.adobe.com/view-sdk/main.js" async defer></script>
+
       <Title>{`${musicalWork?.title} - ${composer}`}</Title>
-      <Typography className="page-Transcription-title" variant="h3" as="h1" textAlign="center">
+
+      <Typography variant="h3" as="h1" textAlign="center">
         {musicalWork?.title}
       </Typography>
-      <Typography className="page-Transcription-composer" size="lg" textAlign="center">
+
+      <Typography size="lg" textAlign="center">
         {composer}
       </Typography>
-      <section className={cx('page-Transcription-transcription', 'gutters')}>
+
+      <TranscriptionSection className={cx('gutters')}>
         <SectionHeader className="page-Transcription-transcription-header" as="h1">
           The Transcription
         </SectionHeader>
 
-        <div className="page-Transcription-pdf-wrapper">
-          <div id="adobe-dc-view" />
-        </div>
-      </section>
-      <style jsx>{`
-        :global(.page-Transcription-transcription) {
-          margin-top: ${theme.pxToRem(25)};
-        }
-
-        .page-Transcription-pdf-wrapper {
-          height: 0;
-          width: 100%;
-          padding-bottom: ${theme.pxToPercent(11, 8.5)};
-          position: relative;
-        }
-
-        .page-Transcription-pdf-wrapper #adobe-dc-view {
-          position: absolute;
-          height: 100%;
-          width: 100%;
-        }
-
-        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          :global(.page-Transcription-transcription) {
-            margin-top: ${theme.pxToRem(42)};
-          }
-        }
-      `}</style>
+        <PdfWrapper>
+          <div id={PDF_VIEWER_ID} />
+        </PdfWrapper>
+      </TranscriptionSection>
     </SiteLayout>
   );
 };

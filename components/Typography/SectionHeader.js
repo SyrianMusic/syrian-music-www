@@ -20,7 +20,7 @@ export const SectionHeader = ({ className, children, as }) => {
           content: '';
           flex: 1;
           height: ${theme.pxToRem(1)};
-          margin-top: ${theme.pxToRem(2)};
+          margin-top: ${theme.pxToRem(3)};
           margin-left: ${theme.pxToRem(14)};
         }
 
