@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import { gql } from '@apollo/client';
+import { BaseAPI } from '../../../api';
 import Button from '../../../components/Button';
 import SiteLayout from '../../../components/SiteLayout';
 import Title from '../../../components/Title';
 import Typography, { SectionHeader } from '../../../components/Typography';
-import { MusicalWorkAPI } from '../../../musicalWorks';
 import { musicalWorkPropShape } from './propTypes';
 
 const PDF_VIEWER_ID = 'pdf-viewer';
@@ -93,6 +94,14 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
         {composer}
       </Typography>
 
+      {musicalWork?.maqam && (
+        <section id="maqam" className="gutters">
+          <SectionHeader as="h1">Maqam</SectionHeader>
+
+          <Typography>{musicalWork.maqam.name}</Typography>
+        </section>
+      )}
+
       <TranscriptionSection id="transcription" className="gutters">
         <SectionHeader as="h1">The Transcription</SectionHeader>
 
@@ -115,8 +124,20 @@ TranscriptionPage.propTypes = {
   musicalWork: PropTypes.shape(musicalWorkPropShape),
 };
 
+export const ALL_TRANSCRIPTIONS_QUERY = gql`
+  query allTranscriptions {
+    musicalWorkCollection {
+      items {
+        sys {
+          id
+        }
+      }
+    }
+  }
+`;
+
 export const getStaticPaths = async () => {
-  const { data } = await MusicalWorkAPI.getAllMusicalWorks();
+  const { data } = await BaseAPI.query(ALL_TRANSCRIPTIONS_QUERY);
 
   return {
     paths: data.musicalWorkCollection.items.map((item) => ({ params: { id: item.sys.id } })),
@@ -124,8 +145,31 @@ export const getStaticPaths = async () => {
   };
 };
 
+export const TRANSCRIPTION_DETAIL_PAGE_QUERY = gql`
+  query transcriptionDetailPage($id: String!) {
+    musicalWork(id: $id) {
+      sys {
+        id
+      }
+      title
+      composer {
+        firstName
+        lastName
+      }
+      maqam {
+        name
+      }
+      transcription {
+        url
+      }
+    }
+  }
+`;
+
 export const getStaticProps = async (context) => {
-  const { data } = await MusicalWorkAPI.getMusicalWork(context.params.id);
+  const { data } = await BaseAPI.query(TRANSCRIPTION_DETAIL_PAGE_QUERY, {
+    variables: { id: context.params.id },
+  });
   return { props: { adobeKey: process.env.ADOBE_KEY, musicalWork: data.musicalWork } };
 };
 
