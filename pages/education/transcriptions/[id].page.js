@@ -34,8 +34,10 @@ const TranscriptionSection = styled.section`
 const TranscriptionPage = ({ adobeKey, musicalWork }) => {
   const [isAdobeReady, setIsAdobeReady] = useState(false);
   const composer = `${musicalWork?.composer?.firstName} ${musicalWork?.composer?.lastName}`;
+  const title = `${musicalWork?.title} - ${composer}`;
 
   useEffect(() => {
+    // TODO: Maybe move to context
     document.addEventListener('adobe_dc_view_sdk.ready', () => {
       setIsAdobeReady(true);
     });
@@ -43,19 +45,19 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
 
   useEffect(() => {
     if (isAdobeReady && musicalWork?.transcription?.url) {
-      var adobeDCView = new window.AdobeDC.View({
+      const adobeDCView = new window.AdobeDC.View({
         clientId: adobeKey,
         divId: PDF_VIEWER_ID,
       });
+
       adobeDCView.previewFile(
         {
           content: {
             location: {
-              url: musicalWork?.transcription?.url,
+              url: musicalWork.transcription.url,
             },
           },
-          // TODO: Parse from URL
-          metaData: { fileName: 'KhaskiyyaRamez_SamaiBayati.pdf' },
+          metaData: { fileName: `${title}.pdf` },
         },
         { embedMode: 'SIZED_CONTAINER' },
       );
@@ -68,7 +70,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
       pathname={`/education/transcriptions/${musicalWork?.id}`}>
       <script src="https://documentcloud.adobe.com/view-sdk/main.js" async defer></script>
 
-      <Title>{`${musicalWork?.title} - ${composer}`}</Title>
+      <Title>{title}</Title>
 
       <Typography variant="h3" as="h1" textAlign="center">
         {musicalWork?.title}
