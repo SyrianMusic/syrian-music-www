@@ -12,20 +12,39 @@ import { musicalWorkPropShape } from './propTypes';
 const PDF_VIEWER_ID = 'pdf-viewer';
 
 const PdfWrapper = styled.div`
+  box-shadow: 0px 0px 40px -20px ${({ theme }) => theme.color.withOpacity(theme.color.black, 0.75)};
   height: 0;
   width: 100%;
+  margin-top: ${({ theme }) => theme.pxToRem(20)};
   padding-bottom: ${({ theme }) => theme.pxToPercent(11, 8.5)};
   position: relative;
+
+  ${({ theme }) => theme.mq.md} {
+    margin-top: ${({ theme }) => theme.pxToRem(62)};
+  }
 
   #${PDF_VIEWER_ID} {
     position: absolute;
     height: 100%;
     width: 100%;
+    z-index: ${({ theme }) => theme.zIndex.transcriptions.pdfViewer};
   }
 `;
 
+const ErrorMessage = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  z-index: ${({ theme }) => theme.zIndex.transcriptions.errorMessage};
+`;
+
+// TODO: Remove important flags when button is converted to emotion
 const PdfReloadButton = styled(Button)`
   font-size: inherit !important;
+  text-decoration-color: inherit !important;
 `;
 
 const TranscriptionSection = styled.section`
@@ -108,13 +127,15 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
       <TranscriptionSection id="transcription" className="gutters">
         <SectionHeader as="h1">The Transcription</SectionHeader>
 
-        {hasError && (
-          <div>
-            Sorry, we are having trouble loading this transcription.{' '}
-            <PdfReloadButton onClick={reloadPdf}>Try again.</PdfReloadButton>
-          </div>
-        )}
         <PdfWrapper>
+          {hasError && (
+            <ErrorMessage>
+              <Typography textAlign="center">
+                Sorry, we are having trouble loading this transcription.{' '}
+                <PdfReloadButton onClick={reloadPdf}>Try again.</PdfReloadButton>
+              </Typography>
+            </ErrorMessage>
+          )}
           <div id={PDF_VIEWER_ID} />
         </PdfWrapper>
       </TranscriptionSection>
