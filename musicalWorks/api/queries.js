@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const MUSICAL_WORK_QUERY = gql`
-  query musicalWork($id: String!) {
+  query findMusicalWork($id: String!) {
     musicalWork(id: $id) {
       sys {
         id
@@ -19,7 +19,7 @@ export const MUSICAL_WORK_QUERY = gql`
 `;
 
 export const ALL_MUSICAL_WORKS_QUERY = gql`
-  query {
+  query allMusicalWorks {
     musicalWorkCollection {
       items {
         sys {

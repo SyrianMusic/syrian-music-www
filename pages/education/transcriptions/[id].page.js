@@ -43,8 +43,10 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
     });
   });
 
+  const transcriptionUrl = musicalWork?.transcription?.url;
+
   useEffect(() => {
-    if (isAdobeReady && musicalWork?.transcription?.url) {
+    if (isAdobeReady && transcriptionUrl) {
       const adobeDCView = new window.AdobeDC.View({
         clientId: adobeKey,
         divId: PDF_VIEWER_ID,
@@ -53,16 +55,14 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
       adobeDCView.previewFile(
         {
           content: {
-            location: {
-              url: musicalWork.transcription.url,
-            },
+            location: { transcriptionUrl },
           },
           metaData: { fileName: `${title}.pdf` },
         },
         { embedMode: 'SIZED_CONTAINER' },
       );
     }
-  }, [isAdobeReady, musicalWork?.transcription?.url]);
+  }, [isAdobeReady, transcriptionUrl]);
 
   return (
     <SiteLayout
@@ -99,18 +99,17 @@ TranscriptionPage.propTypes = {
 };
 
 export const getStaticPaths = async () => {
+  const { data } = await MusicalWorkAPI.getAllMusicalWorks();
+
   return {
-    // TODO: Get all ids
-    paths: [{ params: { id: '3ifFhMIhFdduvI7MEflZxK' } }],
-    // TODO: Properly set fallback
-    fallback: true,
+    paths: data.musicalWorkCollection.items.map((item) => ({ params: { id: item.sys.id } })),
+    fallback: false,
   };
 };
 
-export const getStaticProps = async () => {
-  // TODO: Get real id
-  const { data } = await MusicalWorkAPI.getMusicalWork('3ifFhMIhFdduvI7MEflZxK');
-  return { props: { ...data, adobeKey: process.env.ADOBE_KEY } };
+export const getStaticProps = async (context) => {
+  const { data } = await MusicalWorkAPI.getMusicalWork(context.params.id);
+  return { props: { adobeKey: process.env.ADOBE_KEY, musicalWork: data.musicalWork } };
 };
 
 export default TranscriptionPage;
