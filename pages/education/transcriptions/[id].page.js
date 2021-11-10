@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import cx from 'classnames';
 import SiteLayout from '../../../components/SiteLayout';
 import Title from '../../../components/Title';
 import Typography, { SectionHeader } from '../../../components/Typography';
@@ -65,9 +64,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
   }, [isAdobeReady, transcriptionUrl]);
 
   return (
-    <SiteLayout
-      className="page-Transcription-SiteLayout"
-      pathname={`/education/transcriptions/${musicalWork?.id}`}>
+    <SiteLayout pathname={`/education/transcriptions/${musicalWork?.id}`}>
       <script src="https://documentcloud.adobe.com/view-sdk/main.js" async defer></script>
 
       <Title>{title}</Title>
@@ -80,10 +77,8 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
         {composer}
       </Typography>
 
-      <TranscriptionSection className={cx('gutters')}>
-        <SectionHeader className="page-Transcription-transcription-header" as="h1">
-          The Transcription
-        </SectionHeader>
+      <TranscriptionSection className="gutters">
+        <SectionHeader as="h1">The Transcription</SectionHeader>
 
         <PdfWrapper>
           <div id={PDF_VIEWER_ID} />
