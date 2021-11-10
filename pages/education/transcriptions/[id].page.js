@@ -99,16 +99,18 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
   }, [hasError, isAdobeReady, transcriptionUrl]);
 
   return (
-    <SiteLayout pathname={`/education/transcriptions/${musicalWork?.id}`}>
+    <SiteLayout
+      className="page-Transcriptions-root"
+      pathname={`/education/transcriptions/${musicalWork?.id}`}>
       <script src="https://documentcloud.adobe.com/view-sdk/main.js" async defer></script>
 
       <Title>{title}</Title>
 
-      <Typography variant="h3" as="h1" textAlign="center">
+      <Typography className="page-Transcriptions-title" variant="h3" as="h1" textAlign="center">
         {musicalWork?.title}
       </Typography>
 
-      <Typography size="lg" textAlign="center">
+      <Typography className="page-Transcriptions-composer" size="lg" textAlign="center">
         {composer}
       </Typography>
 
@@ -143,6 +145,17 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
           <div id={PDF_VIEWER_ID} />
         </PdfWrapper>
       </Section>
+      <style jsx>
+        {`
+          :global(.page-Transcriptions-root .page-Transcriptions-title) {
+            margin-bottom: 0.25em;
+          }
+
+          :global(.page-Transcriptions-root .page-Transcriptions-composer) {
+            margin-bottom: 1.5em;
+          }
+        `}
+      </style>
     </SiteLayout>
   );
 };
