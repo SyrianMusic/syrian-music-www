@@ -20,11 +20,13 @@ const PdfWrapper = styled.div`
   height: 0;
   width: 100%;
   margin-top: ${({ theme }) => theme.pxToRem(20)};
+  margin-bottom: ${({ theme }) => theme.pxToRem(26)};
   padding-bottom: ${({ theme }) => theme.pxToPercent(11, 8.5)};
   position: relative;
 
   ${({ theme }) => theme.mq.md} {
     margin-top: ${({ theme }) => theme.pxToRem(62)};
+    margin-bottom: ${({ theme }) => theme.pxToRem(90)};
   }
 
   #${PDF_VIEWER_ID} {
