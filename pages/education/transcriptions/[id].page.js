@@ -11,6 +11,10 @@ import { musicalWorkPropShape } from './propTypes';
 
 const PDF_VIEWER_ID = 'pdf-viewer';
 
+const Section = styled.section`
+  margin-top: ${({ theme }) => theme.pxToRem(25)};
+`;
+
 const PdfWrapper = styled.div`
   box-shadow: 0px 0px 40px -20px ${({ theme }) => theme.color.withOpacity(theme.color.black, 0.75)};
   height: 0;
@@ -45,14 +49,6 @@ const ErrorMessage = styled.div`
 const PdfReloadButton = styled(Button)`
   font-size: inherit !important;
   text-decoration-color: inherit !important;
-`;
-
-const TranscriptionSection = styled.section`
-  margin-top: ${({ theme }) => theme.pxToRem(25)};
-
-  ${({ theme }) => theme.mq.md} {
-    margin-top: ${({ theme }) => theme.pxToRem(42)};
-  }
 `;
 
 const TranscriptionPage = ({ adobeKey, musicalWork }) => {
@@ -124,7 +120,15 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
         </section>
       )}
 
-      <TranscriptionSection id="transcription" className="gutters">
+      {musicalWork?.iqa && (
+        <Section id="iqa" className="gutters">
+          <SectionHeader as="h1">Iqa (Rhythm)</SectionHeader>
+
+          <Typography>{musicalWork.iqa.name}</Typography>
+        </Section>
+      )}
+
+      <Section id="transcription" className="gutters">
         <SectionHeader as="h1">The Transcription</SectionHeader>
 
         <PdfWrapper>
@@ -138,7 +142,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
           )}
           <div id={PDF_VIEWER_ID} />
         </PdfWrapper>
-      </TranscriptionSection>
+      </Section>
     </SiteLayout>
   );
 };
@@ -181,6 +185,9 @@ export const TRANSCRIPTION_DETAIL_PAGE_QUERY = gql`
         lastName
       }
       maqam {
+        name
+      }
+      iqa {
         name
       }
       transcription {
