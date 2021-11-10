@@ -1,3 +1,15 @@
+const mobileToDesktop = 800;
+
+const breakpoints = {
+  mobileToDesktop,
+  md: mobileToDesktop,
+};
+
+const mq = Object.entries(breakpoints).reduce((acc, [key, breakpoint]) => {
+  acc[key] = `@media (min-width: ${breakpoint}px)`;
+  return acc;
+}, {});
+
 const rootFontSize = 16;
 
 const typography = {
@@ -61,9 +73,7 @@ const colors = {
 };
 
 const theme = {
-  breakpoint: {
-    mobileToDesktop: 800,
-  },
+  breakpoint: breakpoints,
   color: {
     ...colors,
     primary: colors.black,
@@ -100,6 +110,7 @@ const theme = {
       desktop: 118,
     },
   },
+  mq,
   pxToEm: (px, base = rootFontSize) => `${px / base}em`,
   pxToPercent: (px, base) => `${(px / base) * 100}%`,
   pxToRem: (px) => `${px / rootFontSize}rem`,
