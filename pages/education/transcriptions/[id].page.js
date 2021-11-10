@@ -41,6 +41,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
   const [hasError, setHasError] = useState(false);
   const composer = `${musicalWork?.composer?.firstName} ${musicalWork?.composer?.lastName}`;
   const title = `${musicalWork?.title} - ${composer}`;
+  const transcriptionUrl = musicalWork?.transcription?.url;
 
   useEffect(() => {
     // TODO: Maybe move to context
@@ -49,36 +50,38 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
     });
   });
 
-  const transcriptionUrl = musicalWork?.transcription?.url;
+  const loadPdf = useCallback(() => {
+    try {
+      const adobeDCView = new window.AdobeDC.View({
+        clientId: adobeKey,
+        divId: PDF_VIEWER_ID,
+      });
 
-  useEffect(() => {
-    if (isAdobeReady && transcriptionUrl && !hasError) {
-      try {
-        const adobeDCView = new window.AdobeDC.View({
-          clientId: adobeKey,
-          divId: PDF_VIEWER_ID,
-        });
-
-        adobeDCView.previewFile(
-          {
-            content: {
-              location: { url: transcriptionUrl },
-            },
-            metaData: { fileName: `${title}.pdf` },
+      adobeDCView.previewFile(
+        {
+          content: {
+            location: { url: transcriptionUrl },
           },
-          { embedMode: 'SIZED_CONTAINER' },
-        );
-      } catch (e) {
-        // TODO: Send to error logger
-        console.error(e);
-        setHasError(true);
-      }
+          metaData: { fileName: `${title}.pdf` },
+        },
+        { embedMode: 'SIZED_CONTAINER' },
+      );
+    } catch (e) {
+      // TODO: Send to error logger
+      console.error(e);
+      setHasError(true);
     }
-  }, [hasError, isAdobeReady, transcriptionUrl]);
+  }, [setHasError]);
 
   const reloadPdf = useCallback(() => {
     setHasError(false);
   }, [setHasError]);
+
+  useEffect(() => {
+    if (isAdobeReady && transcriptionUrl && !hasError) {
+      loadPdf();
+    }
+  }, [hasError, isAdobeReady, transcriptionUrl]);
 
   return (
     <SiteLayout pathname={`/education/transcriptions/${musicalWork?.id}`}>
