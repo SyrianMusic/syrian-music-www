@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@emotion/react';
 import Head from 'next/head';
 import theme from '../styles/theme';
 
@@ -23,7 +24,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <link rel="apple-touch-icon" href="/images/icons/logo-180.png" />
       <link rel="manifest" href="/manifest.json" />
     </Head>
-    <Component {...pageProps} />
+    <ThemeProvider theme={theme}>
+      <Component {...pageProps} />
+    </ThemeProvider>
     <style global jsx>
       {`
         .gutters {
