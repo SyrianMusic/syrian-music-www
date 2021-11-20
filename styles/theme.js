@@ -116,6 +116,10 @@ const theme = {
   pxToRem: (px) => `${px / rootFontSize}rem`,
   typography,
   zIndex: {
+    transcriptions: {
+      pdfViewer: 1,
+      errorMessage: 2,
+    },
     menuOverlay: 100000,
   },
 };
