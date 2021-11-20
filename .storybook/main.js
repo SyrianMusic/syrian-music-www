@@ -1,5 +1,9 @@
 module.exports = {
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+  addons: [
+    '@storybook/addon-essentials',
+    '@storybook/addon-links',
+    'storybook-addon-pseudo-states',
+  ],
   stories: [
     '../components/**/*.stories.mdx',
     '../components/**/*.stories.js',
