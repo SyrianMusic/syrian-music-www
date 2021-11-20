@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
-import Button from '../Button';
+import Button, { PrimaryButton } from '../Button';
 import Input, { inputBorderWidth, inputPadding } from '../Input';
 import Typography from '../Typography';
 
@@ -147,14 +147,12 @@ export const NewsletterSignup = ({ className, onSubmit }) => {
             required
           />
 
-          <Button
+          <PrimaryButton
             className="component-NewsletterSignup-submit"
             type="submit"
-            color={Button.colors.primary}
-            disabled={!isValid() || submitted}
-            variant={Button.variants.filled}>
+            disabled={!isValid() || submitted}>
             Sign up
-          </Button>
+          </PrimaryButton>
         </div>
       </div>
 
