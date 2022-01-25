@@ -9,4 +9,6 @@ export default {
 const Template = (args) => <App Component={DonatePage} pageProps={args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  stripeKey: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh',
+};

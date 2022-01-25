@@ -1,7 +1,8 @@
-import { Input } from './Input';
+import { Input } from '../Input';
+import { storybookBasePath } from './config';
 
 export default {
-  title: 'Input',
+  title: storybookBasePath + 'Input',
   component: Input,
   argTypes: {
     className: {

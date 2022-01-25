@@ -13,6 +13,13 @@ const mq = Object.entries(breakpoints).reduce((acc, [key, breakpoint]) => {
 const rootFontSize = 16;
 
 const typography = {
+  input: {
+    // TODO: No mobile designs for this
+    fontSizeMobile: 20,
+    lineHeightMobile: 25,
+    fontSizeDesktop: 20,
+    lineHeightDesktop: 25,
+  },
   body: {
     xs: {
       fontSizeMobile: 8,
@@ -77,11 +84,12 @@ const theme = {
   breakpoint: breakpoints,
   color: {
     ...colors,
+    placeholder: colors.gainsboro,
     primary: colors.black,
     secondary: colors.spanishGray,
     interactive: colors.lightCoral,
     disabled: colors.gainsboro,
-    error: colors.red,
+    error: colors.lightCoral,
     success: colors.spanishVeridian,
     salmon: colors.lightCoral,
     accentTan: colors.windsorTan,
