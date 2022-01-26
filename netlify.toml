@@ -1,0 +1,48 @@
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  command = "yarn build && yarn export"
+  publish = "out"
+
+[dev]
+  framework = "next"
+
+[[redirects]]
+  from = "http://syrianmusic.net"
+  to = "https://syrianmusic.org"
+  status = 301
+
+[[redirects]]
+  from = "http://www.syrianmusic.net"
+  to = "https://syrianmusic.org"
+  status = 301
+
+[[redirects]]
+  from = "https://syrianmusic.net"
+  to = "https://syrianmusic.org"
+  status = 301
+
+[[redirects]]
+  from = "https://www.syrianmusic.net"
+  to = "https://syrianmusic.org"
+  status = 301
+
+[[redirects]]
+  from = "http://syrianmusic.us"
+  to = "https://syrianmusic.org"
+  status = 301
+
+[[redirects]]
+  from = "http://www.syrianmusic.us"
+  to = "https://syrianmusic.org"
+  status = 301
+
+[[redirects]]
+  from = "https://syrianmusic.us"
+  to = "https://syrianmusic.org"
+  status = 301
+
+[[redirects]]
+  from = "https://www.syrianmusic.us"
+  to = "https://syrianmusic.org"
+  status = 301

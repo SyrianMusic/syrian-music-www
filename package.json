@@ -6,11 +6,12 @@
   "author": "Erik Jönsson <13211361+erikwithuhk@users.noreply.github.com>",
   "main": "index.js",
   "scripts": {
+    "build": "next build",
+    "build-storybook": "build-storybook",
     "dev": "next dev",
-    "build": "next build && next export",
+    "export": "next export",
     "start": "next start",
     "storybook": "start-storybook -p 6006 -s ./public",
-    "build-storybook": "build-storybook",
     "test": "jest --watch"
   },
   "dependencies": {
