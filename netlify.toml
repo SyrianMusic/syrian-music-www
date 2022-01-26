@@ -11,38 +11,46 @@
   from = "http://syrianmusic.net"
   to = "https://syrianmusic.org"
   status = 301
+  force = true
 
 [[redirects]]
   from = "http://www.syrianmusic.net"
   to = "https://syrianmusic.org"
   status = 301
+  force = true
 
 [[redirects]]
   from = "https://syrianmusic.net"
   to = "https://syrianmusic.org"
   status = 301
+  force = true
 
 [[redirects]]
   from = "https://www.syrianmusic.net"
   to = "https://syrianmusic.org"
   status = 301
+  force = true
 
 [[redirects]]
   from = "http://syrianmusic.us"
   to = "https://syrianmusic.org"
   status = 301
+  force = true
 
 [[redirects]]
   from = "http://www.syrianmusic.us"
   to = "https://syrianmusic.org"
   status = 301
+  force = true
 
 [[redirects]]
   from = "https://syrianmusic.us"
   to = "https://syrianmusic.org"
   status = 301
+  force = true
 
 [[redirects]]
   from = "https://www.syrianmusic.us"
   to = "https://syrianmusic.org"
   status = 301
+  force = true
