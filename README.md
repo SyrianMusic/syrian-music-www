@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e1805e90-b0d1-4488-afb3-28f955de3c39/deploy-status)](https://app.netlify.com/sites/syrianmusic/deploys)
+
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
@@ -139,21 +141,15 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch off of the `develop` branch (`git checkout -b feature/AmazingFeature develop`)
+1. Clone the Project
+2. Create your Feature Branch off of the `main` branch (`git checkout -b feature/AmazingFeature main`)
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request to the `develop` branch
+5. Open a Pull Request to the `main` branch
 
 ### Releasing
 
-1. Create a release branch (e.g. `release/1.0.0`)[^1] with the changes you'd like to push to staging.
-2. After the changes have been approved, create a commit (message `v1.0.0`) updating the version number in the `package.json` .
-3. Tag this commit with the version number (e.g. `1.0.0`).
-4. Merge the branch into `main`.
-5. Merge `main` into `develop`.
+All commits to master are automatically deployed by Netlify.
 
 [^1]: See [Semantic versioning for end-user applications](https://medium.com/@u_glow/making-sense-of-semantic-versioning-for-end-user-software-applications-a3049d97478b) for guidance on versioning.
 
