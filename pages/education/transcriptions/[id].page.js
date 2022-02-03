@@ -7,6 +7,7 @@ import Button from '../../../components/Button';
 import SiteLayout from '../../../components/SiteLayout';
 import Title from '../../../components/Title';
 import Typography, { SectionHeader } from '../../../components/Typography';
+import environment from '../../../utils/environment';
 import { musicalWorkPropShape } from './propTypes';
 
 const PDF_VIEWER_ID = 'pdf-viewer';
@@ -216,7 +217,7 @@ export const getStaticProps = async (context) => {
   const { data } = await BaseAPI.query(TRANSCRIPTION_DETAIL_PAGE_QUERY, {
     variables: { id: context.params.id },
   });
-  return { props: { adobeKey: process.env.ADOBE_KEY, musicalWork: data.musicalWork } };
+  return { props: { adobeKey: environment.adobeKey, musicalWork: data.musicalWork } };
 };
 
 export default TranscriptionPage;

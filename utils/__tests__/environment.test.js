@@ -6,8 +6,12 @@ describe('environment', () => {
     originalEnv = process.env;
   });
 
+  const testEnv = {
+    ADOBE_KEY_SYRIANMUSIC: 'ADOBE_KEY_SYRIANMUSIC',
+  };
+
   beforeEach(() => {
-    process.env = { ...originalEnv };
+    process.env = { ...originalEnv, ...testEnv };
   });
 
   afterAll(() => {
@@ -29,6 +33,10 @@ describe('environment', () => {
     it('sets isProduction', () => {
       expect(environment.isProduction).toBe(true);
     });
+
+    it('sets adobeKey', () => {
+      expect(environment.adobeKey).toBe(testEnv.ADOBE_KEY_SYRIANMUSIC);
+    });
   });
 
   describe("given NODE_ENV is 'preview'", () => {
@@ -45,6 +53,10 @@ describe('environment', () => {
 
     it('sets isProduction', () => {
       expect(environment.isProduction).toBe(false);
+    });
+
+    it('sets adobeKey', () => {
+      expect(environment.adobeKey).toBe(testEnv.ADOBE_KEY_NETLIFY);
     });
   });
 
@@ -63,11 +75,14 @@ describe('environment', () => {
     it('sets isProduction', () => {
       expect(environment.isProduction).toBe(false);
     });
+
+    it('sets adobeKey', () => {
+      expect(environment.adobeKey).toBe(testEnv.ADOBE_KEY_SYRIANMUSIC);
+    });
   });
 
   describe("given NODE_ENV is 'test'", () => {
     beforeEach(() => {
-      process.env.NODE_ENV = 'test';
       jest.isolateModules(() => {
         environment = require('../environment').default;
       });
@@ -79,6 +94,10 @@ describe('environment', () => {
 
     it('sets isProduction', () => {
       expect(environment.isProduction).toBe(false);
+    });
+
+    it('sets adobeKey', () => {
+      expect(environment.adobeKey).toBe(null);
     });
   });
 });
