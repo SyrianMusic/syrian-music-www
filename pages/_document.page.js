@@ -1,10 +1,19 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import environment from '../utils/environment';
+
+const disableReactDevToolsScript = (
+  <script
+    dangerouslySetInnerHTML={{
+      __html: 'window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {}',
+    }}
+  />
+);
 
 class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>{environment.isProduction && disableReactDevToolsScript}</Head>
         <body>
           <noscript>
             <iframe
