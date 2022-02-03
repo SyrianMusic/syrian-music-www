@@ -6,8 +6,13 @@ describe('environment', () => {
     originalEnv = process.env;
   });
 
+  const testEnv = {
+    STRIPE_KEY_PRD: 'STRIPE_KEY_PRD',
+    STRIPE_KEY_TEST: 'STRIPE_KEY_TEST',
+  };
+
   beforeEach(() => {
-    process.env = { ...originalEnv };
+    process.env = { ...originalEnv, ...testEnv };
   });
 
   afterAll(() => {
@@ -29,6 +34,10 @@ describe('environment', () => {
     it('sets isProduction', () => {
       expect(environment.isProduction).toBe(true);
     });
+
+    it('sets stripeKey', () => {
+      expect(environment.stripeKey).toBe(testEnv.STRIPE_KEY_PRD);
+    });
   });
 
   describe("given NODE_ENV is 'preview'", () => {
@@ -45,6 +54,10 @@ describe('environment', () => {
 
     it('sets isProduction', () => {
       expect(environment.isProduction).toBe(false);
+    });
+
+    it('sets stripeKey', () => {
+      expect(environment.stripeKey).toBe(testEnv.STRIPE_KEY_TEST);
     });
   });
 
@@ -63,6 +76,10 @@ describe('environment', () => {
     it('sets isProduction', () => {
       expect(environment.isProduction).toBe(false);
     });
+
+    it('sets stripeKey', () => {
+      expect(environment.stripeKey).toBe(testEnv.STRIPE_KEY_TEST);
+    });
   });
 
   describe("given NODE_ENV is 'test'", () => {
@@ -79,6 +96,10 @@ describe('environment', () => {
 
     it('sets isProduction', () => {
       expect(environment.isProduction).toBe(false);
+    });
+
+    it('sets stripeKey', () => {
+      expect(environment.stripeKey).toBe(testEnv.STRIPE_KEY_TEST);
     });
   });
 });

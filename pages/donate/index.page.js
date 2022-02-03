@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { DonatePage } from './DonatePage';
+import environment from '../../utils/environment';
 
 const DonatePageContainer = ({ stripeKey }) => {
   const onSubmit = () => {};
@@ -12,8 +13,11 @@ DonatePageContainer.propTypes = {
 };
 
 export const getStaticProps = async () => {
-  const stripeKey = process.env.STRIPE_KEY;
-  return { props: { stripeKey } };
+  return {
+    props: {
+      stripeKey: environment.stripeKey,
+    },
+  };
 };
 
 export default DonatePageContainer;
