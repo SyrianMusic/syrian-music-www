@@ -8,11 +8,11 @@
   "scripts": {
     "build": "next build",
     "build-storybook": "build-storybook",
-    "dev": "next dev",
+    "dev": "NODE_ENV=development next dev",
     "export": "next export",
     "start": "next start",
     "storybook": "start-storybook -p 6006 -s ./public",
-    "test": "jest --watch"
+    "test": "NODE_ENV=test jest --watch"
   },
   "dependencies": {
     "@apollo/client": "^3.4.10",
