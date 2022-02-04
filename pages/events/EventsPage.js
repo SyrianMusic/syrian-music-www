@@ -59,26 +59,27 @@ const parseContent = (node, id) => {
   }
 };
 
-const parseParagraph = (node, id) => {
+const parseParagraph = (node, id, paragraphClass) => {
   if (!Array.isArray(node?.content)) {
     throw new Error();
   }
 
   return (
-    <Typography key={id} size="lg">
+    <Typography className={paragraphClass} key={id} size="md">
       {node?.content?.length > 0 && node.content.map(parseContent)}
     </Typography>
   );
 };
 
-const parseNode = (node, id = null) => {
+// TODO: Move to shared util
+export const parseNode = (node, id = null, paragraphClass) => {
   switch (node?.nodeType) {
     case 'document':
-      return node.content.map(parseNode);
+      return node.content.map((node, id) => parseNode(node, id, paragraphClass));
     case 'heading-3':
       return parseHeading(node, id);
     case 'paragraph':
-      return parseParagraph(node, id);
+      return parseParagraph(node, id, paragraphClass);
     default:
       console.error('Unhandled', node);
   }
