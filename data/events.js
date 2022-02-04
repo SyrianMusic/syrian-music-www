@@ -143,8 +143,8 @@ export default [
             _type: 'span',
             _key: event2.block(1).span(1).toString(),
             text:
-              'Takht al-Nagham presents an evening featuring two programs of music rarely heard in ' +
-              "the US. The first half will feature Aleppo's oldest known composition, ",
+              'Robert Browning Associates presents an evening featuring two programs of music ' +
+              "rarely heard in the US. The first half will feature Aleppo's oldest known composition, ",
             marks: [],
           },
           {
