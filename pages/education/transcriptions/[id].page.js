@@ -134,7 +134,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
       )}
 
       <Section id="transcription" className="gutters">
-        <SectionHeader as="h1">The Transcription</SectionHeader>
+        <SectionHeader as="h1">Transcription</SectionHeader>
 
         <PdfWrapper>
           {hasError && (
