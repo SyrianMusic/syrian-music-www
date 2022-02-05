@@ -1,14 +1,10 @@
-FROM netlify/build:focal
+FROM node:16-alpine
 
-USER root
 RUN mkdir -p /app
-RUN useradd user
-RUN chown user /app
-
-USER user
 WORKDIR /app
 
-RUN ruby --version
+RUN apk update
+RUN apk add git
 
 COPY package.json ./
 COPY yarn.lock ./
@@ -18,4 +14,4 @@ COPY . ./
 
 EXPOSE 8888
 
-CMD ["yarn", "netlify"]
+CMD ["node"]
