@@ -52,6 +52,7 @@
     "jest": "^27.1.0",
     "jest-transform-yaml": "^1.0.0",
     "js-yaml-loader": "^1.2.2",
+    "netlify": "^10.1.2",
     "next-plugin-yaml": "^1.0.1",
     "prettier": "^2.2.1",
     "react-test-renderer": "^17.0.2",
