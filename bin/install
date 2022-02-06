@@ -2,9 +2,20 @@
 
 set -e
 
+source lib/prompts.sh
+
+declare +i -r DOCKER_ENV_FILE=".env.docker"
+declare +i -r NETLIFY_BACKUP_FILE=".netlify.token"
+declare +i -r NETLIFY_TOKEN_NAME="Netlify personal access token"
+declare +i -r NETLIFY_DOCS_URL="https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui"
+
 function install() {
-    echo "$1" > .netlify.token
-    echo "NETLIFY_AUTH_TOKEN=$1" > .env.docker.local
+    confirm "Do you want to change your $NETLIFY_TOKEN_NAME?" && {
+        echo "Enter your $NETLIFY_TOKEN_NAME ($NETLIFY_DOCS_URL):"
+        read -p "" NETLIFY_AUTH_TOKEN
+        echo "$NETLIFY_AUTH_TOKEN" > $NETLIFY_BACKUP_FILE
+        echo "NETLIFY_AUTH_TOKEN=$NETLIFY_AUTH_TOKEN" > $DOCKER_ENV_FILE
+    }
     echo "127.0.0.1 local.syrianmusic.org" | sudo tee -a /etc/hosts > /dev/null
     echo "127.0.0.1 storybook.syrianmusic.org" | sudo tee -a /etc/hosts > /dev/null
     echo "You have successfully installed the Syrian Music Preservation Initiative project."
