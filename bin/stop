@@ -4,6 +4,7 @@ set -e
 
 function stop() {
     docker compose down
+    kill 0
 }
 
 stop "$@"
