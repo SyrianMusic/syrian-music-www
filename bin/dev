@@ -2,29 +2,33 @@
 
 set -e
 
-trap bin/exit EXIT
+function dev() {
+    trap bin/exit EXIT
+    
+    docker compose up -d --build
+    
+    STORYBOOK_URL="http://localhost:6006"
+    WEB_URL="http://local.syrianmusic.org:8888"
+    
+    printf "Waiting for storybook..."
+    while ! curl --fail --silent --head $STORYBOOK_URL; do
+        printf "."
+        sleep 1
+    done
+    
+    printf "\n"
+    open $STORYBOOK_URL
+    
+    printf "Waiting for web..."
+    while ! curl --fail --silent --head $WEB_URL; do
+        printf "."
+        sleep 1
+    done
+    
+    printf "\n"
+    open $WEB_URL
+    
+    docker compose exec web yarn jest --watch
+}
 
-docker compose up -d --build
-
-STORYBOOK_URL="http://localhost:6006"
-WEB_URL="http://local.syrianmusic.org:8888"
-
-printf "Waiting for storybook..."
-while ! curl --fail --silent --head $STORYBOOK_URL; do
-  printf "."
-  sleep 1
-done
-
-printf "\n"
-open $STORYBOOK_URL
-
-printf "Waiting for web..."
-while ! curl --fail --silent --head $WEB_URL; do
-  printf "."
-  sleep 1
-done
-
-printf "\n"
-open $WEB_URL
-
-docker compose exec web yarn jest --watch
+dev @
