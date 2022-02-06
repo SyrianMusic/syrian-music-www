@@ -9,6 +9,8 @@ declare +i -r NETLIFY_BACKUP_FILE=".netlify.token"
 declare +i -r NETLIFY_TOKEN_NAME="Netlify personal access token"
 declare +i -r NETLIFY_DOCS_URL="https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui"
 
+chmod +x bin/*
+
 function install() {
     confirm "Do you want to change your $NETLIFY_TOKEN_NAME?" && {
         echo "Enter your $NETLIFY_TOKEN_NAME ($NETLIFY_DOCS_URL):"
