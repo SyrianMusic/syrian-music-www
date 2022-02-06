@@ -2,4 +2,8 @@
 
 set -e
 
-docker compose down
+function main() {
+    docker compose down
+}
+
+main $@
