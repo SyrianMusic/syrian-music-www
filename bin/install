@@ -2,6 +2,7 @@
 
 set -e
 
+source lib/hosts.sh
 source lib/prompts.sh
 
 declare +i -r DOCKER_ENV_FILE=".env.docker"
@@ -18,8 +19,8 @@ function install() {
         echo "$NETLIFY_AUTH_TOKEN" > $NETLIFY_BACKUP_FILE
         echo "NETLIFY_AUTH_TOKEN=$NETLIFY_AUTH_TOKEN" > $DOCKER_ENV_FILE
     }
-    echo "127.0.0.1 local.syrianmusic.org" | sudo tee -a /etc/hosts > /dev/null
-    echo "127.0.0.1 storybook.syrianmusic.org" | sudo tee -a /etc/hosts > /dev/null
+    add_host "local.syrianmusic.org"
+    add_host "storybook.syrianmusic.org"
     echo "You have successfully installed the Syrian Music Preservation Initiative project."
 }
 
