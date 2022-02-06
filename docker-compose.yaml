@@ -18,7 +18,7 @@ services:
 
   storybook:
     image: syrian_music
-    command: yarn start-storybook -p 6006 -s ./public
+    command: yarn start-storybook -p 9999 -s ./public
     build:
       context: .
       dockerfile: Dockerfile
@@ -28,7 +28,7 @@ services:
       - ./:/app
       - node_modules:/app/node_modules
     ports:
-      - "6006:6006"
+      - "9999:9999"
 
 volumes:
   node_modules:
