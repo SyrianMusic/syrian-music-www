@@ -3,7 +3,7 @@
 set -e
 
 function dev() {
-    trap bin/exit EXIT
+    trap bin/stop EXIT
     
     docker compose up -d --build
     
