@@ -7,7 +7,7 @@ function dev() {
     
     docker compose up -d --build
     
-    STORYBOOK_URL="http://localhost:6006"
+    STORYBOOK_URL="http://localhost:9999"
     WEB_URL="http://local.syrianmusic.org:8888"
     
     printf "Waiting for storybook..."
