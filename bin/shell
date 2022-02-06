@@ -2,8 +2,8 @@
 
 set -e
 
-function main() {
+function shell() {
     docker compose exec $1 sh
 }
 
-main $@
+shell $@
