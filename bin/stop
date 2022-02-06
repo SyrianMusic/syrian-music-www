@@ -2,8 +2,8 @@
 
 set -e
 
-function main() {
+function stop() {
     docker compose down
 }
 
-main $@
+stop $@
