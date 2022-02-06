@@ -2,4 +2,8 @@
 
 set -e
 
-docker compose exec web sh
+function main() {
+    docker compose exec $1 sh
+}
+
+main $@
