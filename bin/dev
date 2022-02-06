@@ -29,4 +29,4 @@ function dev() {
     open $WEB_URL
 }
 
-dev @
+dev $@
