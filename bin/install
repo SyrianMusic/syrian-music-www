@@ -12,13 +12,15 @@ declare +i -r NETLIFY_DOCS_URL="https://docs.netlify.com/cli/get-started/#obtain
 
 chmod +x bin/*
 
+function update_netlify_auth() {
+    echo "Enter your $NETLIFY_TOKEN_NAME ($NETLIFY_DOCS_URL):"
+    read -p "" NETLIFY_AUTH_TOKEN
+    echo "$NETLIFY_AUTH_TOKEN" > "$NETLIFY_BACKUP_FILE"
+    echo "NETLIFY_AUTH_TOKEN=$NETLIFY_AUTH_TOKEN" > "$DOCKER_ENV_FILE"
+}
+
 function install() {
-    confirm "Do you want to change your $NETLIFY_TOKEN_NAME?" && {
-        echo "Enter your $NETLIFY_TOKEN_NAME ($NETLIFY_DOCS_URL):"
-        read -p "" NETLIFY_AUTH_TOKEN
-        echo "$NETLIFY_AUTH_TOKEN" > $NETLIFY_BACKUP_FILE
-        echo "NETLIFY_AUTH_TOKEN=$NETLIFY_AUTH_TOKEN" > $DOCKER_ENV_FILE
-    }
+    confirm "Do you want to change your $NETLIFY_TOKEN_NAME?" && update_netlify_auth
     add_host "local.syrianmusic.org"
     add_host "storybook.syrianmusic.org"
     echo "You have successfully installed the Syrian Music Preservation Initiative project."
