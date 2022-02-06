@@ -4,10 +4,8 @@ set -e
 
 function run() {
     trap bin/stop EXIT
-    
-    local +i -r command=$1
-    
-    docker compose run --name="syrian_music_$command"  $command
+    local +i -r COMMAND=$1
+    docker compose run --name="syrian_music_$COMMAND"  $COMMAND
 }
 
-run $@
+run "$@"

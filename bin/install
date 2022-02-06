@@ -13,6 +13,7 @@ declare +i -r NETLIFY_DOCS_URL="https://docs.netlify.com/cli/get-started/#obtain
 chmod +x bin/*
 
 function update_netlify_auth() {
+    local +i NETLIFY_AUTH_TOKEN=""
     echo "Enter your $NETLIFY_TOKEN_NAME ($NETLIFY_DOCS_URL):"
     read -p "" NETLIFY_AUTH_TOKEN
     echo "$NETLIFY_AUTH_TOKEN" > "$NETLIFY_BACKUP_FILE"
@@ -26,4 +27,4 @@ function install() {
     echo "You have successfully installed the Syrian Music Preservation Initiative project."
 }
 
-install $@
+install "$@"

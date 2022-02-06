@@ -6,4 +6,4 @@ function stop() {
     docker compose down
 }
 
-stop $@
+stop "$@"

@@ -11,7 +11,7 @@ function dev() {
     WEB_URL="http://local.syrianmusic.org:8888"
     
     printf "Waiting for storybook..."
-    while ! curl --fail --silent --head $STORYBOOK_URL; do
+    while ! curl --fail --silent --head "$STORYBOOK_URL"; do
         printf "."
         sleep 1
     done
@@ -20,13 +20,13 @@ function dev() {
     open $STORYBOOK_URL
     
     printf "Waiting for web..."
-    while ! curl --fail --silent --head $WEB_URL; do
+    while ! curl --fail --silent --head "$WEB_URL"; do
         printf "."
         sleep 1
     done
     
     printf "\n"
-    open $WEB_URL
+    open "$WEB_URL"
 }
 
-dev $@
+dev "$@"
