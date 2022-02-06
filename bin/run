@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+set -e
+
+function run() {
+    trap bin/stop EXIT
+    
+    local +i -r command=$1
+    
+    docker compose run --name="syrian_music_$command"  $command
+}
+
+run @

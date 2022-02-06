@@ -27,8 +27,6 @@ function dev() {
     
     printf "\n"
     open $WEB_URL
-    
-    docker compose exec web yarn jest --watch
 }
 
 dev @
