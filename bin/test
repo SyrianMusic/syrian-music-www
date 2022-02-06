@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+set -e
+
+function test() {
+    trap bin/stop EXIT
+    
+    docker compose run yarn jest --watch
+}
+
+test @
