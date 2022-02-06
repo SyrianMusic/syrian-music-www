@@ -2,9 +2,12 @@
 
 set -e
 
-chmod +x bin/*
+function install() {
+    echo "$1" > .netlify.token
+    echo "NETLIFY_AUTH_TOKEN=$1" > .env.docker.local
+    echo "127.0.0.1 local.syrianmusic.org" | sudo tee -a /etc/hosts > /dev/null
+    echo "127.0.0.1 storybook.syrianmusic.org" | sudo tee -a /etc/hosts > /dev/null
+    echo "You have successfully installed the Syrian Music Preservation Initiative project."
+}
 
-echo "$1" > .netlify.token
-echo "NETLIFY_AUTH_TOKEN=$1" > .env.docker.local
-echo "127.0.0.1 local.syrianmusic.org" | sudo tee -a /etc/hosts > /dev/null
-echo "You have successfully installed the Syrian Music Preservation Initiative project."
+install $@

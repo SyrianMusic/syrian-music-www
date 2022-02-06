@@ -111,10 +111,10 @@ To get a local copy up and running follow these simple steps.
    git clone https://github.com/SyrianMusic/syrian-music-www.git
    ```
 
-3. Enable the install script to be run
+3. Enable the scripts to be run
 
    ```bash
-   chmod +x bin/install
+   chmod +x bin/*
    ```
 
 3. Run the install script with your [Netlify auth token](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui)
