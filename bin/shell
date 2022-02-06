@@ -4,7 +4,7 @@ set -e
 
 function shell() {
     local +i -r SERVICE=$1
-    docker compose exec $SERVICE sh
+    docker compose exec "$SERVICE" sh
 }
 
 shell "$@"

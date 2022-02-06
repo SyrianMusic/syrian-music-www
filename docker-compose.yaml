@@ -30,7 +30,7 @@ services:
     ports:
       - "9999:9999"
 
-  test:
+  tests:
     image: syrian_music
     command: yarn jest --watch
     stdin_open: true
@@ -38,7 +38,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: syrian_music_test
+    container_name: syrian_music_tests
     restart: always
     volumes:
       - ./:/app

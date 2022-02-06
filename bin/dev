@@ -2,31 +2,20 @@
 
 set -e
 
+source lib/prompts.sh
+
+declare +i -r STORYBOOK_HOST="http://localhost"
+declare +i -r STORYBOOK_PORT="9999"
+declare +i -r WEB_HOST="http://local.syrianmusic.org"
+declare +i -r WEB_PORT="8888"
+
 function dev() {
-    trap bin/stop EXIT
-    
     docker compose up -d --build
     
-    STORYBOOK_URL="http://localhost:9999"
-    WEB_URL="http://local.syrianmusic.org:8888"
+    open "$STORYBOOK_HOST:$STORYBOOK_PORT"
+    open "$WEB_HOST:$WEB_PORT"
     
-    printf "Waiting for storybook..."
-    while ! curl --fail --silent --head "$STORYBOOK_URL"; do
-        printf "."
-        sleep 1
-    done
-    
-    printf "\n"
-    open $STORYBOOK_URL
-    
-    printf "Waiting for web..."
-    while ! curl --fail --silent --head "$WEB_URL"; do
-        printf "."
-        sleep 1
-    done
-    
-    printf "\n"
-    open "$WEB_URL"
+    confirm "Do you want to attach this terminal to the test runner?" && bin/attach tests
 }
 
 dev "$@"

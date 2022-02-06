@@ -2,9 +2,16 @@
 
 set -e
 
+source lib/prompts.sh
+
 function stop() {
-    docker compose down
-    kill 0
+    confirm "Do you want to stop the containers?" && {
+        docker compose stop
+    }
+    confirm "Do you want to destroy the containers?" && {
+        docker compose down
+    }
+    return 0
 }
 
 stop "$@"
