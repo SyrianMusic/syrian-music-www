@@ -5,12 +5,15 @@ set -e
 source lib/prompts.sh
 
 function stop() {
-    confirm "Do you want to stop the containers?" && {
-        docker compose stop
-    }
     confirm "Do you want to destroy the containers?" && {
         docker compose down
+        return 0
     }
+    confirm "Do you want to stop the containers?" && {
+        docker compose stop
+        return 0
+    }
+    echo "Nothing was done."
     return 0
 }
 
