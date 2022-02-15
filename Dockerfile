@@ -1,17 +1,24 @@
 FROM node:16-alpine
 
-RUN mkdir -p /app
-WORKDIR /app
-
 RUN apk update
 RUN apk add git
 
-COPY package.json ./
-COPY yarn.lock ./
+ARG PORT=8888
+ENV PORT $PORT
+ARG DEBUG_PORT=9229
+ENV DEBUG_PORT $DEBUG_PORT
+EXPOSE $PORT $DEBUG_PORT 9230
+
+RUN mkdir -p /usr/src && chown node:node /usr/src
+WORKDIR /usr/src
+
+USER node
+COPY package.json yarn.lock ./
 RUN yarn
+ENV PATH=/usr/src/node_modules/.bin:$PATH
 
-COPY . ./
+WORKDIR /usr/src/app
 
-EXPOSE 8888
+COPY . .
 
 CMD ["node"]

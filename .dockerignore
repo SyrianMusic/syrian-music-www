@@ -2,3 +2,4 @@
 .vscode
 bin
 hidden
+node_modules
