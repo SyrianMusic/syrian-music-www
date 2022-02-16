@@ -101,11 +101,8 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-- [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-- yarn
-  ```sh
-  npm install --global yarn
-  ```
+- [Docker Desktop](https://docs.docker.com/get-docker/)
+- Access to Netlify (ask @erikwithuhk)
 
 ### Installation
 
@@ -113,14 +110,26 @@ To get a local copy up and running follow these simple steps.
    ```sh
    git clone https://github.com/SyrianMusic/syrian-music-www.git
    ```
-2. Switch to the correct version of node
-   ```sh
-   nvm use
+
+3. Enable the scripts to be run
+
+   ```bash
+   chmod +x bin/*
    ```
-3. Install NPM packages
-   ```sh
-   yarn
+
+3. Run the install script with your [Netlify auth token](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui)
+
+   ```bash
+   bin/install <YOUR AUTH TOKEN>
    ```
+
+4. Start the development server
+
+   ```bash
+   bin/dev
+   ```
+
+6. Visit http://local.syrianmusic.org:3000 in your browser!
 
 <!-- USAGE EXAMPLES -->
 
