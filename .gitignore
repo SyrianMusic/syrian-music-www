@@ -1,5 +1,6 @@
 hidden
 .DS_Store
+*.token
 
 # Editor configs
 .vscode
@@ -79,7 +80,7 @@ typings/
 
 # dotenv environment variables file
 .env
-.env*.local
+.env*.*
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

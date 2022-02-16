@@ -1,7 +1,7 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
-  command = "npm run build && npm run export"
+  command = "yarn next build && yarn next export"
   publish = "out"
 
 [build.environment]

@@ -1,0 +1,64 @@
+version: "3"
+
+services:
+  web:
+    image: syrian_music
+    command: netlify dev
+    build:
+      args:
+        - NODE_ENV=development
+        - PORT=8888
+        - DEBUG_PORT=9229
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env.docker
+    environment:
+      - NODE_OPTIONS=--inspect=0.0.0.0:9229
+    container_name: syrian_music_web
+    restart: always
+    volumes:
+      - .:/usr/src/app:delegated
+      - node_modules:/usr/src/app/node_modules
+    ports:
+      - "8888:8888"
+      - "9229:9229"
+      - "9230:9230"
+
+  storybook:
+    image: syrian_music
+    command: start-storybook -p 9999 -s ./public
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - PORT=9999
+        - DEBUG_PORT=9339
+
+    environment:
+      - NODE_OPTIONS=--inspect=0.0.0.0:9339
+    container_name: syrian_music_storybook
+    restart: always
+    volumes:
+      - .:/usr/src/app:delegated
+      - node_modules:/usr/src/app/node_modules
+    ports:
+      - "9999:9999"
+      - "9339:9339"
+
+  tests:
+    image: syrian_music
+    command: jest --watch
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: syrian_music_tests
+    restart: always
+    volumes:
+      - .:/usr/src/app:delegated
+      - node_modules:/usr/src/app/node_modules
+
+volumes:
+  node_modules:
+    name: syrian_music_node_modules
