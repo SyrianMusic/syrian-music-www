@@ -1,9 +1,10 @@
 import UpcomingEvent from '../UpcomingEvent';
 import eventImage3x from './event-image@3x.png';
 import eventImagePortrait3x from './event-image-portrait@3x.png';
+import { PAGE_PATH } from './config';
 
 export default {
-  title: 'UpcomingEvent',
+  title: PAGE_PATH + '/UpcomingEvent',
   component: UpcomingEvent,
   argTypes: {
     className: {
