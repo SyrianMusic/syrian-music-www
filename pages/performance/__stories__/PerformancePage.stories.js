@@ -6,9 +6,10 @@ import { PAGE_PATH } from './config';
 export default {
   title: PAGE_PATH,
   component: PerformancePage,
+  excludeStories: ['Template'],
 };
 
-const Template = (args) => {
+export const Template = (args) => {
   return <App Component={PerformancePage} pageProps={args} />;
 };
 
