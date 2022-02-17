@@ -11,6 +11,7 @@ import config from '../../config.yaml';
 import { typography } from '../../styles/mixins';
 import theme from '../../styles/theme';
 import UpcomingEvent from './UpcomingEvent';
+import { getNextEvent } from './utils';
 
 const pageConfig = config.nav.performance;
 
@@ -29,7 +30,7 @@ export const performancePageQuery = gql`
 `;
 
 const PerformancePage = ({ upcomingEvents }) => {
-  const nextEvent = upcomingEvents.items[0];
+  const nextEvent = getNextEvent(upcomingEvents?.items);
 
   return (
     <SiteLayout className="page-Performance-root" pathname={pageConfig.href}>

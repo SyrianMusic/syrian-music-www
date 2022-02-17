@@ -4,12 +4,15 @@ export const getNextEvent = (events) => {
   if (Array.isArray(events) && events.length) {
     const now = new Date(Date.now());
     upcomingEvents = events
-      .filter((event) => event.date > now)
+      .filter((event) => new Date(event.startDate) > now)
       .sort((event1, event2) => {
-        if (event1?.date > event2?.date) {
+        const startDate1 = new Date(event1?.startDate);
+        const startDate2 = new Date(event2?.startDate);
+
+        if (startDate1 > startDate2) {
           return 1;
         }
-        if (event1?.date < event2?.date) {
+        if (startDate1 < startDate2) {
           return -1;
         }
         return 0;
