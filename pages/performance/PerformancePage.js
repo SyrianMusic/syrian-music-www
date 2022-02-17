@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
 import { gql } from '@apollo/client';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import Hero from '../../components/Hero';
 import Image from '../../components/Image';
 import Rule from '../../components/Rule';

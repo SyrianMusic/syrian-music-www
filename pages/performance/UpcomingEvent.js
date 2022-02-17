@@ -1,12 +1,12 @@
 import { gql } from '@apollo/client';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import CaretIcon from '../../icons/Caret';
-import { parseNode } from '../events/EventsPage';
-import theme from '../../styles/theme';
-import { formatDate } from '../../utils/date';
 import Image from '../../components/Image';
 import Typography from '../../components/Typography';
+import CaretIcon from '../../icons/Caret';
+import theme from '../../styles/theme';
+import { formatDate } from '../../utils/date';
+import { parseRichText } from '../../utils/text';
 
 const DEFAULT_CTA_TEXT = 'Get tickets';
 
@@ -43,7 +43,7 @@ const UpcomingEvent = ({ className, event }) => {
             color={CaretIcon.colors.accentTan}
           />
         </a>
-        {parseNode(summary.json, null, 'component-UpcomingEvent-description')}
+        {parseRichText(summary.json, null, 'component-UpcomingEvent-description')}
         <Typography size="lg">
           <a href={url} target="_blank" rel="noopener noreferrer">
             {urlText || DEFAULT_CTA_TEXT}
