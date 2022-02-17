@@ -19,7 +19,7 @@ const parseText = (node, id) => {
           el = <u>{el}</u>;
           break;
         default:
-          console.error('parseText unhandled', mark);
+          throw new Error('Unhandled mark:', mark.type);
       }
     });
   }
@@ -81,7 +81,7 @@ export const parseNode = (node, id = null, paragraphClass) => {
     case 'paragraph':
       return parseParagraph(node, id, paragraphClass);
     default:
-      console.error('Unhandled', node);
+      throw new Error(`Unhandled nodeType: ${node?.nodeType}`);
   }
 };
 

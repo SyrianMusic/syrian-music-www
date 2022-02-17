@@ -1,6 +1,6 @@
-import cx from 'classnames';
+import PropTypes from 'prop-types';
 import { gql } from '@apollo/client';
-import Event from '../../components/Event';
+import cx from 'classnames';
 import Hero from '../../components/Hero';
 import Image from '../../components/Image';
 import Rule from '../../components/Rule';
@@ -10,11 +10,12 @@ import Typography from '../../components/Typography';
 import config from '../../config.yaml';
 import { typography } from '../../styles/mixins';
 import theme from '../../styles/theme';
+import UpcomingEvent from './UpcomingEvent';
 
 const pageConfig = config.nav.performance;
 
 export const performancePageQuery = gql`
-  ${Event.fragments.upcomingEvent}
+  ${UpcomingEvent.fragments.event}
   query performancePage($now: DateTime!) {
     upcomingEvents: eventCollection(where: { startDate_gt: $now }, limit: 1) {
       items {
@@ -67,7 +68,7 @@ const PerformancePage = ({ upcomingEvents }) => {
             </Typography>
           </div>
 
-          <Event className="page-Performances-event" {...nextEvent} />
+          <UpcomingEvent className="page-Performances-event" event={nextEvent} />
         </section>
       )}
 
@@ -207,6 +208,12 @@ const PerformancePage = ({ upcomingEvents }) => {
       </style>
     </SiteLayout>
   );
+};
+
+PerformancePage.propTypes = {
+  upcomingEvents: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  }).isRequired,
 };
 
 export default PerformancePage;
