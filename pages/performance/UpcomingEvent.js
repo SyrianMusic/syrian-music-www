@@ -140,23 +140,21 @@ UpcomingEvent.propTypes = {
   // TODO: create typings either with prop types or typescript
   event: PropTypes.shape({
     name: PropTypes.string,
-    startDate: PropTypes.string,
+    startDate: PropTypes.string.isRequired,
     location: PropTypes.string,
     image: PropTypes.shape({
       url: PropTypes.string,
     }),
-    url: PropTypes.string,
+    url: PropTypes.string.isRequired,
     urlText: PropTypes.string,
     summary: PropTypes.shape({
       json: PropTypes.shape({}),
     }),
-  }),
+  }).isRequired,
 };
 
 UpcomingEvent.defaultProps = {
   className: undefined,
-  description: undefined,
-  location: undefined,
 };
 
 UpcomingEvent.fragments = {
