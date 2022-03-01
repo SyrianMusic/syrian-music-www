@@ -46,6 +46,11 @@ describe('PerformancePage', () => {
       const upcomingEventsSection = getUpcomingEventsSection();
       expect(upcomingEventsSection).toBe(null);
     });
+
+    it('does not display the event information', () => {
+      const upcomingEvent = getUpcomingEvent();
+      expect(upcomingEvent).toBe(null);
+    });
   });
 
   describe('given that the app was built before a performance that has now passed', () => {
