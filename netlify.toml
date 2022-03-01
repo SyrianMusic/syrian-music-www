@@ -1,14 +1,17 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
-  command = "npm run build && npm run export"
+  command = "yarn next build && yarn next export"
   publish = "out"
 
+[build.environment]
+  NEXT_PUBLIC_NODE_ENV = "development"
+
 [context.production.environment]
-  NODE_ENV = "production"
+  NEXT_PUBLIC_NODE_ENV = "production"
 
 [context.deploy-preview.environment]
-  NODE_ENV = "preview"
+  NEXT_PUBLIC_NODE_ENV = "preview"
 
 [dev]
   framework = "next"

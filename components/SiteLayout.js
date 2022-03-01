@@ -49,6 +49,7 @@ const SiteLayout = ({ className, children, pathname }) => (
           }
         }
 
+        #root,
         #__next {
           display: flex;
           flex-direction: column;

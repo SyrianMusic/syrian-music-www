@@ -1,0 +1,5 @@
+.DS_Store
+.vscode
+bin
+hidden
+node_modules

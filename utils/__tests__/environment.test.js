@@ -7,6 +7,7 @@ describe('environment', () => {
   });
 
   const testEnv = {
+    ADOBE_KEY_SYRIANMUSIC: 'ADOBE_KEY_SYRIANMUSIC',
     STRIPE_KEY_PRD: 'STRIPE_KEY_PRD',
     STRIPE_KEY_TEST: 'STRIPE_KEY_TEST',
   };
@@ -35,6 +36,10 @@ describe('environment', () => {
       expect(environment.isProduction).toBe(true);
     });
 
+    it('sets adobeKey', () => {
+      expect(environment.adobeKey).toBe(testEnv.ADOBE_KEY_SYRIANMUSIC);
+    });
+
     it('sets stripeKey', () => {
       expect(environment.stripeKey).toBe(testEnv.STRIPE_KEY_PRD);
     });
@@ -54,6 +59,10 @@ describe('environment', () => {
 
     it('sets isProduction', () => {
       expect(environment.isProduction).toBe(false);
+    });
+
+    it('sets adobeKey', () => {
+      expect(environment.adobeKey).toBe(testEnv.ADOBE_KEY_NETLIFY);
     });
 
     it('sets stripeKey', () => {
@@ -77,6 +86,10 @@ describe('environment', () => {
       expect(environment.isProduction).toBe(false);
     });
 
+    it('sets adobeKey', () => {
+      expect(environment.adobeKey).toBe(testEnv.ADOBE_KEY_SYRIANMUSIC);
+    });
+
     it('sets stripeKey', () => {
       expect(environment.stripeKey).toBe(testEnv.STRIPE_KEY_TEST);
     });
@@ -84,7 +97,6 @@ describe('environment', () => {
 
   describe("given NODE_ENV is 'test'", () => {
     beforeEach(() => {
-      process.env.NODE_ENV = 'test';
       jest.isolateModules(() => {
         environment = require('../environment').default;
       });
@@ -100,6 +112,10 @@ describe('environment', () => {
 
     it('sets stripeKey', () => {
       expect(environment.stripeKey).toBe(testEnv.STRIPE_KEY_TEST);
+    });
+
+    it('sets adobeKey', () => {
+      expect(environment.adobeKey).toBe(null);
     });
   });
 });

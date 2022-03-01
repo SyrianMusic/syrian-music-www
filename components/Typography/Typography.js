@@ -1,9 +1,9 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import { typography } from '../styles/mixins';
-import theme from '../styles/theme';
+import { typography } from '../../styles/mixins';
+import theme from '../../styles/theme';
 
-const Typography = ({ className, children, as, size, textAlign, variant }) => {
+export const Typography = ({ className, children, as, size, textAlign, variant }) => {
   let Component = theme.typography.body.tagName;
 
   if (as) {
@@ -124,7 +124,7 @@ Typography.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   as: PropTypes.string,
-  size: PropTypes.oneOf(['md', 'lg']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   textAlign: PropTypes.oneOf(['left', 'center', 'right']),
   variant: PropTypes.oneOf(Object.keys(theme.typography)),
 };
@@ -137,5 +137,3 @@ Typography.defaultProps = {
   textAlign: 'left',
   variant: 'body',
 };
-
-export default Typography;
