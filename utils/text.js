@@ -119,7 +119,6 @@ const parseParagraph = (node, id, paragraphClass) => {
   );
 };
 
-// TODO: Move to shared util
 export const parseRichText = (node, id = null, paragraphClass) => {
   switch (node?.nodeType) {
     case 'document':
