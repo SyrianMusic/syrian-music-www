@@ -18,7 +18,7 @@ const pageConfig = config.nav.performance;
 export const performancePageQuery = gql`
   ${UpcomingEvent.fragments.event}
   query performancePage($now: DateTime!) {
-    upcomingEvents: eventCollection(where: { startDate_gt: $now }, limit: 1) {
+    upcomingEvents: eventCollection(where: { startDate_gt: $now }) {
       items {
         sys {
           id
