@@ -70,14 +70,13 @@ export const Event = ({ className, cta, description, image, title, date, slug })
         </div>
         <CaretIcon className="component-Event-caret-icon" color={CaretIcon.colors.accentTan} />
       </a>
-      {Array.isArray(description) &&
-        description.map(({ _key, children } = {}) => {
-          return (
-            <Typography key={_key} className="component-Event-description">
-              {children.map(portableTextMap)}
-            </Typography>
-          );
-        })}
+      {description.map(({ _key, children } = {}) => {
+        return (
+          <Typography key={_key} className="component-Event-description">
+            {children.map(portableTextMap)}
+          </Typography>
+        );
+      })}
       <Typography size="lg">
         <a href={cta.href} target="_blank" rel="noopener noreferrer">
           {cta.text || DEFAULT_CTA_TEXT}
