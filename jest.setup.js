@@ -1,3 +1,5 @@
+process.env.TZ = 'UTC';
+
 import { loadEnvConfig } from '@next/env';
 import '@testing-library/jest-dom/extend-expect';
 

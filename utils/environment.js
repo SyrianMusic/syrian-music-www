@@ -19,8 +19,18 @@ const getAdobeKey = () => {
   }
 };
 
+const now = () => {
+  switch (nodeEnv) {
+    case TEST:
+      return new Date(1900, 1, 2).valueOf();
+    default:
+      return Date.now();
+  }
+};
+
 export default {
   nodeEnv,
   isProduction,
   adobeKey: getAdobeKey(),
+  now,
 };

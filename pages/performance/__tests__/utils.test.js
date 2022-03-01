@@ -1,19 +1,21 @@
 import { getNextEvent } from '../utils';
-import { addOneDay, mockDateNow, subtractOneDay, today } from '../__helpers__/date';
+import { addDays, mockDateNow, tomorrow, yesterday } from '../../../__fixtures__/date';
+import { Event } from '../../../__fixtures__/Event';
 
 describe('getNextEvent', () => {
   mockDateNow();
 
+  const nextEvent = new Event({ startDate: tomorrow.toISOString() });
+
   it('filters out past events', () => {
-    const pastEvent = { date: subtractOneDay(today) };
-    const nextEvent = getNextEvent([pastEvent]);
-    expect(nextEvent).toBe(null);
+    const pastEvent = new Event({ startDate: yesterday.toISOString() });
+    const actual = getNextEvent([pastEvent, nextEvent]);
+    expect(actual).toBe(nextEvent);
   });
 
-  it('returns the next event', () => {
-    const nextEvent = { date: addOneDay(today) };
-    const laterEvent = { date: addOneDay(nextEvent.date) };
-    const ne = getNextEvent([laterEvent, nextEvent]);
-    expect(ne).toBe(nextEvent);
+  it('returns the next event if there are later events', () => {
+    const laterEvent = new Event({ startDate: addDays(tomorrow, 1).toISOString() });
+    const actual = getNextEvent([laterEvent, nextEvent]);
+    expect(actual).toBe(nextEvent);
   });
 });

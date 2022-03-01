@@ -9,7 +9,7 @@ ARG DEBUG_PORT=9229
 ENV DEBUG_PORT $DEBUG_PORT
 EXPOSE $PORT $DEBUG_PORT 9230
 
-RUN mkdir -p /usr/src && chown node:node /usr/src
+RUN mkdir -p usr/src/app/node_modules/.cache && chown -R node /usr/src
 WORKDIR /usr/src
 
 USER node
