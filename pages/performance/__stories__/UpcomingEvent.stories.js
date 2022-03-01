@@ -1,10 +1,8 @@
 import UpcomingEvent from '../UpcomingEvent';
 import { Event, EventCollection } from '../../../__fixtures__/Event';
-import {
-  Template as PerformancePageTemplate,
-  Default as PerformancePageDefault,
-} from './PerformancePage.stories';
+import { Template as PageTemplate, Default as PageDefault } from './PerformancePage.stories';
 import { PAGE_PATH } from './config';
+import { nextWeek } from '../../../__fixtures__/date';
 
 export default {
   title: PAGE_PATH + '/UpcomingEvent',
@@ -18,17 +16,18 @@ export default {
 
 const Template = (args) => {
   const pageArgs = {
-    ...PerformancePageDefault.args,
+    ...PageDefault.args,
     upcomingEvents: new EventCollection({
       events: [new Event(args.event)],
     }),
   };
-  return <PerformancePageTemplate {...pageArgs} />;
+  return <PageTemplate {...pageArgs} />;
 };
 
 export const Default = Template.bind({});
 Default.args = {
   event: {
+    startDate: nextWeek.toISOString(),
     image: {
       width: 432,
       height: 287,
@@ -116,7 +115,12 @@ DateAM.args = {
   ...Default.args,
   event: {
     ...Default.args.event,
-    startDate: new Date(Date.UTC(2020, 5, 20, 12)),
+    startDate: new Date(
+      nextWeek.getFullYear(),
+      nextWeek.getMonth(),
+      nextWeek.getDate(),
+      8,
+    ).toISOString(),
   },
 };
 
@@ -126,7 +130,12 @@ DatePM.args = {
   ...Default.args,
   event: {
     ...Default.args.event,
-    startDate: new Date(Date.UTC(2020, 5, 21, 0)),
+    startDate: new Date(
+      nextWeek.getFullYear(),
+      nextWeek.getMonth(),
+      nextWeek.getDate(),
+      8 + 12,
+    ).toISOString(),
   },
 };
 
@@ -136,6 +145,11 @@ DateMidnight.args = {
   ...Default.args,
   event: {
     ...Default.args.event,
-    startDate: new Date(Date.UTC(2020, 5, 20, 4)),
+    startDate: new Date(
+      nextWeek.getFullYear(),
+      nextWeek.getMonth(),
+      nextWeek.getDate(),
+      0,
+    ).toISOString(),
   },
 };

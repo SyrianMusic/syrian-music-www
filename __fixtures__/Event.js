@@ -24,11 +24,7 @@ export class Event extends Node {
 }
 
 export class EventCollection extends Collection {
-  constructor(
-    { events } = {
-      events: [new Event()],
-    },
-  ) {
+  constructor({ events = [new Event()] } = {}) {
     super({ items: events });
   }
 }
