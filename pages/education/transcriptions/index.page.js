@@ -1,10 +1,11 @@
+import { gql } from '@apollo/client';
 import PropTypes from 'prop-types';
+import { BaseAPI } from '../../../api';
 import Hero from '../../../components/Hero';
 import SiteLayout from '../../../components/SiteLayout';
 import SortedList from '../../../components/SortedList';
 import Tabs from '../../../components/Tabs';
 import Title from '../../../components/Title';
-import { MusicalWorkAPI } from '../../../musicalWorks';
 import theme from '../../../styles/theme';
 
 const defaultRenderText = ({ composer, title }) => {
@@ -223,7 +224,30 @@ TranscriptionsPage.propTypes = {
 };
 
 export const getStaticProps = async () => {
-  const { data } = await MusicalWorkAPI.getAllMusicalWorks();
+  const { data } = await BaseAPI.query(
+    gql`
+      query allMusicalWorks {
+        musicalWorkCollection {
+          items {
+            sys {
+              id
+            }
+            title
+            composer {
+              firstName
+              lastName
+            }
+            maqam {
+              name
+            }
+            form {
+              name
+            }
+          }
+        }
+      }
+    `,
+  );
   return { props: data };
 };
 
