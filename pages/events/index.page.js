@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import { BaseAPI } from '../../api';
-import { EventsPage } from './EventsPage';
+import EventsPage from './EventsPage';
 
 export const getStaticProps = async () => {
   const query = gql`

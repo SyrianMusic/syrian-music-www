@@ -43,7 +43,9 @@ const UpcomingEvent = ({ className, event }) => {
             color={CaretIcon.colors.accentTan}
           />
         </a>
-        {parseRichText(summary.json, null, 'component-UpcomingEvent-description')}
+        {parseRichText(summary.json, null, {
+          paragraph: { className: 'component-UpcomingEvent-description' },
+        })}
         <Typography size="lg">
           <a href={url} target="_blank" rel="noopener noreferrer">
             {urlText || DEFAULT_CTA_TEXT}
