@@ -2,35 +2,32 @@ import PropTypes from 'prop-types';
 import { Typography } from './Typography';
 import theme from '../../styles/theme';
 
-export const SectionHeader = ({ className, children, as }) => {
+export const SectionHeader = ({ className, children, as, variant }) => {
   return (
-    <Typography className={className} as={as}>
-      <span className="component-SectionHeader-wrapper">{children}</span>
-      <style jsx>{`
-        .component-SectionHeader-wrapper {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          font-size: ${theme.pxToRem(20)};
-          line-height: ${theme.pxToRem(35)};
-        }
-
-        .component-SectionHeader-wrapper:after {
-          background-color: ${theme.color.accentTan};
-          content: '';
-          flex: 1;
-          height: ${theme.pxToRem(1)};
-          margin-top: ${theme.pxToRem(3)};
-          margin-left: ${theme.pxToRem(14)};
-        }
-
-        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          .component-SectionHeader-wrapper {
-            font-size: ${theme.pxToRem(22)};
-            line-height: ${theme.pxToRem(25)};
-          }
-        }
-      `}</style>
+    <Typography
+      css={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        fontSize: theme.pxToRem(20),
+        lineHeight: theme.pxToRem(35),
+        '&:after': {
+          backgroundColor: theme.color.accentTan,
+          content: '""',
+          flex: 1,
+          height: theme.pxToRem(1),
+          marginTop: theme.pxToRem(3),
+          marginLeft: theme.pxToRem(14),
+        },
+        [theme.mq.mobileToDesktop]: {
+          fontSize: theme.pxToRem(22),
+          lineHeight: theme.pxToRem(25),
+        },
+      }}
+      className={className}
+      variant={variant}
+      as={as}>
+      {children}
     </Typography>
   );
 };
@@ -39,10 +36,12 @@ SectionHeader.propTypes = {
   as: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node,
+  variant: PropTypes.string,
 };
 
 SectionHeader.defaultProps = {
-  as: 'h3',
+  as: undefined,
   className: undefined,
   children: undefined,
+  variant: 'h3',
 };

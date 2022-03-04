@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '../components/Typography';
+import logger from '../utils/logger';
+
+export const EM_DASH = '\u2013';
 
 export const MARKS = {
   BOLD: 'bold',
@@ -67,7 +70,7 @@ const parseText = (node, id) => {
           el = <u>{el}</u>;
           break;
         default:
-          throw new Error('Unhandled mark:', mark.type);
+          logger.error(new Error('[parseText] Unhandled mark:' + mark?.type));
       }
     });
   }
@@ -88,46 +91,42 @@ const parseHeading = (node, id) => {
 };
 
 const parseContent = (node, id) => {
-  let content;
   switch (node?.nodeType) {
     case 'hyperlink':
-      if (Array.isArray(node?.content) && node.content.length > 0) {
-        content = node.content.map(parseContent);
-      }
+      if (!Array.isArray(node?.content) || node.content.length === 0) return null;
 
       return (
         <a key={id} href={node?.data?.uri} target="_blank" rel="noopener noreferrer">
-          {content}
+          {node.content.map(parseContent)}
         </a>
       );
     case 'text':
       return parseText(node, id);
     default:
-      console.error('parseContent unhandled', node);
+      logger.error(new Error('[parseContent] unhandled nodeType: ' + node?.nodeType));
   }
 };
 
-const parseParagraph = (node, id, paragraphClass) => {
-  if (!Array.isArray(node?.content)) {
-    throw new Error();
-  }
+const parseParagraph = (node, id, options = {}) => {
+  if (!Array.isArray(node?.content)) return null;
 
+  const { className, size = 'md' } = options;
   return (
-    <Typography className={paragraphClass} key={id} size="md">
+    <Typography className={className} key={id} size={size}>
       {node?.content?.length > 0 && node.content.map(parseContent)}
     </Typography>
   );
 };
 
-export const parseRichText = (node, id = null, paragraphClass) => {
+export const parseRichText = (node, id = null, options = {}) => {
   switch (node?.nodeType) {
     case 'document':
-      return node.content.map((node, id) => parseRichText(node, id, paragraphClass));
+      return node.content.map((node, id) => parseRichText(node, id, options));
     case 'heading-3':
       return parseHeading(node, id);
     case 'paragraph':
-      return parseParagraph(node, id, paragraphClass);
+      return parseParagraph(node, id, options?.paragraph);
     default:
-      throw new Error(`Unhandled nodeType: ${node?.nodeType}`);
+      logger.error(new Error(`[parseRichText] Unhandled nodeType: ${node?.nodeType}`));
   }
 };
