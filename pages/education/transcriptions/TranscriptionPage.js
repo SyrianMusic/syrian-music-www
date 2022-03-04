@@ -183,7 +183,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
           },
         },
       };
-    } else if (hasTranslation) {
+    } else if (!hasTranslation) {
       translationSectionTitle = 'Text';
     }
 
