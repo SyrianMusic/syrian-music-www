@@ -6,7 +6,6 @@ import Tabs from '../../../components/Tabs';
 import Title from '../../../components/Title';
 import { MusicalWorkAPI } from '../../../musicalWorks';
 import theme from '../../../styles/theme';
-import { musicalWorkPropShape } from './propTypes';
 
 const defaultRenderText = ({ composer, title }) => {
   return `${title} - ${composer.first} ${composer.last}`;
@@ -208,7 +207,18 @@ const TranscriptionsPage = ({ musicalWorkCollection }) => {
 
 TranscriptionsPage.propTypes = {
   musicalWorkCollection: PropTypes.shape({
-    items: PropTypes.arrayOf(PropTypes.shape(musicalWorkPropShape)),
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        composer: PropTypes.shape({
+          firstName: PropTypes.string,
+          lastName: PropTypes.string,
+        }),
+        form: PropTypes.shape({ name: PropTypes.string }),
+        maqam: PropTypes.shape({ name: PropTypes.string }),
+        title: PropTypes.string,
+        sys: PropTypes.shape({ id: PropTypes.string }),
+      }),
+    ),
   }).isRequired,
 };
 
