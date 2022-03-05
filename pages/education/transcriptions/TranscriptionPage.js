@@ -1,12 +1,13 @@
-import { useCallback, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { gql } from '@apollo/client';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
+import { useCallback, useEffect, useState } from 'react';
 import Button from '../../../components/Button';
 import SiteLayout from '../../../components/SiteLayout';
 import Title from '../../../components/Title';
 import Typography, { SectionHeader } from '../../../components/Typography';
 import theme from '../../../styles/theme';
-import { gql } from '@apollo/client';
+import { DEFAULT_COMPOSER } from '../../../utils/text';
 
 const PDF_VIEWER_ID = 'pdf-viewer';
 
@@ -118,7 +119,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
   const [hasError, setHasError] = useState(false);
   const composer = musicalWork?.composer
     ? `${musicalWork?.composer?.firstName} ${musicalWork?.composer?.lastName}`
-    : 'Unknown composer';
+    : DEFAULT_COMPOSER;
   const title = `${musicalWork?.title} - ${composer}`;
   const transcriptionUrl = musicalWork?.transcription?.url;
 
