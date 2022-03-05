@@ -1,12 +1,13 @@
+import { gql } from '@apollo/client';
 import PropTypes from 'prop-types';
+import { BaseAPI } from '../../../api';
 import Hero from '../../../components/Hero';
 import SiteLayout from '../../../components/SiteLayout';
 import SortedList from '../../../components/SortedList';
 import Tabs from '../../../components/Tabs';
 import Title from '../../../components/Title';
-import { MusicalWorkAPI } from '../../../musicalWorks';
 import theme from '../../../styles/theme';
-import { musicalWorkPropShape } from './propTypes';
+import { DEFAULT_COMPOSER } from '../../../utils/text';
 
 const defaultRenderText = ({ composer, title }) => {
   return `${title} - ${composer.first} ${composer.last}`;
@@ -45,12 +46,14 @@ const createSections = (
     .map((composition) => {
       const id = composition?.sys?.id;
 
+      const composer = composition?.composer || DEFAULT_COMPOSER;
+
       return [
         id,
         {
           composer: {
-            first: composition?.composer?.firstName,
-            last: composition?.composer?.lastName,
+            first: composer.firstName,
+            last: composer.lastName,
           },
           form: composition?.form?.name,
           maqam: composition?.maqam?.name,
@@ -208,12 +211,46 @@ const TranscriptionsPage = ({ musicalWorkCollection }) => {
 
 TranscriptionsPage.propTypes = {
   musicalWorkCollection: PropTypes.shape({
-    items: PropTypes.arrayOf(PropTypes.shape(musicalWorkPropShape)),
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        composer: PropTypes.shape({
+          firstName: PropTypes.string,
+          lastName: PropTypes.string,
+        }),
+        form: PropTypes.shape({ name: PropTypes.string }),
+        maqam: PropTypes.shape({ name: PropTypes.string }),
+        title: PropTypes.string,
+        sys: PropTypes.shape({ id: PropTypes.string }),
+      }),
+    ),
   }).isRequired,
 };
 
 export const getStaticProps = async () => {
-  const { data } = await MusicalWorkAPI.getAllMusicalWorks();
+  const { data } = await BaseAPI.query(
+    gql`
+      query allMusicalWorks {
+        musicalWorkCollection {
+          items {
+            sys {
+              id
+            }
+            title
+            composer {
+              firstName
+              lastName
+            }
+            maqam {
+              name
+            }
+            form {
+              name
+            }
+          }
+        }
+      }
+    `,
+  );
   return { props: data };
 };
 
