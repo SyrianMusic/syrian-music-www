@@ -12,7 +12,10 @@ export const MARKS = {
   CODE: 'code',
 };
 
-export const DEFAULT_COMPOSER = 'Unknown composer';
+export const DEFAULT_COMPOSER = {
+  firstName: 'Unknown',
+  lastName: 'composer',
+};
 
 // TODO: Can remove once switched off of local data
 export const portableTextMap = ({ _key, text, marks } = {}) => {
