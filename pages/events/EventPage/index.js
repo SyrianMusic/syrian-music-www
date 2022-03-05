@@ -39,6 +39,7 @@ const EventPage = ({ acknowledgements, composers, image, name, performers, start
       <div className="gutters">
         <Typography
           css={{
+            marginBottom: theme.pxToRem(8),
             [theme.mq.mobileToDesktop]: {
               marginBottom: theme.pxToRem(10),
             },
@@ -49,21 +50,13 @@ const EventPage = ({ acknowledgements, composers, image, name, performers, start
           {name}
         </Typography>
 
-        <Typography
-          css={{
-            display: 'none',
-            [theme.mq.md]: {
-              display: 'block',
-            },
-          }}
-          textAlign="center">
-          {formatDate(new Date(startDate))}
-        </Typography>
+        <Typography textAlign="center">{formatDate(new Date(startDate))}</Typography>
 
         <Image
           css={{
             width: '100%',
             height: 'auto',
+            marginTop: theme.pxToRem(25),
             [theme.mq.mobileToDesktop]: {
               marginTop: theme.pxToRem(40),
             },
