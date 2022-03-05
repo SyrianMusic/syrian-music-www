@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Image from '../../../components/Image';
 import SiteLayout from '../../../components/SiteLayout';
@@ -7,7 +8,7 @@ import Title from '../../../components/Title';
 import Typography, { SectionHeader } from '../../../components/Typography';
 import theme from '../../../styles/theme';
 import { formatDate } from '../../../utils/date';
-import { EM_DASH, parseRichText } from '../../../utils/text';
+import { DEFAULT_COMPOSER, EM_DASH, parseRichText } from '../../../utils/text';
 import Biography from './Biography';
 
 const Section = styled.section({
@@ -27,8 +28,116 @@ const StyledSectionHeader = styled(SectionHeader)({
   },
 });
 
-const EventPage = ({ acknowledgements, composers, image, name, performers, startDate }) => {
-  const hasProgram = false;
+export const eventPageQuery = gql`
+  ${Image.fragments.asset}
+  query eventPage($id: String!) {
+    event(id: $id) {
+      sys {
+        id
+      }
+      name
+      startDate
+      image {
+        ...Image
+      }
+      musicalWorks: musicalWorksCollection {
+        items {
+          sys {
+            id
+          }
+          title
+          composer {
+            firstName
+            lastName
+          }
+          transcription {
+            __typename
+          }
+          text {
+            __typename
+          }
+        }
+      }
+      composers: composersCollection {
+        items {
+          sys {
+            id
+          }
+          firstName
+          lastName
+          birthDate
+          birthPlace
+          deathDate
+          image {
+            ...Image
+          }
+          biography {
+            json
+          }
+        }
+      }
+      performers: performersCollection {
+        items {
+          sys {
+            id
+          }
+          name
+          roles
+          image {
+            ...Image
+          }
+          biography {
+            json
+          }
+        }
+      }
+      acknowledgements {
+        json
+      }
+    }
+  }
+`;
+
+const propTypes = {
+  image: PropTypes.shape({
+    height: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
+    url: PropTypes.string.isRequired,
+  }),
+  name: PropTypes.string.isRequired,
+  startDate: PropTypes.string.isRequired,
+  musicalWorks: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.shape({})),
+  }),
+  composers: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.shape({})),
+  }),
+  performers: PropTypes.shape({
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        roles: PropTypes.arrayOf(PropTypes.string),
+        biography: PropTypes.shape({
+          json: PropTypes.shape({}),
+        }),
+      }),
+    ),
+  }),
+  acknowledgements: PropTypes.shape({
+    json: PropTypes.shape({}),
+  }),
+};
+
+const EventPage = ({
+  acknowledgements,
+  composers,
+  image,
+  musicalWorks,
+  name,
+  performers,
+  startDate,
+}) => {
+  const hasProgram = musicalWorks?.items.length > 0;
   const hasComposers = composers?.items.length > 0;
   const hasPerformers = performers?.items.length > 0;
 
@@ -69,6 +178,60 @@ const EventPage = ({ acknowledgements, composers, image, name, performers, start
         {hasProgram && (
           <Section>
             <StyledSectionHeader>Program</StyledSectionHeader>
+            <ul>
+              {musicalWorks.items.map((musicalWork = {}) => {
+                const composerName = musicalWork.composer
+                  ? `${musicalWork.composer.firstName} ${musicalWork.composer.lastName}`
+                  : DEFAULT_COMPOSER;
+                const hasTranscription = musicalWork.transcription;
+                const hasTranslation = musicalWork.translation;
+
+                let linkText;
+
+                const transcriptionText = 'transcription';
+                const translationText = 'translation';
+
+                if (hasTranscription && hasTranslation) {
+                  linkText = `${transcriptionText} and ${translationText}`;
+                } else if (hasTranscription) {
+                  linkText = transcriptionText;
+                } else if (hasTranslation) {
+                  linkText = translationText;
+                }
+
+                return (
+                  <li
+                    key={musicalWork.sys.id}
+                    css={{
+                      ':not(:last-child)': {
+                        marginBottom: theme.pxToRem(25),
+                      },
+                    }}>
+                    <Typography
+                      css={{
+                        marginBottom: 0,
+                      }}
+                      textAlign="center">
+                      {musicalWork.title}
+                    </Typography>
+                    <Typography
+                      css={{
+                        marginBottom: 0,
+                      }}
+                      textAlign="center">
+                      {composerName}
+                    </Typography>
+                    {linkText && (
+                      <Typography textAlign="center">
+                        <Link href={`/education/transcriptions/${musicalWork.sys.id}`}>
+                          <a>View {linkText}</a>
+                        </Link>
+                      </Typography>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
           </Section>
         )}
 
@@ -142,80 +305,6 @@ const EventPage = ({ acknowledgements, composers, image, name, performers, start
   );
 };
 
-export const eventPageQuery = gql`
-  ${Image.fragments.asset}
-  query eventPage($id: String!) {
-    event(id: $id) {
-      name
-      startDate
-      image {
-        ...Image
-      }
-      composers: composersCollection {
-        items {
-          sys {
-            id
-          }
-          firstName
-          lastName
-          birthDate
-          birthPlace
-          deathDate
-          image {
-            ...Image
-          }
-          biography {
-            json
-          }
-        }
-      }
-      performers: performersCollection {
-        items {
-          sys {
-            id
-          }
-          name
-          roles
-          image {
-            ...Image
-          }
-          biography {
-            json
-          }
-        }
-      }
-      acknowledgements {
-        json
-      }
-    }
-  }
-`;
-
-EventPage.propTypes = {
-  image: PropTypes.shape({
-    height: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
-    url: PropTypes.string.isRequired,
-  }),
-  name: PropTypes.string.isRequired,
-  startDate: PropTypes.string.isRequired,
-  composers: PropTypes.shape({
-    items: PropTypes.arrayOf(PropTypes.shape({})),
-  }),
-  performers: PropTypes.shape({
-    items: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string,
-        roles: PropTypes.arrayOf(PropTypes.string),
-        biography: PropTypes.shape({
-          json: PropTypes.shape({}),
-        }),
-      }),
-    ),
-  }),
-  acknowledgements: PropTypes.shape({
-    json: PropTypes.shape({}),
-  }),
-};
+EventPage.propTypes = propTypes;
 
 export default EventPage;

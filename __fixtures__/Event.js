@@ -2,6 +2,7 @@ import { Image } from './Asset';
 import { Collection } from './Collection';
 import { mahmoudAjjan, ComposerCollection, Composer } from './Composer';
 import { today } from './date';
+import { MusicalWork, MusicalWorkCollection } from './MusicalWork';
 import { Node } from './Node';
 import { Performer, PerformerCollection } from './Performer';
 import { Paragraph, RichText, Text } from './RichText';
@@ -14,6 +15,22 @@ export class Event extends Node {
     image = new Image({ width: 702, height: 257 }),
     summary = new RichText(),
     url = '#',
+    musicalWorks = new MusicalWorkCollection({
+      musicalWorks: [
+        new MusicalWork({
+          title: 'Sama’i Rahat al-Arwah',
+          composer: mahmoudAjjan,
+        }),
+        new MusicalWork({
+          title: 'Muwashah Ya Ghosna Naqa',
+          composer: null,
+        }),
+        new MusicalWork({
+          title: 'Muwashah Ayyuha al-Saqi',
+          composer: null,
+        }),
+      ],
+    }),
     composers = new ComposerCollection({
       composers: [
         mahmoudAjjan,
