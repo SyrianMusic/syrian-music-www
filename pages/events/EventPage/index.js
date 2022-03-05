@@ -47,32 +47,26 @@ export const eventPageQuery = gql`
           }
           title
           composer {
+            sys {
+              id
+            }
             firstName
             lastName
+            birthDate
+            birthPlace
+            deathDate
+            image {
+              ...Image
+            }
+            biography {
+              json
+            }
           }
           transcription {
             __typename
           }
           text {
             __typename
-          }
-        }
-      }
-      composers: composersCollection {
-        items {
-          sys {
-            id
-          }
-          firstName
-          lastName
-          birthDate
-          birthPlace
-          deathDate
-          image {
-            ...Image
-          }
-          biography {
-            json
           }
         }
       }
@@ -109,9 +103,6 @@ const propTypes = {
   musicalWorks: PropTypes.shape({
     items: PropTypes.arrayOf(PropTypes.shape({})),
   }),
-  composers: PropTypes.shape({
-    items: PropTypes.arrayOf(PropTypes.shape({})),
-  }),
   performers: PropTypes.shape({
     items: PropTypes.arrayOf(
       PropTypes.shape({
@@ -128,17 +119,15 @@ const propTypes = {
   }),
 };
 
-const EventPage = ({
-  acknowledgements,
-  composers,
-  image,
-  musicalWorks,
-  name,
-  performers,
-  startDate,
-}) => {
+const EventPage = ({ acknowledgements, image, musicalWorks, name, performers, startDate }) => {
   const hasProgram = musicalWorks?.items.length > 0;
-  const hasComposers = composers?.items.length > 0;
+
+  let composers;
+  if (hasProgram) {
+    composers = musicalWorks.items.map(({ composer }) => composer).filter(Boolean);
+  }
+  const hasComposers = composers?.length > 0;
+
   const hasPerformers = performers?.items.length > 0;
 
   return (
@@ -238,7 +227,7 @@ const EventPage = ({
         {hasComposers && (
           <Section>
             <StyledSectionHeader>Composers</StyledSectionHeader>
-            {composers.items.map((composer = {}) => {
+            {composers.map((composer = {}) => {
               const { firstName, lastName, birthDate, birthPlace, deathDate, image, biography } =
                 composer;
 

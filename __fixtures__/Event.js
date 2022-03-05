@@ -1,6 +1,6 @@
 import { Image } from './Asset';
 import { Collection } from './Collection';
-import { mahmoudAjjan, ComposerCollection, Composer } from './Composer';
+import { mahmoudAjjan } from './Composer';
 import { today } from './date';
 import { MusicalWork, MusicalWorkCollection } from './MusicalWork';
 import { Node } from './Node';
@@ -29,37 +29,6 @@ export class Event extends Node {
           title: 'Muwashah Ayyuha al-Saqi',
           composer: null,
         }),
-      ],
-    }),
-    composers = new ComposerCollection({
-      composers: [
-        mahmoudAjjan,
-        new Composer({
-          id: 'composer',
-          birthPlace: null,
-          image: null,
-          biography: new RichText({
-            content: [
-              new Paragraph({
-                content: [
-                  new Text({
-                    value:
-                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit.',
-                  }),
-                ],
-              }),
-              new Paragraph({
-                content: [
-                  new Text({
-                    value:
-                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam',
-                  }),
-                ],
-              }),
-            ],
-          }),
-        }),
-        { ...mahmoudAjjan, sys: { id: 'mahmoud-ajjan-2' } },
       ],
     }),
     performers = new PerformerCollection({
@@ -139,7 +108,6 @@ export class Event extends Node {
     this.summary = summary;
     this.url = url;
     this.musicalWorks = musicalWorks;
-    this.composers = composers;
     this.performers = performers;
     this.acknowledgements = acknowledgements;
   }
