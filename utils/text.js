@@ -12,6 +12,8 @@ export const MARKS = {
   CODE: 'code',
 };
 
+export const DEFAULT_COMPOSER = 'Unknown composer';
+
 // TODO: Can remove once switched off of local data
 export const portableTextMap = ({ _key, text, marks } = {}) => {
   let formattedText = text;
