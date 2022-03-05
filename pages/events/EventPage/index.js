@@ -10,55 +10,6 @@ import { formatDate } from '../../../utils/date';
 import { EM_DASH, parseRichText } from '../../../utils/text';
 import Biography from './Biography';
 
-export const eventPageQuery = gql`
-  ${Image.fragments.asset}
-  query eventPage($id: String!) {
-    event(id: $id) {
-      name
-      startDate
-      image {
-        ...Image
-      }
-      composers: composersCollection {
-        items {
-          sys {
-            id
-          }
-          firstName
-          lastName
-          birthDate
-          birthPlace
-          deathDate
-          image {
-            ...Image
-          }
-          biography {
-            json
-          }
-        }
-      }
-      performers: performersCollection {
-        items {
-          sys {
-            id
-          }
-          name
-          roles
-          image {
-            ...Image
-          }
-          biography {
-            json
-          }
-        }
-      }
-      acknowledgements {
-        json
-      }
-    }
-  }
-`;
-
 const Section = styled.section({
   marginTop: theme.pxToRem(30),
   marginBottom: theme.pxToRem(30),
@@ -197,6 +148,55 @@ const EventPage = ({ acknowledgements, composers, image, name, performers, start
     </SiteLayout>
   );
 };
+
+export const eventPageQuery = gql`
+  ${Image.fragments.asset}
+  query eventPage($id: String!) {
+    event(id: $id) {
+      name
+      startDate
+      image {
+        ...Image
+      }
+      composers: composersCollection {
+        items {
+          sys {
+            id
+          }
+          firstName
+          lastName
+          birthDate
+          birthPlace
+          deathDate
+          image {
+            ...Image
+          }
+          biography {
+            json
+          }
+        }
+      }
+      performers: performersCollection {
+        items {
+          sys {
+            id
+          }
+          name
+          roles
+          image {
+            ...Image
+          }
+          biography {
+            json
+          }
+        }
+      }
+      acknowledgements {
+        json
+      }
+    }
+  }
+`;
 
 EventPage.propTypes = {
   image: PropTypes.shape({
