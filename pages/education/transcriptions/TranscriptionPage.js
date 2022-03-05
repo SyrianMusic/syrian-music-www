@@ -56,9 +56,7 @@ const PdfReloadButton = styled(Button)`
 const TranscriptionPage = ({ adobeKey, musicalWork }) => {
   const [isAdobeReady, setIsAdobeReady] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const composer = musicalWork?.composer
-    ? `${musicalWork?.composer?.firstName} ${musicalWork?.composer?.lastName}`
-    : DEFAULT_COMPOSER;
+  const composer = musicalWork?.composer || DEFAULT_COMPOSER;
   const title = `${musicalWork?.title} - ${composer}`;
   const transcriptionUrl = musicalWork?.transcription?.url;
 
@@ -132,7 +130,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
         }}
         size="lg"
         textAlign="center">
-        {composer}
+        {composer.firstName} {composer.lastName}
       </Typography>
 
       {musicalWork?.maqam && (
