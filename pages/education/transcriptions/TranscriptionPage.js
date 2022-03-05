@@ -53,7 +53,68 @@ const PdfReloadButton = styled(Button)`
   text-decoration-color: inherit !important;
 `;
 
-const TranscriptionPage = ({ adobeKey, musicalWork }) => {
+const extractContext = (text) => {
+  const paragraphs = text?.json?.content;
+  if (Array.isArray(text?.json?.content)) {
+    return paragraphs
+      .map(({ content }) => content.map(({ value }) => value).join('\n'))
+      .map((text) => text.split('\n'))
+      .filter(Boolean);
+  }
+  return [];
+};
+
+const transformTranslation = (arabicText, translatedText) => {
+  let hasMultipleTexts = false;
+  let hasTranslation = false;
+  let stanzas = [];
+
+  const arabicParagraphs = extractContext(arabicText);
+  const translatedParagraphs = extractContext(translatedText);
+
+  const lengthArabic = arabicParagraphs.length;
+  const lengthTranslated = translatedParagraphs.length;
+
+  if (lengthArabic && lengthTranslated) {
+    hasMultipleTexts = true;
+  } else if (lengthTranslated) {
+    hasTranslation = true;
+  }
+
+  const maxLength = Math.max(lengthArabic || 0, lengthTranslated || 0);
+
+  if (maxLength) {
+    for (let i = 0; i < maxLength; i++) {
+      let lines = [];
+      const arabicLines = arabicParagraphs[i];
+      const translatedLines = translatedParagraphs[i];
+
+      const maxLineLength = Math.max(arabicLines?.length || 0, translatedLines?.length || 0);
+
+      if (maxLineLength) {
+        for (let j = 0; j < maxLineLength; j++) {
+          let arabic;
+          if (Array.isArray(arabicLines)) {
+            arabic = arabicLines[j];
+          }
+
+          let translated;
+          if (Array.isArray(translatedLines)) {
+            translated = translatedLines[j];
+          }
+
+          lines = [...lines, { arabic, translated }];
+        }
+      }
+
+      stanzas = [...stanzas, lines];
+    }
+  }
+
+  return { hasMultipleTexts, hasTranslation, stanzas };
+};
+
+const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
   const [isAdobeReady, setIsAdobeReady] = useState(false);
   const [hasError, setHasError] = useState(false);
   const composer = musicalWork?.composer || DEFAULT_COMPOSER;
@@ -99,6 +160,62 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
       loadPdf();
     }
   }, [hasError, isAdobeReady, transcriptionUrl]);
+
+  let paragraphCss;
+  let translation;
+  let translationSectionTitle = 'Translation';
+
+  if (arabic?.text || musicalWork?.text) {
+    const { hasMultipleTexts, hasTranslation, stanzas } = transformTranslation(
+      arabic?.text,
+      musicalWork?.text,
+    );
+
+    if (hasMultipleTexts) {
+      paragraphCss = {
+        '&:not(:last-child)': {
+          marginBottom: '2em',
+        },
+        [theme.mq.mobileToDesktop]: {
+          '&:not(:last-child)': {
+            marginBottom: '2em',
+          },
+        },
+      };
+    } else if (!hasTranslation) {
+      translationSectionTitle = 'Text';
+    }
+
+    translation = stanzas.map((lines) => {
+      const firstLine = lines[0];
+      const key = `${firstLine.translated}${firstLine.arabic}`;
+
+      return (
+        <Typography key={key} css={paragraphCss} textAlign="center">
+          {lines.map((line) => {
+            const lineKey = `line-${line.translated}${line.arabic}`;
+            return (
+              <span
+                css={{
+                  display: 'flex',
+                  flexDirection: 'column-reverse',
+                  marginBottom: hasMultipleTexts ? '1em' : 0,
+                }}
+                key={lineKey}>
+                {[line.arabic, line.translated].filter(Boolean).map((content) => {
+                  return (
+                    <span key={content} css={{ display: 'block' }}>
+                      {content}
+                    </span>
+                  );
+                })}
+              </span>
+            );
+          })}
+        </Typography>
+      );
+    });
+  }
 
   return (
     <SiteLayout
@@ -166,13 +283,20 @@ const TranscriptionPage = ({ adobeKey, musicalWork }) => {
           </PdfWrapper>
         </Section>
       )}
+
+      {translation && (
+        <Section id="transcription" className="gutters">
+          <SectionHeader as="h1">{translationSectionTitle}</SectionHeader>
+          {translation}
+        </Section>
+      )}
     </SiteLayout>
   );
 };
 
 export const transcriptionPageQuery = gql`
   query transcriptionPage($id: String!) {
-    musicalWork(id: $id) {
+    musicalWork(id: $id, locale: "en-US") {
       sys {
         id
       }
@@ -186,9 +310,17 @@ export const transcriptionPageQuery = gql`
       maqam {
         name
       }
+      text {
+        json
+      }
       title
       transcription {
         url
+      }
+    }
+    arabic: musicalWork(id: $id, locale: "ar-SY") {
+      text {
+        json
       }
     }
   }
@@ -210,9 +342,17 @@ TranscriptionPage.propTypes = {
     maqam: PropTypes.shape({
       name: PropTypes.string,
     }),
+    text: PropTypes.shape({
+      json: PropTypes.object,
+    }),
     title: PropTypes.string,
     transcription: PropTypes.shape({
       url: PropTypes.string,
+    }),
+  }),
+  arabic: PropTypes.shape({
+    text: PropTypes.shape({
+      json: PropTypes.object,
     }),
   }),
 };

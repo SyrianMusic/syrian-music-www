@@ -169,9 +169,7 @@ const EventPage = ({ acknowledgements, image, musicalWorks, name, performers, st
             <StyledSectionHeader>Program</StyledSectionHeader>
             <ul>
               {musicalWorks.items.map((musicalWork = {}) => {
-                const composerName = musicalWork.composer
-                  ? `${musicalWork.composer.firstName} ${musicalWork.composer.lastName}`
-                  : DEFAULT_COMPOSER;
+                const composer = musicalWork.composer || DEFAULT_COMPOSER;
                 const hasTranscription = musicalWork.transcription;
                 const hasTranslation = musicalWork.translation;
 
@@ -208,7 +206,7 @@ const EventPage = ({ acknowledgements, image, musicalWorks, name, performers, st
                         marginBottom: 0,
                       }}
                       textAlign="center">
-                      {composerName}
+                      {composer.firstName} {composer.lastName}
                     </Typography>
                     {linkText && (
                       <Typography textAlign="center">
