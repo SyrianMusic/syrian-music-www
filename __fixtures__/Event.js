@@ -18,6 +18,7 @@ export class Event extends Node {
       composers: [
         mahmoudAjjan,
         new Composer({
+          id: 'composer',
           birthPlace: null,
           image: null,
           biography: new RichText({
@@ -41,7 +42,7 @@ export class Event extends Node {
             ],
           }),
         }),
-        mahmoudAjjan,
+        { ...mahmoudAjjan, sys: { id: 'mahmoud-ajjan-2' } },
       ],
     }),
     performers = new PerformerCollection({
@@ -120,6 +121,7 @@ export class Event extends Node {
     this.image = image;
     this.summary = summary;
     this.url = url;
+    this.musicalWorks = musicalWorks;
     this.composers = composers;
     this.performers = performers;
     this.acknowledgements = acknowledgements;

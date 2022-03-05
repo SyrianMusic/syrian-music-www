@@ -32,6 +32,7 @@ export class ComposerCollection extends Collection {
 }
 
 export const mahmoudAjjan = new Composer({
+  id: 'mahmoud-ajjan',
   firstName: 'Mahmoud',
   lastName: 'Ajjan',
   birthDate: '1915-01-01',
@@ -63,7 +64,7 @@ export const mahmoudAjjan = new Composer({
           }),
         ],
       }),
-      {
+      new Paragraph({
         content: [
           new Text({
             value: 'Study of the Dawr',
@@ -81,7 +82,7 @@ export const mahmoudAjjan = new Composer({
               ' (2001).  While not widely known outside of his region, his impact on composition, musicology and his students was immense.  ',
           }),
         ],
-      },
+      }),
       new Paragraph({
         content: [
           new Text({
