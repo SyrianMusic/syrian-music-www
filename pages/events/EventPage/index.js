@@ -283,10 +283,12 @@ const EventPage = ({ acknowledgements, image, musicalWorks, name, performers, st
           </Section>
         )}
 
-        <Section>
-          <StyledSectionHeader>Special Thanks</StyledSectionHeader>
-          {parseRichText(acknowledgements?.json)}
-        </Section>
+        {acknowledgements && (
+          <Section>
+            <StyledSectionHeader>Special Thanks</StyledSectionHeader>
+            {parseRichText(acknowledgements.json)}
+          </Section>
+        )}
       </div>
     </SiteLayout>
   );
