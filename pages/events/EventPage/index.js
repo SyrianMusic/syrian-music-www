@@ -40,7 +40,7 @@ export const eventPageQuery = gql`
       image {
         ...Image
       }
-      musicalWorks: musicalWorksCollection {
+      program: programCollection {
         items {
           sys {
             id
@@ -100,7 +100,7 @@ const propTypes = {
   }),
   name: PropTypes.string.isRequired,
   startDate: PropTypes.string.isRequired,
-  musicalWorks: PropTypes.shape({
+  program: PropTypes.shape({
     items: PropTypes.arrayOf(PropTypes.shape({})),
   }),
   performers: PropTypes.shape({
@@ -119,12 +119,12 @@ const propTypes = {
   }),
 };
 
-const EventPage = ({ acknowledgements, image, musicalWorks, name, performers, startDate }) => {
-  const hasProgram = musicalWorks?.items.length > 0;
+const EventPage = ({ acknowledgements, image, program, name, performers, startDate }) => {
+  const hasProgram = program?.items.length > 0;
 
   let composers;
   if (hasProgram) {
-    composers = musicalWorks.items.map(({ composer }) => composer).filter(Boolean);
+    composers = program.items.map(({ composer }) => composer).filter(Boolean);
   }
   const hasComposers = composers?.length > 0;
 
@@ -168,7 +168,7 @@ const EventPage = ({ acknowledgements, image, musicalWorks, name, performers, st
           <Section>
             <StyledSectionHeader>Program</StyledSectionHeader>
             <ul>
-              {musicalWorks.items.map((musicalWork = {}) => {
+              {program.items.map((musicalWork = {}) => {
                 const composer = musicalWork.composer || DEFAULT_COMPOSER;
                 const hasTranscription = musicalWork.transcription;
                 const hasTranslation = musicalWork.translation;

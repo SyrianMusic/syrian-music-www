@@ -15,7 +15,7 @@ export class Event extends Node {
     image = new Image({ width: 702, height: 257 }),
     summary = new RichText(),
     url = '#',
-    musicalWorks = new MusicalWorkCollection({
+    program = new MusicalWorkCollection({
       musicalWorks: [
         new MusicalWork({
           title: 'Sama’i Rahat al-Arwah',
@@ -107,7 +107,7 @@ export class Event extends Node {
     this.image = image;
     this.summary = summary;
     this.url = url;
-    this.musicalWorks = musicalWorks;
+    this.program = program;
     this.performers = performers;
     this.acknowledgements = acknowledgements;
   }
