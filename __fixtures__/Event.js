@@ -117,6 +117,14 @@ export class Event extends Node {
   }
 }
 
+export const emptyEvent = new Event({
+  program: null,
+  performers: {
+    items: [],
+  },
+  acknowledgements: null,
+});
+
 export class EventCollection extends Collection {
   constructor({ events = [new Event()] } = {}) {
     super({ items: events });

@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql, serializeFetchParameter } from '@apollo/client';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
@@ -122,11 +122,18 @@ const propTypes = {
 const EventPage = ({ acknowledgements, image, program, name, performers, startDate }) => {
   const hasProgram = program?.items.length > 0;
 
-  let composers;
+  const composersById = new Map();
   if (hasProgram) {
-    composers = program.items.map(({ composer }) => composer).filter(Boolean);
+    program.items
+      .map(({ composer }) => composer)
+      .filter(Boolean)
+      .forEach((composer) => {
+        if (composer && !composersById.has(composer.sys.id)) {
+          composersById.set(composer.sys.id, composer);
+        }
+      });
   }
-  const hasComposers = composers?.length > 0;
+  const hasComposers = composersById.size > 0;
 
   const hasPerformers = performers?.items.length > 0;
 
@@ -171,13 +178,14 @@ const EventPage = ({ acknowledgements, image, program, name, performers, startDa
               {program.items.map((musicalWork = {}) => {
                 const composer = musicalWork.composer || DEFAULT_COMPOSER;
                 const hasTranscription = musicalWork.transcription;
-                const hasTranslation = musicalWork.translation;
+                const hasTranslation = musicalWork.text;
 
                 let linkText;
 
                 const transcriptionText = 'transcription';
                 const translationText = 'translation';
 
+                // debugger;
                 if (hasTranscription && hasTranslation) {
                   linkText = `${transcriptionText} and ${translationText}`;
                 } else if (hasTranscription) {
@@ -225,7 +233,7 @@ const EventPage = ({ acknowledgements, image, program, name, performers, startDa
         {hasComposers && (
           <Section>
             <StyledSectionHeader>Composers</StyledSectionHeader>
-            {composers.map((composer = {}) => {
+            {Array.from(composersById.values()).map((composer = {}) => {
               const { firstName, lastName, birthDate, birthPlace, deathDate, image, biography } =
                 composer;
 
