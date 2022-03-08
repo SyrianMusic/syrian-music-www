@@ -109,6 +109,7 @@ const EventPage = ({ acknowledgements, image, program, name, performers, startDa
     program.items
       .map(({ composer }) => composer)
       .filter(Boolean)
+      .filter(({ biography }) => Boolean(biography))
       .forEach((composer) => {
         if (composer && !composersById.has(composer.sys.id)) {
           composersById.set(composer.sys.id, composer);
