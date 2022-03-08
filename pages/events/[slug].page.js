@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import { BaseAPI } from '../../api';
+import logger from '../../utils/logger';
 import EventPage, { eventPageQuery } from './EventPage';
 
 export const getStaticPaths = async () => {
@@ -36,7 +37,7 @@ const fetchIdFromSlug = async (slug) => {
   );
 
   if (error) {
-    throw new Error('Could not fetch ID: ' + error.message);
+    throw new Error(`Could not fetch ID for slug: ${slug}`);
   }
   const foundEvents = data?.events?.items;
 
@@ -46,16 +47,29 @@ const fetchIdFromSlug = async (slug) => {
   return null;
 };
 
-export const getStaticProps = async (context) => {
-  const id = await fetchIdFromSlug(context.params.slug);
-  // TODO: Handle error
-  const { data } = await BaseAPI.query(eventPageQuery, {
+const fetchEventData = async (id) => {
+  const { data, error } = await BaseAPI.query(eventPageQuery, {
     variables: { id },
   });
-  if (!data.event) {
+  if (error) {
+    throw new Error(`Could not fetch data for event ID: ${id}`);
+  }
+  return data.event;
+};
+
+export const getStaticProps = async (context) => {
+  let id;
+  try {
+    id = await fetchIdFromSlug(context.params.slug);
+    const eventData = await fetchEventData(id);
+    if (!eventData) {
+      return { notFound: true };
+    }
+    return { props: eventData };
+  } catch (e) {
+    logger.error(`Could not generate event page: slug=<${context.params.slug}> id=<${id}>`);
     return { notFound: true };
   }
-  return { props: data.event };
 };
 
 export default EventPage;

@@ -1,14 +1,14 @@
 import { ApolloClient, HttpLink, InMemoryCache, from } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
+import logger from '../utils/logger';
 
 // Log any GraphQL errors or network error that occurred
-const errorLink = onError(({ graphQLErrors, networkError, ...rest }) => {
-  console.log({ rest });
+const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.map(({ message, locations, path }) =>
-      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),
+      logger.error(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),
     );
-  if (networkError) console.log(`[Network error]: ${networkError}`);
+  if (networkError) logger.error(`[Network error]: ${networkError.message}`);
 });
 
 const httpLink = new HttpLink({
