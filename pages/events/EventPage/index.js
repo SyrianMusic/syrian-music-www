@@ -30,9 +30,10 @@ const StyledSectionHeader = styled(SectionHeader)({
 
 export const eventPageQuery = gql`
   ${Image.fragments.asset}
-  ${ProgramWork.fragments.program}
+  ${ProgramWork.fragments.english}
+  ${ProgramWork.fragments.arabic}
   query eventPage($id: String!) {
-    event(id: $id) {
+    event(id: $id, locale: "en-US") {
       sys {
         id
       }
@@ -41,9 +42,20 @@ export const eventPageQuery = gql`
       image {
         ...Image
       }
-      program: programCollection {
+      programEnglish: programCollection(locale: "en-US") {
         items {
-          ...ProgramWork
+          ...ProgramWorkEnglish
+          ... on ProgramHeader {
+            sys {
+              id
+            }
+            headerText: text
+          }
+        }
+      }
+      programArabic: programCollection(locale: "ar-SY") {
+        items {
+          ...ProgramWorkArabic
           ... on ProgramHeader {
             sys {
               id
@@ -82,7 +94,10 @@ const propTypes = {
   }),
   name: PropTypes.string.isRequired,
   startDate: PropTypes.string.isRequired,
-  program: PropTypes.shape({
+  programEnglish: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.shape({})),
+  }),
+  programArabic: PropTypes.shape({
     items: PropTypes.arrayOf(PropTypes.shape({})),
   }),
   performers: PropTypes.shape({
@@ -101,12 +116,73 @@ const propTypes = {
   }),
 };
 
-const EventPage = ({ acknowledgements, image, program, name, performers, startDate }) => {
+const transformProgram = (english, arabic) => {
+  let items = [];
+  const itemsEnglish = english?.items || [];
+  const itemsArabic = arabic?.items || [];
+
+  const maxLength = Math.max(itemsEnglish.length, itemsArabic.length);
+
+  if (maxLength > 0) {
+    for (let i = 0; i < maxLength; i++) {
+      const itemEnglish = itemsEnglish[i];
+      const itemArabic = itemsArabic[i];
+
+      if (itemEnglish?.__typename === 'ProgramHeader') {
+        items = [
+          ...items,
+          {
+            ...itemEnglish,
+            headerText: {
+              english: itemEnglish?.headerText,
+              arabic: itemArabic?.headerText,
+            },
+          },
+        ];
+      } else if (itemEnglish?.__typename === 'MusicalWork') {
+        items = [
+          ...items,
+          {
+            ...itemEnglish,
+            title: {
+              english: itemEnglish.title,
+              arabic:
+                itemArabic?.title && itemArabic.title === itemEnglish.title
+                  ? null
+                  : itemArabic?.title,
+            },
+            composer: {
+              english: itemEnglish.composer,
+              arabic:
+                itemArabic?.composer &&
+                itemArabic.composer.firstName !== itemEnglish.composer?.firstName &&
+                itemArabic.composer.lastName !== itemEnglish.composer?.lastName
+                  ? itemArabic.composer
+                  : null,
+            },
+          },
+        ];
+      }
+    }
+  }
+  return { items };
+};
+
+const EventPage = ({
+  acknowledgements,
+  image,
+  programEnglish,
+  programArabic,
+  name,
+  performers,
+  startDate,
+}) => {
+  const program = transformProgram(programEnglish, programArabic);
   const hasProgram = program?.items.length > 0;
 
   const composersById = new Map();
   if (hasProgram) {
-    program.items
+    programEnglish.items
       .map(({ composer }) => composer)
       .filter(Boolean)
       .filter(({ biography }) => Boolean(biography))
@@ -119,6 +195,19 @@ const EventPage = ({ acknowledgements, image, program, name, performers, startDa
   const hasComposers = composersById.size > 0;
 
   const hasPerformers = performers?.items.length > 0;
+
+  const programStyles = {
+    marginBottom: theme.pxToRem(20),
+    p: {
+      lineHeight: theme.pxToRem(20),
+    },
+    [theme.mq.mobileToDesktop]: {
+      marginBottom: theme.pxToRem(30),
+      p: {
+        lineHeight: theme.pxToRem(30),
+      },
+    },
+  };
 
   return (
     <SiteLayout>
@@ -161,12 +250,16 @@ const EventPage = ({ acknowledgements, image, program, name, performers, startDa
               {program.items.map(({ __typename, ...data }) => {
                 if (__typename === 'ProgramHeader') {
                   return (
-                    <Typography
-                      key={data.sys.id}
-                      css={{ marginTop: theme.pxToRem(40) }}
-                      size="lg"
-                      textAlign="center">
-                      <u>{data.headerText}</u>
+                    <Typography key={data.sys.id} css={programStyles} textAlign="center">
+                      <u>
+                        {data.headerText.english}
+                        {data.headerText.arabic && (
+                          <>
+                            <br />
+                            {data.headerText.arabic}
+                          </>
+                        )}
+                      </u>
                     </Typography>
                   );
                 }
@@ -176,6 +269,7 @@ const EventPage = ({ acknowledgements, image, program, name, performers, startDa
                   return (
                     <ProgramWork
                       key={id}
+                      css={programStyles}
                       composer={data.composer}
                       id={id}
                       transcription={data.transcription}

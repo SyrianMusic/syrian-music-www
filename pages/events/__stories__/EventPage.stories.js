@@ -1,10 +1,12 @@
 import {
+  Composer,
   emptyEvent,
   Event,
   mahmoudAjjan,
   MusicalWork,
   MusicalWorkCollection,
   PDF,
+  ProgramHeader,
   RichText,
 } from '../../../__fixtures__';
 import App from '../../_app.page';
@@ -19,20 +21,58 @@ const Template = (args) => <App Component={EventPage} pageProps={args} />;
 
 const defaultEvent = new Event();
 
+const transformItems = ({ text, ...item }) => {
+  if (item.__typename === 'ProgramHeader') {
+    return {
+      ...item,
+      headerText: text,
+    };
+  }
+  return item;
+};
+
+const mahmoudAjjanArabic = new Composer({
+  firstName: 'محمود',
+  lastName: 'عجّان',
+});
+
+const majdiAlAqiliArabic = new Composer({
+  firstName: 'مجدي',
+  lastName: 'العقيلي',
+});
+
 export const Default = Template.bind({});
 Default.args = {
   ...defaultEvent,
-  program: {
+  programEnglish: {
     ...defaultEvent.program,
-    items: defaultEvent.program.items.map(({ text, ...item }) => {
-      if (item.__typename === 'ProgramHeader') {
-        return {
-          ...item,
-          headerText: text,
-        };
-      }
-      return item;
-    }),
+    items: defaultEvent.program.items.map(transformItems),
+  },
+  programArabic: {
+    items: [
+      new ProgramHeader({
+        text: 'وصلة مقام راحة الأرواح',
+      }),
+      new MusicalWork({
+        title: 'سماعي راحة الأرواح',
+        composer: mahmoudAjjanArabic,
+      }),
+      new MusicalWork({
+        title: 'شح أيّها السّاقي',
+        composer: majdiAlAqiliArabic,
+      }),
+      new ProgramHeader({
+        text: 'مقام نهوند',
+      }),
+      new MusicalWork({
+        title: 'شح جَادكَ الغيثُ',
+        composer: majdiAlAqiliArabic,
+      }),
+      new MusicalWork({
+        title: 'موشح يا غُصنَ نقا',
+        composer: null,
+      }),
+    ].map(transformItems),
   },
 };
 
@@ -42,7 +82,7 @@ Empty.args = emptyEvent;
 export const TranscriptionAndTranslation = Template.bind({});
 TranscriptionAndTranslation.args = {
   ...Default.args,
-  program: new MusicalWorkCollection({
+  programEnglish: new MusicalWorkCollection({
     musicalWorks: [
       new MusicalWork({
         transcription: new PDF(),
@@ -55,7 +95,7 @@ TranscriptionAndTranslation.args = {
 export const TranscriptionOnly = Template.bind({});
 TranscriptionOnly.args = {
   ...Default.args,
-  program: new MusicalWorkCollection({
+  programEnglish: new MusicalWorkCollection({
     musicalWorks: [
       new MusicalWork({
         transcription: new PDF(),
@@ -68,7 +108,7 @@ TranscriptionOnly.args = {
 export const TranslationOnly = Template.bind({});
 TranslationOnly.args = {
   ...Default.args,
-  program: new MusicalWorkCollection({
+  programEnglish: new MusicalWorkCollection({
     musicalWorks: [
       new MusicalWork({
         transcription: null,
@@ -81,7 +121,7 @@ TranslationOnly.args = {
 export const UnknownComposer = Template.bind({});
 UnknownComposer.args = {
   ...Default.args,
-  program: new MusicalWorkCollection({
+  programEnglish: new MusicalWorkCollection({
     musicalWorks: [
       new MusicalWork({
         composer: null,
@@ -94,7 +134,7 @@ UnknownComposer.args = {
 export const DuplicateComposer = Template.bind({});
 DuplicateComposer.args = {
   ...Default.args,
-  program: new MusicalWorkCollection({
+  programEnglish: new MusicalWorkCollection({
     musicalWorks: [
       new MusicalWork({
         composer: { ...mahmoudAjjan },

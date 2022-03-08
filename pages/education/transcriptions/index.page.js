@@ -7,7 +7,7 @@ import SortedList from '../../../components/SortedList';
 import Tabs from '../../../components/Tabs';
 import Title from '../../../components/Title';
 import theme from '../../../styles/theme';
-import { DEFAULT_COMPOSER } from '../../../utils/text';
+import { DEFAULT_COMPOSER_ENGLISH } from '../../../utils/text';
 
 const defaultRenderText = ({ composer, title }) => {
   return `${title} - ${composer.first} ${composer.last}`;
@@ -46,7 +46,7 @@ const createSections = (
     .map((composition) => {
       const id = composition?.sys?.id;
 
-      const composer = composition?.composer || DEFAULT_COMPOSER;
+      const composer = composition?.composer || DEFAULT_COMPOSER_ENGLISH;
 
       return [
         id,

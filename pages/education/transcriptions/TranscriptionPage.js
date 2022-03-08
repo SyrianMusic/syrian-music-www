@@ -7,7 +7,7 @@ import SiteLayout from '../../../components/SiteLayout';
 import Title from '../../../components/Title';
 import Typography, { SectionHeader } from '../../../components/Typography';
 import theme from '../../../styles/theme';
-import { DEFAULT_COMPOSER } from '../../../utils/text';
+import { DEFAULT_COMPOSER_ENGLISH } from '../../../utils/text';
 
 const PDF_VIEWER_ID = 'pdf-viewer';
 
@@ -117,7 +117,7 @@ const transformTranslation = (arabicText, translatedText) => {
 const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
   const [isAdobeReady, setIsAdobeReady] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const composer = musicalWork?.composer || DEFAULT_COMPOSER;
+  const composer = musicalWork?.composer || DEFAULT_COMPOSER_ENGLISH;
   const title = `${musicalWork?.title} - ${composer}`;
   const transcriptionUrl = musicalWork?.transcription?.url;
 

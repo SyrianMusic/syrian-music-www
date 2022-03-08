@@ -7,7 +7,7 @@ import { Node } from './Node';
 import { Performer, PerformerCollection } from './Performer';
 import { Paragraph, RichText, Text } from './RichText';
 
-class ProgramHeader extends Node {
+export class ProgramHeader extends Node {
   constructor({ text = 'Program Header', ...props }) {
     super(props);
     this.__typename = 'ProgramHeader';
@@ -43,7 +43,7 @@ export class Event extends Node {
         }),
         new MusicalWork({
           id: '3',
-          title: 'Muwashah Ayyuha al-Saqi',
+          title: 'Muwashah Jadaka al-Ghaithu',
           composer: majdiAlAqili,
         }),
         new MusicalWork({

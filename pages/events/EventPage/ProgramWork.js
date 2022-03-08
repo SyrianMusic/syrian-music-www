@@ -2,12 +2,11 @@ import { gql } from '@apollo/client';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Typography from '../../../components/Typography';
-import theme from '../../../styles/theme';
-import { DEFAULT_COMPOSER } from '../../../utils/text';
+import { DEFAULT_COMPOSER_ARABIC, DEFAULT_COMPOSER_ENGLISH } from '../../../utils/text';
 
 const fragments = {
-  program: gql`
-    fragment ProgramWork on MusicalWork {
+  english: gql`
+    fragment ProgramWorkEnglish on MusicalWork {
       sys {
         id
       }
@@ -36,27 +35,48 @@ const fragments = {
       }
     }
   `,
+  arabic: gql`
+    fragment ProgramWorkArabic on MusicalWork {
+      composer {
+        firstName
+        lastName
+      }
+      title
+    }
+  `,
 };
 
 const propTypes = {
+  className: PropTypes.string,
   composer: PropTypes.shape({
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
+    arabic: PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+    }),
+    english: PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+    }),
   }),
   id: PropTypes.string.isRequired,
   transcription: PropTypes.object,
   text: PropTypes.object,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.shape({
+    english: PropTypes.string.isRequired,
+    arabic: PropTypes.string,
+  }),
 };
 
 const defaultProps = {
-  composer: DEFAULT_COMPOSER,
+  className: undefined,
+  composer: DEFAULT_COMPOSER_ENGLISH,
   transcription: undefined,
   text: null,
 };
 
-const ProgramWork = ({ composer: composerProp, id, transcription, text, title }) => {
-  const composer = composerProp || DEFAULT_COMPOSER;
+const ProgramWork = ({ className, composer: composerProp, id, transcription, text, title }) => {
+  const composerArabic = composerProp.arabic || DEFAULT_COMPOSER_ARABIC;
+  const composerEnglish = composerProp.english || DEFAULT_COMPOSER_ENGLISH;
   const hasTranscription = transcription;
   const hasTranslation = text;
 
@@ -66,7 +86,7 @@ const ProgramWork = ({ composer: composerProp, id, transcription, text, title })
   const translationText = 'translation';
 
   if (hasTranscription && hasTranslation) {
-    linkText = `${transcriptionText} and ${translationText}`;
+    linkText = `${transcriptionText} & ${translationText}`;
   } else if (hasTranscription) {
     linkText = transcriptionText;
   } else if (hasTranslation) {
@@ -74,34 +94,26 @@ const ProgramWork = ({ composer: composerProp, id, transcription, text, title })
   }
 
   return (
-    <li
-      key={id}
-      css={{
-        ':not(:last-child)': {
-          marginBottom: theme.pxToRem(25),
-        },
-      }}>
-      <Typography
-        css={{
-          marginBottom: 0,
-        }}
-        textAlign="center">
-        {title}
+    <li key={id} className={className}>
+      <Typography textAlign="center">
+        - {title.english}, composer: {composerEnglish.firstName} {composerEnglish.lastName}
+        {(title.arabic || composerArabic) && (
+          <>
+            <br />
+            {title.arabic}
+            {title.arabic && composerArabic && ', لحن: '}
+            {composerArabic && `${composerArabic.firstName} ${composerArabic.lastName}`}
+          </>
+        )}
+        {linkText && (
+          <>
+            <br />
+            <Link href={`/education/transcriptions/${id}`}>
+              <a>View {linkText}</a>
+            </Link>
+          </>
+        )}
       </Typography>
-      <Typography
-        css={{
-          marginBottom: 0,
-        }}
-        textAlign="center">
-        {composer.firstName} {composer.lastName}
-      </Typography>
-      {linkText && (
-        <Typography textAlign="center">
-          <Link href={`/education/transcriptions/${id}`}>
-            <a>View {linkText}</a>
-          </Link>
-        </Typography>
-      )}
     </li>
   );
 };
