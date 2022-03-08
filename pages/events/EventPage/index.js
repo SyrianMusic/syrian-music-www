@@ -169,6 +169,7 @@ const EventPage = ({ acknowledgements, image, program, name, performers, startDa
                     </Typography>
                   );
                 }
+
                 if (__typename === 'MusicalWork') {
                   const id = data.sys.id;
                   return (
@@ -182,7 +183,6 @@ const EventPage = ({ acknowledgements, image, program, name, performers, startDa
                     />
                   );
                 }
-                console.log(__typename);
               })}
             </ul>
           </Section>

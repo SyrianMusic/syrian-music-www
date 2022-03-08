@@ -17,8 +17,24 @@ export default {
 
 const Template = (args) => <App Component={EventPage} pageProps={args} />;
 
+const defaultEvent = new Event();
+
 export const Default = Template.bind({});
-Default.args = new Event();
+Default.args = {
+  ...defaultEvent,
+  program: {
+    ...defaultEvent.program,
+    items: defaultEvent.program.items.map(({ text, ...item }) => {
+      if (item.__typename === 'ProgramHeader') {
+        return {
+          ...item,
+          headerText: text,
+        };
+      }
+      return item;
+    }),
+  },
+};
 
 export const Empty = Template.bind({});
 Empty.args = emptyEvent;

@@ -2,10 +2,18 @@ import { Image } from './Asset';
 import { Collection } from './Collection';
 import { mahmoudAjjan, majdiAlAqili } from './Composer';
 import { today } from './date';
-import { MusicalWork, MusicalWorkCollection } from './MusicalWork';
+import { MusicalWork } from './MusicalWork';
 import { Node } from './Node';
 import { Performer, PerformerCollection } from './Performer';
 import { Paragraph, RichText, Text } from './RichText';
+
+class ProgramHeader extends Node {
+  constructor({ text = 'Program Header', ...props }) {
+    super(props);
+    this.__typename = 'ProgramHeader';
+    this.text = text;
+  }
+}
 
 export class Event extends Node {
   constructor({
@@ -15,21 +23,31 @@ export class Event extends Node {
     image = new Image({ width: 702, height: 257 }),
     summary = new RichText(),
     url = '#',
-    program = new MusicalWorkCollection({
-      musicalWorks: [
+    program = new Collection({
+      items: [
+        new ProgramHeader({
+          text: 'Section 1',
+        }),
         new MusicalWork({
+          id: '1',
           title: 'Sama’i Rahat al-Arwah',
           composer: mahmoudAjjan,
         }),
         new MusicalWork({
+          id: '2',
+          title: 'Muwashah Ayyuha al-Saqi',
+          composer: majdiAlAqili,
+        }),
+        new ProgramHeader({
+          text: 'Section 2',
+        }),
+        new MusicalWork({
+          id: '3',
           title: 'Muwashah Ayyuha al-Saqi',
           composer: majdiAlAqili,
         }),
         new MusicalWork({
-          title: 'Muwashah Ayyuha al-Saqi',
-          composer: majdiAlAqili,
-        }),
-        new MusicalWork({
+          id: '4',
           title: 'Muwashah Ya Ghosna Naqa',
           composer: null,
         }),
