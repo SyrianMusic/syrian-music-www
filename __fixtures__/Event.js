@@ -1,6 +1,6 @@
 import { Image } from './Asset';
 import { Collection } from './Collection';
-import { mahmoudAjjan } from './Composer';
+import { mahmoudAjjan, majdiAlAqili } from './Composer';
 import { today } from './date';
 import { MusicalWork, MusicalWorkCollection } from './MusicalWork';
 import { Node } from './Node';
@@ -22,11 +22,15 @@ export class Event extends Node {
           composer: mahmoudAjjan,
         }),
         new MusicalWork({
-          title: 'Muwashah Ya Ghosna Naqa',
-          composer: null,
+          title: 'Muwashah Ayyuha al-Saqi',
+          composer: majdiAlAqili,
         }),
         new MusicalWork({
           title: 'Muwashah Ayyuha al-Saqi',
+          composer: majdiAlAqili,
+        }),
+        new MusicalWork({
+          title: 'Muwashah Ya Ghosna Naqa',
           composer: null,
         }),
       ],
