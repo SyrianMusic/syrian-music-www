@@ -1,4 +1,4 @@
-import { gql, serializeFetchParameter } from '@apollo/client';
+import { gql } from '@apollo/client';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
