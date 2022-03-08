@@ -36,6 +36,7 @@ export class MusicalWork extends Node {
     ...props
   } = {}) {
     super(props);
+    this.__typename = 'MusicalWork';
     this.title = title;
     this.composer = composer;
     this.iqa = iqa;

@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
 import styled from '@emotion/styled';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Image from '../../../components/Image';
 import SiteLayout from '../../../components/SiteLayout';
@@ -8,7 +7,8 @@ import Title from '../../../components/Title';
 import Typography, { SectionHeader } from '../../../components/Typography';
 import theme from '../../../styles/theme';
 import { formatDate } from '../../../utils/date';
-import { DEFAULT_COMPOSER, EM_DASH, parseRichText } from '../../../utils/text';
+import { EM_DASH, parseRichText } from '../../../utils/text';
+import ProgramWork from './ProgramWork';
 import Biography from './Biography';
 
 const Section = styled.section({
@@ -30,6 +30,7 @@ const StyledSectionHeader = styled(SectionHeader)({
 
 export const eventPageQuery = gql`
   ${Image.fragments.asset}
+  ${ProgramWork.fragments.program}
   query eventPage($id: String!) {
     event(id: $id) {
       sys {
@@ -42,31 +43,12 @@ export const eventPageQuery = gql`
       }
       program: programCollection {
         items {
-          sys {
-            id
-          }
-          title
-          composer {
+          ...ProgramWork
+          ... on ProgramHeader {
             sys {
               id
             }
-            firstName
-            lastName
-            birthDate
-            birthPlace
-            deathDate
-            image {
-              ...Image
-            }
-            biography {
-              json
-            }
-          }
-          transcription {
-            __typename
-          }
-          text {
-            __typename
+            headerText: text
           }
         }
       }
@@ -175,56 +157,32 @@ const EventPage = ({ acknowledgements, image, program, name, performers, startDa
           <Section>
             <StyledSectionHeader>Program</StyledSectionHeader>
             <ul>
-              {program.items.map((musicalWork = {}) => {
-                const composer = musicalWork.composer || DEFAULT_COMPOSER;
-                const hasTranscription = musicalWork.transcription;
-                const hasTranslation = musicalWork.text;
-
-                let linkText;
-
-                const transcriptionText = 'transcription';
-                const translationText = 'translation';
-
-                // debugger;
-                if (hasTranscription && hasTranslation) {
-                  linkText = `${transcriptionText} and ${translationText}`;
-                } else if (hasTranscription) {
-                  linkText = transcriptionText;
-                } else if (hasTranslation) {
-                  linkText = translationText;
+              {program.items.map(({ __typename, ...data }) => {
+                if (__typename === 'ProgramHeader') {
+                  return (
+                    <Typography
+                      key={data.sys.id}
+                      css={{ marginTop: theme.pxToRem(40) }}
+                      size="lg"
+                      textAlign="center">
+                      <u>{data.headerText}</u>
+                    </Typography>
+                  );
                 }
-
-                return (
-                  <li
-                    key={musicalWork.sys.id}
-                    css={{
-                      ':not(:last-child)': {
-                        marginBottom: theme.pxToRem(25),
-                      },
-                    }}>
-                    <Typography
-                      css={{
-                        marginBottom: 0,
-                      }}
-                      textAlign="center">
-                      {musicalWork.title}
-                    </Typography>
-                    <Typography
-                      css={{
-                        marginBottom: 0,
-                      }}
-                      textAlign="center">
-                      {composer.firstName} {composer.lastName}
-                    </Typography>
-                    {linkText && (
-                      <Typography textAlign="center">
-                        <Link href={`/education/transcriptions/${musicalWork.sys.id}`}>
-                          <a>View {linkText}</a>
-                        </Link>
-                      </Typography>
-                    )}
-                  </li>
-                );
+                if (__typename === 'MusicalWork') {
+                  const id = data.sys.id;
+                  return (
+                    <ProgramWork
+                      key={id}
+                      composer={data.composer}
+                      id={id}
+                      transcription={data.transcription}
+                      text={data.text}
+                      title={data.title}
+                    />
+                  );
+                }
+                console.log(__typename);
               })}
             </ul>
           </Section>
