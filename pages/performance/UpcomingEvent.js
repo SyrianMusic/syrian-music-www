@@ -5,14 +5,14 @@ import Image from '../../components/Image';
 import Typography from '../../components/Typography';
 import CaretIcon from '../../icons/Caret';
 import theme from '../../styles/theme';
-import { formatDate } from '../../utils/date';
+import { formatDateTime } from '../../utils/date';
 import { parseRichText } from '../../utils/text';
 
 const DEFAULT_CTA_TEXT = 'Get tickets';
 
 const UpcomingEvent = ({ className, event }) => {
   const { image, location, name, startDate, summary, url, urlText } = event;
-  const formattedDate = formatDate(startDate);
+  const formattedDate = formatDateTime(startDate);
 
   return (
     <div className={cx('component-UpcomingEvent-root', className)}>
