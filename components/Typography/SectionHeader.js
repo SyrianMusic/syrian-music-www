@@ -6,6 +6,7 @@ export const SectionHeader = ({ className, children, as, variant }) => {
   return (
     <Typography
       css={{
+        clear: 'both',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
