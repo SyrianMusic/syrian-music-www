@@ -23,7 +23,7 @@ const getSizeStyles = (size) => {
   }
 };
 
-const headingStyles = { clear: 'both', letterSpacing: '-0.01em' };
+const headingStyles = { letterSpacing: '-0.01em' };
 
 const getVariantStyles = (variant) => {
   switch (variant) {
