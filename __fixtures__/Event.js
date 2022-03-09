@@ -1,10 +1,19 @@
 import { Image } from './Asset';
 import { Collection } from './Collection';
-import { mahmoudAjjan, ComposerCollection, Composer } from './Composer';
+import { mahmoudAjjan, majdiAlAqili } from './Composer';
 import { today } from './date';
+import { MusicalWork } from './MusicalWork';
 import { Node } from './Node';
 import { Performer, PerformerCollection } from './Performer';
 import { Paragraph, RichText, Text } from './RichText';
+
+export class ProgramHeader extends Node {
+  constructor({ text = 'Program Header', ...props }) {
+    super(props);
+    this.__typename = 'ProgramHeader';
+    this.text = text;
+  }
+}
 
 export class Event extends Node {
   constructor({
@@ -14,34 +23,34 @@ export class Event extends Node {
     image = new Image({ width: 702, height: 257 }),
     summary = new RichText(),
     url = '#',
-    composers = new ComposerCollection({
-      composers: [
-        mahmoudAjjan,
-        new Composer({
-          birthPlace: null,
-          image: null,
-          biography: new RichText({
-            content: [
-              new Paragraph({
-                content: [
-                  new Text({
-                    value:
-                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit.',
-                  }),
-                ],
-              }),
-              new Paragraph({
-                content: [
-                  new Text({
-                    value:
-                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam',
-                  }),
-                ],
-              }),
-            ],
-          }),
+    program = new Collection({
+      items: [
+        new ProgramHeader({
+          text: 'Section 1',
         }),
-        mahmoudAjjan,
+        new MusicalWork({
+          id: '1',
+          title: 'Sama’i Rahat al-Arwah',
+          composer: mahmoudAjjan,
+        }),
+        new MusicalWork({
+          id: '2',
+          title: 'Muwashah Ayyuha al-Saqi',
+          composer: majdiAlAqili,
+        }),
+        new ProgramHeader({
+          text: 'Section 2',
+        }),
+        new MusicalWork({
+          id: '3',
+          title: 'Muwashah Jadaka al-Ghaithu',
+          composer: majdiAlAqili,
+        }),
+        new MusicalWork({
+          id: '4',
+          title: 'Muwashah Ya Ghosna Naqa',
+          composer: null,
+        }),
       ],
     }),
     performers = new PerformerCollection({
@@ -120,11 +129,19 @@ export class Event extends Node {
     this.image = image;
     this.summary = summary;
     this.url = url;
-    this.composers = composers;
+    this.program = program;
     this.performers = performers;
     this.acknowledgements = acknowledgements;
   }
 }
+
+export const emptyEvent = new Event({
+  program: null,
+  performers: {
+    items: [],
+  },
+  acknowledgements: null,
+});
 
 export class EventCollection extends Collection {
   constructor({ events = [new Event()] } = {}) {

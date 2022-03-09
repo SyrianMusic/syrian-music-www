@@ -12,9 +12,14 @@ export const MARKS = {
   CODE: 'code',
 };
 
-export const DEFAULT_COMPOSER = {
+export const DEFAULT_COMPOSER_ENGLISH = {
   firstName: 'Unknown',
   lastName: 'composer',
+};
+
+export const DEFAULT_COMPOSER_ARABIC = {
+  firstName: 'مجهول',
+  lastName: 'المؤلف',
 };
 
 // TODO: Can remove once switched off of local data
