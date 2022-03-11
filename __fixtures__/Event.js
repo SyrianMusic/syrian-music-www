@@ -8,7 +8,7 @@ import { Performer, PerformerCollection } from './Performer';
 import { Paragraph, RichText, Text } from './RichText';
 
 export class ProgramHeader extends Node {
-  constructor({ text = 'Program Header', ...props }) {
+  constructor({ text = 'Program Header', ...props } = {}) {
     super(props);
     this.__typename = 'ProgramHeader';
     this.text = text;

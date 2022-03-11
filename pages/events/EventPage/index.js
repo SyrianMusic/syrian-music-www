@@ -7,9 +7,10 @@ import Title from '../../../components/Title';
 import Typography, { SectionHeader } from '../../../components/Typography';
 import theme from '../../../styles/theme';
 import { formatDate } from '../../../utils/date';
+import logger from '../../../utils/logger';
 import { EM_DASH, parseRichText } from '../../../utils/text';
-import ProgramWork from './ProgramWork';
 import Biography from './Biography';
+import ProgramWork from './ProgramWork';
 
 const Section = styled.section({
   marginTop: theme.pxToRem(30),
@@ -249,14 +250,20 @@ const EventPage = ({
             <ul>
               {program.items.map(({ __typename, ...data }) => {
                 if (__typename === 'ProgramHeader') {
+                  let arabicHeader;
+
+                  if (data.headerText.arabic !== data.headerText.english) {
+                    arabicHeader = data.headerText.arabic;
+                  }
+
                   return (
                     <Typography key={data.sys.id} css={programStyles} textAlign="center">
                       <u>
                         {data.headerText.english}
-                        {data.headerText.arabic && (
+                        {arabicHeader && (
                           <>
                             <br />
-                            {data.headerText.arabic}
+                            {arabicHeader}
                           </>
                         )}
                       </u>
@@ -278,6 +285,8 @@ const EventPage = ({
                     />
                   );
                 }
+
+                logger.error(`Unsupported item in program: __typename=<${__typename}>`);
               })}
             </ul>
           </Section>

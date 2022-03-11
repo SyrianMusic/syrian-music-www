@@ -5,6 +5,7 @@ import {
   mahmoudAjjan,
   MusicalWork,
   MusicalWorkCollection,
+  musicalWorkDefault,
   PDF,
   ProgramHeader,
   RichText,
@@ -142,6 +143,17 @@ DuplicateComposer.args = {
       new MusicalWork({
         composer: { ...mahmoudAjjan },
       }),
-    ],
+    ].map(transformItems),
   }),
+};
+
+export const NoArabic = Template.bind({});
+NoArabic.args = {
+  ...Default.args,
+  programEnglish: {
+    items: [new ProgramHeader({ id: 1 }), { ...musicalWorkDefault, id: 1 }].map(transformItems),
+  },
+  programArabic: {
+    items: [new ProgramHeader({ id: 2 }), { ...musicalWorkDefault, id: 2 }].map(transformItems),
+  },
 };
