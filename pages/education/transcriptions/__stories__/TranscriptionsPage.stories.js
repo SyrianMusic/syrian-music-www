@@ -61,7 +61,7 @@ export const OnlyEnglish = Template.bind({});
 OnlyEnglish.args = {
   ...Empty.args,
   musicalWork: { ...musicalWorkEmpty, text: musicalWorkDefault.text },
-  arabic: null,
+  arabic: { ...musicalWorkEmpty, text: musicalWorkDefault.text },
 };
 
 export const OnlyArabic = Template.bind({});
