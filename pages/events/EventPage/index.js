@@ -331,7 +331,9 @@ const EventPage = ({
 
               if (birthDate) {
                 subtitle = new Date(birthDate).getUTCFullYear();
-                subtitle += `${EM_DASH}${new Date(deathDate).getUTCFullYear() || 'Present'}`;
+                subtitle += `${EM_DASH}${
+                  deathDate ? new Date(deathDate).getUTCFullYear() : 'Present'
+                }`;
               }
 
               if (subtitle && birthPlace) {
