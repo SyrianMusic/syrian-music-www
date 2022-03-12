@@ -91,6 +91,9 @@ export const transcriptionPageQuery = gql`
       sys {
         id
       }
+      analysis {
+        json
+      }
       composer {
         firstName
         lastName
@@ -125,6 +128,9 @@ const propTypes = {
   musicalWork: PropTypes.shape({
     sys: PropTypes.shape({
       id: PropTypes.string.isRequired,
+    }),
+    analysis: PropTypes.shape({
+      json: PropTypes.object,
     }),
     composer: PropTypes.shape({
       firstName: PropTypes.string,
@@ -285,6 +291,13 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
         <Section id="transcription" className="gutters">
           <SectionHeader as="h1">Translation</SectionHeader>
           {transformText(musicalWork.text)}
+        </Section>
+      )}
+
+      {musicalWork.analysis && (
+        <Section id="analysis" className="gutters">
+          <SectionHeader as="h1">Analysis</SectionHeader>
+          {parseRichText(musicalWork.analysis.json)}
         </Section>
       )}
     </SiteLayout>
