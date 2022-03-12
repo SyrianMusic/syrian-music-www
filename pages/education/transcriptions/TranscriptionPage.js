@@ -7,7 +7,7 @@ import SiteLayout from '../../../components/SiteLayout';
 import Title from '../../../components/Title';
 import Typography, { SectionHeader } from '../../../components/Typography';
 import theme from '../../../styles/theme';
-import { DEFAULT_COMPOSER_ENGLISH } from '../../../utils/text';
+import { DEFAULT_COMPOSER_ENGLISH, parseRichText } from '../../../utils/text';
 
 const PDF_VIEWER_ID = 'pdf-viewer';
 
@@ -95,6 +95,9 @@ export const transcriptionPageQuery = gql`
         firstName
         lastName
       }
+      description {
+        json
+      }
       iqa {
         name
       }
@@ -126,6 +129,9 @@ const propTypes = {
     composer: PropTypes.shape({
       firstName: PropTypes.string,
       lastName: PropTypes.string,
+    }),
+    description: PropTypes.shape({
+      json: PropTypes.object,
     }),
     iqa: PropTypes.shape({
       name: PropTypes.string,
@@ -227,6 +233,12 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
         textAlign="center">
         {composer.firstName} {composer.lastName}
       </Typography>
+
+      {musicalWork.description && (
+        <div css={{ marginBottom: theme.pxToRem(50) }}>
+          {parseRichText(musicalWork.description.json)}
+        </div>
+      )}
 
       {musicalWork?.maqam && (
         <section id="maqam" className="gutters">
