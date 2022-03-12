@@ -59,8 +59,7 @@ export default {
         key: KEYS.samerAli,
         children: [
           {
-            text:
-              'A native of Syria, Samer Ali is a physician, violinist, composer, founder and artistic director of the Syrian Music Preservation Initiative.',
+            text: 'A native of Syria, Samer Ali is a physician, violinist, composer, founder and artistic director of the Syrian Music Preservation Initiative.',
           },
         ],
       }),
@@ -79,8 +78,7 @@ export default {
         key: KEYS.samerAli,
         children: [
           {
-            text:
-              'He began studying western classical violin at the age of eight with Fawaz al-Ali and Ali Farran, and later pursued intensive conservatory studies with Ali Mukhtar Babayev. He studied the Arab music traditions with Simon Shaheen, Anwar Hariri, and Muhammad Qadri Dalal.',
+            text: 'He began studying western classical violin at the age of eight with Fawaz al-Ali and Ali Farran, and later pursued intensive conservatory studies with Ali Mukhtar Babayev. He studied the Arab music traditions with Simon Shaheen, Anwar Hariri, and Muhammad Qadri Dalal.',
           },
         ],
       }),
@@ -88,8 +86,7 @@ export default {
         key: KEYS.samerAli,
         children: [
           {
-            text:
-              'In Damascus, he co-founded Awj Ensemble, and has continued to perform in the US with groups like the Bronx Orchestra and the National Arab Orchestra.',
+            text: 'In Damascus, he co-founded Awj Ensemble, and has continued to perform in the US with groups like the Bronx Orchestra and the National Arab Orchestra.',
           },
         ],
       }),
@@ -97,8 +94,7 @@ export default {
         key: KEYS.samerAli,
         children: [
           {
-            text:
-              'In medicine, Samer received his M.D. from Syria and later graduated from medical residency in Anatomic and Clinical Pathology at Mount Sinai Hospital. He is currently a Surgical Pathology Fellow at Lenox Hill Hospital in New York.',
+            text: 'In medicine, Samer received his M.D. from Syria and later graduated from medical residency in Anatomic and Clinical Pathology at Mount Sinai Hospital. He is currently a Surgical Pathology Fellow at Lenox Hill Hospital in New York.',
           },
         ],
       }),
@@ -127,8 +123,7 @@ export default {
         key: KEYS.marissaArciola,
         children: [
           {
-            text:
-              'Marissa is a bassist, strategist and leader with a unique combination of artistic and business experience helping her build on founder Samer Ali’s vision of the SMPI.',
+            text: 'Marissa is a bassist, strategist and leader with a unique combination of artistic and business experience helping her build on founder Samer Ali’s vision of the SMPI.',
           },
         ],
       }),
@@ -136,8 +131,7 @@ export default {
         key: KEYS.marissaArciola,
         children: [
           {
-            text:
-              'Marissa completed her undergraduate degree in double bass performance at the Eastman School of Music under the tutelage of renowned soloist, James VanDemark and Curtis Buris.  Marissa continued with music while completing her MBA and MA in Arts Administration at SMU, Marissa.',
+            text: 'Marissa completed her undergraduate degree in double bass performance at the Eastman School of Music under the tutelage of renowned soloist, James VanDemark and Curtis Buris.  Marissa continued with music while completing her MBA and MA in Arts Administration at SMU.',
           },
         ],
       }),
@@ -145,8 +139,7 @@ export default {
         key: KEYS.marissaArciola,
         children: [
           {
-            text:
-              'After her studies, Marissa has worked with a number of nonprofit organizations while playing with groups ranging from classical, rock, and Middle Eastern music.',
+            text: 'After her studies, Marissa has worked with a number of nonprofit organizations while playing with groups ranging from classical, rock, and Middle Eastern music.',
           },
         ],
       }),
@@ -154,8 +147,7 @@ export default {
         key: KEYS.marissaArciola,
         children: [
           {
-            text:
-              'As President of the SMPI board, and member of Takht al-Nagham, Marissa helps to move the organization forward both programmatically and financially, by putting a focus on the digital initiatives, prioritizing projects and growing donation and fundraising prospects.',
+            text: 'As President of the SMPI board, and member of Takht al-Nagham, Marissa helps to move the organization forward both programmatically and financially, by putting a focus on the digital initiatives, prioritizing projects and growing donation and fundraising prospects.',
           },
         ],
       }),
@@ -195,8 +187,7 @@ export default {
         key: KEYS.fouadSalloum,
         children: [
           {
-            text:
-              'Also an instrument collector, Fouad has amassed a collection of ouds (with a focus on the Syrian luthiers) which can only be described as breathtaking.',
+            text: 'Also an instrument collector, Fouad has amassed a collection of ouds (with a focus on the Syrian luthiers) which can only be described as breathtaking.',
           },
         ],
       }),
@@ -204,8 +195,7 @@ export default {
         key: KEYS.fouadSalloum,
         children: [
           {
-            text:
-              'Fouad shares his collection, appreciation of art and his expertise with SMPI as the Vice President of the board.',
+            text: 'Fouad shares his collection, appreciation of art and his expertise with SMPI as the Vice President of the board.',
           },
         ],
       }),
@@ -219,8 +209,7 @@ export default {
         key: KEYS.hannaMadbak,
         children: [
           {
-            text:
-              "Hanna Madbak grew up in Beirut, Lebanon. From an early age, he was immersed in the music of the region and developed a deep appreciation of it. Hanna is an avid listener and student of Arabic music and studied oud with the late Director of the Lebanese Conservatory, Bassam Saba. Hanna is a practicing attorney in New York and serves as SMPI's legal advisor as well as being a member of the Board.",
+            text: "Hanna Madbak grew up in Beirut, Lebanon. From an early age, he was immersed in the music of the region and developed a deep appreciation of it. Hanna is an avid listener and student of Arabic music and studied oud with the late Director of the Lebanese Conservatory, Bassam Saba. Hanna is a practicing attorney in New York and serves as SMPI's legal advisor as well as being a member of the Board.",
           },
         ],
       }),
@@ -249,8 +238,7 @@ export default {
         key: KEYS.homamIbrahim,
         children: [
           {
-            text:
-              'Homam Ibrahim was born in Latakia, Syria and began studying violin at the age of 10 with Bassam Yusuf. While playing with the Music Club of Latakia for many years, he developed a passion and an ear for music. In 2008, Homam came to the United States to pursue his medical training and he currently practices interventional cardiology at NYU. Homam feels strongly that preserving the history and tradition of Syrian music is important and sits on the board of SMPI to help move the many performance, research and education initiatives forward with planning and support.',
+            text: 'Homam Ibrahim was born in Latakia, Syria and began studying violin at the age of 10 with Bassam Yusuf. While playing with the Music Club of Latakia for many years, he developed a passion and an ear for music. In 2008, Homam came to the United States to pursue his medical training and he currently practices interventional cardiology at NYU. Homam feels strongly that preserving the history and tradition of Syrian music is important and sits on the board of SMPI to help move the many performance, research and education initiatives forward with planning and support.',
           },
         ],
       }),
@@ -279,8 +267,7 @@ export default {
         key: KEYS.karinNangreave,
         children: [
           {
-            text:
-              "Karin Nangreave is a double bassist turned financial director. After attending the Eastman School of Music, she transferred to Northwestern University to pursue a degree in Music Performance. After graduating, Karin then received a Master's of Science in Accounting and received her CPA designation. She became an auditor of nonprofit organizations where she helped advise them on their financial practices and how to properly set up their financial controls for success and compliance. Currently, she works as the Controller at a private school in Chicago for 2 years and has been on other arts nonprofit boards in the past.",
+            text: "Karin Nangreave is a double bassist turned financial director. After attending the Eastman School of Music, she transferred to Northwestern University to pursue a degree in Music Performance. After graduating, Karin then received a Master's of Science in Accounting and received her CPA designation. She became an auditor of nonprofit organizations where she helped advise them on their financial practices and how to properly set up their financial controls for success and compliance. Currently, she works as the Controller at a private school in Chicago for 2 years and has been on other arts nonprofit boards in the past.",
           },
         ],
       }),
