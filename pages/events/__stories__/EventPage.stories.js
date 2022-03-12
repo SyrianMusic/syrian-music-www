@@ -151,9 +151,20 @@ export const NoArabic = Template.bind({});
 NoArabic.args = {
   ...Default.args,
   programEnglish: {
-    items: [new ProgramHeader({ id: 1 }), { ...musicalWorkDefault, id: 1 }].map(transformItems),
+    items: [new ProgramHeader({ id: 1 }), { ...musicalWorkDefault, id: 2 }].map(transformItems),
   },
   programArabic: {
-    items: [new ProgramHeader({ id: 2 }), { ...musicalWorkDefault, id: 2 }].map(transformItems),
+    items: [new ProgramHeader({ id: 1 }), { ...musicalWorkDefault, id: 2 }].map(transformItems),
+  },
+};
+
+export const Intermission = Template.bind({});
+Intermission.args = {
+  ...Default.args,
+  programEnglish: {
+    items: [new ProgramHeader({ text: 'Intermission' })].map(transformItems),
+  },
+  programArabic: {
+    items: [new ProgramHeader({ text: 'استراحة' })].map(transformItems),
   },
 };

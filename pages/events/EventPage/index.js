@@ -12,6 +12,8 @@ import { EM_DASH, parseRichText } from '../../../utils/text';
 import Biography from './Biography';
 import ProgramWork from './ProgramWork';
 
+const INTERMISSION = 'Intermission';
+
 const Section = styled.section({
   marginTop: theme.pxToRem(30),
   marginBottom: theme.pxToRem(30),
@@ -250,23 +252,41 @@ const EventPage = ({
             <ul>
               {program.items.map(({ __typename, ...data }) => {
                 if (__typename === 'ProgramHeader') {
-                  let arabicHeader;
+                  const englishText = data.headerText.english;
+                  const isIntermission = englishText === INTERMISSION;
 
-                  if (data.headerText.arabic !== data.headerText.english) {
-                    arabicHeader = data.headerText.arabic;
+                  let arabicText;
+                  if (data.headerText.arabic !== englishText) {
+                    arabicText = data.headerText.arabic;
+                  }
+
+                  let css;
+                  if (englishText === INTERMISSION) {
+                    css = {
+                      ':before': {
+                        content: `"${EM_DASH} "`,
+                      },
+                      ':after': {
+                        content: `" ${EM_DASH}"`,
+                      },
+                    };
                   }
 
                   return (
-                    <Typography key={data.sys.id} css={programStyles} textAlign="center">
-                      <u>
-                        {data.headerText.english}
-                        {arabicHeader && (
-                          <>
-                            <br />
-                            {arabicHeader}
-                          </>
-                        )}
-                      </u>
+                    <Typography
+                      key={data.sys.id}
+                      css={[
+                        programStyles,
+                        { textDecoration: isIntermission ? 'none' : 'underline' },
+                      ]}
+                      textAlign="center">
+                      <span css={css}>{englishText}</span>
+                      {arabicText && (
+                        <>
+                          <br />
+                          {arabicText}
+                        </>
+                      )}
                     </Typography>
                   );
                 }
