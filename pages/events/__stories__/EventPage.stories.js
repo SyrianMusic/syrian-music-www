@@ -168,3 +168,14 @@ Intermission.args = {
     items: [new ProgramHeader({ text: 'استراحة' })].map(transformItems),
   },
 };
+
+export const HasText = Template.bind({});
+HasText.args = {
+  ...Default.args,
+  programEnglish: {
+    items: [new MusicalWork()].map(transformItems),
+  },
+  programArabic: {
+    items: [new MusicalWork()].map(transformItems),
+  },
+};

@@ -163,6 +163,8 @@ const transformProgram = (english, arabic) => {
                   ? itemArabic.composer
                   : null,
             },
+            text: itemArabic.text,
+            translation: itemEnglish.text,
           },
         ];
       }
@@ -301,6 +303,7 @@ const EventPage = ({
                       id={id}
                       transcription={data.transcription}
                       text={data.text}
+                      translation={data.translation}
                       title={data.title}
                     />
                   );

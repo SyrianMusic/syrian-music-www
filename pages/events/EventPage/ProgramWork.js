@@ -42,6 +42,9 @@ const fragments = {
         lastName
       }
       title
+      text {
+        __typename
+      }
     }
   `,
 };
@@ -65,6 +68,7 @@ const propTypes = {
     english: PropTypes.string.isRequired,
     arabic: PropTypes.string,
   }),
+  translation: PropTypes.object,
 };
 
 const defaultProps = {
@@ -74,23 +78,37 @@ const defaultProps = {
   text: null,
 };
 
-const ProgramWork = ({ className, composer: composerProp, id, transcription, text, title }) => {
+const ProgramWork = ({
+  className,
+  composer: composerProp,
+  id,
+  transcription,
+  text,
+  translation,
+  title,
+}) => {
   const composerArabic = composerProp.arabic || DEFAULT_COMPOSER_ARABIC;
   const composerEnglish = composerProp.english || DEFAULT_COMPOSER_ENGLISH;
   const hasTranscription = transcription;
-  const hasTranslation = text;
+  const hasText = Boolean(text);
+  const hasTranslation = Boolean(translation);
 
   let linkText;
 
   const transcriptionText = 'transcription';
   const translationText = 'translation';
+  const textText = 'text';
 
   if (hasTranscription && hasTranslation) {
     linkText = `${transcriptionText} & ${translationText}`;
+  } else if (hasTranscription && hasText) {
+    linkText = `${transcriptionText} & ${textText}`;
   } else if (hasTranscription) {
     linkText = transcriptionText;
   } else if (hasTranslation) {
     linkText = translationText;
+  } else if (hasText) {
+    linkText = textText;
   }
 
   return (
