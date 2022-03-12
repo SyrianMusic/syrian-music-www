@@ -7,9 +7,12 @@ import Title from '../../../components/Title';
 import Typography, { SectionHeader } from '../../../components/Typography';
 import theme from '../../../styles/theme';
 import { formatDate } from '../../../utils/date';
+import logger from '../../../utils/logger';
 import { EM_DASH, parseRichText } from '../../../utils/text';
-import ProgramWork from './ProgramWork';
 import Biography from './Biography';
+import ProgramWork from './ProgramWork';
+
+const INTERMISSION = 'Intermission';
 
 const Section = styled.section({
   marginTop: theme.pxToRem(30),
@@ -160,6 +163,8 @@ const transformProgram = (english, arabic) => {
                   ? itemArabic.composer
                   : null,
             },
+            text: itemArabic.text,
+            translation: itemEnglish.text,
           },
         ];
       }
@@ -249,17 +254,41 @@ const EventPage = ({
             <ul>
               {program.items.map(({ __typename, ...data }) => {
                 if (__typename === 'ProgramHeader') {
+                  const englishText = data.headerText.english;
+                  const isIntermission = englishText === INTERMISSION;
+
+                  let arabicText;
+                  if (data.headerText.arabic !== englishText) {
+                    arabicText = data.headerText.arabic;
+                  }
+
+                  let css;
+                  if (englishText === INTERMISSION) {
+                    css = {
+                      ':before': {
+                        content: `"${EM_DASH} "`,
+                      },
+                      ':after': {
+                        content: `" ${EM_DASH}"`,
+                      },
+                    };
+                  }
+
                   return (
-                    <Typography key={data.sys.id} css={programStyles} textAlign="center">
-                      <u>
-                        {data.headerText.english}
-                        {data.headerText.arabic && (
-                          <>
-                            <br />
-                            {data.headerText.arabic}
-                          </>
-                        )}
-                      </u>
+                    <Typography
+                      key={data.sys.id}
+                      css={[
+                        programStyles,
+                        { textDecoration: isIntermission ? 'none' : 'underline' },
+                      ]}
+                      textAlign="center">
+                      <span css={css}>{englishText}</span>
+                      {arabicText && (
+                        <>
+                          <br />
+                          {arabicText}
+                        </>
+                      )}
                     </Typography>
                   );
                 }
@@ -274,10 +303,13 @@ const EventPage = ({
                       id={id}
                       transcription={data.transcription}
                       text={data.text}
+                      translation={data.translation}
                       title={data.title}
                     />
                   );
                 }
+
+                logger.error(`Unsupported item in program: __typename=<${__typename}>`);
               })}
             </ul>
           </Section>

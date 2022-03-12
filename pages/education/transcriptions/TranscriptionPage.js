@@ -77,7 +77,9 @@ const transformTranslation = (arabicText, translatedText) => {
 
   if (lengthArabic && lengthTranslated) {
     hasMultipleTexts = true;
-  } else if (lengthTranslated) {
+  }
+
+  if (lengthTranslated) {
     hasTranslation = true;
   }
 
@@ -100,7 +102,11 @@ const transformTranslation = (arabicText, translatedText) => {
 
           let translated;
           if (Array.isArray(translatedLines)) {
-            translated = translatedLines[j];
+            if (translatedLines[j] !== arabic) {
+              translated = translatedLines[j];
+            } else {
+              hasMultipleTexts = false;
+            }
           }
 
           lines = [...lines, { arabic, translated }];
@@ -112,6 +118,69 @@ const transformTranslation = (arabicText, translatedText) => {
   }
 
   return { hasMultipleTexts, hasTranslation, stanzas };
+};
+
+export const transcriptionPageQuery = gql`
+  query transcriptionPage($id: String!) {
+    musicalWork(id: $id, locale: "en-US") {
+      sys {
+        id
+      }
+      composer {
+        firstName
+        lastName
+      }
+      iqa {
+        name
+      }
+      maqam {
+        name
+      }
+      text {
+        json
+      }
+      title
+      transcription {
+        url
+      }
+    }
+    arabic: musicalWork(id: $id, locale: "ar-SY") {
+      text {
+        json
+      }
+    }
+  }
+`;
+
+const propTypes = {
+  adobeKey: PropTypes.string.isRequired,
+  musicalWork: PropTypes.shape({
+    sys: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+    composer: PropTypes.shape({
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+    }),
+    iqa: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+    maqam: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+    text: PropTypes.shape({
+      json: PropTypes.object,
+    }),
+    title: PropTypes.string,
+    transcription: PropTypes.shape({
+      url: PropTypes.string,
+    }),
+  }),
+  arabic: PropTypes.shape({
+    text: PropTypes.shape({
+      json: PropTypes.object,
+    }),
+  }),
 };
 
 const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
@@ -294,67 +363,6 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
   );
 };
 
-export const transcriptionPageQuery = gql`
-  query transcriptionPage($id: String!) {
-    musicalWork(id: $id, locale: "en-US") {
-      sys {
-        id
-      }
-      composer {
-        firstName
-        lastName
-      }
-      iqa {
-        name
-      }
-      maqam {
-        name
-      }
-      text {
-        json
-      }
-      title
-      transcription {
-        url
-      }
-    }
-    arabic: musicalWork(id: $id, locale: "ar-SY") {
-      text {
-        json
-      }
-    }
-  }
-`;
-
-TranscriptionPage.propTypes = {
-  adobeKey: PropTypes.string.isRequired,
-  musicalWork: PropTypes.shape({
-    sys: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }),
-    composer: PropTypes.shape({
-      firstName: PropTypes.string,
-      lastName: PropTypes.string,
-    }),
-    iqa: PropTypes.shape({
-      name: PropTypes.string,
-    }),
-    maqam: PropTypes.shape({
-      name: PropTypes.string,
-    }),
-    text: PropTypes.shape({
-      json: PropTypes.object,
-    }),
-    title: PropTypes.string,
-    transcription: PropTypes.shape({
-      url: PropTypes.string,
-    }),
-  }),
-  arabic: PropTypes.shape({
-    text: PropTypes.shape({
-      json: PropTypes.object,
-    }),
-  }),
-};
+TranscriptionPage.propTypes = propTypes;
 
 export default TranscriptionPage;

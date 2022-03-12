@@ -5,6 +5,7 @@ import {
   mahmoudAjjan,
   MusicalWork,
   MusicalWorkCollection,
+  musicalWorkDefault,
   PDF,
   ProgramHeader,
   RichText,
@@ -142,6 +143,39 @@ DuplicateComposer.args = {
       new MusicalWork({
         composer: { ...mahmoudAjjan },
       }),
-    ],
+    ].map(transformItems),
   }),
+};
+
+export const NoArabic = Template.bind({});
+NoArabic.args = {
+  ...Default.args,
+  programEnglish: {
+    items: [new ProgramHeader({ id: 1 }), { ...musicalWorkDefault, id: 2 }].map(transformItems),
+  },
+  programArabic: {
+    items: [new ProgramHeader({ id: 1 }), { ...musicalWorkDefault, id: 2 }].map(transformItems),
+  },
+};
+
+export const Intermission = Template.bind({});
+Intermission.args = {
+  ...Default.args,
+  programEnglish: {
+    items: [new ProgramHeader({ text: 'Intermission' })].map(transformItems),
+  },
+  programArabic: {
+    items: [new ProgramHeader({ text: 'استراحة' })].map(transformItems),
+  },
+};
+
+export const HasText = Template.bind({});
+HasText.args = {
+  ...Default.args,
+  programEnglish: {
+    items: [new MusicalWork()].map(transformItems),
+  },
+  programArabic: {
+    items: [new MusicalWork()].map(transformItems),
+  },
 };

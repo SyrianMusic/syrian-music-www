@@ -68,7 +68,6 @@ export const getStaticProps = async (context) => {
     return { props: eventData };
   } catch (e) {
     logger.error(`Could not generate event page: slug=<${context.params.slug}> id=<${id}>`);
-    return { notFound: true };
   }
 };
 

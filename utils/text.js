@@ -71,7 +71,7 @@ const parseText = (node, id) => {
     node.marks.forEach((mark) => {
       switch (mark?.type) {
         case 'bold':
-          el = <strong>{el}</strong>;
+          el = <strong css={{ fontWeight: 'bold' }}>{el}</strong>;
           break;
         case 'italic':
           el = <em>{el}</em>;
