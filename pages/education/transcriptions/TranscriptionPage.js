@@ -169,10 +169,14 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
 
   useEffect(() => {
     // TODO: Maybe move to context
-    document.addEventListener('adobe_dc_view_sdk.ready', () => {
+    if (window.AdobeDC) {
       setIsAdobeReady(true);
-    });
-  });
+    } else {
+      document.addEventListener('adobe_dc_view_sdk.ready', () => {
+        setIsAdobeReady(true);
+      });
+    }
+  }, []);
 
   const loadPdf = useCallback(() => {
     try {
