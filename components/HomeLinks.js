@@ -33,7 +33,7 @@ export const HomeLinks = ({ className }) => (
                   <Typography className="component-HomeLinks-section-title" variant="h3">
                     {section.homeText ?? section.text}
                   </Typography>
-                  <Typography className="component-HomeLinks-section-description" size="lg">
+                  <Typography className="component-HomeLinks-section-description" size="md">
                     {section.description}
                   </Typography>
                 </div>
@@ -60,12 +60,16 @@ export const HomeLinks = ({ className }) => (
         }
 
         .component-HomeLinks-text {
-          margin-top: ${theme.pxToRem(48)};
+          margin-top: ${theme.pxToRem(24)};
         }
 
         li a :global(.component-HomeLinks-image) {
           height: auto;
           width: 100%;
+        }
+
+        :global(.component-HomeLinks-text .component-HomeLinks-section-title) {
+          margin-bottom: ${theme.pxToRem(8)};
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
@@ -98,7 +102,7 @@ export const HomeLinks = ({ className }) => (
           }
 
           :global(.component-HomeLinks-text .component-HomeLinks-section-title) {
-            margin-bottom: ${theme.pxToRem(48)};
+            margin-bottom: ${theme.pxToRem(20)};
           }
         }
       `}
