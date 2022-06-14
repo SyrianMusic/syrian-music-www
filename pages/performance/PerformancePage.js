@@ -59,9 +59,8 @@ const PerformancePage = ({ upcomingEvents }) => {
       <Hero
         className="page-Performance-hero"
         subtitle={
-          <Typography className="page-Performance-subtitle" variant="h3" as="div">
-            <span>Zakhrafa</span>
-            <span>Roulette</span>
+          <Typography variant="h3" as="div">
+            Zakhrafa | Roulette
           </Typography>
         }
         video={{
@@ -119,16 +118,6 @@ const PerformancePage = ({ upcomingEvents }) => {
       </section>
       <style jsx>
         {`
-          :global(.page-Performance-subtitle) {
-            display: flex;
-            justify-content: space-between;
-          }
-
-          :global(.page-Performance-subtitle) span:first-child {
-            padding-right: 1em;
-            text-align: left;
-          }
-
           section {
             margin-top: ${theme.pxToRem(50)};
             margin-bottom: ${theme.pxToRem(23)};
