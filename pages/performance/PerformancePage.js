@@ -36,9 +36,28 @@ const PerformancePage = ({ upcomingEvents }) => {
     <SiteLayout className="page-Performance-root" pathname={pageConfig.href}>
       <Title>Performance</Title>
 
+      <Typography className="component-Hero-title" variant="h3" as="h1" textAlign="center">
+        Performance
+      </Typography>
+
+      {nextEvent && (
+        <section
+          id="upcoming-performances"
+          data-testid="upcoming-performances"
+          className="page-Performances-upcoming">
+          <div className="page-Performances-upcoming-heading">
+            <Typography className="page-Performances-upcoming-heading-text" variant="h3" as="h1">
+              Upcoming <br />
+              Performances
+            </Typography>
+          </div>
+
+          <UpcomingEvent className="page-Performances-event" event={nextEvent} />
+        </section>
+      )}
+
       <Hero
         className="page-Performance-hero"
-        title="Performance"
         subtitle={
           <Typography className="page-Performance-subtitle" variant="h3" as="div">
             <span>Zakhrafa</span>
@@ -56,22 +75,6 @@ const PerformancePage = ({ upcomingEvents }) => {
           rhythm in 12/8 named&nbsp;Muzakhraf.
         </Typography>
       </Hero>
-
-      {nextEvent && (
-        <section
-          id="upcoming-performances"
-          data-testid="upcoming-performances"
-          className="page-Performances-upcoming">
-          <div className="page-Performances-upcoming-heading">
-            <Typography className="page-Performances-upcoming-heading-text" variant="h3" as="h1">
-              Upcoming <br />
-              Performances
-            </Typography>
-          </div>
-
-          <UpcomingEvent className="page-Performances-event" event={nextEvent} />
-        </section>
-      )}
 
       <section className={cx('page-Performance-groups', 'gutters')}>
         <h1 className="visually-hidden">Performing Groups</h1>
