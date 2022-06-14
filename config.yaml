@@ -19,7 +19,7 @@ nav:
         href: /#takht-al-nagham
   education:
     text: Education
-    homeText: Transcriptions
+    homeText: Repertoire
     href: /education
     homeHref: /education/transcriptions
     description: >
@@ -34,7 +34,7 @@ nav:
         - densityFactor: 3
           src: /images/sheet-music/open-book-with-syrian-sheet-music@3x.png
     links:
-      - text: Transcriptions
+      - text: Repertoire
         href: /transcriptions
         description: >
           View our archive of transcribed works.
