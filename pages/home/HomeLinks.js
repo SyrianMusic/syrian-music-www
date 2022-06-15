@@ -1,12 +1,19 @@
-import Link from 'next/link';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
+import Link from 'next/link';
+import { css } from '@emotion/react';
 import Image from 'components/Image';
 import Nav from 'components/Nav';
 import Typography from 'components/Typography';
 import config from 'config.yaml';
 import { gutters } from 'styles/mixins';
 import theme from 'styles/theme';
+
+const textClass = css({
+  [theme.mq.mobileToDesktop]: {
+    paddingLeft: theme.pxToRem(32),
+    paddingRight: theme.pxToRem(32),
+  },
+});
 
 const HomeLinks = ({ className }) => (
   <Nav className={className}>
@@ -15,13 +22,46 @@ const HomeLinks = ({ className }) => (
         const isFlipped = i % 2 != 0;
 
         return (
-          <li key={section.text}>
+          <li
+            key={section.text}
+            css={[
+              gutters.margin.mobile,
+              {
+                borderTop: `${theme.pxToRem(1)} solid ${theme.color.black}`,
+
+                '&:not(:last-child)': {
+                  marginBottom: theme.pxToRem(64),
+                },
+
+                [theme.mq.mobileToDesktop]: {
+                  marginLeft: theme.pxToRem(48),
+                  marginRight: theme.pxToRem(48),
+                },
+              },
+            ]}>
             <Link href={section.homeHref ?? section.href}>
-              <a className={cx({ flipped: isFlipped })}>
-                <div className="component-HomeLinks-image-wrapper">
+              <a
+                css={{
+                  display: 'block',
+                  textDecoration: 'none',
+
+                  [theme.mq.mobileToDesktop]: {
+                    display: 'flex',
+                    flexDirection: isFlipped ? 'row' : 'row-reverse',
+                  },
+                }}>
+                <div
+                  css={{
+                    [theme.mq.mobileToDesktop]: {
+                      flex: 1,
+                    },
+                  }}>
                   {section.image && (
                     <Image
-                      className="component-HomeLinks-image"
+                      css={{
+                        height: 'auto',
+                        width: '100%',
+                      }}
                       src={section.image.src}
                       srcSet={section.image.srcSet}
                       width={section.image.width}
@@ -29,11 +69,30 @@ const HomeLinks = ({ className }) => (
                     />
                   )}
                 </div>
-                <div className="component-HomeLinks-text">
-                  <Typography className="component-HomeLinks-section-title" variant="h3">
+                <div
+                  css={{
+                    marginTop: theme.pxToRem(24),
+
+                    [theme.mq.mobileToDesktop]: {
+                      flex: 1,
+                      marginTop: theme.pxToRem(48),
+                    },
+                  }}>
+                  <Typography
+                    css={[
+                      textClass,
+                      {
+                        marginBottom: theme.pxToRem(8),
+
+                        [theme.mq.mobileToDesktop]: {
+                          marginBottom: theme.pxToRem(20),
+                        },
+                      },
+                    ]}
+                    variant="h3">
                     {section.homeText ?? section.text}
                   </Typography>
-                  <Typography className="component-HomeLinks-section-description" size="md">
+                  <Typography css={textClass} size="md">
                     {section.description}
                   </Typography>
                 </div>
@@ -43,70 +102,6 @@ const HomeLinks = ({ className }) => (
         );
       })}
     </ul>
-    <style jsx>
-      {`
-        li {
-          ${gutters.margin.mobile};
-          border-top: ${theme.pxToRem(1)} solid ${theme.color.black};
-        }
-
-        li:not(:last-child) {
-          margin-bottom: ${theme.pxToRem(64)};
-        }
-
-        li a {
-          display: block;
-          text-decoration: none;
-        }
-
-        .component-HomeLinks-text {
-          margin-top: ${theme.pxToRem(24)};
-        }
-
-        li a :global(.component-HomeLinks-image) {
-          height: auto;
-          width: 100%;
-        }
-
-        :global(.component-HomeLinks-text .component-HomeLinks-section-title) {
-          margin-bottom: ${theme.pxToRem(8)};
-        }
-
-        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          li {
-            margin-left: ${theme.pxToRem(48)};
-            margin-right: ${theme.pxToRem(48)};
-          }
-
-          li a {
-            display: flex;
-          }
-
-          li a:not(.flipped) {
-            flex-direction: row-reverse;
-          }
-
-          .component-HomeLinks-image-wrapper,
-          .component-HomeLinks-text {
-            flex: 1;
-          }
-
-          .component-HomeLinks-text {
-            margin-top: ${theme.pxToRem(48)};
-          }
-
-          :global(.component-HomeLinks-section-title),
-          :global(.component-HomeLinks-section-description) {
-            padding-left: ${theme.pxToRem(32)};
-            padding-right: ${theme.pxToRem(32)};
-          }
-
-          :global(.component-HomeLinks-text .component-HomeLinks-section-title) {
-            margin-bottom: ${theme.pxToRem(20)};
-          }
-        }
-      `}
-    </style>
   </Nav>
 );
 

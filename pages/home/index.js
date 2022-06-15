@@ -31,25 +31,20 @@ const HomePage = () => (
           },
         ],
       }}>
-      <Typography className="page-Home-hero-description" size="md">
+      <Typography size="md">
         Welcome to the Syrian Music Preservation Initiative where we promote and celebrate the
         diverse ethnic and regional musical traditions of&nbsp;Syria.
       </Typography>
     </Hero>
-    <HomeLinks className="page-Home-links" />
-    <style global jsx>
-      {`
-        .page-Home-links {
-          margin-bottom: ${theme.pxToRem(39)};
-        }
+    <HomeLinks
+      css={{
+        marginBottom: theme.pxToRem(39),
 
-        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          .page-Home-links {
-            margin-bottom: ${theme.pxToRem(75)};
-          }
-        }
-      `}
-    </style>
+        [theme.mq.mobileToDesktop]: {
+          marginBottom: theme.pxToRem(75),
+        },
+      }}
+    />
   </SiteLayout>
 );
 
