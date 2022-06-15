@@ -6,6 +6,7 @@ import SiteLayout from '../../../components/SiteLayout';
 import SortedList from '../../../components/SortedList';
 import Tabs from '../../../components/Tabs';
 import Title from '../../../components/Title';
+import Typography from '../../../components/Typography';
 import theme from '../../../styles/theme';
 import { DEFAULT_COMPOSER_ENGLISH } from '../../../utils/text';
 
@@ -190,7 +191,15 @@ const TranscriptionsPage = ({ musicalWorkCollection }) => {
   return (
     <SiteLayout className="page-Transcriptions-SiteLayout" pathname="/education/transcriptions">
       <Title>Education and Preservation</Title>
-      <Hero title="Transcriptions" />
+      <Typography
+        css={{
+          marginBottom: theme.pxToRem(22),
+        }}
+        variant="h3"
+        as="h1"
+        textAlign="center">
+        Transcriptions
+      </Typography>
       <Tabs renderLabel={({ selectedTab }) => `transcriptions-by-${selectedTab}`} tabs={tabs} />
       <style jsx>
         {`
