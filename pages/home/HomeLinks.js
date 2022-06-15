@@ -8,7 +8,7 @@ import config from 'config.yaml';
 import { gutters } from 'styles/mixins';
 import theme from 'styles/theme';
 
-export const HomeLinks = ({ className }) => (
+const HomeLinks = ({ className }) => (
   <Nav className={className}>
     <ul>
       {Object.values(config.nav).map((section, i) => {
@@ -117,3 +117,5 @@ HomeLinks.propTypes = {
 HomeLinks.defaultProps = {
   className: undefined,
 };
+
+export default HomeLinks;
