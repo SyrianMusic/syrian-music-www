@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import PropTypes from 'prop-types';
-import { gutters } from 'styles/mixins';
-import theme from 'styles/theme';
+import { gutters } from '../styles/mixins';
+import theme from '../styles/theme';
 import Image from './Image';
 import Typography from './Typography';
 import Video from './Video';
