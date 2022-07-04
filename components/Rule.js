@@ -22,7 +22,7 @@ const Rule = ({ className, color }) => {
       className={className}
       css={{
         borderStyle: 'none',
-        borderTop: `${theme.pxToRem(1)} solid ${getColor(color)}`,
+        borderTop: `1px solid ${getColor(color)}`,
         margin: theme.spacing.get(24),
         [theme.mq.mobileToDesktop]: {
           margin: `${theme.spacing.get(24)} ${theme.spacing.get(48)}`,
