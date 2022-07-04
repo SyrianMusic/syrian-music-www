@@ -57,7 +57,7 @@ const PerformancePage = ({ upcomingEvents }) => {
             }
           `}>
           <SectionHeader variant="h3" as="h1" css={{ marginBottom: theme.spacing.get(24) }}>
-            Upcoming <br />
+            Upcoming <br css={{ [theme.mq.mobileToDesktop]: { display: 'none' } }} />
             Performances
           </SectionHeader>
           <UpcomingEvent className="page-Performances-event" event={nextEvent} />
