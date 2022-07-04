@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 import PropTypes from 'prop-types';
 import Image from '../../components/Image';
-import Typography, * as typography from '../../components/Typography';
+import Typography from '../../components/Typography';
 import theme from '../../styles/theme';
 import { formatDateTime } from '../../utils/date';
 import { parseRichText } from '../../utils/text';
