@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -43,7 +42,7 @@ const PerformancePage = ({ upcomingEvents }) => {
   const nextEvent = getNextEvent(upcomingEvents?.items);
 
   return (
-    <SiteLayout className="page-Performance-root" pathname={pageConfig.href}>
+    <SiteLayout pathname={pageConfig.href}>
       <Title>Performance</Title>
 
       {nextEvent && (
@@ -60,7 +59,17 @@ const PerformancePage = ({ upcomingEvents }) => {
             Upcoming <br css={{ [theme.mq.mobileToDesktop]: { display: 'none' } }} />
             Performances
           </SectionHeader>
-          <UpcomingEvent className="page-Performances-event" event={nextEvent} />
+          <UpcomingEvent
+            css={{
+              marginTop: theme.pxToRem(36),
+              marginBottom: theme.pxToRem(48),
+              [theme.mq.mobileToDesktop]: {
+                marginTop: theme.pxToRem(72),
+                marginBottom: theme.pxToRem(84),
+              },
+            }}
+            event={nextEvent}
+          />
         </Section>
       )}
 
@@ -82,11 +91,10 @@ const PerformancePage = ({ upcomingEvents }) => {
         </Typography>
       </Hero>
 
-      <Section className={cx('page-Performance-groups', 'gutters')}>
+      <Section className="gutters">
         <h1 className="visually-hidden">Performing Groups</h1>
 
         <Rule
-          className="page-Performance-rule"
           color={Rule.colors.accent}
           css={{
             display: 'none',
@@ -102,7 +110,6 @@ const PerformancePage = ({ upcomingEvents }) => {
           <Typography variant="h3">Takht al-Nagham</Typography>
 
           <Image
-            className="page-Performance-takht-al-nagham-logo"
             css={{
               margin: `${theme.spacing.get(8)} auto ${theme.spacing.get(24)}`,
               height: 'auto',
@@ -149,35 +156,6 @@ const PerformancePage = ({ upcomingEvents }) => {
           </Typography>
         </article>
       </Section>
-      <style jsx>
-        {`
-          .page-Performances-upcoming :global(.page-Performances-event) {
-            margin-top: ${theme.pxToRem(36)};
-            margin-bottom: ${theme.pxToRem(48)};
-          }
-
-          article :global(.page-Performance-takht-al-nagham-logo) {
-          }
-
-          article > div:last-child {
-            margin-top: ${theme.pxToRem(25)};
-          }
-
-          @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-            .page-Performances-upcoming-heading br {
-              display: none;
-            }
-
-            .page-Performances-upcoming :global(.page-Performances-event) {
-              margin-top: ${theme.pxToRem(72)};
-              margin-bottom: ${theme.pxToRem(84)};
-            }
-
-            article :global(.page-Performance-takht-al-nagham-logo) {
-            }
-          }
-        `}
-      </style>
     </SiteLayout>
   );
 };
