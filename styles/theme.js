@@ -1,3 +1,5 @@
+import { number } from 'yup';
+
 const mobileToDesktop = 800;
 
 const breakpoints = {
@@ -16,11 +18,25 @@ const pxToEm = (px, base = rootFontSize) => `${px / base}em`;
 const pxToPercent = (px, base) => `${(px / base) * 100}%`;
 const pxToRem = (px) => `${px / rootFontSize}rem`;
 
+const multiplier = 8;
+
 const spacing = new Map();
 
-for (let multipleOf8 = 8; multipleOf8 < 97; multipleOf8 += 8) {
-  spacing.set(multipleOf8, pxToRem(multipleOf8));
+for (let value = multiplier; value < 97; value += multiplier) {
+  spacing.set(value, pxToRem(value));
 }
+
+const closestMultiple = (num) => {
+  let below = multiplier;
+  while (below < num) {
+    below += multiplier;
+  }
+
+  const above = below + multiplier;
+  const shouldRoundUp = num - below < num - above;
+
+  return shouldRoundUp ? above : below;
+};
 
 const typography = {
   body: {
@@ -84,6 +100,7 @@ const colors = {
 
 const theme = {
   breakpoint: breakpoints,
+  closestMultiple,
   color: {
     ...colors,
     primary: colors.black,

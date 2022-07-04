@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/react';
 import Hero from '../../components/Hero';
 import Image from '../../components/Image';
 import Rule from '../../components/Rule';
@@ -10,6 +11,7 @@ import Typography from '../../components/Typography';
 import config from '../../config.yaml';
 import { typography } from '../../styles/mixins';
 import theme from '../../styles/theme';
+import { gutters } from '../../styles/mixins';
 import UpcomingEvent from './UpcomingEvent';
 import { getNextEvent } from './utils';
 
@@ -40,14 +42,18 @@ const PerformancePage = ({ upcomingEvents }) => {
         <section
           id="upcoming-performances"
           data-testid="upcoming-performances"
-          className="page-Performances-upcoming">
+          css={css`
+            ${gutters.margin.mobile};
+            ${theme.mq.mobileToDesktop} {
+              ${gutters.margin.desktop};
+            }
+          `}>
           <div className="page-Performances-upcoming-heading">
             <Typography className="page-Performances-upcoming-heading-text" variant="h3" as="h1">
               Upcoming <br />
               Performances
             </Typography>
           </div>
-
           <UpcomingEvent className="page-Performances-event" event={nextEvent} />
         </section>
       )}
@@ -117,11 +123,6 @@ const PerformancePage = ({ upcomingEvents }) => {
           section {
             margin-top: ${theme.pxToRem(50)};
             margin-bottom: ${theme.pxToRem(23)};
-          }
-
-          .page-Performances-upcoming {
-            margin-left: ${theme.pxToRem(25)};
-            margin-right: ${theme.pxToRem(25)};
           }
 
           :global(.page-Performances-upcoming-heading-text) {
