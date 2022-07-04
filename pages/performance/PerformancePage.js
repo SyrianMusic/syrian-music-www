@@ -36,10 +36,6 @@ const PerformancePage = ({ upcomingEvents }) => {
     <SiteLayout className="page-Performance-root" pathname={pageConfig.href}>
       <Title>Performance</Title>
 
-      <Typography className="component-Hero-title" variant="h3" as="h1" textAlign="center">
-        Performance
-      </Typography>
-
       {nextEvent && (
         <section
           id="upcoming-performances"
