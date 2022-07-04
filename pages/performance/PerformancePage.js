@@ -99,39 +99,54 @@ const PerformancePage = ({ upcomingEvents }) => {
         />
 
         <article id="takht-al-nagham">
+          <Typography variant="h3">Takht al-Nagham</Typography>
+
           <Image
             className="page-Performance-takht-al-nagham-logo"
+            css={{
+              margin: `${theme.spacing.get(8)} auto ${theme.spacing.get(24)}`,
+              height: 'auto',
+              width: theme.pxToRem(232),
+              [theme.mq.mobileToDesktop]: {
+                float: 'right',
+                marginBottom: theme.spacing.get(72),
+                marginLeft: theme.spacing.get(72),
+                position: 'relative',
+                top:
+                  (theme.typography.h3.lineHeightDesktop +
+                    theme.typography.h3.marginBottomDesktop) *
+                  -1,
+                width: theme.pxToRem(240),
+              },
+            }}
             src="/images/logos/takht-al-nagham-logo.svg"
             width={197.5}
             height={214.5}
           />
 
-          <div>
-            <Typography variant="h3">Takht al-Nagham</Typography>
-            <Typography>
-              Takht al-nagham is SMPI&apos;s performing ensemble. Based in New York City, the group
-              features a traditional Takht (Arab chamber music group). &ldquo;Nagham&rdquo; is the
-              Arabic word for melody; it is commonly used as a synonym for the Arab Maqam system.
-              The Takht is committed to performing the classical and folk Syrian repertoire with
-              traditional acoustic instruments. In order to familiarize audiences in the U.S. with
-              the original structure of the musical traditions, the Takht presents its sets (called
-              Waslah) in the manner that they were originally performed. The Takht includes skilled
-              Syrian and non-Syrian musicians who perform without reading from sheet music, rely
-              heavily on improvisations, and are deeply immersed in the Syrian musical tradition.
-            </Typography>
-            <Typography>
-              As a part of some performances Takht al-Nagham includes the Samah Dance. This dance
-              (Raqs al-Samah in Arabic) is a centuries old Syrian dance that accompanies the
-              Muwashahat musical form. It is a group dance designed as an interaction between males
-              and females in an elegant and eloquent expressive milieu. It has a spiritual character
-              incorporating both foot and hand movements which requires dancers to be very familiar
-              with the complex rhythmic and melodic content of every Muwashah piece. The development
-              of Samah mirrors that of classical Syrian music.
-            </Typography>
-            <Typography>
-              The Takht al-Nagham logo was created by celebrated Syrian artist Mouneer al-Shaarani.
-            </Typography>
-          </div>
+          <Typography>
+            Takht al-nagham is SMPI&apos;s performing ensemble. Based in New York City, the group
+            features a traditional Takht (Arab chamber music group). &ldquo;Nagham&rdquo; is the
+            Arabic word for melody; it is commonly used as a synonym for the Arab Maqam system. The
+            Takht is committed to performing the classical and folk Syrian repertoire with
+            traditional acoustic instruments. In order to familiarize audiences in the U.S. with the
+            original structure of the musical traditions, the Takht presents its sets (called
+            Waslah) in the manner that they were originally performed. The Takht includes skilled
+            Syrian and non-Syrian musicians who perform without reading from sheet music, rely
+            heavily on improvisations, and are deeply immersed in the Syrian musical tradition.
+          </Typography>
+          <Typography>
+            As a part of some performances Takht al-Nagham includes the Samah Dance. This dance
+            (Raqs al-Samah in Arabic) is a centuries old Syrian dance that accompanies the
+            Muwashahat musical form. It is a group dance designed as an interaction between males
+            and females in an elegant and eloquent expressive milieu. It has a spiritual character
+            incorporating both foot and hand movements which requires dancers to be very familiar
+            with the complex rhythmic and melodic content of every Muwashah piece. The development
+            of Samah mirrors that of classical Syrian music.
+          </Typography>
+          <Typography>
+            The Takht al-Nagham logo was created by celebrated Syrian artist Mouneer al-Shaarani.
+          </Typography>
         </article>
       </Section>
       <style jsx>
@@ -142,9 +157,6 @@ const PerformancePage = ({ upcomingEvents }) => {
           }
 
           article :global(.page-Performance-takht-al-nagham-logo) {
-            margin: 0 auto ${theme.pxToRem(46)};
-            height: auto;
-            width: ${theme.pxToRem(230)};
           }
 
           article > div:last-child {
@@ -162,10 +174,6 @@ const PerformancePage = ({ upcomingEvents }) => {
             }
 
             article :global(.page-Performance-takht-al-nagham-logo) {
-              ${typography.h3.desktop};
-              float: right;
-              margin: 2em 0 ${theme.pxToRem(75)} ${theme.pxToRem(78)};
-              width: ${theme.pxToRem(240)};
             }
           }
         `}

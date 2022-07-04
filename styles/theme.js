@@ -76,8 +76,10 @@ const typography = {
   h3: {
     fontSizeMobile: 25,
     lineHeightMobile: 30,
+    marginBottomMobile: 22.5,
     fontSizeDesktop: 35,
     lineHeightDesktop: 42,
+    marginBottomDesktop: 22.5,
     tagName: 'h3',
   },
 };
@@ -131,8 +133,8 @@ const theme = {
     contentWidthMax: 960,
     gutter: {
       mobile: {
-        left: 48,
-        right: 48,
+        left: 40,
+        right: 40,
       },
       desktop: 118,
     },

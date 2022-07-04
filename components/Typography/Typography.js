@@ -54,9 +54,17 @@ const getVariantStyles = (variant) => {
     case variants.h3:
       return [
         {
-          marginBottom: theme.pxToEm(22.5, theme.typography.h3.fontSizeMobile),
+          marginBottom: theme.pxToEm(
+            theme.typography.h3.marginBottomMobile,
+            theme.typography.h3.fontSizeMobile,
+          ),
           [theme.mq.mobileToDesktop]: [
-            { marginBottom: theme.pxToEm(22.5, theme.typography.h3.fontSizeDesktop) },
+            {
+              marginBottom: theme.pxToEm(
+                theme.typography.h3.marginBottomDesktop,
+                theme.typography.h3.fontSizeDesktop,
+              ),
+            },
             typography.h3.desktop,
           ],
         },
