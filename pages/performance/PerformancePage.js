@@ -2,7 +2,6 @@ import { gql } from '@apollo/client';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import Hero from '../../components/Hero';
 import Image from '../../components/Image';
 import Rule from '../../components/Rule';
 import SiteLayout from '../../components/SiteLayout';
@@ -13,6 +12,7 @@ import { gutters } from '../../styles/mixins';
 import theme from '../../styles/theme';
 import UpcomingEvent from './UpcomingEvent';
 import { getNextEvent } from './utils';
+import Video from '../../components/Video';
 
 const pageConfig = config.nav.performance;
 
@@ -30,13 +30,21 @@ export const performancePageQuery = gql`
   }
 `;
 
-const Section = styled.section({
-  marginTop: theme.spacing.get(48),
-  marginBottom: theme.spacing.get(32),
-  [theme.mq.mobileToDesktop]: {
-    marginBottom: theme.spacing.get(56),
+const Section = styled.section([
+  {
+    marginTop: theme.spacing.get(48),
+    marginBottom: theme.spacing.get(32),
+    [theme.mq.mobileToDesktop]: {
+      marginBottom: theme.spacing.get(56),
+    },
   },
-});
+  css`
+    ${gutters.margin.mobile};
+    ${theme.mq.mobileToDesktop} {
+      ${gutters.margin.desktop};
+    }
+  `,
+]);
 
 const PerformancePage = ({ upcomingEvents }) => {
   const nextEvent = getNextEvent(upcomingEvents?.items);
@@ -46,16 +54,8 @@ const PerformancePage = ({ upcomingEvents }) => {
       <Title>Performance</Title>
 
       {nextEvent && (
-        <Section
-          id="upcoming-performances"
-          data-testid="upcoming-performances"
-          css={css`
-            ${gutters.margin.mobile};
-            ${theme.mq.mobileToDesktop} {
-              ${gutters.margin.desktop};
-            }
-          `}>
-          <SectionHeader variant="h3" as="h1" css={{ marginBottom: theme.spacing.get(24) }}>
+        <Section id="upcoming-performances" data-testid="upcoming-performances">
+          <SectionHeader as="h1" css={{ marginBottom: theme.spacing.get(24) }}>
             Upcoming <br css={{ [theme.mq.mobileToDesktop]: { display: 'none' } }} />
             Performances
           </SectionHeader>
@@ -73,25 +73,20 @@ const PerformancePage = ({ upcomingEvents }) => {
         </Section>
       )}
 
-      <Hero
-        subtitle={
-          <Typography variant="h3" as="div">
-            Zakhrafa | Roulette
-          </Typography>
-        }
-        video={{
-          title: 'Zakhrafa زخرفة',
-          id: 'n6VjsvT6o3s',
-        }}>
-        <Typography>
+      <Section>
+        <Video id="'n6VjsvT6o3s'" title="Zakhrafa زخرفة" />
+        <Typography css={{ marginTop: theme.spacing.get(32) }} variant="h3" as="div">
+          Zakhrafa | Roulette
+        </Typography>
+        <Typography css={{ marginTop: theme.spacing.get(16) }}>
           Zakhrafa, composed by Samer Ali, was performed at Roulette Intermedium as part of the
           first anniversary celebration of Brooklyn Maqam Hang in 2019. The piece is in Nahawand
           Maqam and written in a new perspective of the Longa form. It features a newly-composed
           rhythm in 12/8 named&nbsp;Muzakhraf.
         </Typography>
-      </Hero>
+      </Section>
 
-      <Section className="gutters">
+      <Section>
         <h1 className="visually-hidden">Performing Groups</h1>
 
         <Rule
