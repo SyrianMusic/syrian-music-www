@@ -1,4 +1,4 @@
 import { Typography } from './Typography';
-export { SectionHeader } from './SectionHeader';
+export { default as SectionHeader } from './SectionHeader';
 
 export default Typography;

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Typography } from './Typography';
 import theme from '../../styles/theme';
 
-export const SectionHeader = ({ className, children, as, variant }) => {
+const SectionHeader = ({ className, children, as, variant }) => {
   return (
     <Typography
       css={{
@@ -46,3 +46,5 @@ SectionHeader.defaultProps = {
   children: undefined,
   variant: 'h3',
 };
+
+export default SectionHeader;
