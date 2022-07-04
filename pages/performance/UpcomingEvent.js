@@ -1,8 +1,7 @@
 import { gql } from '@apollo/client';
-import cx from 'classnames';
 import PropTypes from 'prop-types';
 import Image from '../../components/Image';
-import Typography from '../../components/Typography';
+import Typography, * as typography from '../../components/Typography';
 import CaretIcon from '../../icons/Caret';
 import theme from '../../styles/theme';
 import { formatDateTime } from '../../utils/date';
@@ -15,22 +14,40 @@ const UpcomingEvent = ({ className, event }) => {
   const formattedDate = formatDateTime(startDate);
 
   return (
-    <div className={cx('component-UpcomingEvent-root', className)}>
+    <div
+      className={className}
+      css={{
+        display: 'flex',
+        flexDirection: 'column',
+        [theme.mq.mobileToDesktop]: { flexDirection: 'row' },
+      }}>
       <a
-        className="component-UpcomingEvent-image-link"
+        css={{ width: '100%', [theme.mq.mobileToDesktop]: { width: '50%' } }}
         href={url}
         target="_blank"
         rel="noopener noreferrer">
-        <Image className="component-UpcomingEvent-image" width={432} height={287} src={image.url} />
+        <Image css={{ width: '100%', height: 'auto' }} width={432} height={287} src={image.url} />
       </a>
-      <div className="component-UpcomingEvent-text">
+      <div
+        css={{
+          paddingTop: theme.pxToRem(50),
+          width: '100%',
+          [theme.mq.mobileToDesktop]: {
+            paddingLeft: theme.pxToRem(62),
+            paddingTop: 0,
+            width: '50%',
+          },
+        }}>
         <a
-          className="component-UpcomingEvent-heading-link"
+          css={[
+            typography.mixins.linkStylesBlack,
+            { display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' },
+          ]}
           href={url}
           target="_blank"
           rel="noopener noreferrer">
-          <div className="component-UpcomingEvent-heading">
-            <Typography className="component-UpcomingEvent-title" variant="h3">
+          <div css={{ paddingRight: theme.pxToRem(24) }}>
+            <Typography variant="h3" css={{ marginBottom: theme.pxToRem(19) }}>
               {name}
             </Typography>
             <Typography size="lg">
@@ -39,14 +56,23 @@ const UpcomingEvent = ({ className, event }) => {
             </Typography>
           </div>
           <CaretIcon
-            className="component-UpcomingEvent-caret-icon"
             color={CaretIcon.colors.accentTan}
+            css={{
+              position: 'relative',
+              bottom: 0,
+              [theme.mq.mobileToDesktop]: {
+                marginTop: theme.pxToRem(theme.typography.body.lg.lineHeightDesktop),
+              },
+            }}
           />
         </a>
         {parseRichText(summary.json, null, {
           paragraph: {
             // Add caret width
-            css: { paddingRight: theme.pxToRem(24 + 22) },
+            css: {
+              paddingRight: theme.pxToRem(24 + 22),
+              marginTop: theme.pxToRem(theme.typography.body.lg.lineHeightMobile),
+            },
           },
         })}
         <Typography size="lg">
@@ -55,87 +81,6 @@ const UpcomingEvent = ({ className, event }) => {
           </a>
         </Typography>
       </div>
-      <style jsx>{`
-        .component-UpcomingEvent-root {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .component-UpcomingEvent-image-link,
-        .component-UpcomingEvent-root :global(.component-UpcomingEvent-image),
-        .component-UpcomingEvent-text {
-          width: 100%;
-        }
-
-        .component-UpcomingEvent-root :global(.component-UpcomingEvent-image) {
-          height: auto;
-        }
-
-        .component-UpcomingEvent-text {
-          padding-top: ${theme.pxToRem(50)};
-        }
-
-        .component-UpcomingEvent-heading {
-          padding-right: ${theme.pxToRem(24)};
-        }
-
-        .component-UpcomingEvent-root :global(.component-UpcomingEvent-description) {
-          // Add caret width
-          padding-right: ${theme.pxToRem(24 + 22)};
-        }
-
-        .component-UpcomingEvent-heading-link {
-          color: ${theme.color.primary};
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          text-decoration-color: transparent;
-          transition: all 0.2s ease-in-out;
-        }
-
-        .component-UpcomingEvent-heading-link:active,
-        .component-UpcomingEvent-heading-link:focus,
-        .component-UpcomingEvent-heading-link:hover {
-          color: ${theme.color.interactive};
-          text-decoration-color: ${theme.color.interactive};
-        }
-
-        .component-UpcomingEvent-heading :global(.component-UpcomingEvent-title) {
-          margin-bottom: ${theme.pxToRem(19)};
-        }
-
-        .component-UpcomingEvent-root :global(.component-UpcomingEvent-caret-icon) {
-          position: relative;
-          bottom: 0px;
-        }
-
-        .component-UpcomingEvent-root :global(.component-UpcomingEvent-description) {
-          margin-top: ${theme.pxToRem(theme.typography.body.lg.lineHeightMobile)};
-        }
-
-        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          .component-UpcomingEvent-root {
-            flex-direction: row;
-          }
-
-          .component-UpcomingEvent-image-link,
-          .component-UpcomingEvent-text {
-            width: 50%;
-          }
-
-          .component-UpcomingEvent-text {
-            padding-left: ${theme.pxToRem(62)};
-          }
-
-          .component-UpcomingEvent-text {
-            padding-top: 0;
-          }
-
-          .component-UpcomingEvent-root :global(.component-UpcomingEvent-description) {
-            margin-top: ${theme.pxToRem(theme.typography.body.lg.lineHeightDesktop)};
-          }
-        }
-      `}</style>
     </div>
   );
 };
