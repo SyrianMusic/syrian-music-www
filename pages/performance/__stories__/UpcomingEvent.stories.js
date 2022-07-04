@@ -3,6 +3,7 @@ import { Event, EventCollection } from '../../../__fixtures__/Event';
 import { Template as PageTemplate, Default as PageDefault } from './PerformancePage.stories';
 import { PAGE_PATH } from './config';
 import { nextWeek } from '../../../__fixtures__/date';
+import { syrianOrnaments } from '../../../__fixtures__/Event';
 
 export default {
   title: PAGE_PATH + '/UpcomingEvent',
@@ -27,6 +28,7 @@ const Template = (args) => {
 export const Default = Template.bind({});
 Default.args = {
   event: {
+    ...syrianOrnaments,
     startDate: nextWeek.toISOString(),
     image: {
       width: 704,

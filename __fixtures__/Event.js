@@ -17,7 +17,7 @@ export class ProgramHeader extends Node {
 
 export class Event extends Node {
   constructor({
-    name = 'Syrian Ornaments',
+    name = 'Event Name',
     startDate = today.toISOString(),
     location = 'Location',
     image = new Image({ width: 702, height: 257 }),
@@ -141,6 +141,51 @@ export const emptyEvent = new Event({
     items: [],
   },
   acknowledgements: null,
+});
+
+export const syrianOrnaments = new Event({
+  name: 'Syrian Ornaments',
+  startDate: today.toISOString(),
+  location: 'City Lore',
+  image: new Image({
+    height: 647,
+    width: 1296,
+    url: 'https://images.ctfassets.net/z5z5ow0csl1n/1NRarf7U3docdvkfqc5ykl/3a69260eba9860b9a69f582da7de26dd/syrian-ornaments-takht-al-nagham-new-york_3x.png',
+  }),
+  url: 'https://www.eventbrite.com/e/takht-al-nagham-syrian-ornaments-tickets-180399699357',
+  urlText: 'Get tickets',
+  summary: new RichText({
+    content: [
+      new Paragraph({
+        content: [
+          new Text({
+            value: 'Syrian Ornaments',
+            marks: [{ type: 'italic' }],
+          }),
+          new Text({
+            value:
+              ', showcases instrumental and vocal compositions from composers across greater Syria. The works, written from the 1700s through today, range from traditional to innovative in both tonal and rhythmic center. Each piece illustrates the ornamental beauty of Syrian music.',
+          }),
+        ],
+      }),
+      new Paragraph({
+        content: [
+          new Text({
+            value:
+              'This performance will feature acclaimed Syrian Oud virtuoso and musicologist Mohamed Qadri Dalal. Mr. Dalal is originally from Aleppo and now lives in Alexandria, Egypt',
+          }),
+        ],
+      }),
+      new Paragraph({
+        content: [
+          new Text({
+            value:
+              'This concert is presented free to the public as part of City Artist Corps Grants program, presented by The New York Foundation for the Arts (NYFA) and the New York City Department of Cultural Affairs (DCLA), with support from the Mayor’s Office of Media and Entertainment (MOME) as well as Queens Theatre.',
+          }),
+        ],
+      }),
+    ],
+  }),
 });
 
 export class EventCollection extends Collection {
