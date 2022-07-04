@@ -62,6 +62,26 @@ const getVariantStyles = (variant) => {
   }
 };
 
+export const linkStylesMap = {
+  default: {
+    color: theme.color.interactive,
+    textDecorationColor: 'transparent',
+    transition: 'text-decoration-color 0.2s ease-in-out',
+  },
+  hover: {
+    textDecorationColor: theme.color.interactive,
+  },
+  active: {
+    filter: 'brightness(0.9)',
+  },
+};
+
+export const linkStyles = {
+  'a, a:visited': linkStylesMap.default,
+  'a:hover': linkStylesMap.hover,
+  'a:active': linkStylesMap.active,
+};
+
 export const Typography = ({ className, children, as, size, textAlign, variant }) => {
   let Component = theme.typography.body.tagName;
 
@@ -82,21 +102,11 @@ export const Typography = ({ className, children, as, size, textAlign, variant }
       css={[
         sizeStyles,
         variantStyles,
+        linkStyles,
         {
           textAlign,
           '&:last-child': {
             marginBottom: 0,
-          },
-          'a, a:visited': {
-            color: theme.color.interactive,
-            textDecorationColor: 'transparent',
-            transition: 'text-decoration-color 0.2s ease-in-out',
-          },
-          'a:hover': {
-            textDecorationColor: theme.color.interactive,
-          },
-          'a:active': {
-            filter: 'brightness(0.9)',
           },
         },
       ]}
