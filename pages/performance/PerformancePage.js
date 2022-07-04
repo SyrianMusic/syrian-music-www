@@ -55,7 +55,12 @@ const PerformancePage = ({ upcomingEvents }) => {
 
       {nextEvent && (
         <Section id="upcoming-performances" data-testid="upcoming-performances">
-          <SectionHeader as="h1" css={{ marginBottom: theme.spacing.get(24) }}>
+          <SectionHeader
+            as="h1"
+            css={{
+              marginBottom: theme.spacing.get(24),
+              [theme.mq.mobileToDesktop]: { marginBottom: 0 },
+            }}>
             Upcoming <br css={{ [theme.mq.mobileToDesktop]: { display: 'none' } }} />
             Performances
           </SectionHeader>
@@ -64,7 +69,7 @@ const PerformancePage = ({ upcomingEvents }) => {
               marginTop: theme.pxToRem(36),
               marginBottom: theme.pxToRem(48),
               [theme.mq.mobileToDesktop]: {
-                marginTop: theme.pxToRem(72),
+                marginTop: theme.pxToRem(56),
                 marginBottom: theme.pxToRem(84),
               },
             }}
