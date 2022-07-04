@@ -230,8 +230,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
             marginBottom: '0.25em',
           },
         }}
-        variant="h3"
-        as="h1"
+        variant="h1"
         textAlign="center">
         {musicalWork?.title}
       </Typography>
@@ -256,7 +255,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
 
       {musicalWork?.maqam && (
         <section id="maqam" className="gutters">
-          <TranscriptionSectionHeader as="h1">Maqam</TranscriptionSectionHeader>
+          <TranscriptionSectionHeader>Maqam</TranscriptionSectionHeader>
 
           <Typography>{musicalWork.maqam.name}</Typography>
         </section>
@@ -264,7 +263,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
 
       {musicalWork?.iqa && (
         <Section id="iqa" className="gutters">
-          <TranscriptionSectionHeader as="h1">Iqa (Rhythm)</TranscriptionSectionHeader>
+          <TranscriptionSectionHeader>Iqa (Rhythm)</TranscriptionSectionHeader>
 
           <Typography>{musicalWork.iqa.name}</Typography>
         </Section>
@@ -272,7 +271,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
 
       {musicalWork?.transcription && (
         <Section id="transcription" className="gutters">
-          <TranscriptionSectionHeader as="h1">Transcription</TranscriptionSectionHeader>
+          <TranscriptionSectionHeader>Transcription</TranscriptionSectionHeader>
 
           <PdfWrapper>
             {hasError && (
@@ -290,21 +289,21 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
 
       {arabic.text && (
         <Section id="transcription" className="gutters">
-          <TranscriptionSectionHeader as="h1">Text</TranscriptionSectionHeader>
+          <TranscriptionSectionHeader>Text</TranscriptionSectionHeader>
           {transformText(arabic.text)}
         </Section>
       )}
 
       {musicalWork.text && (
         <Section id="transcription" className="gutters">
-          <TranscriptionSectionHeader as="h1">Translation</TranscriptionSectionHeader>
+          <TranscriptionSectionHeader>Translation</TranscriptionSectionHeader>
           {transformText(musicalWork.text)}
         </Section>
       )}
 
       {musicalWork.analysis && (
         <Section id="analysis" className="gutters">
-          <TranscriptionSectionHeader as="h1">Analysis</TranscriptionSectionHeader>
+          <TranscriptionSectionHeader>Analysis</TranscriptionSectionHeader>
           {parseRichText(musicalWork.analysis.json)}
         </Section>
       )}

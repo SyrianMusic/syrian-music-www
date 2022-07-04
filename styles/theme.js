@@ -1,5 +1,3 @@
-import { number } from 'yup';
-
 const mobileToDesktop = 800;
 
 const breakpoints = {
@@ -67,15 +65,15 @@ const typography = {
     tagName: 'p',
   },
   h1: {
-    fontSizeMobile: 0, // No examples of this in design
-    lineHeightMobile: 0, // No examples of this in design
-    fontSizeDesktop: 42.5,
-    lineHeightDesktop: 51,
+    fontSizeMobile: 22,
+    lineHeightMobile: 25,
+    fontSizeDesktop: 35,
+    lineHeightDesktop: 42,
     tagName: 'h1',
   },
   h3: {
-    fontSizeMobile: 25,
-    lineHeightMobile: 30,
+    fontSizeMobile: 20,
+    lineHeightMobile: 25,
     marginBottomMobile: 22.5,
     fontSizeDesktop: 35,
     lineHeightDesktop: 42,

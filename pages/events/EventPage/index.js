@@ -232,8 +232,7 @@ const EventPage = ({
               marginBottom: theme.pxToRem(10),
             },
           }}
-          variant="h3"
-          as="h1"
+          variant="h1"
           textAlign="center">
           {name}
         </Typography>
