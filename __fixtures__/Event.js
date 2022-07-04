@@ -23,6 +23,7 @@ export class Event extends Node {
     image = new Image({ width: 702, height: 257 }),
     summary = new RichText(),
     url = '#',
+    urlText = 'Get tickets',
     program = new Collection({
       items: [
         new ProgramHeader({
@@ -129,6 +130,7 @@ export class Event extends Node {
     this.image = image;
     this.summary = summary;
     this.url = url;
+    this.urlText = urlText;
     this.program = program;
     this.performers = performers;
     this.acknowledgements = acknowledgements;
@@ -186,6 +188,10 @@ export const syrianOrnaments = new Event({
       }),
     ],
   }),
+});
+
+export const quenchTheThirsty = new Event({
+  name: 'Quench the Thirsty',
 });
 
 export class EventCollection extends Collection {

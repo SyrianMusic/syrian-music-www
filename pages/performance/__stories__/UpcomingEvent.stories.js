@@ -19,7 +19,7 @@ const Template = (args) => {
   const pageArgs = {
     ...PageDefault.args,
     upcomingEvents: new EventCollection({
-      events: [new Event(args.event)],
+      events: args.events.map((event) => new Event(event)),
     }),
   };
   return <PageTemplate {...pageArgs} />;
@@ -27,53 +27,67 @@ const Template = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  event: {
-    ...syrianOrnaments,
-    startDate: nextWeek.toISOString(),
-    image: {
-      width: 704,
-      height: 352,
-      url: 'https://via.placeholder.com/704x352',
+  events: [
+    {
+      ...syrianOrnaments,
+      startDate: nextWeek.toISOString(),
+      image: {
+        width: 704,
+        height: 352,
+        url: 'https://via.placeholder.com/704x352',
+      },
     },
-  },
+  ],
 };
+
+// export const MultipleEvents = Template.bind({})
+// MultipleEvents.args = {
+//   ...Default.args,
+//   event: {},
+// }
 
 export const ImagePortrait = Template.bind({});
 ImagePortrait.storyName = 'Image: Portrait';
 ImagePortrait.args = {
   ...Default.args,
-  event: {
-    ...Default.args.event,
-    image: {
-      width: 352,
-      height: 704,
-      url: 'https://via.placeholder.com/352x704',
+  events: [
+    {
+      ...Default.args.events[0],
+      image: {
+        width: 352,
+        height: 704,
+        url: 'https://via.placeholder.com/352x704',
+      },
     },
-  },
+  ],
 };
 
 export const NoLocation = Template.bind({});
 NoLocation.args = {
   ...Default.args,
-  event: {
-    ...Default.args.event,
-    location: null,
-  },
+  events: [
+    {
+      ...Default.args.events[0],
+      location: null,
+    },
+  ],
 };
 
 export const NoSummary = Template.bind({});
 NoSummary.args = {
   ...Default.args,
-  event: {
-    ...Default.args.event,
-    summary: {
-      json: {
-        data: {},
-        content: [],
-        nodeType: 'document',
+  events: [
+    {
+      ...Default.args.events[0],
+      summary: {
+        json: {
+          data: {},
+          content: [],
+          nodeType: 'document',
+        },
       },
     },
-  },
+  ],
 };
 
 const getLongSummary = () => {
@@ -105,53 +119,61 @@ const getLongSummary = () => {
 export const LongSummary = Template.bind({});
 LongSummary.args = {
   ...Default.args,
-  event: {
-    ...Default.args.event,
-    summary: getLongSummary(),
-  },
+  events: [
+    {
+      ...Default.args.events[0],
+      summary: getLongSummary(),
+    },
+  ],
 };
 
 export const DateAM = Template.bind({});
 DateAM.storyName = 'Date: AM';
 DateAM.args = {
   ...Default.args,
-  event: {
-    ...Default.args.event,
-    startDate: new Date(
-      nextWeek.getFullYear(),
-      nextWeek.getMonth(),
-      nextWeek.getDate(),
-      8,
-    ).toISOString(),
-  },
+  events: [
+    {
+      ...Default.args.events[0],
+      startDate: new Date(
+        nextWeek.getFullYear(),
+        nextWeek.getMonth(),
+        nextWeek.getDate(),
+        8,
+      ).toISOString(),
+    },
+  ],
 };
 
 export const DatePM = Template.bind({});
 DatePM.storyName = 'Date: PM';
 DatePM.args = {
   ...Default.args,
-  event: {
-    ...Default.args.event,
-    startDate: new Date(
-      nextWeek.getFullYear(),
-      nextWeek.getMonth(),
-      nextWeek.getDate(),
-      8 + 12,
-    ).toISOString(),
-  },
+  events: [
+    {
+      ...Default.args.events[0],
+      startDate: new Date(
+        nextWeek.getFullYear(),
+        nextWeek.getMonth(),
+        nextWeek.getDate(),
+        8 + 12,
+      ).toISOString(),
+    },
+  ],
 };
 
 export const DateMidnight = Template.bind({});
 DateMidnight.storyName = 'Date: Midnight';
 DateMidnight.args = {
   ...Default.args,
-  event: {
-    ...Default.args.event,
-    startDate: new Date(
-      nextWeek.getFullYear(),
-      nextWeek.getMonth(),
-      nextWeek.getDate(),
-      0,
-    ).toISOString(),
-  },
+  events: [
+    {
+      ...Default.args.events[0],
+      startDate: new Date(
+        nextWeek.getFullYear(),
+        nextWeek.getMonth(),
+        nextWeek.getDate(),
+        0,
+      ).toISOString(),
+    },
+  ],
 };
