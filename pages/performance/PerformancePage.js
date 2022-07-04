@@ -10,7 +10,7 @@ import SiteLayout from '../../components/SiteLayout';
 import Title from '../../components/Title';
 import Typography, { SectionHeader } from '../../components/Typography';
 import config from '../../config.yaml';
-import { gutters, typography } from '../../styles/mixins';
+import { gutters } from '../../styles/mixins';
 import theme from '../../styles/theme';
 import UpcomingEvent from './UpcomingEvent';
 import { getNextEvent } from './utils';
