@@ -62,7 +62,7 @@ const Header = ({ className, pathname }) => {
           })}
         </ul>
         <Button className="component-Header-close-menu-button" onClick={handleClose}>
-          <Image src="/images/icons/close.svg" alt="Close the menu" height={30} width={30} />
+          <Image src="/images/icons/close.svg" alt="Close the menu" height={32} width={32} />
         </Button>
       </Nav>
       <Button className="component-Header-logo-text-link" onClick={handleNavigate('/')}>
@@ -79,7 +79,7 @@ const Header = ({ className, pathname }) => {
           display: flex;
           flex-shrink: 0;
           flex-wrap: wrap;
-          margin: ${theme.pxToRem(18)} ${theme.pxToRem(24)} ${theme.pxToRem(32)};
+          margin: ${theme.spacing.get(16)} ${theme.spacing.get(24)} ${theme.spacing.get(32)};
         }
 
         header :global(.component-Header-logo-link) {
@@ -119,7 +119,7 @@ const Header = ({ className, pathname }) => {
           height: calc(100vh - ${theme.pxToRem(76)});
           margin-top: ${theme.pxToRem(76)};
           order: 4;
-          padding: ${theme.pxToRem(30)} ${theme.pxToRem(25)};
+          padding: ${theme.spacing.get(32)} ${theme.spacing.get(24)};
           position: fixed;
           top: 0;
           left: 0;
@@ -152,7 +152,7 @@ const Header = ({ className, pathname }) => {
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
           header {
-            margin: ${theme.pxToRem(35)} ${theme.pxToRem(40)} ${theme.pxToRem(65)};
+            margin: ${theme.spacing.get(32)} ${theme.spacing.get(40)} ${theme.spacing.get(64)};
           }
 
           header :global(.component-Header-logo-link) {
