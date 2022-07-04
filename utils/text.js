@@ -120,9 +120,9 @@ const parseContent = (node, id) => {
 const parseParagraph = (node, id, options = {}) => {
   if (!Array.isArray(node?.content)) return null;
 
-  const { className, size = 'md' } = options;
+  const { className, css = undefined, size = 'md' } = options;
   return (
-    <Typography className={className} key={id} size={size}>
+    <Typography className={className} css={css} key={id} size={size}>
       {node?.content?.length > 0 && node.content.map(parseContent)}
     </Typography>
   );

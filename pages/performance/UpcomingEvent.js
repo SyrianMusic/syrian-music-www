@@ -44,7 +44,10 @@ const UpcomingEvent = ({ className, event }) => {
           />
         </a>
         {parseRichText(summary.json, null, {
-          paragraph: { className: 'component-UpcomingEvent-description' },
+          paragraph: {
+            // Add caret width
+            css: { paddingRight: theme.pxToRem(24 + 22) },
+          },
         })}
         <Typography size="lg">
           <a href={url} target="_blank" rel="noopener noreferrer">
