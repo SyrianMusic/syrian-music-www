@@ -2,16 +2,16 @@ import { gql } from '@apollo/client';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import Hero from '../../components/Hero';
 import Image from '../../components/Image';
 import Rule from '../../components/Rule';
 import SiteLayout from '../../components/SiteLayout';
 import Title from '../../components/Title';
-import Typography from '../../components/Typography';
+import Typography, { SectionHeader } from '../../components/Typography';
 import config from '../../config.yaml';
-import { typography } from '../../styles/mixins';
+import { gutters, typography } from '../../styles/mixins';
 import theme from '../../styles/theme';
-import { gutters } from '../../styles/mixins';
 import UpcomingEvent from './UpcomingEvent';
 import { getNextEvent } from './utils';
 
@@ -31,6 +31,14 @@ export const performancePageQuery = gql`
   }
 `;
 
+const Section = styled.section({
+  marginTop: theme.spacing.get(48),
+  marginBottom: theme.spacing.get(32),
+  [theme.mq.mobileToDesktop]: {
+    marginBottom: theme.spacing.get(56),
+  },
+});
+
 const PerformancePage = ({ upcomingEvents }) => {
   const nextEvent = getNextEvent(upcomingEvents?.items);
 
@@ -39,7 +47,7 @@ const PerformancePage = ({ upcomingEvents }) => {
       <Title>Performance</Title>
 
       {nextEvent && (
-        <section
+        <Section
           id="upcoming-performances"
           data-testid="upcoming-performances"
           css={css`
@@ -48,18 +56,15 @@ const PerformancePage = ({ upcomingEvents }) => {
               ${gutters.margin.desktop};
             }
           `}>
-          <div className="page-Performances-upcoming-heading">
-            <Typography className="page-Performances-upcoming-heading-text" variant="h3" as="h1">
-              Upcoming <br />
-              Performances
-            </Typography>
-          </div>
+          <SectionHeader variant="h3" as="h1" css={{ marginBottom: theme.spacing.get(24) }}>
+            Upcoming <br />
+            Performances
+          </SectionHeader>
           <UpcomingEvent className="page-Performances-event" event={nextEvent} />
-        </section>
+        </Section>
       )}
 
       <Hero
-        className="page-Performance-hero"
         subtitle={
           <Typography variant="h3" as="div">
             Zakhrafa | Roulette
@@ -77,7 +82,7 @@ const PerformancePage = ({ upcomingEvents }) => {
         </Typography>
       </Hero>
 
-      <section className={cx('page-Performance-groups', 'gutters')}>
+      <Section className={cx('page-Performance-groups', 'gutters')}>
         <h1 className="visually-hidden">Performing Groups</h1>
 
         <Rule className="page-Performance-rule" />
@@ -117,32 +122,9 @@ const PerformancePage = ({ upcomingEvents }) => {
             </Typography>
           </div>
         </article>
-      </section>
+      </Section>
       <style jsx>
         {`
-          section {
-            margin-top: ${theme.pxToRem(50)};
-            margin-bottom: ${theme.pxToRem(23)};
-          }
-
-          :global(.page-Performances-upcoming-heading-text) {
-            max-width: 50%;
-          }
-
-          .page-Performances-upcoming-heading:first-child:after {
-            border-bottom: 2px solid ${theme.color.accentTan};
-            content: '';
-            display: block;
-            flex: 1;
-            position: relative;
-            bottom: ${theme.pxToRem(5)};
-            margin-left: ${theme.pxToRem(18)};
-          }
-
-          .page-Performances-upcoming-heading {
-            display: flex;
-          }
-
           .page-Performances-upcoming :global(.page-Performances-event) {
             margin-top: ${theme.pxToRem(36)};
             margin-bottom: ${theme.pxToRem(48)};
@@ -166,20 +148,8 @@ const PerformancePage = ({ upcomingEvents }) => {
           }
 
           @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-            :global(.page-Performance-hero) {
-              margin-bottom: ${theme.pxToRem(96)};
-            }
-
-            section {
-              margin-bottom: ${theme.pxToRem(75)};
-            }
-
             .page-Performances-upcoming-heading br {
               display: none;
-            }
-
-            .page-Performances-upcoming-heading:first-child:after {
-              bottom: ${theme.pxToRem(8)};
             }
 
             .page-Performances-upcoming :global(.page-Performances-event) {

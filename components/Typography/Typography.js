@@ -82,7 +82,7 @@ export const linkStyles = {
   'a:active': linkStylesMap.active,
 };
 
-export const Typography = ({ className, children, as, size, textAlign, variant }) => {
+export const Typography = ({ className, css, children, as, size, textAlign, variant }) => {
   let Component = theme.typography.body.tagName;
 
   if (as) {
@@ -109,6 +109,7 @@ export const Typography = ({ className, children, as, size, textAlign, variant }
             marginBottom: 0,
           },
         },
+        css,
       ]}
       className={className}>
       {children}
@@ -118,6 +119,7 @@ export const Typography = ({ className, children, as, size, textAlign, variant }
 
 Typography.propTypes = {
   className: PropTypes.string,
+  css: PropTypes.shape({}),
   children: PropTypes.node,
   as: PropTypes.string,
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -127,6 +129,7 @@ Typography.propTypes = {
 
 Typography.defaultProps = {
   className: undefined,
+  css: undefined,
   children: undefined,
   as: undefined,
   size: 'md',

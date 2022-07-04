@@ -16,9 +16,13 @@ const SectionHeader = ({ className, children, as, variant }) => {
           backgroundColor: theme.color.accentTan,
           content: '""',
           flex: 1,
-          height: theme.pxToRem(1),
-          marginTop: theme.pxToRem(3),
-          marginLeft: theme.pxToRem(14),
+          height: '1px',
+          marginLeft: theme.spacing.get(16),
+          marginBottom: theme.pxToRem(15),
+          alignSelf: 'flex-end',
+          [theme.mq.mobileToDesktop]: {
+            marginBottom: theme.pxToRem(9),
+          },
         },
         [theme.mq.mobileToDesktop]: {
           fontSize: theme.pxToRem(22),
