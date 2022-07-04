@@ -30,7 +30,7 @@ const UpcomingEvent = ({ className, event }) => {
       </a>
       <div
         css={{
-          paddingTop: theme.pxToRem(50),
+          paddingTop: theme.spacing.get(32),
           width: '100%',
           [theme.mq.mobileToDesktop]: {
             paddingLeft: theme.pxToRem(62),

@@ -14,23 +14,13 @@ const rootFontSize = 16;
 
 const pxToEm = (px, base = rootFontSize) => `${px / base}em`;
 const pxToPercent = (px, base) => `${(px / base) * 100}%`;
-const toRem = (num) => `${num}rem`;
 const pxToRem = (px) => `${px / rootFontSize}rem`;
 
-const spacing = {
-  8: toRem(0.5),
-  16: toRem(1),
-  24: toRem(1.5),
-  32: toRem(2),
-  40: toRem(2.5),
-  48: toRem(3),
-  56: toRem(3.5),
-  64: toRem(4),
-  72: toRem(4.5),
-  80: toRem(5),
-  88: toRem(5.5),
-  96: toRem(6),
-};
+const spacing = new Map();
+
+for (let multipleOf8 = 8; multipleOf8 < 97; multipleOf8 += 8) {
+  spacing.set(multipleOf8, pxToRem(multipleOf8));
+}
 
 const typography = {
   body: {
