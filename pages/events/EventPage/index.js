@@ -23,13 +23,19 @@ const Section = styled.section({
   },
 });
 
-const StyledSectionHeader = styled(SectionHeader)({
-  marginBottom: theme.pxToRem(10),
-  [theme.mq.mobileToDesktop]: {
-    fontSize: theme.pxToRem(22.5),
-    marginBottom: theme.pxToRem(30),
-  },
-});
+const StyledSectionHeader = (props) => (
+  <SectionHeader
+    size="lg"
+    variant="body"
+    css={{
+      marginBottom: theme.pxToRem(10),
+      [theme.mq.mobileToDesktop]: {
+        marginBottom: theme.pxToRem(30),
+      },
+    }}
+    {...props}
+  />
+);
 
 export const eventPageQuery = gql`
   ${Image.fragments.asset}
