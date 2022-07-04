@@ -11,7 +11,8 @@ import config from '../../config.yaml';
 import { gutters } from '../../styles/mixins';
 import theme from '../../styles/theme';
 import UpcomingEvent from './UpcomingEvent';
-import { getNextEvent } from './utils';
+import UpcomingEventsList from './UpcomingEventsList';
+import { getUpcomingEvents } from './utils';
 import Video from '../../components/Video';
 
 const pageConfig = config.nav.performance;
@@ -46,14 +47,14 @@ const Section = styled.section([
   `,
 ]);
 
-const PerformancePage = ({ upcomingEvents }) => {
-  const nextEvent = getNextEvent(upcomingEvents?.items);
+const PerformancePage = (props) => {
+  const upcomingEvents = getUpcomingEvents(props.upcomingEvents?.items);
 
   return (
     <SiteLayout pathname={pageConfig.href}>
       <Title>Performance</Title>
 
-      {nextEvent && (
+      {upcomingEvents.length > 0 && (
         <Section id="upcoming-performances" data-testid="upcoming-performances">
           <SectionHeader
             as="h1"
@@ -64,17 +65,7 @@ const PerformancePage = ({ upcomingEvents }) => {
             Upcoming <br css={{ [theme.mq.mobileToDesktop]: { display: 'none' } }} />
             Performances
           </SectionHeader>
-          <UpcomingEvent
-            css={{
-              marginTop: theme.pxToRem(36),
-              marginBottom: theme.pxToRem(48),
-              [theme.mq.mobileToDesktop]: {
-                marginTop: theme.pxToRem(56),
-                marginBottom: theme.pxToRem(84),
-              },
-            }}
-            event={nextEvent}
-          />
+          <UpcomingEventsList upcomingEvents={upcomingEvents} />
         </Section>
       )}
 

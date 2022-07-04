@@ -3,7 +3,7 @@ import { Event, EventCollection } from '../../../__fixtures__/Event';
 import { Template as PageTemplate, Default as PageDefault } from './PerformancePage.stories';
 import { PAGE_PATH } from './config';
 import { nextWeek } from '../../../__fixtures__/date';
-import { syrianOrnaments } from '../../../__fixtures__/Event';
+import { syrianOrnaments, quenchTheThirsty } from '../../../__fixtures__/Event';
 
 export default {
   title: PAGE_PATH + '/UpcomingEvent',
@@ -40,11 +40,11 @@ Default.args = {
   ],
 };
 
-// export const MultipleEvents = Template.bind({})
-// MultipleEvents.args = {
-//   ...Default.args,
-//   event: {},
-// }
+export const MultipleEvents = Template.bind({});
+MultipleEvents.args = {
+  ...Default.args,
+  events: [...Default.args.events, quenchTheThirsty],
+};
 
 export const ImagePortrait = Template.bind({});
 ImagePortrait.storyName = 'Image: Portrait';
