@@ -26,24 +26,18 @@ const UpcomingEvent = ({ className, event }) => {
             maxWidth: 'initial',
           },
         }}>
-        <a
-          css={[
-            typography.mixins.linkStylesBlack,
-            { display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' },
-          ]}
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer">
-          <div css={{ paddingRight: theme.pxToRem(24) }}>
-            <Typography variant="h3" css={{ marginBottom: theme.spacing.get(8) }}>
-              {name}
-            </Typography>
-            <Typography>
-              {formattedDate}
-              {location && ` | ${location}`}
-            </Typography>
-          </div>
-        </a>
+        <Typography
+          variant="h3"
+          css={{
+            marginBottom: theme.spacing.get(8),
+            [theme.mq.mobileToDesktop]: { marginBottom: theme.spacing.get(16) },
+          }}>
+          {name}
+        </Typography>
+        <Typography>
+          {formattedDate}
+          {location && ` | ${location}`}
+        </Typography>
         {parseRichText(summary.json, null, {
           paragraph: {
             css: {
