@@ -29,9 +29,9 @@ Default.args = {
   event: {
     startDate: nextWeek.toISOString(),
     image: {
-      width: 432,
-      height: 287,
-      url: 'https://via.placeholder.com/432x287',
+      width: 704,
+      height: 352,
+      url: 'https://via.placeholder.com/704x352',
     },
   },
 };
@@ -43,9 +43,9 @@ ImagePortrait.args = {
   event: {
     ...Default.args.event,
     image: {
-      width: 432,
-      height: 688,
-      url: 'https://via.placeholder.com/432x688',
+      width: 352,
+      height: 704,
+      url: 'https://via.placeholder.com/352x704',
     },
   },
 };
