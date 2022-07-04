@@ -85,7 +85,18 @@ const PerformancePage = ({ upcomingEvents }) => {
       <Section className={cx('page-Performance-groups', 'gutters')}>
         <h1 className="visually-hidden">Performing Groups</h1>
 
-        <Rule className="page-Performance-rule" />
+        <Rule
+          className="page-Performance-rule"
+          color={Rule.colors.accent}
+          css={{
+            display: 'none',
+            [theme.mq.mobileToDesktop]: {
+              display: 'block',
+              marginLeft: 0,
+              marginRight: 0,
+            },
+          }}
+        />
 
         <article id="takht-al-nagham">
           <Image
@@ -128,13 +139,6 @@ const PerformancePage = ({ upcomingEvents }) => {
           .page-Performances-upcoming :global(.page-Performances-event) {
             margin-top: ${theme.pxToRem(36)};
             margin-bottom: ${theme.pxToRem(48)};
-          }
-
-          .page-Performance-groups :global(.page-Performance-rule) {
-            border-top-color: ${theme.color.accentTan};
-            border-top-width: 2px;
-            margin-left: 0;
-            margin-right: 0;
           }
 
           article :global(.page-Performance-takht-al-nagham-logo) {
