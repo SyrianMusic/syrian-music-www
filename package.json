@@ -16,7 +16,10 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "export": "next export"
+    "export": "next export",
+    "storybook": "start-storybook -p 9999 -s ./public",
+    "build-storybook": "build-storybook -s ./public",
+    "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
     "@apollo/client": "^3.4.10",
@@ -44,6 +47,7 @@
     "@typescript-eslint/parser": "^4.12.0",
     "babel-jest": "^27.1.0",
     "babel-loader": "^8.2.2",
+    "chromatic": "^6.7.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-jest": "^24.4.0",
