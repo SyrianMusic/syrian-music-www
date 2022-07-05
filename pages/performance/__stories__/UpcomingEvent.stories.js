@@ -2,7 +2,7 @@ import UpcomingEvent from '../UpcomingEvent';
 import { Event, EventCollection } from '../../../__fixtures__/Event';
 import { Template as PageTemplate, Default as PageDefault } from './PerformancePage.stories';
 import { PAGE_PATH } from './config';
-import { nextWeek } from '../../../__fixtures__/date';
+import { nextWeek, nextMonth } from '../../../__fixtures__/date';
 import { syrianOrnaments, quenchTheThirsty } from '../../../__fixtures__/Event';
 
 export default {
@@ -40,10 +40,19 @@ Default.args = {
   ],
 };
 
-export const MultipleEvents = Template.bind({});
-MultipleEvents.args = {
+export const MultipleEvents2 = Template.bind({});
+MultipleEvents2.args = {
   ...Default.args,
-  events: [...Default.args.events, quenchTheThirsty],
+  events: [...Default.args.events, { ...quenchTheThirsty, startDate: nextMonth.toISOString() }],
+};
+
+export const MultipleEvents3 = Template.bind({});
+MultipleEvents3.args = {
+  ...MultipleEvents2.args,
+  events: [
+    ...MultipleEvents2.args.events,
+    { ...quenchTheThirsty, name: 'Another Event', startDate: nextMonth.toISOString() },
+  ],
 };
 
 export const ImagePortrait = Template.bind({});
