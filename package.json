@@ -1,8 +1,17 @@
 {
   "name": "syrian-music",
-  "repository": "https://github.com/SyrianMusic/syrian-music-www.git",
+  "bugs": {
+    "url": "https://github.com/SyrianMusic/syrian-music-www/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SyrianMusic/syrian-music-www.git"
+  },
   "license": "MIT",
-  "author": "Erik Jönsson <13211361+erikwithuhk@users.noreply.github.com>",
+  "author": {
+    "name": "Erik Jönsson",
+    "email": "13211361+erikwithuhk@users.noreply.github.com"
+  },
   "main": "index.js",
   "scripts": {
     "build": "next build",
