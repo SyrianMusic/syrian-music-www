@@ -1,6 +1,7 @@
 hidden
 .DS_Store
 *.token
+storybook-static
 
 # Editor configs
 .vscode
