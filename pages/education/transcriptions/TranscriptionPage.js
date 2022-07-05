@@ -287,21 +287,21 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
         </Section>
       )}
 
-      {arabic.text && (
+      {arabic?.text && (
         <Section id="transcription" className="gutters">
           <TranscriptionSectionHeader>Text</TranscriptionSectionHeader>
           {transformText(arabic.text)}
         </Section>
       )}
 
-      {musicalWork.text && (
+      {musicalWork?.text && (
         <Section id="transcription" className="gutters">
           <TranscriptionSectionHeader>Translation</TranscriptionSectionHeader>
           {transformText(musicalWork.text)}
         </Section>
       )}
 
-      {musicalWork.analysis && (
+      {musicalWork?.analysis && (
         <Section id="analysis" className="gutters">
           <TranscriptionSectionHeader>Analysis</TranscriptionSectionHeader>
           {parseRichText(musicalWork.analysis.json)}
