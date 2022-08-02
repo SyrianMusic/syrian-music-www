@@ -24,7 +24,7 @@
       "request": "launch",
       "type": "node",
       "runtimeExecutable": "yarn",
-      "runtimeArgs": ["start-storybook", "--port", "9999"],
+      "runtimeArgs": ["start-storybook", "--no-open", "--port", "9999"],
       "skipFiles": ["<node_internals>/**"]
     }
   ],
