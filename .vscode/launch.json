@@ -9,7 +9,7 @@
       "request": "launch",
       "type": "node",
       "runtimeExecutable": "yarn",
-      "runtimeArgs": ["netlify dev"],
+      "runtimeArgs": ["netlify", "dev", "--debug"],
       "skipFiles": ["<node_internals>/**"]
     },
     {
@@ -24,14 +24,14 @@
       "request": "launch",
       "type": "node",
       "runtimeExecutable": "yarn",
-      "runtimeArgs": ["start-storybook"],
+      "runtimeArgs": ["start-storybook", "--port", "9999"],
       "skipFiles": ["<node_internals>/**"]
     }
   ],
   "compounds": [
     {
-      "name": "Debug App",
-      "configurations": ["Start Dev Server", "Attach to Chrome"]
+      "name": "Debug All",
+      "configurations": ["Start Dev Server", "Start Storybook", "Attach to Chrome"]
     }
   ]
 }
