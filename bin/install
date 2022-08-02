@@ -2,31 +2,45 @@
 
 set -e
 
-source lib/hosts.sh
-source lib/prompts.sh
+function confirm() {
+    read -p "$1 (Y/N): " CONFIRM && [[ $CONFIRM == [yY] || $CONFIRM == [yY][eE][sS] ]] || return 1
+}
 
 declare +i -r ENV_FILE=".devcontainer/.env"
 declare +i -r NETLIFY_TOKEN_NAME="Netlify personal access token"
 declare +i -r NETLIFY_TOKEN_DOCS_URL="https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui"
-declare +i -r NETLIFY_SITE_ID_NAME="Netlify API ID"
-declare +i -r NETLIFY_SITE_ID_PATH="Settings > General > Site details > Site information > API ID"
-
-chmod +x bin/*
 
 function update_netlify_settings() {
     local +i NETLIFY_AUTH_TOKEN=""
     echo "Enter your $NETLIFY_TOKEN_NAME ($NETLIFY_TOKEN_DOCS_URL):"
     read -p "" NETLIFY_AUTH_TOKEN
     echo "NETLIFY_AUTH_TOKEN=$NETLIFY_AUTH_TOKEN" > "$ENV_FILE"
+}
 
-    local +i NETLIFY_SITE_ID=""
-    echo "Enter your $NETLIFY_SITE_ID_NAME ($NETLIFY_SITE_ID_PATH):"
-    read -p "" NETLIFY_SITE_ID
-    echo "NETLIFY_SITE_ID=$NETLIFY_SITE_ID" >> "$ENV_FILE"
+declare +i -r ETC_HOSTS="/etc/hosts"
+declare +i -r IP="127.0.0.1"
+
+function add_host() {
+    HOSTNAME=$1
+    HOSTS_LINE="$IP\t$HOSTNAME"
+    if [ -n "$(grep $HOSTNAME /etc/hosts)" ]
+    then
+        echo "$HOSTNAME already exists, not adding."
+    else
+        echo "Adding $HOSTNAME to your $ETC_HOSTS";
+        sudo -- sh -c -e "echo '$HOSTS_LINE' >> /etc/hosts";
+
+        if [ -n "$(grep $HOSTNAME /etc/hosts)" ]
+        then
+            echo "$HOSTNAME was added succesfully \n $(grep $HOSTNAME /etc/hosts)";
+        else
+            echo "Failed to Add $HOSTNAME, Try again!";
+        fi
+    fi
 }
 
 function install() {
-    confirm "Do you want to add or change your $NETLIFY_TOKEN_NAME or $NETLIFY_SITE_ID_NAME?" && update_netlify_settings
+    confirm "Do you want to add or update your $NETLIFY_TOKEN_NAME?" && update_netlify_settings
     add_host "local.syrianmusic.org"
     add_host "storybook.syrianmusic.org"
     echo "You have successfully installed the Syrian Music Preservation Initiative project."

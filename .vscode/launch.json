@@ -9,7 +9,7 @@
       "request": "launch",
       "type": "node",
       "runtimeExecutable": "yarn",
-      "runtimeArgs": ["netlify"],
+      "runtimeArgs": ["netlify:dev"],
       "skipFiles": ["<node_internals>/**"]
     },
     {
