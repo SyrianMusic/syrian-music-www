@@ -1,3 +1,0 @@
-set -e
-
-xdg-open $@

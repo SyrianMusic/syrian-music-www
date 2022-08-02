@@ -6,21 +6,15 @@
     {
       "label": "Open App",
       "type": "shell",
-      "command": "bash",
-      "args": [
-        "${workspaceFolder}/.vscode/open-in-browser.sh",
-        "http://local.syrianmusic.org:8888"
-      ],
+      "command": "xdg-open",
+      "args": ["http://local.syrianmusic.org:8888"],
       "problemMatcher": []
     },
     {
       "label": "Open Storybook",
       "type": "shell",
-      "command": "bash",
-      "args": [
-        "${workspaceFolder}/.vscode/open-in-browser.sh",
-        "http://storybook.syrianmusic.org:9999"
-      ],
+      "command": "xdg-open",
+      "args": ["http://storybook.syrianmusic.org:9999"],
       "problemMatcher": []
     }
   ]
