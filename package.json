@@ -17,7 +17,8 @@
     "build": "next build",
     "dev": "next dev",
     "export": "next export",
-    "storybook": "start-storybook -p 9999 -s ./public",
+    "netlify": "netlify dev",
+    "storybook": "start-storybook -s ./public",
     "build-storybook": "build-storybook -s ./public",
     "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
   },
