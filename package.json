@@ -16,11 +16,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "netlify:dev": "netlify dev",
-    "export": "next export",
-    "storybook": "start-storybook",
-    "build-storybook": "build-storybook",
-    "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
+    "export": "next export"
   },
   "dependencies": {
     "@apollo/client": "^3.4.10",

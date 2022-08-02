@@ -9,7 +9,7 @@
       "request": "launch",
       "type": "node",
       "runtimeExecutable": "yarn",
-      "runtimeArgs": ["netlify:dev"],
+      "runtimeArgs": ["netlify dev"],
       "skipFiles": ["<node_internals>/**"]
     },
     {
@@ -18,6 +18,14 @@
       "request": "attach",
       "type": "chrome",
       "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Start Storybook",
+      "request": "launch",
+      "type": "node",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": ["start-storybook"],
+      "skipFiles": ["<node_internals>/**"]
     }
   ],
   "compounds": [
