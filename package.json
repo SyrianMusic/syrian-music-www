@@ -16,7 +16,8 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "export": "next export"
+    "export": "next export",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@apollo/client": "^3.4.10",
