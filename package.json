@@ -18,8 +18,8 @@
     "dev": "next dev",
     "netlify:dev": "netlify dev",
     "export": "next export",
-    "storybook": "start-storybook -s ./public",
-    "build-storybook": "build-storybook -s ./public",
+    "storybook": "start-storybook",
+    "build-storybook": "build-storybook",
     "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
