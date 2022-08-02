@@ -1,6 +1,9 @@
 .DS_Store
+.next
 .vscode
+*.log
 bin
 hidden
 node_modules
-*.log
+out
+storybook-static
