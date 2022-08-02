@@ -107,38 +107,32 @@ To get a local copy up and running follow these simple steps.
 ### Installation
 
 1. Clone the repo
+
    ```sh
    git clone https://github.com/SyrianMusic/syrian-music-www.git
    ```
 
-3. Enable the scripts to be run
+2. Run the install script and follow the prompts to enter your [Netlify auth token](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui) and other installation steps:
 
    ```bash
-   chmod +x bin/*
+   bin/install
    ```
 
-3. Run the install script with your [Netlify auth token](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui)
-
-   ```bash
-   bin/install <YOUR AUTH TOKEN>
-   ```
-
-4. Start the development server
-
-   ```bash
-   bin/dev
-   ```
-
-6. Visit http://local.syrianmusic.org:3000 in your browser!
+3. Open VS Code in container
 
 <!-- USAGE EXAMPLES -->
 
 ## Usage
 
-1. Start the dev server
-   ```sh
-   yarn dev
-   ```
+### Run the app locally
+
+1. Launch: Debug All
+
+2. Visit http://local.syrianmusic.org:8888 (app) and http://storybook.syrianmusic.org:9999 (storybook) in your browser.
+
+### Tests
+
+In extension
 
 <!-- ROADMAP
 ## Roadmap
@@ -158,9 +152,7 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 
 ### Releasing
 
-All commits to master are automatically deployed by Netlify.
-
-[^1]: See [Semantic versioning for end-user applications](https://medium.com/@u_glow/making-sense-of-semantic-versioning-for-end-user-software-applications-a3049d97478b) for guidance on versioning.
+All commits to `main` are automatically deployed by Netlify.
 
 <!-- LICENSE
 ## License
