@@ -135,7 +135,7 @@ To get a local copy up and running follow these simple steps.
 
 ### Tests
 
-In extension
+Use the [Jest extension](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest) to run tests.
 
 <!-- ROADMAP
 ## Roadmap
