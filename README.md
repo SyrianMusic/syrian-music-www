@@ -101,6 +101,7 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
+- [Visual Studio Code](https://code.visualstudio.com/)
 - [Docker Desktop](https://docs.docker.com/get-docker/)
 - Access to Netlify (ask @erikwithuhk)
 
@@ -118,7 +119,9 @@ To get a local copy up and running follow these simple steps.
    bin/install
    ```
 
-3. Open VS Code in container
+3. Install the [Remote - Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for Visual Studio Code.
+
+4. Select **Remote-Containers: Reopen in Container** from the Visual Studio Code Command Palette or quick actions Status bar item.
 
 <!-- USAGE EXAMPLES -->
 
