@@ -5,8 +5,7 @@ set -e
 source lib/hosts.sh
 source lib/prompts.sh
 
-declare +i -r DOCKER_ENV_FILE=".env.docker"
-declare +i -r NETLIFY_BACKUP_FILE=".netlify.token"
+declare +i -r ENV_FILE=".devcontainer/.env"
 declare +i -r NETLIFY_TOKEN_NAME="Netlify personal access token"
 declare +i -r NETLIFY_TOKEN_DOCS_URL="https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui"
 declare +i -r NETLIFY_SITE_ID_NAME="Netlify API ID"
@@ -18,16 +17,16 @@ function update_netlify_settings() {
     local +i NETLIFY_AUTH_TOKEN=""
     echo "Enter your $NETLIFY_TOKEN_NAME ($NETLIFY_TOKEN_DOCS_URL):"
     read -p "" NETLIFY_AUTH_TOKEN
-    echo "NETLIFY_AUTH_TOKEN=$NETLIFY_AUTH_TOKEN" > "$DOCKER_ENV_FILE"
-    
+    echo "NETLIFY_AUTH_TOKEN=$NETLIFY_AUTH_TOKEN" > "$ENV_FILE"
+
     local +i NETLIFY_SITE_ID=""
     echo "Enter your $NETLIFY_SITE_ID_NAME ($NETLIFY_SITE_ID_PATH):"
     read -p "" NETLIFY_SITE_ID
-    echo "NETLIFY_SITE_ID=$NETLIFY_SITE_ID" >> "$DOCKER_ENV_FILE"
+    echo "NETLIFY_SITE_ID=$NETLIFY_SITE_ID" >> "$ENV_FILE"
 }
 
 function install() {
-    confirm "Do you want to change your $NETLIFY_TOKEN_NAME or $NETLIFY_SITE_ID_NAME?" && update_netlify_settings
+    confirm "Do you want to add or change your $NETLIFY_TOKEN_NAME or $NETLIFY_SITE_ID_NAME?" && update_netlify_settings
     add_host "local.syrianmusic.org"
     add_host "storybook.syrianmusic.org"
     echo "You have successfully installed the Syrian Music Preservation Initiative project."
