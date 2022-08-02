@@ -129,9 +129,9 @@ To get a local copy up and running follow these simple steps.
 
 ### Run the app locally
 
-1. Launch: Debug All
+1. In Visual Studio Code's **Run and Debug** view, select **Debug All**, and click the green triangle button to start the development server.
 
-2. Visit http://local.syrianmusic.org:8888 (app) and http://storybook.syrianmusic.org:9999 (storybook) in your browser.
+2. From Visual Studio Code's Command Palette, select **Tasks: Run Task**, and select the **Open All** task to open the app (http://local.syrianmusic.org:8888) and Storybook (http://storybook.syrianmusic.org:9999) in your browser.
 
 ### Tests
 
