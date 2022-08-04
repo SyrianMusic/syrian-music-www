@@ -3,9 +3,6 @@ hidden
 *.token
 storybook-static
 
-# Editor configs
-.vscode
-
 # Build directory
 out
 
@@ -113,6 +110,3 @@ dist
 
 # TernJS port file
 .tern-port
-
-# Local Netlify folder
-.netlify

@@ -17,9 +17,7 @@
     "build": "next build",
     "dev": "next dev",
     "export": "next export",
-    "storybook": "start-storybook -p 9999 -s ./public",
-    "build-storybook": "build-storybook -s ./public",
-    "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@apollo/client": "^3.4.10",
