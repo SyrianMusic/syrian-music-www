@@ -14,20 +14,31 @@ const PastEvents = ({ className, event }) => {
 
   return (
     <div className={cx('component-PastEvents-root', className)}>
-      <a
-        className="component-PastEvents-image-link"
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer">
-        <Image className="component-PastEvents-image" width={432} height={287} src={image.url} />
-      </a>
+      <div
+        css={{
+          width: 300,
+          height: 170,
+          overflow: 'hidden',
+          background: 'black',
+        }}>
+        <Image className="component-PastEvents-image" width={300} height={200} src={image.url} />
+      </div>
       <div className="component-PastEvents-text">
         <div className="component-PastEvents-heading">
-          <Typography className="component-PastEvents-title" variant="h3">
+          <Typography className="component-PastEvents-title" variant="body" as="h3">
             {name}
           </Typography>
-          <Typography size="md">{formattedDate}</Typography>
-          <Typography size="md">{location}</Typography>
+          <Typography
+            css={{
+              marginBottom: theme.pxToRem(8),
+              [theme.mq.mobileToDesktop]: {
+                marginBottom: theme.pxToRem(10),
+              },
+            }}
+            size="sm">
+            {formattedDate}
+          </Typography>
+          <Typography size="sm">{location}</Typography>
         </div>
         <Typography size="md">
           <a href={url} target="_blank" rel="noopener noreferrer">
@@ -37,8 +48,8 @@ const PastEvents = ({ className, event }) => {
       </div>
       <style jsx>{`
         .component-PastEvents-root {
-          display: flex;
-          flex-direction: column;
+          width: ${theme.pxToRem(300)};
+          margin-right: ${theme.pxToRem(30)};
         }
 
         .component-PastEvents-image-link,
@@ -53,6 +64,7 @@ const PastEvents = ({ className, event }) => {
 
         .component-PastEvents-text {
           padding-top: ${theme.pxToRem(50)};
+          margin-left: ${theme.pxToRem(0)};
         }
 
         .component-PastEvents-heading {
@@ -94,17 +106,9 @@ const PastEvents = ({ className, event }) => {
         }
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          //   .component-PastEvents-image-link,
-          //   .component-PastEvents-text {
-          //     width: 50%;
-          //   }
-
           .component-PastEvents-text {
-            padding-left: ${theme.pxToRem(62)};
-          }
-
-          .component-PastEvents-text {
-            padding-top: 0;
+            padding-left: ${theme.pxToRem(0)};
+            padding-top: ${theme.pxToRem(theme.typography.body.md.lineHeightMobile)};
           }
 
           .component-PastEvents-root :global(.component-PastEvents-description) {

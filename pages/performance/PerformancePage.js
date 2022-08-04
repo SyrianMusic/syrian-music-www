@@ -87,16 +87,28 @@ const PerformancePage = ({ upcomingEvents, pastEvents }) => {
         <section
           id="past-performances"
           data-testid="past-performances"
-          className="page-Performances-past">
+          className={cx('page-Performances-past', 'gutters')}>
           <div className="page-Performances-past-heading">
-            <Typography className="page-Performances-past-heading-text" variant="h3" as="h1">
+            <Typography
+              className="page-Performances-past-heading-text"
+              variant="h3"
+              as="h2"
+              css={{
+                marginBottom: theme.pxToRem(20),
+                [theme.mq.mobileToDesktop]: {
+                  marginBottom: theme.pxToRem(30),
+                },
+              }}>
               Previous Performances
             </Typography>
+            <Typography />
           </div>
 
-          {pastEventItems.map((event) => (
-            <PastEvents key={event.sys.id} className="page-Performances-event" event={event} />
-          ))}
+          <div className="page-Performances-past-content">
+            {pastEventItems.map((event) => (
+              <PastEvents key={event.sys.id} className="page-Performances-event" event={event} />
+            ))}
+          </div>
         </section>
       )}
 
@@ -201,6 +213,11 @@ const PerformancePage = ({ upcomingEvents, pastEvents }) => {
 
           article > div:last-child {
             margin-top: ${theme.pxToRem(25)};
+          }
+
+          .page-Performances-past-content {
+            display: flex;
+            flex-wrap: wrap;
           }
 
           @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
