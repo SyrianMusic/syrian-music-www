@@ -1,9 +1,7 @@
 hidden
 .DS_Store
 *.token
-
-# Editor configs
-.vscode
+storybook-static
 
 # Build directory
 out
@@ -112,6 +110,3 @@ dist
 
 # TernJS port file
 .tern-port
-
-# Local Netlify folder
-.netlify

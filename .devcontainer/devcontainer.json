@@ -1,0 +1,10 @@
+{
+  "name": "syrian-music-www",
+  "dockerComposeFile": ["docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [],
+  "postCreateCommand": "yarn",
+  "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode", "Orta.vscode-jest"],
+  "settings": { "terminal.integrated.shell.linux": "/bin/bash" }
+}

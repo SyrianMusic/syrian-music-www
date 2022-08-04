@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: syrian-music/syrian-music-www
+    env_file: .env
+    container_name: syrian-music-www
+    command: sleep infinity
+    volumes:
+      - ..:/workspace:cached

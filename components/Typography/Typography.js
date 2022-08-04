@@ -1,7 +1,66 @@
-import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { typography } from '../../styles/mixins';
 import theme from '../../styles/theme';
+
+const getSizeStyles = (size) => {
+  switch (size) {
+    case 'sm':
+      return [{ [theme.mq.mobileToDesktop]: [{}, typography.sm.desktop] }, typography.sm.mobile];
+    case 'md':
+      return [{ [theme.mq.mobileToDesktop]: [{}, typography.md.desktop] }, typography.md.mobile];
+    case 'lg':
+      return [
+        {
+          [theme.mq.mobileToDesktop]: [
+            { marginBottom: theme.pxToEm(17.5, theme.typography.body.lg.fontSizeDesktop) },
+            typography.lg.desktop,
+          ],
+        },
+        typography.lg.mobile,
+      ];
+    default:
+      return [];
+  }
+};
+
+const headingStyles = { letterSpacing: '-0.01em' };
+
+const getVariantStyles = (variant) => {
+  switch (variant) {
+    case 'h1':
+      return [
+        {
+          marginBottom: theme.pxToEm(0, theme.typography.h1.fontSizeMobile),
+          [theme.mq.mobileToDesktop]: [
+            { marginBottom: theme.pxToEm(30, theme.typography.h1.fontSizeDesktop) },
+            typography.h1.desktop,
+          ],
+        },
+        typography.h1.mobile,
+        headingStyles,
+      ];
+    case 'h3':
+      return [
+        {
+          marginBottom: theme.pxToEm(22.5, theme.typography.h3.fontSizeMobile),
+          [theme.mq.mobileToDesktop]: [
+            { marginBottom: theme.pxToEm(22.5, theme.typography.h3.fontSizeDesktop) },
+            typography.h3.desktop,
+          ],
+        },
+        typography.h3.mobile,
+        headingStyles,
+      ];
+    case 'body':
+      return [
+        {
+          letterSpacing: '0.01em',
+          marginBottom: '1em',
+        },
+      ];
+    default:
+  }
+};
 
 export const Typography = ({ className, children, as, size, textAlign, variant }) => {
   let Component = theme.typography.body.tagName;
@@ -15,107 +74,34 @@ export const Typography = ({ className, children, as, size, textAlign, variant }
     Component = theme.typography[variant].tagName;
   }
 
+  const sizeStyles = getSizeStyles(size);
+  const variantStyles = getVariantStyles(variant);
+
   return (
     <Component
-      className={cx(
-        'component-Typography-root',
-        `variant--${variant}`,
+      css={[
+        sizeStyles,
+        variantStyles,
         {
-          [`text-align--${textAlign}`]: textAlign,
-          [`size--${size}`]: size,
+          textAlign,
+          '&:last-child': {
+            marginBottom: 0,
+          },
+          'a, a:visited': {
+            color: theme.color.interactive,
+            textDecorationColor: 'transparent',
+            transition: 'text-decoration-color 0.2s ease-in-out',
+          },
+          'a:hover': {
+            textDecorationColor: theme.color.interactive,
+          },
+          'a:active': {
+            filter: 'brightness(0.9)',
+          },
         },
-        className,
-      )}>
+      ]}
+      className={className}>
       {children}
-      <style jsx>{`
-        .component-Typography-root:last-child {
-          margin-bottom: 0;
-        }
-
-        .variant--body {
-          letter-spacing: 0.01em;
-          margin-bottom: 1em;
-        }
-
-        .size--sm {
-          ${typography.sm.mobile};
-        }
-
-        .size--md {
-          ${typography.md.mobile};
-        }
-
-        .size--lg {
-          ${typography.lg.mobile};
-        }
-
-        .variant--h1,
-        .variant--h3 {
-          letter-spacing: -0.01em;
-        }
-
-        .variant--h1 {
-          ${typography.h1.mobile};
-          margin-bottom: ${theme.pxToEm(0, theme.typography.h1.fontSizeMobile)};
-        }
-
-        .variant--h3 {
-          ${typography.h3.mobile};
-          margin-bottom: ${theme.pxToEm(22.5, theme.typography.h3.fontSizeMobile)};
-        }
-
-        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          .size--sm {
-            ${typography.sm.desktop};
-          }
-
-          .size--md {
-            ${typography.md.desktop};
-          }
-
-          .size--lg {
-            ${typography.lg.desktop};
-            margin-bottom: ${theme.pxToEm(17.5, theme.typography.body.lg.fontSizeDesktop)};
-          }
-
-          .variant--h1 {
-            ${typography.h1.desktop};
-            margin-bottom: ${theme.pxToEm(30, theme.typography.h1.fontSizeDesktop)};
-          }
-
-          .variant--h3 {
-            ${typography.h3.desktop};
-            margin-bottom: ${theme.pxToEm(22.5, theme.typography.h3.fontSizeDesktop)};
-          }
-        }
-
-        .text-align--left {
-          text-align: left;
-        }
-
-        .text-align--center {
-          text-align: center;
-        }
-
-        .text-align--right {
-          text-align: right;
-        }
-
-        .component-Typography-root :global(a:link),
-        .component-Typography-root :global(a:visited) {
-          color: ${theme.color.interactive};
-          text-decoration-color: transparent;
-          transition: text-decoration-color 0.2s ease-in-out;
-        }
-
-        .component-Typography-root :global(a:hover) {
-          text-decoration-color: ${theme.color.interactive};
-        }
-
-        .component-Typography-root :global(a:active) {
-          filter: brightness(0.9);
-        }
-      `}</style>
     </Component>
   );
 };

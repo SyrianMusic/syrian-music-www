@@ -63,3 +63,7 @@
   to = "https://syrianmusic.org"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/events"
+  to = "/performance"

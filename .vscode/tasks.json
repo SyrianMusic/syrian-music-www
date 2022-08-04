@@ -1,0 +1,35 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Open All",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/.vscode/open-in-browser",
+        "http://local.syrianmusic.org:8888",
+        "http://storybook.syrianmusic.org:9999"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Open App",
+      "type": "shell",
+      "command": "bash",
+      "args": ["${workspaceFolder}/.vscode/open-in-browser", "http://local.syrianmusic.org:8888"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Open Storybook",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/.vscode/open-in-browser",
+        "http://storybook.syrianmusic.org:9999"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}

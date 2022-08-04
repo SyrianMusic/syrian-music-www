@@ -5,60 +5,71 @@ const text =
 
 const sentences = text.split('. ');
 
+class RichTextNode {
+  constructor({ content = {}, data = {}, type } = {}) {
+    this.content = content;
+    this.data = data;
+    this.nodeType = type;
+  }
+}
+
+class Document extends RichTextNode {
+  constructor(props) {
+    super({ ...props, type: 'document' });
+  }
+}
+
+export class Paragraph extends RichTextNode {
+  constructor(props) {
+    super({ ...props, type: 'paragraph' });
+  }
+}
+
+export class Hyperlink extends RichTextNode {
+  constructor({ data = {}, ...props } = {}) {
+    const { uri = 'https://syrianmusic.org' } = data;
+    super({ data: { ...data, uri }, ...props, type: 'hyperlink' });
+  }
+}
+
+export class Text {
+  constructor({ data = {}, marks = [], value = sentences[0] } = {}) {
+    this.nodeType = 'text';
+    this.data = data;
+    this.marks = marks;
+    this.value = value;
+  }
+}
+
+const defaultContent = [
+  new Paragraph({
+    content: [
+      new Text({
+        value: `Default: ${sentences[0]}. `,
+      }),
+      new Hyperlink({
+        content: [new Text({ value: `Link: ${sentences[4]}.` })],
+      }),
+      new Text({
+        value: ` Italic: ${sentences[1]}.`,
+        marks: [{ type: 'italic' }],
+      }),
+      new Text({
+        value: ` Bold: ${sentences[2]}. `,
+        marks: [{ type: 'bold' }],
+      }),
+      new Text({
+        value: `Underline: ${sentences[3]}.`,
+        marks: [{ type: 'underline' }],
+      }),
+    ],
+  }),
+];
+
 export class RichText extends Node {
-  constructor({ ...props } = {}) {
+  constructor({ content = defaultContent, ...props } = {}) {
     super(props);
-    // TODO: Divide into fixtures
-    this.json = {
-      nodeType: 'document',
-      data: {},
-      content: [
-        {
-          nodeType: 'paragraph',
-          data: {},
-          content: [
-            {
-              nodeType: 'text',
-              value: `Default: ${sentences[0]}.`,
-              marks: [],
-              data: {},
-            },
-            {
-              nodeType: 'hyperlink',
-              data: {
-                uri: 'https://syrianmusic.org',
-              },
-              content: [
-                {
-                  nodeType: 'text',
-                  value: ` Link: ${sentences[4]}.`,
-                  marks: [],
-                  data: {},
-                },
-              ],
-            },
-            {
-              nodeType: 'text',
-              value: ` Italic: ${sentences[1]}.`,
-              marks: [{ type: 'italic' }],
-              data: {},
-            },
-            {
-              nodeType: 'text',
-              value: ` Bold: ${sentences[2]}.`,
-              marks: [{ type: 'bold' }],
-              data: {},
-            },
-            {
-              nodeType: 'text',
-              value: ` Underline: ${sentences[3]}.`,
-              marks: [{ type: 'underline' }],
-              data: {},
-            },
-          ],
-        },
-      ],
-    };
+    this.json = new Document({ content });
     this.links = {
       entries: {
         inline: [],
