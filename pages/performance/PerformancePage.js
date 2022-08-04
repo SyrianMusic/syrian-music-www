@@ -11,6 +11,7 @@ import config from '../../config.yaml';
 import { typography } from '../../styles/mixins';
 import theme from '../../styles/theme';
 import UpcomingEvent from './UpcomingEvent';
+import PastEvents from './PastEvents';
 import { getNextEvent } from './utils';
 
 const pageConfig = config.nav.performance;
@@ -26,11 +27,20 @@ export const performancePageQuery = gql`
         ...UpcomingEvent
       }
     }
+    pastEvents: eventCollection(where: { startDate_lt: $now }) {
+      items {
+        sys {
+          id
+        }
+        ...UpcomingEvent
+      }
+    }
   }
 `;
 
-const PerformancePage = ({ upcomingEvents }) => {
+const PerformancePage = ({ upcomingEvents, pastEvents }) => {
   const nextEvent = getNextEvent(upcomingEvents?.items);
+  const pastEventItems = pastEvents?.items;
 
   return (
     <SiteLayout className="page-Performance-root" pathname={pageConfig.href}>
@@ -70,6 +80,23 @@ const PerformancePage = ({ upcomingEvents }) => {
           </div>
 
           <UpcomingEvent className="page-Performances-event" event={nextEvent} />
+        </section>
+      )}
+
+      {pastEventItems?.length && (
+        <section
+          id="past-performances"
+          data-testid="past-performances"
+          className="page-Performances-past">
+          <div className="page-Performances-past-heading">
+            <Typography className="page-Performances-past-heading-text" variant="h3" as="h1">
+              Previous Performances
+            </Typography>
+          </div>
+
+          {pastEventItems.map((event) => (
+            <PastEvents key={event.sys.id} className="page-Performances-event" event={event} />
+          ))}
         </section>
       )}
 
@@ -213,6 +240,9 @@ const PerformancePage = ({ upcomingEvents }) => {
 
 PerformancePage.propTypes = {
   upcomingEvents: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  }).isRequired,
+  pastEvents: PropTypes.shape({
     items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   }).isRequired,
 };
