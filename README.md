@@ -101,44 +101,41 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
+- [Visual Studio Code](https://code.visualstudio.com/)
 - [Docker Desktop](https://docs.docker.com/get-docker/)
 - Access to Netlify (ask @erikwithuhk)
 
 ### Installation
 
 1. Clone the repo
+
    ```sh
    git clone https://github.com/SyrianMusic/syrian-music-www.git
    ```
 
-3. Enable the scripts to be run
+2. Run the install script and follow the prompts to enter your [Netlify auth token](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui) and other installation steps:
 
    ```bash
-   chmod +x bin/*
+   bin/install
    ```
 
-3. Run the install script with your [Netlify auth token](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui)
+3. Install the [Remote - Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for Visual Studio Code.
 
-   ```bash
-   bin/install <YOUR AUTH TOKEN>
-   ```
-
-4. Start the development server
-
-   ```bash
-   bin/dev
-   ```
-
-6. Visit http://local.syrianmusic.org:3000 in your browser!
+4. Select **Remote-Containers: Reopen in Container** from the Visual Studio Code Command Palette or quick actions Status bar item.
 
 <!-- USAGE EXAMPLES -->
 
 ## Usage
 
-1. Start the dev server
-   ```sh
-   yarn dev
-   ```
+### Run the app locally
+
+1. In Visual Studio Code's **Run and Debug** view, select **Debug All**, and click the green triangle button to start the development server.
+
+2. From Visual Studio Code's Command Palette, select **Tasks: Run Task**, and select the **Open All** task to open the app (http://local.syrianmusic.org:8888) and Storybook (http://storybook.syrianmusic.org:9999) in your browser.
+
+### Tests
+
+Use the [Jest extension](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest) to run tests.
 
 <!-- ROADMAP
 ## Roadmap
@@ -158,9 +155,7 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 
 ### Releasing
 
-All commits to master are automatically deployed by Netlify.
-
-[^1]: See [Semantic versioning for end-user applications](https://medium.com/@u_glow/making-sense-of-semantic-versioning-for-end-user-software-applications-a3049d97478b) for guidance on versioning.
+All commits to `main` are automatically deployed by Netlify.
 
 <!-- LICENSE
 ## License
