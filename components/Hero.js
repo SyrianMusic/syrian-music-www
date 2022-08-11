@@ -26,8 +26,7 @@ const Hero = ({ className, children, image, subtitle, title, video }) => (
         css={{
           marginBottom: theme.pxToRem(22),
         }}
-        variant="h3"
-        as="h1"
+        variant="h1"
         textAlign="center">
         {title}
       </Typography>

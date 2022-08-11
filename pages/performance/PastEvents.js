@@ -13,109 +13,55 @@ const PastEvents = ({ className, event }) => {
   const formattedDate = formatDateTime(startDate);
 
   return (
-    <div className={cx('component-PastEvents-root', className)}>
-      <div
+    <div className={className}>
+      <a
         css={{
           width: 300,
           height: 170,
           overflow: 'hidden',
           background: 'black',
+          display: 'block',
+        }}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer">
+        <Image css={{ width: '100%', height: 'auto' }} width={300} height={200} src={image.url} />
+      </a>
+      <div
+        css={{
+          marginTop: theme.spacing.get(32),
+          maxWidth: theme.pxToRem(theme.closestMultiple(270)),
+          [theme.mq.mobileToDesktop]: {
+            paddingTop: 0,
+            maxWidth: 'initial',
+          },
         }}>
-        <Image className="component-PastEvents-image" width={300} height={200} src={image.url} />
-      </div>
-      <div className="component-PastEvents-text">
-        <div className="component-PastEvents-heading">
-          <Typography className="component-PastEvents-title" variant="body" as="h3">
-            {name}
-          </Typography>
-          <Typography
-            css={{
-              marginBottom: theme.pxToRem(8),
-              [theme.mq.mobileToDesktop]: {
-                marginBottom: theme.pxToRem(10),
-              },
-            }}
-            size="sm">
-            {formattedDate}
-          </Typography>
-          <Typography size="sm">{location}</Typography>
-        </div>
-        <Typography size="md">
+        <Typography
+          variant="h3"
+          css={{
+            marginBottom: theme.spacing.get(8),
+            [theme.mq.mobileToDesktop]: { marginBottom: theme.spacing.get(16) },
+          }}>
+          {name}
+        </Typography>
+        <Typography
+          css={{
+            marginBottom: theme.pxToRem(8),
+            [theme.mq.mobileToDesktop]: {
+              marginBottom: theme.pxToRem(10),
+            },
+          }}
+          size="sm">
+          {formattedDate}
+        </Typography>
+        <Typography size="sm">{location}</Typography>
+
+        <Typography css={{ marginTop: theme.spacing.get(32) }}>
           <a href={url} target="_blank" rel="noopener noreferrer">
             {DEFAULT_CTA_TEXT}
           </a>
         </Typography>
       </div>
-      <style jsx>{`
-        .component-PastEvents-root {
-          width: ${theme.pxToRem(300)};
-          margin-right: ${theme.pxToRem(30)};
-        }
-
-        .component-PastEvents-image-link,
-        .component-PastEvents-root :global(.component-PastEvents-image),
-        .component-PastEvents-text {
-          width: 100%;
-        }
-
-        .component-PastEvents-root :global(.component-PastEvents-image) {
-          height: auto;
-        }
-
-        .component-PastEvents-text {
-          padding-top: ${theme.pxToRem(50)};
-          margin-left: ${theme.pxToRem(0)};
-        }
-
-        .component-PastEvents-heading {
-          padding-right: ${theme.pxToRem(24)};
-        }
-
-        .component-PastEvents-root :global(.component-PastEvents-description) {
-          // Add caret width
-          padding-right: ${theme.pxToRem(24 + 22)};
-        }
-
-        .component-PastEvents-heading-link {
-          color: ${theme.color.primary};
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          text-decoration-color: transparent;
-          transition: all 0.2s ease-in-out;
-        }
-
-        .component-PastEvents-heading-link:active,
-        .component-PastEvents-heading-link:focus,
-        .component-PastEvents-heading-link:hover {
-          color: ${theme.color.interactive};
-          text-decoration-color: ${theme.color.interactive};
-        }
-
-        .component-PastEvents-heading :global(.component-PastEvents-title) {
-          margin-bottom: ${theme.pxToRem(19)};
-        }
-
-        .component-PastEvents-root :global(.component-PastEvents-caret-icon) {
-          position: relative;
-          bottom: 0px;
-        }
-
-        .component-PastEvents-root :global(.component-PastEvents-description) {
-          margin-top: ${theme.pxToRem(theme.typography.body.lg.lineHeightMobile)};
-        }
-
-        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          .component-PastEvents-text {
-            padding-left: ${theme.pxToRem(0)};
-            padding-top: ${theme.pxToRem(theme.typography.body.md.lineHeightMobile)};
-          }
-
-          .component-PastEvents-root :global(.component-PastEvents-description) {
-            margin-top: ${theme.pxToRem(theme.typography.body.lg.lineHeightDesktop)};
-          }
-        }
-      `}</style>
     </div>
   );
 };

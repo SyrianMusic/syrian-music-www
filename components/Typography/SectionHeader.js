@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Typography } from './Typography';
 import theme from '../../styles/theme';
 
-export const SectionHeader = ({ className, children, as, variant }) => {
+const SectionHeader = ({ className, children, as, size, variant }) => {
   return (
     <Typography
       css={{
@@ -10,22 +10,18 @@ export const SectionHeader = ({ className, children, as, variant }) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        fontSize: theme.pxToRem(20),
-        lineHeight: theme.pxToRem(35),
         '&:after': {
           backgroundColor: theme.color.accentTan,
           content: '""',
           flex: 1,
-          height: theme.pxToRem(1),
-          marginTop: theme.pxToRem(3),
-          marginLeft: theme.pxToRem(14),
-        },
-        [theme.mq.mobileToDesktop]: {
-          fontSize: theme.pxToRem(22),
-          lineHeight: theme.pxToRem(25),
+          height: '1px',
+          marginLeft: theme.spacing.get(16),
+          marginBottom: '0.45em',
+          alignSelf: 'flex-end',
         },
       }}
       className={className}
+      size={size}
       variant={variant}
       as={as}>
       {children}
@@ -33,16 +29,23 @@ export const SectionHeader = ({ className, children, as, variant }) => {
   );
 };
 
+SectionHeader.sizes = Typography.sizes;
+SectionHeader.variants = Typography.variants;
+
 SectionHeader.propTypes = {
-  as: PropTypes.string,
+  as: Typography.propTypes.as,
   className: PropTypes.string,
   children: PropTypes.node,
-  variant: PropTypes.string,
+  size: Typography.propTypes.size,
+  variant: Typography.propTypes.variant,
 };
 
 SectionHeader.defaultProps = {
-  as: undefined,
+  as: Typography.defaultProps.as,
   className: undefined,
   children: undefined,
-  variant: 'h3',
+  size: Typography.defaultProps.size,
+  variant: Typography.variants.h3,
 };
+
+export default SectionHeader;
