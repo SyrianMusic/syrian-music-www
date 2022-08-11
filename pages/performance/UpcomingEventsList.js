@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import UpcomingEvent from './UpcomingEvent';
 import Button from '../../components/Button';
 import theme from '../../styles/theme';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const MAX_EVENTS = 3;
 
@@ -53,8 +53,25 @@ CarouselButton.defaultProps = { isSelected: false };
 const UpcomingEventsList = ({ upcomingEvents }) => {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
 
-  const maxEvents = upcomingEvents.slice(0, MAX_EVENTS);
-  const hasMultipleEvents = maxEvents.length > 1;
+  const events = upcomingEvents.slice(0, MAX_EVENTS);
+  const hasMultipleEvents = events.length > 1;
+
+  useEffect(() => {
+    if (hasMultipleEvents) {
+      const advanceSlide = () => {
+        if (currentEventIndex < events.length - 1) {
+          setCurrentEventIndex(currentEventIndex + 1);
+        } else {
+          setCurrentEventIndex(0);
+        }
+      };
+
+      setTimeout(advanceSlide, 5000);
+      return () => {
+        clearTimeout(advanceSlide);
+      };
+    }
+  }, [currentEventIndex, hasMultipleEvents]);
 
   return (
     <div
@@ -66,10 +83,10 @@ const UpcomingEventsList = ({ upcomingEvents }) => {
           marginBottom: theme.spacing.get(84),
         },
       }}>
-      <UpcomingEvent event={maxEvents[currentEventIndex]} />
+      <UpcomingEvent event={events[currentEventIndex]} />
       {hasMultipleEvents && (
         <div css={{ display: 'flex' }}>
-          {maxEvents.map((_, i) => (
+          {events.map((_, i) => (
             <CarouselButton
               key={i}
               id={i}
