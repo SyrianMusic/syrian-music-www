@@ -14,7 +14,7 @@ const PastEvents = ({ className, event }) => {
   return (
     <div
       className={className}
-      style={{
+      css={{
         width: 232,
         height: 254,
         marginRight: 21,
