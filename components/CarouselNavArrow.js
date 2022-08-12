@@ -42,13 +42,13 @@ const CarouselNavArrow = ({ className, onClick, position }) => {
 CarouselNavArrow.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
-  position: PropTypes.oneOf[('left', 'right')],
+  position: '',
 };
 
 CarouselNavArrow.defaultProps = {
   className: undefined,
   onClick: () => {},
-  position: 'right',
+  position: undefined,
 };
 
 export default CarouselNavArrow;
