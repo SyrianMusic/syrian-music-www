@@ -31,7 +31,7 @@ export const performancePageQuery = gql`
         ...UpcomingEvent
       }
     }
-    pastEvents: eventCollection(where: { startDate_lt: $now }) {
+    pastEvents: eventCollection(where: { startDate_lt: $now }, order: [startDate_DESC]) {
       items {
         sys {
           id
