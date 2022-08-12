@@ -11,7 +11,7 @@ import config from '../../config.yaml';
 import { gutters } from '../../styles/mixins';
 import theme from '../../styles/theme';
 import UpcomingEvent from './UpcomingEvent';
-import PastEventList from './PastEventList';
+import PastEventsList from './PastEventsList';
 import UpcomingEventsList from './UpcomingEventsList';
 import { getUpcomingEvents } from './utils';
 import Video from '../../components/Video';
@@ -168,7 +168,7 @@ const PerformancePage = (props) => {
             Previous <br css={{ [theme.mq.mobileToDesktop]: { display: 'none' } }} />
             Performances
           </SectionHeader>
-          <PastEventList pastEventItems={pastEventItems} />
+          <PastEventsList pastEventItems={pastEventItems} />
         </Section>
       )}
     </SiteLayout>

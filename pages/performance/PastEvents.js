@@ -1,11 +1,29 @@
 import { gql } from '@apollo/client';
 import PropTypes from 'prop-types';
-import Image from '../../components/Image';
+import styled from '@emotion/styled';
 import Typography from '../../components/Typography';
 import theme from '../../styles/theme';
 import { formatDateTime } from '../../utils/date';
 
 const DEFAULT_CTA_TEXT = 'Read more';
+const SLIDE_WIDTH = 232;
+const SLIDE_WIDTH_DESKTOP = 288;
+
+const SlideImage = styled.a([
+  {
+    width: SLIDE_WIDTH,
+    height: 130,
+    display: 'block',
+    backgroundImage: `var(--background-style)`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    [theme.mq.mobileToDesktop]: {
+      width: SLIDE_WIDTH_DESKTOP,
+      height: 162,
+    },
+  },
+]);
 
 const PastEvents = ({ className, event }) => {
   const { image, location, name, startDate, url } = event;
@@ -15,36 +33,25 @@ const PastEvents = ({ className, event }) => {
     <div
       className={className}
       css={{
-        width: 232,
-        height: 254,
+        width: SLIDE_WIDTH,
+        height: 250,
         marginRight: 21,
         [theme.mq.mobileToDesktop]: {
-          width: 288,
+          width: SLIDE_WIDTH_DESKTOP,
           height: 325,
           marginRight: 40,
         },
       }}>
-      <a
-        css={{
-          width: 232,
-          height: 130,
-          overflow: 'hidden',
-          background: 'black',
-          display: 'block',
-          [theme.mq.mobileToDesktop]: {
-            width: 288,
-            height: 162,
-          },
-        }}
+      <SlideImage
+        style={{ '--background-style': `url(${image.url})` }}
         href={url}
         target="_blank"
-        rel="noopener noreferrer">
-        <Image css={{ width: '100%', height: 'auto' }} width={300} height={200} src={image.url} />
-      </a>
+        rel="noopener noreferrer"
+      />
       <div
         css={{
           marginTop: theme.pxToRem(30),
-          maxWidth: theme.pxToRem(theme.closestMultiple(288)),
+          maxWidth: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH)),
           flexGrow: 1,
           [theme.mq.mobileToDesktop]: {
             paddingTop: 0,
@@ -55,8 +62,15 @@ const PastEvents = ({ className, event }) => {
           size="lg"
           as="h3"
           css={{
+            textOverflow: 'ellipsis',
             marginBottom: theme.spacing.get(8),
-            [theme.mq.mobileToDesktop]: { marginBottom: theme.spacing.get(24) },
+            width: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH)),
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            [theme.mq.mobileToDesktop]: {
+              marginBottom: theme.spacing.get(24),
+              width: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH_DESKTOP)),
+            },
           }}>
           {name}
         </Typography>
@@ -93,10 +107,6 @@ PastEvents.propTypes = {
       url: PropTypes.string,
     }),
     url: PropTypes.string.isRequired,
-    urlText: PropTypes.string,
-    summary: PropTypes.shape({
-      json: PropTypes.shape({}),
-    }),
   }).isRequired,
 };
 
@@ -114,10 +124,6 @@ PastEvents.fragments = {
         url
       }
       url
-      urlText
-      summary {
-        json
-      }
     }
   `,
 };
