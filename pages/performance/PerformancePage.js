@@ -81,6 +81,21 @@ const PerformancePage = (props) => {
         </Section>
       )}
 
+      {pastEventItems?.length && (
+        <Section>
+          <SectionHeader
+            as="h1"
+            css={{
+              marginBottom: theme.spacing.get(24),
+              [theme.mq.mobileToDesktop]: { marginBottom: 0 },
+            }}>
+            Previous <br css={{ [theme.mq.mobileToDesktop]: { display: 'none' } }} />
+            Performances
+          </SectionHeader>
+          <PastEventsList pastEventItems={pastEventItems} />
+        </Section>
+      )}
+
       <Section>
         <Video id="'n6VjsvT6o3s'" title="Zakhrafa زخرفة" />
         <Typography css={{ marginTop: theme.spacing.get(32) }} variant="h3" as="div">
@@ -159,20 +174,6 @@ const PerformancePage = (props) => {
           </Typography>
         </article>
       </Section>
-      {pastEventItems?.length && (
-        <Section>
-          <SectionHeader
-            as="h1"
-            css={{
-              marginBottom: theme.spacing.get(24),
-              [theme.mq.mobileToDesktop]: { marginBottom: 0 },
-            }}>
-            Previous <br css={{ [theme.mq.mobileToDesktop]: { display: 'none' } }} />
-            Performances
-          </SectionHeader>
-          <PastEventsList pastEventItems={pastEventItems} />
-        </Section>
-      )}
     </SiteLayout>
   );
 };
