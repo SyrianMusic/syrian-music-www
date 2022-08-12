@@ -27,6 +27,7 @@ const PastEventsList = ({ pastEventItems }) => {
       },
     ],
   };
+
   return (
     <div
       css={{
