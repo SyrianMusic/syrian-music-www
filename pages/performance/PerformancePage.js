@@ -168,7 +168,7 @@ const PerformancePage = (props) => {
             Previous <br css={{ [theme.mq.mobileToDesktop]: { display: 'none' } }} />
             Performances
           </SectionHeader>
-          <PastEventList event={pastEventItems} />
+          <PastEventList pastEventItems={pastEventItems} />
         </Section>
       )}
     </SiteLayout>

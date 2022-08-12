@@ -1,8 +1,26 @@
 import PropTypes from 'prop-types';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 import PastEvents from './PastEvents';
 import theme from '../../styles/theme';
 
 const PastEventList = ({ pastEventItems }) => {
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 2,
+    variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
   return (
     <div
       css={{
@@ -13,11 +31,11 @@ const PastEventList = ({ pastEventItems }) => {
           marginBottom: theme.spacing.get(84),
         },
       }}>
-      <div css={{ display: 'flex' }}>
+      <Slider {...settings}>
         {pastEventItems.map((event) => (
           <PastEvents key={event.sys.id} event={event} />
         ))}
-      </div>
+      </Slider>
     </div>
   );
 };

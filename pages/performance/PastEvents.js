@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import cx from 'classnames';
 import PropTypes from 'prop-types';
 import Image from '../../components/Image';
 import Typography from '../../components/Typography';
@@ -13,14 +12,29 @@ const PastEvents = ({ className, event }) => {
   const formattedDate = formatDateTime(startDate);
 
   return (
-    <div className={className}>
+    <div
+      className={className}
+      style={{
+        width: 232,
+        height: 254,
+        marginRight: 21,
+        [theme.mq.mobileToDesktop]: {
+          width: 288,
+          height: 325,
+          marginRight: 40,
+        },
+      }}>
       <a
         css={{
-          width: 300,
-          height: 170,
+          width: 232,
+          height: 130,
           overflow: 'hidden',
           background: 'black',
           display: 'block',
+          [theme.mq.mobileToDesktop]: {
+            width: 288,
+            height: 162,
+          },
         }}
         href={url}
         target="_blank"
@@ -29,18 +43,20 @@ const PastEvents = ({ className, event }) => {
       </a>
       <div
         css={{
-          marginTop: theme.spacing.get(32),
-          maxWidth: theme.pxToRem(theme.closestMultiple(270)),
+          marginTop: theme.pxToRem(30),
+          maxWidth: theme.pxToRem(theme.closestMultiple(288)),
+          flexGrow: 1,
           [theme.mq.mobileToDesktop]: {
             paddingTop: 0,
             maxWidth: 'initial',
           },
         }}>
         <Typography
-          variant="h3"
+          size="lg"
+          as="h3"
           css={{
             marginBottom: theme.spacing.get(8),
-            [theme.mq.mobileToDesktop]: { marginBottom: theme.spacing.get(16) },
+            [theme.mq.mobileToDesktop]: { marginBottom: theme.spacing.get(24) },
           }}>
           {name}
         </Typography>
@@ -48,15 +64,15 @@ const PastEvents = ({ className, event }) => {
           css={{
             marginBottom: theme.pxToRem(8),
             [theme.mq.mobileToDesktop]: {
-              marginBottom: theme.pxToRem(10),
+              marginBottom: theme.pxToRem(6),
             },
           }}
-          size="sm">
+          size="md">
           {formattedDate}
         </Typography>
-        <Typography size="sm">{location}</Typography>
+        <Typography size="md">{location}</Typography>
 
-        <Typography css={{ marginTop: theme.spacing.get(32) }}>
+        <Typography css={{ position: 'absolute', bottom: 0 }}>
           <a href={url} target="_blank" rel="noopener noreferrer">
             {DEFAULT_CTA_TEXT}
           </a>
