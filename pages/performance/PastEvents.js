@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Typography from '../../components/Typography';
@@ -26,8 +27,9 @@ const SlideImage = styled.a([
 ]);
 
 const PastEvents = ({ className, event }) => {
-  const { image, location, name, startDate, url } = event;
+  const { image, location, name, slug, startDate } = event;
   const formattedDate = formatDateTime(startDate);
+  const url = `/events/${slug}`;
 
   return (
     <div
@@ -87,9 +89,9 @@ const PastEvents = ({ className, event }) => {
         <Typography size="md">{location}</Typography>
 
         <Typography css={{ position: 'absolute', bottom: 0 }}>
-          <a href={url} target="_blank" rel="noopener noreferrer">
-            {DEFAULT_CTA_TEXT}
-          </a>
+          <Link href={url}>
+            <a>{DEFAULT_CTA_TEXT}</a>
+          </Link>
         </Typography>
       </div>
     </div>
@@ -106,7 +108,7 @@ PastEvents.propTypes = {
     image: PropTypes.shape({
       url: PropTypes.string,
     }),
-    url: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
   }).isRequired,
 };
 
@@ -123,7 +125,7 @@ PastEvents.fragments = {
       image {
         url
       }
-      url
+      slug
     }
   `,
 };
