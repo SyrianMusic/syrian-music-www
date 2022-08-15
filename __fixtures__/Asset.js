@@ -11,7 +11,7 @@ export class Asset extends Node {
 
 export class Image extends Asset {
   constructor({ height = 200, width = 200, ...props } = {}) {
-    const url = `https://via.placeholder.com/${width}x${height}`;
+    const url = props.url || `https://via.placeholder.com/${width}x${height}`;
     super({ height, width, url, ...props });
   }
 }

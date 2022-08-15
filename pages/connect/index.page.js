@@ -10,7 +10,7 @@ const ConnectPage = () => (
   <SiteLayout className="gutters" pathname={pageConfig.href}>
     <Title>Connect</Title>
     <div>
-      <Typography className="page-Connect-title" variant="h3" as="h1" textAlign="center">
+      <Typography className="page-Connect-title" variant="h1" textAlign="center">
         Connect
       </Typography>
       <Typography size="lg">We want to hear from&nbsp;you!</Typography>

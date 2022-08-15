@@ -195,8 +195,7 @@ const TranscriptionsPage = ({ musicalWorkCollection }) => {
         css={{
           marginBottom: theme.pxToRem(22),
         }}
-        variant="h3"
-        as="h1"
+        variant="h1"
         textAlign="center">
         Transcriptions
       </Typography>

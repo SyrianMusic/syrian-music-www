@@ -1,26 +1,40 @@
 import PropTypes from 'prop-types';
 import theme from '../styles/theme';
 
-const Rule = ({ className }) => (
-  <>
-    <hr className={className} />
-    <style jsx>{`
-      hr {
-        border-style: none;
-        border-top: ${theme.pxToRem(1)} solid ${theme.color.black};
-        margin: ${theme.pxToRem(25)} ${theme.pxToRem(22)};
-      }
+const colors = {
+  default: 'default',
+  accent: 'accent',
+};
 
-      @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-        hr {
-          margin: ${theme.pxToRem(25)} ${theme.pxToRem(47)};
-        }
-      }
-    `}</style>
-  </>
-);
+const getColor = (value) => {
+  switch (value) {
+    case 'accent':
+      return theme.color.accentTan;
+    case 'default':
+    default:
+      return theme.color.black;
+  }
+};
 
-Rule.propTypes = { className: PropTypes.string };
-Rule.defaultProps = { className: undefined };
+const Rule = ({ className, color }) => {
+  return (
+    <hr
+      className={className}
+      css={{
+        borderStyle: 'none',
+        borderTop: `1px solid ${getColor(color)}`,
+        margin: theme.spacing.get(24),
+        [theme.mq.mobileToDesktop]: {
+          margin: `${theme.spacing.get(24)} ${theme.spacing.get(48)}`,
+        },
+      }}
+    />
+  );
+};
+
+Rule.colors = colors;
+
+Rule.propTypes = { className: PropTypes.string, color: PropTypes.oneOf(Object.values(colors)) };
+Rule.defaultProps = { className: undefined, color: colors.default };
 
 export default Rule;
