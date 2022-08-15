@@ -15,16 +15,13 @@ const carouselButtonStyles = {
   maxWidth: theme.pxToRem(120),
 };
 
-const CarouselButton = ({ id, isSelected, onClick, selectEvent }) => {
+const CarouselButton = ({ id, isSelected, selectEvent }) => {
   if (isSelected) {
     return <div css={{ ...carouselButtonStyles, borderBottomColor: theme.color.interactive }} />;
   }
 
-  const handleClick = useCallback(() => {
+  const onClick = useCallback(() => {
     selectEvent(id);
-    if (typeof onClick === 'function') {
-      onClick();
-    }
   }, [id, selectEvent]);
 
   return (
@@ -40,7 +37,7 @@ const CarouselButton = ({ id, isSelected, onClick, selectEvent }) => {
           },
         },
       }}
-      onClick={handleClick}
+      onClick={onClick}
     />
   );
 };
@@ -48,7 +45,6 @@ const CarouselButton = ({ id, isSelected, onClick, selectEvent }) => {
 CarouselButton.propTypes = {
   id: PropTypes.number.isRequired,
   isSelected: PropTypes.bool,
-  onClick: PropTypes.func,
   selectEvent: PropTypes.func.isRequired,
 };
 
@@ -56,13 +52,12 @@ CarouselButton.defaultProps = { isSelected: false };
 
 const UpcomingEventsList = ({ upcomingEvents }) => {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
-  const [shouldAutoplay, setShouldAutoplay] = useState(true);
 
   const events = upcomingEvents.slice(0, MAX_EVENTS);
   const hasMultipleEvents = events.length > 1;
 
   useEffect(() => {
-    if (shouldAutoplay && hasMultipleEvents) {
+    if (hasMultipleEvents) {
       const advanceSlide = () => {
         if (currentEventIndex < events.length - 1) {
           setCurrentEventIndex(currentEventIndex + 1);
@@ -76,11 +71,7 @@ const UpcomingEventsList = ({ upcomingEvents }) => {
         clearTimeout(advanceSlide);
       };
     }
-  }, [currentEventIndex, hasMultipleEvents, shouldAutoplay]);
-
-  const handleClick = () => {
-    setShouldAutoplay(false);
-  };
+  }, [currentEventIndex, hasMultipleEvents]);
 
   return (
     <div
@@ -100,7 +91,6 @@ const UpcomingEventsList = ({ upcomingEvents }) => {
               key={i}
               id={i}
               isSelected={currentEventIndex === i}
-              onClick={handleClick}
               selectEvent={setCurrentEventIndex}
             />
           ))}
