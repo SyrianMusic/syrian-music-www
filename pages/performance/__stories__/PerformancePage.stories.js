@@ -17,6 +17,6 @@ export const Template = (args) => {
 export const Default = Template.bind({});
 Default.args = {
   upcomingEvents: new EventCollection({
-    events: [new Event(UpcomingEvent.args.event)],
+    events: UpcomingEvent.args.events.map((event) => new Event(event)),
   }),
 };

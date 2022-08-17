@@ -12,6 +12,30 @@ const mq = Object.entries(breakpoints).reduce((acc, [key, breakpoint]) => {
 
 const rootFontSize = 16;
 
+const pxToEm = (px, base = rootFontSize) => `${px / base}em`;
+const pxToPercent = (px, base) => `${(px / base) * 100}%`;
+const pxToRem = (px) => `${px / rootFontSize}rem`;
+
+const multiplier = 8;
+
+const spacing = new Map();
+
+for (let value = multiplier; value < 97; value += multiplier) {
+  spacing.set(value, pxToRem(value));
+}
+
+const closestMultiple = (num) => {
+  let below = multiplier;
+  while (below < num) {
+    below += multiplier;
+  }
+
+  const above = below + multiplier;
+  const shouldRoundUp = num - below < num - above;
+
+  return shouldRoundUp ? above : below;
+};
+
 const typography = {
   input: {
     // TODO: No mobile designs for this
@@ -48,17 +72,19 @@ const typography = {
     tagName: 'p',
   },
   h1: {
-    fontSizeMobile: 0, // No examples of this in design
-    lineHeightMobile: 0, // No examples of this in design
-    fontSizeDesktop: 42.5,
-    lineHeightDesktop: 51,
+    fontSizeMobile: 22,
+    lineHeightMobile: 25,
+    fontSizeDesktop: 35,
+    lineHeightDesktop: 42,
     tagName: 'h1',
   },
   h3: {
-    fontSizeMobile: 25,
-    lineHeightMobile: 30,
+    fontSizeMobile: 20,
+    lineHeightMobile: 25,
+    marginBottomMobile: 22.5,
     fontSizeDesktop: 35,
     lineHeightDesktop: 42,
+    marginBottomDesktop: 22.5,
     tagName: 'h3',
   },
 };
@@ -82,6 +108,7 @@ const colors = {
 
 const theme = {
   breakpoint: breakpoints,
+  closestMultiple,
   color: {
     ...colors,
     placeholder: colors.gainsboro,
@@ -113,16 +140,17 @@ const theme = {
     contentWidthMax: 960,
     gutter: {
       mobile: {
-        left: 45,
-        right: 48,
+        left: 40,
+        right: 40,
       },
       desktop: 118,
     },
   },
   mq,
-  pxToEm: (px, base = rootFontSize) => `${px / base}em`,
-  pxToPercent: (px, base) => `${(px / base) * 100}%`,
-  pxToRem: (px) => `${px / rootFontSize}rem`,
+  pxToEm,
+  pxToPercent,
+  pxToRem,
+  spacing,
   typography,
   zIndex: {
     transcriptions: {
