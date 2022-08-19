@@ -44,7 +44,6 @@ export const performancePageQuery = gql`
 
 const Section = styled.section([
   {
-    marginTop: theme.spacing.get(48),
     marginBottom: theme.spacing.get(32),
     [theme.mq.mobileToDesktop]: {
       marginBottom: theme.spacing.get(56),

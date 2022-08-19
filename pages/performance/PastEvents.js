@@ -12,21 +12,21 @@ const SLIDE_WIDTH_DESKTOP = 288;
 
 const SlideImage = styled.a([
   {
-    width: SLIDE_WIDTH,
-    height: 130,
+    width: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH)),
+    height: theme.pxToRem(theme.closestMultiple(130)),
     display: 'block',
     backgroundImage: `var(--background-style)`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     [theme.mq.mobileToDesktop]: {
-      width: SLIDE_WIDTH_DESKTOP,
-      height: 162,
+      width: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH_DESKTOP)),
+      height: theme.pxToRem(theme.closestMultiple(162)),
     },
   },
 ]);
 
-const PastEvents = ({ className, event }) => {
+const PastEvents = ({ className, event, isLastSlide }) => {
   const { image, location, name, slug, startDate } = event;
   const formattedDate = formatDateTime(startDate);
   const url = `/events/${slug}`;
@@ -35,19 +35,26 @@ const PastEvents = ({ className, event }) => {
     <div
       className={className}
       css={{
-        width: SLIDE_WIDTH,
-        height: 250,
-        marginRight: 21,
+        width: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH)),
+        height: theme.pxToRem(theme.closestMultiple(250)),
+        ...(isLastSlide
+          ? {
+              marginRight: 0,
+            }
+          : { marginRight: 21 }),
         [theme.mq.mobileToDesktop]: {
-          width: SLIDE_WIDTH_DESKTOP,
-          height: 325,
-          marginRight: 40,
+          width: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH_DESKTOP)),
+          height: theme.pxToRem(theme.closestMultiple(325)),
+          ...(isLastSlide
+            ? {
+                marginRight: 0,
+              }
+            : { marginRight: 40 }),
         },
       }}>
       <SlideImage
         style={{ '--background-style': `url(${image.url})` }}
         href={url}
-        target="_blank"
         rel="noopener noreferrer"
       />
       <div
@@ -110,10 +117,12 @@ PastEvents.propTypes = {
     }),
     slug: PropTypes.string.isRequired,
   }).isRequired,
+  isLastSlide: PropTypes.bool,
 };
 
 PastEvents.defaultProps = {
   className: undefined,
+  isLastSlide: false,
 };
 
 PastEvents.fragments = {

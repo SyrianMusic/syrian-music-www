@@ -39,8 +39,12 @@ const PastEventsList = ({ pastEventItems }) => {
         },
       }}>
       <Slider {...settings}>
-        {pastEventItems.map((event) => (
-          <PastEvents key={event.sys.id} event={event} />
+        {pastEventItems.map((event, index) => (
+          <PastEvents
+            key={event.sys.id}
+            event={event}
+            isLastSlide={pastEventItems.length - 1 === index}
+          />
         ))}
       </Slider>
     </div>
