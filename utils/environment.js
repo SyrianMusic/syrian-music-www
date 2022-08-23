@@ -35,4 +35,5 @@ module.exports = {
   adobeKey: getAdobeKey(),
   now,
   jwtClientSecret: process.env.JWT_CLIENT_SECRET,
+  stripePublishableKey: isProduction ? process.env.STRIPE_KEY_LIVE : process.env.STRIPE_KEY_TEST,
 };

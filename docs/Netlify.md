@@ -13,3 +13,15 @@ scripts/getToken.js 345efesfds
 ```
 
 Then pass the token in the `Authorization` header (e.g. `Authorization: Bearer <token>`).
+
+#### `/.netlify/functions/config`
+
+Returns the Stripe `publishableKey`
+
+##### Example Response
+
+```json
+{
+  "publishableKey": "pk_test_ke7jEk34j5kjs"
+}
+```

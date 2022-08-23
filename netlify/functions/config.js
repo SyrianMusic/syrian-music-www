@@ -6,11 +6,10 @@ const unauthorizedResponse = {
   body: JSON.stringify({ error: 'The request did not contain a valid authorization token.' }),
 };
 
-exports.handler = async function (event = {}) {
+exports.handler = async function config(event = {}) {
   const { headers = {} } = event;
 
-  const hasAuthHeader = 'authorization' in headers;
-  if (!hasAuthHeader) {
+  if (!headers?.authorization) {
     return unauthorizedResponse;
   }
 
@@ -22,8 +21,15 @@ exports.handler = async function (event = {}) {
     return unauthorizedResponse;
   }
 
+  if (!environment.stripePublishableKey) {
+    return {
+      statusCode: 503,
+      body: JSON.stringify({ error: 'The Stripe publishable key is not set in this environment.' }),
+    };
+  }
+
   return {
     statusCode: 200,
-    body: JSON.stringify({ message: 'Hello World' }),
+    body: JSON.stringify({ stripePublishableKey: environment.stripePublishableKey }),
   };
 };
