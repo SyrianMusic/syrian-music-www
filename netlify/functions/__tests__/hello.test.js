@@ -2,11 +2,11 @@ import jwt from 'jsonwebtoken';
 import { handler as hello } from '../hello';
 
 const CLIENT_SECRET = 'clientSecret';
-jest.mock('../../../utils/environment', () => ({ clientSecret: CLIENT_SECRET }));
+jest.mock('../../../utils/environment', () => ({ jwtClientSecret: CLIENT_SECRET }));
 
 const setupSuccessResponse = async () => {
   const token = jwt.sign({}, CLIENT_SECRET);
-  return await hello({ headers: { Authorization: `Bearer ${token}` } });
+  return await hello({ headers: { authorization: `Bearer ${token}` } });
 };
 
 describe('hello', () => {
@@ -32,7 +32,7 @@ describe('hello', () => {
 
   it('when given an invalid JWT token, then it returns a 401 status code', async () => {
     const token = jwt.sign({}, 'invalidClientSecret');
-    const res = await hello({ headers: { Authorization: `Bearer ${token}` } });
+    const res = await hello({ headers: { authorization: `Bearer ${token}` } });
     expect(res.statusCode).toBe(401);
   });
 });
