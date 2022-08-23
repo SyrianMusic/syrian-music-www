@@ -4,7 +4,6 @@ const DEVELOPMENT = 'development';
 const TEST = 'test';
 
 const nodeEnv = process.env.NEXT_PUBLIC_NODE_ENV || process.env.NODE_ENV;
-export const isProduction = nodeEnv === PRODUCTION;
 
 const getAdobeKey = () => {
   switch (nodeEnv) {
@@ -28,9 +27,12 @@ const now = () => {
   }
 };
 
-export default {
+const isProduction = nodeEnv === PRODUCTION;
+
+module.exports = {
   nodeEnv,
   isProduction,
   adobeKey: getAdobeKey(),
   now,
+  jwtClientSecret: process.env.JWT_CLIENT_SECRET,
 };

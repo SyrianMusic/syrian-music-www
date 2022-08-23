@@ -1,20 +1,23 @@
-import jwt from 'jsonwebtoken';
-import environment from '../../utils/environment';
+const jwt = require('jsonwebtoken');
+const environment = require('../../utils/environment');
 
-const unauthorizedResponse = { statusCode: 401 };
+const unauthorizedResponse = {
+  statusCode: 401,
+  body: JSON.stringify({ error: 'The request did not contain a valid authorization token.' }),
+};
 
 exports.handler = async function (event = {}) {
   const { headers = {} } = event;
 
-  const hasAuthHeader = 'Authorization' in headers;
+  const hasAuthHeader = 'authorization' in headers;
   if (!hasAuthHeader) {
     return unauthorizedResponse;
   }
 
-  const token = headers.Authorization.replace('Bearer ', '');
+  const token = headers.authorization.replace('Bearer ', '');
 
   try {
-    jwt.verify(token, environment.clientSecret);
+    jwt.verify(token, environment.jwtClientSecret);
   } catch (e) {
     return unauthorizedResponse;
   }
