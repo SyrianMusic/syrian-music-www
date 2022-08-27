@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import CarouselNavArrow from '../../components/CarouselNavArrow';
 import theme from '../../styles/theme';
+import CarouselNavArrow from './CarouselNavArrow';
 import PastEvent from './PastEvent';
 
 import 'slick-carousel/slick/slick-theme.css';
