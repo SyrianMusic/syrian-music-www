@@ -1,22 +1,7 @@
-import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
-
-const viewports = {
-  ...MINIMAL_VIEWPORTS,
-  mobile1: {
-    name: 'Small mobile',
-    styles: {
-      height: '812px',
-      width: '375px',
-    },
-    type: 'mobile',
-  },
-};
-
-const viewportWidths = Object.values(viewports).map(({ styles }) => styles.width);
+import { viewports } from './config';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
-  chromatic: { viewpors: viewportWidths },
   controls: {
     expanded: true,
     matchers: {
