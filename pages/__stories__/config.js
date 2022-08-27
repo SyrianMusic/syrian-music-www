@@ -1,5 +1,3 @@
-import { viewportWidths } from '../../.storybook/viewports';
-
 export const pageParameters = {
-  chromatic: { viewports: viewportWidths },
+  chromatic: { viewports: [375, 1024] },
 };
