@@ -41,3 +41,12 @@ MultipleEvents3.args = {
   ...Default.args,
   events: pastEvents,
 };
+
+export const LongTitle = Template.bind({});
+LongTitle.args = {
+  ...Default.args,
+  events: [
+    { ...pastEvents[0], name: 'This event title is very long and will span multiple rows' },
+    ...pastEvents,
+  ],
+};
