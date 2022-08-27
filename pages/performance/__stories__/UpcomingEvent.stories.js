@@ -1,9 +1,14 @@
+import { nextMonth, nextWeek } from '../../../__fixtures__/date';
+import {
+  Event,
+  EventCollection,
+  quenchTheThirsty,
+  syrianOrnaments,
+} from '../../../__fixtures__/Event';
+import { pageParameters } from '../../__stories__/config';
 import UpcomingEvent from '../UpcomingEvent';
-import { Event, EventCollection } from '../../../__fixtures__/Event';
-import { Template as PageTemplate, Default as PageDefault } from './PerformancePage.stories';
 import { PAGE_PATH } from './config';
-import { nextWeek, nextMonth } from '../../../__fixtures__/date';
-import { syrianOrnaments, quenchTheThirsty } from '../../../__fixtures__/Event';
+import { Default as PageDefault, Template as PageTemplate } from './PerformancePage.stories';
 
 export default {
   title: PAGE_PATH + '/UpcomingEvent',
@@ -13,6 +18,7 @@ export default {
       control: { type: null },
     },
   },
+  parameters: pageParameters,
 };
 
 const Template = (args) => {
