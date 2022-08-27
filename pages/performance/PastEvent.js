@@ -39,10 +39,8 @@ const PastEvent = ({ className, event }) => {
       className={className}
       css={{
         width: theme.pxToRem(SLIDE_WIDTH_MOBILE),
-        height: theme.pxToRem(theme.closestMultiple(250)),
         [theme.mq.mobileToDesktop]: {
           width: theme.pxToRem(SLIDE_WIDTH_DESKTOP),
-          height: theme.pxToRem(theme.closestMultiple(325)),
         },
       }}>
       <Link href={url}>
