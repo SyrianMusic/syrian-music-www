@@ -1,11 +1,50 @@
+import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import theme from '../../styles/theme';
-import CarouselNavArrow from './CarouselNavArrow';
 import PastEvent from './PastEvent';
 
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
+
+const arrowPositions = {
+  left: 'left',
+  right: 'right',
+};
+
+const Arrow = styled.button(({ position }) => {
+  let left;
+  let right;
+  let transform;
+
+  if (position === arrowPositions.left) {
+    left = '-35px';
+    right = 'auto';
+    transform = 'rotate(135deg)';
+  } else if (position === arrowPositions.right) {
+    right = '-35px';
+    transform = 'rotate(-45deg)';
+  }
+
+  return {
+    top: '25%',
+    left,
+    right,
+    '&:before': {
+      display: 'block',
+      background: 'transparent',
+      borderRight: '3px solid pink',
+      borderBottom: '3px solid pink',
+      content: '""',
+      width: '20px',
+      height: '20px',
+      transform,
+    },
+    '&.slick-disabled': {
+      display: 'none !important',
+    },
+  };
+});
 
 const PastEventsList = ({ pastEventItems }) => {
   const settings = {
@@ -15,8 +54,8 @@ const PastEventsList = ({ pastEventItems }) => {
     slidesToShow: 2,
     slidesToScroll: 1,
     variableWidth: true,
-    prevArrow: <CarouselNavArrow position={CarouselNavArrow.positions.left} />,
-    nextArrow: <CarouselNavArrow position={CarouselNavArrow.positions.right} />,
+    prevArrow: <Arrow position={arrowPositions.left} />,
+    nextArrow: <Arrow position={arrowPositions.right} />,
     responsive: [
       {
         breakpoint: 800,
