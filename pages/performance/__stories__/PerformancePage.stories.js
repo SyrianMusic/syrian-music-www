@@ -1,4 +1,4 @@
-import { Event, EventCollection } from '../../../__fixtures__/Event';
+import { emptyEventCollection, Event, EventCollection } from '../../../__fixtures__/Event';
 import App from '../../_app.page';
 import PerformancePage from '../PerformancePage';
 import { pastEvents, upcomingEvents } from '../__fixtures__/events';
@@ -27,18 +27,18 @@ Default.args = {
 export const NoEvents = Template.bind({});
 NoEvents.args = {
   ...Default.args,
-  upcomingEvents: [],
-  pastEvents: [],
+  upcomingEvents: emptyEventCollection,
+  pastEvents: emptyEventCollection,
 };
 
 export const NoUpcomingEvents = Template.bind({});
 NoUpcomingEvents.args = {
   ...Default.args,
-  upcomingEvents: [],
+  upcomingEvents: emptyEventCollection,
 };
 
 export const NoPastEvents = Template.bind({});
 NoPastEvents.args = {
   ...Default.args,
-  pastEvents: [],
+  pastEvents: emptyEventCollection,
 };

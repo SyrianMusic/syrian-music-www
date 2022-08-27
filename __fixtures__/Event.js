@@ -201,3 +201,5 @@ export class EventCollection extends Collection {
     super({ items: events });
   }
 }
+
+export const emptyEventCollection = new EventCollection({ events: [] });
