@@ -23,6 +23,12 @@ const SlideImage = styled.a(({ backgroundImage }) => ({
   },
 }));
 
+const truncatedStyle = {
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+};
+
 const PastEvent = ({ className, event, isLastSlide }) => {
   const { image, location, name, slug, startDate } = event;
   const formattedDate = formatDateTime(startDate);
@@ -65,17 +71,15 @@ const PastEvent = ({ className, event, isLastSlide }) => {
         <Typography
           size="lg"
           as="h3"
-          css={{
-            textOverflow: 'ellipsis',
-            marginBottom: theme.spacing.get(8),
-            width: theme.pxToRem(SLIDE_WIDTH_MOBILE),
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            [theme.mq.mobileToDesktop]: {
-              marginBottom: theme.spacing.get(24),
-              width: theme.pxToRem(SLIDE_WIDTH_DESKTOP),
+          css={[
+            truncatedStyle,
+            {
+              marginBottom: theme.spacing.get(8),
+              [theme.mq.mobileToDesktop]: {
+                marginBottom: theme.spacing.get(24),
+              },
             },
-          }}>
+          ]}>
           {name}
         </Typography>
         <Typography
@@ -88,7 +92,9 @@ const PastEvent = ({ className, event, isLastSlide }) => {
           size="md">
           {formattedDate}
         </Typography>
-        <Typography size="md">{location}</Typography>
+        <Typography size="md" css={truncatedStyle}>
+          {location}
+        </Typography>
 
         <Typography css={{ position: 'absolute', bottom: 0 }}>
           <Link href={url}>

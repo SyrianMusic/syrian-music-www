@@ -50,3 +50,12 @@ LongTitle.args = {
     ...pastEvents,
   ],
 };
+
+export const LongLocation = Template.bind({});
+LongLocation.args = {
+  ...Default.args,
+  events: [
+    { ...pastEvents[0], location: 'This event location is very long and will span multiple rows' },
+    ...pastEvents,
+  ],
+};
