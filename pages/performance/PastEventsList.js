@@ -1,46 +1,17 @@
-import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import theme from '../../styles/theme';
+import carouselButton from './carouselButton';
 import PastEvent from './PastEvent';
 
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
-const arrowBorder = `${theme.pxToRem(3)} solid ${theme.color.interactive}`;
-const arrowPosition = theme.pxToRem(-35);
-
-const arrowBeforeStyles = {
-  display: 'block',
-  background: 'transparent',
-  borderRight: arrowBorder,
-  borderBottom: arrowBorder,
-  content: '""',
-  width: theme.pxToRem(20),
-  height: theme.pxToRem(20),
+const propTypes = {
+  pastEvents: PropTypes.arrayOf(PropTypes.shape(PastEvent.propTypes.event)),
 };
 
-const Arrow = styled.button({
-  top: '25%',
-
-  '&.slick-prev': {
-    left: arrowPosition,
-    transform: 'rotate(135deg)',
-    '&::before': arrowBeforeStyles,
-  },
-
-  '&.slick-next': {
-    right: arrowPosition,
-    transform: 'rotate(-45deg)',
-    '&::before': arrowBeforeStyles,
-  },
-
-  '&.slick-disabled': {
-    visibility: 'hidden',
-  },
-});
-
-const navArrow = <Arrow tabIndex={0} />;
+const defaultProps = { pastEvents: [] };
 
 const PastEventsList = ({ pastEvents }) => {
   const settings = {
@@ -50,11 +21,11 @@ const PastEventsList = ({ pastEvents }) => {
     slidesToShow: 2,
     slidesToScroll: 1,
     variableWidth: true,
-    prevArrow: navArrow,
-    nextArrow: navArrow,
+    prevArrow: carouselButton,
+    nextArrow: carouselButton,
     responsive: [
       {
-        breakpoint: 800,
+        breakpoint: theme.breakpoint.mobileToDesktop,
         settings: {
           slidesToShow: 1,
           nextArrow: null,
@@ -96,12 +67,7 @@ const PastEventsList = ({ pastEvents }) => {
   );
 };
 
-PastEventsList.propTypes = {
-  pastEvents: PropTypes.arrayOf(PropTypes.shape(PastEvent.propTypes.event)),
-};
-
-PastEventsList.defaultProps = {
-  pastEvents: [],
-};
+PastEventsList.propTypes = propTypes;
+PastEventsList.defaultProps = defaultProps;
 
 export default PastEventsList;
