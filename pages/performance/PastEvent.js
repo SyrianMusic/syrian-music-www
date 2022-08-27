@@ -58,6 +58,7 @@ const PastEvent = ({ className, event, isLastSlide }) => {
       <Link href={url}>
         <SlideImage backgroundImage={image.url} />
       </Link>
+
       <div
         css={{
           marginTop: theme.pxToRem(30),
@@ -82,6 +83,7 @@ const PastEvent = ({ className, event, isLastSlide }) => {
           ]}>
           {name}
         </Typography>
+
         <Typography
           css={{
             marginBottom: theme.pxToRem(8),
@@ -92,6 +94,7 @@ const PastEvent = ({ className, event, isLastSlide }) => {
           size="md">
           {formattedDate}
         </Typography>
+
         <Typography size="md" css={truncatedStyle}>
           {location}
         </Typography>
