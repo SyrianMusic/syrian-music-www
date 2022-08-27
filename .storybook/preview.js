@@ -12,7 +12,9 @@ const viewports = {
   },
 };
 
-const viewportWidths = Object.values(viewports).map(({ styles }) => styles.width);
+const viewportWidths = Object.values(viewports).map(({ styles }) =>
+  parseInt(styles.width.replace('px', '')),
+);
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
