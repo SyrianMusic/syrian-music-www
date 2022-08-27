@@ -72,7 +72,9 @@ const UpcomingEvent = ({ className, event }) => {
           {name}
         </Typography>
         <Typography>
-          <time dateTime={startDate}>{formattedDate}</time>
+          <time suppressHydrationWarning dateTime={startDate}>
+            {formattedDate}
+          </time>
           {location && ` | ${location}`}
         </Typography>
         {parseRichText(summary.json, null, {
