@@ -12,4 +12,6 @@ export const viewports = {
   },
 };
 
-export const viewportWidths = Object.values(viewports).map(({ styles }) => styles.width);
+export const viewportWidths = Object.values(viewports).map(({ styles }) =>
+  parseInt(styles.width.replace('px', '')),
+);
