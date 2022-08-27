@@ -7,7 +7,6 @@ import { Default as PageDefault, Template as PageTemplate } from './PerformanceP
 export default {
   title: PAGE_PATH + '/PastEvent',
   component: PastEvent,
-  excludeStories: ['pastEvents'],
   argTypes: {
     className: {
       control: { type: null },
