@@ -1,5 +1,6 @@
 import { emptyEventCollection, Event, EventCollection } from '../../../__fixtures__/Event';
 import App from '../../_app.page';
+import { pageParameters } from '../../__stories__/config';
 import PerformancePage from '../PerformancePage';
 import { pastEvents, upcomingEvents } from '../__fixtures__/events';
 import { PAGE_PATH } from './config';
@@ -8,6 +9,7 @@ export default {
   title: PAGE_PATH,
   component: PerformancePage,
   excludeStories: ['Template'],
+  parameters: pageParameters,
 };
 
 export const Template = (args) => {

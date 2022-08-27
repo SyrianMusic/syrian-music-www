@@ -1,5 +1,6 @@
 import { nextWeek } from '../../../__fixtures__/date';
 import { Event, EventCollection } from '../../../__fixtures__/Event';
+import { pageParameters } from '../../__stories__/config';
 import UpcomingEvent from '../UpcomingEvent';
 import { upcomingEvents } from '../__fixtures__/events';
 import { PAGE_PATH } from './config';
@@ -13,6 +14,7 @@ export default {
       control: { type: null },
     },
   },
+  parameters: pageParameters,
 };
 
 const Template = (args) => {
