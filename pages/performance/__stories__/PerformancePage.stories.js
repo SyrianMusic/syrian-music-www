@@ -20,3 +20,8 @@ Default.args = {
     events: UpcomingEvent.args.events.map((event) => new Event(event)),
   }),
 };
+
+export const NoUpcomingEvents = Template.bind({});
+NoUpcomingEvents.args = {
+  upcomingEvents: [],
+};
