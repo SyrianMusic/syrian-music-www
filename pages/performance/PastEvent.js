@@ -26,7 +26,7 @@ const SlideImage = styled.a([
   },
 ]);
 
-const PastEvents = ({ className, event, isLastSlide }) => {
+const PastEvent = ({ className, event, isLastSlide }) => {
   const { image, location, name, slug, startDate } = event;
   const formattedDate = formatDateTime(startDate);
   const url = `/events/${slug}`;
@@ -105,7 +105,7 @@ const PastEvents = ({ className, event, isLastSlide }) => {
   );
 };
 
-PastEvents.propTypes = {
+PastEvent.propTypes = {
   className: PropTypes.string,
   // TODO: create typings either with prop types or typescript
   event: PropTypes.shape({
@@ -120,14 +120,14 @@ PastEvents.propTypes = {
   isLastSlide: PropTypes.bool,
 };
 
-PastEvents.defaultProps = {
+PastEvent.defaultProps = {
   className: undefined,
   isLastSlide: false,
 };
 
-PastEvents.fragments = {
+PastEvent.fragments = {
   event: gql`
-    fragment PastEvents on Event {
+    fragment PastEvent on Event {
       name
       startDate
       location
@@ -139,4 +139,4 @@ PastEvents.fragments = {
   `,
 };
 
-export default PastEvents;
+export default PastEvent;

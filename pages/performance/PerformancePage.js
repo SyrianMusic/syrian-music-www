@@ -11,7 +11,7 @@ import config from '../../config.yaml';
 import { gutters } from '../../styles/mixins';
 import theme from '../../styles/theme';
 import UpcomingEvent from './UpcomingEvent';
-import PastEvents from './PastEvents';
+import PastEvent from './PastEvent';
 import PastEventsList from './PastEventsList';
 import UpcomingEventsList from './UpcomingEventsList';
 import { getUpcomingEvents } from './utils';
@@ -21,7 +21,7 @@ const pageConfig = config.nav.performance;
 
 export const performancePageQuery = gql`
   ${UpcomingEvent.fragments.event}
-  ${PastEvents.fragments.event}
+  ${PastEvent.fragments.event}
   query performancePage($now: DateTime!) {
     upcomingEvents: eventCollection(where: { startDate_gt: $now }) {
       items {
@@ -36,7 +36,7 @@ export const performancePageQuery = gql`
         sys {
           id
         }
-        ...PastEvents
+        ...PastEvent
       }
     }
   }

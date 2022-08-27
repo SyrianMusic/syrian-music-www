@@ -3,7 +3,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import CarouselNavArrow from '../../components/CarouselNavArrow';
-import PastEvents from './PastEvents';
+import PastEvent from './PastEvent';
 import theme from '../../styles/theme';
 
 const PastEventsList = ({ pastEventItems }) => {
@@ -40,7 +40,7 @@ const PastEventsList = ({ pastEventItems }) => {
       }}>
       <Slider {...settings}>
         {pastEventItems.map((event, index) => (
-          <PastEvents
+          <PastEvent
             key={event.sys.id}
             event={event}
             isLastSlide={pastEventItems.length - 1 === index}
@@ -52,7 +52,7 @@ const PastEventsList = ({ pastEventItems }) => {
 };
 
 PastEventsList.propTypes = {
-  pastEventItems: PropTypes.arrayOf(PropTypes.shape(PastEvents.propTypes.event)),
+  pastEventItems: PropTypes.arrayOf(PropTypes.shape(PastEvent.propTypes.event)),
 };
 
 PastEventsList.defaultProps = {
