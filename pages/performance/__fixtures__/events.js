@@ -31,10 +31,10 @@ const events = [
 
 export const pastEvents = events.map((event, i) => ({
   ...event,
-  startDate: addDays(yesterday, i * -7),
+  startDate: addDays(yesterday, i * -7).toISOString(),
 }));
 
 export const upcomingEvents = events.map((event, i) => ({
   ...event,
-  startDate: addDays(tomorrow, i * 7),
+  startDate: addDays(tomorrow, i * 7).toISOString(),
 }));

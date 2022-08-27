@@ -65,7 +65,7 @@ const PastEvent = ({ className, event }) => {
           {name}
         </Typography>
 
-        <Typography css={{ marginBottom: 0 }} size="md">
+        <Typography dateTime={startDate} as="time" css={{ marginBottom: 0 }} size="md">
           {formattedDate}
         </Typography>
 

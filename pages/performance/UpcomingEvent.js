@@ -35,7 +35,7 @@ const UpcomingEvent = ({ className, event }) => {
           {name}
         </Typography>
         <Typography>
-          {formattedDate}
+          <time dateTime={startDate}>{formattedDate}</time>
           {location && ` | ${location}`}
         </Typography>
         {parseRichText(summary.json, null, {
