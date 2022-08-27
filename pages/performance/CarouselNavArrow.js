@@ -7,14 +7,11 @@ const positions = {
 
 const propTypes = {
   className: PropTypes.string,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
   position: PropTypes.oneOf(Object.values(positions)).isRequired,
 };
 
-const defaultProps = {
-  className: undefined,
-  onClick: () => {},
-};
+const defaultProps = { className: undefined };
 
 const CarouselNavArrow = ({ className, onClick, position }) => {
   return (
