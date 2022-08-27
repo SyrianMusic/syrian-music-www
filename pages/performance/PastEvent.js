@@ -49,7 +49,9 @@ const PastEvent = ({ className, event, isLastSlide }) => {
             : { marginRight: 40 }),
         },
       }}>
-      <SlideImage backgroundImage={image.url} href={url} rel="noopener noreferrer" />
+      <Link href={url}>
+        <SlideImage backgroundImage={image.url} />
+      </Link>
       <div
         css={{
           marginTop: theme.pxToRem(30),
