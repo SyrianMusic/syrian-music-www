@@ -7,8 +7,8 @@ import theme from '../../styles/theme';
 import { formatDateTime } from '../../utils/date';
 
 const DEFAULT_CTA_TEXT = 'Read more';
-const SLIDE_WIDTH = 232;
-const SLIDE_WIDTH_DESKTOP = 288;
+const SLIDE_WIDTH_MOBILE = theme.closestMultiple(232);
+const SLIDE_WIDTH_DESKTOP = theme.closestMultiple(288);
 
 const SlideImage = styled.a(({ backgroundImage }) => ({
   width: '100%',
@@ -32,7 +32,7 @@ const PastEvent = ({ className, event, isLastSlide }) => {
     <div
       className={className}
       css={{
-        width: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH)),
+        width: theme.pxToRem(SLIDE_WIDTH_MOBILE),
         height: theme.pxToRem(theme.closestMultiple(250)),
         ...(isLastSlide
           ? {
@@ -40,7 +40,7 @@ const PastEvent = ({ className, event, isLastSlide }) => {
             }
           : { marginRight: 21 }),
         [theme.mq.mobileToDesktop]: {
-          width: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH_DESKTOP)),
+          width: theme.pxToRem(SLIDE_WIDTH_DESKTOP),
           height: theme.pxToRem(theme.closestMultiple(325)),
           ...(isLastSlide
             ? {
@@ -55,7 +55,7 @@ const PastEvent = ({ className, event, isLastSlide }) => {
       <div
         css={{
           marginTop: theme.pxToRem(30),
-          maxWidth: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH)),
+          maxWidth: theme.pxToRem(SLIDE_WIDTH_MOBILE),
           flexGrow: 1,
           [theme.mq.mobileToDesktop]: {
             paddingTop: 0,
@@ -68,12 +68,12 @@ const PastEvent = ({ className, event, isLastSlide }) => {
           css={{
             textOverflow: 'ellipsis',
             marginBottom: theme.spacing.get(8),
-            width: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH)),
+            width: theme.pxToRem(SLIDE_WIDTH_MOBILE),
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             [theme.mq.mobileToDesktop]: {
               marginBottom: theme.spacing.get(24),
-              width: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH_DESKTOP)),
+              width: theme.pxToRem(SLIDE_WIDTH_DESKTOP),
             },
           }}>
           {name}
