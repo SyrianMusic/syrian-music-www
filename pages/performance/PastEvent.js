@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
+import styled from '@emotion/styled';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
 import Typography from '../../components/Typography';
 import theme from '../../styles/theme';
 import { formatDateTime } from '../../utils/date';

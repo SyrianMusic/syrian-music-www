@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import CarouselNavArrow from '../../components/CarouselNavArrow';
-import PastEvent from './PastEvent';
 import theme from '../../styles/theme';
+import PastEvent from './PastEvent';
+
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 
 const PastEventsList = ({ pastEventItems }) => {
   const settings = {
