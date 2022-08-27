@@ -16,7 +16,7 @@ const viewportWidths = Object.values(viewports).map(({ styles }) => styles.width
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
-  chromatic: { viewpors: viewportWidths },
+  chromatic: { viewports: viewportWidths },
   controls: {
     expanded: true,
     matchers: {
