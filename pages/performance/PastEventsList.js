@@ -50,7 +50,7 @@ const Arrow = styled.button(({ position }) => {
   };
 });
 
-const PastEventsList = ({ pastEventItems }) => {
+const PastEventsList = ({ pastEvents }) => {
   const settings = {
     dots: false,
     infinite: false,
@@ -83,9 +83,9 @@ const PastEventsList = ({ pastEventItems }) => {
         },
       }}>
       <Slider {...settings}>
-        {pastEventItems.map((event, index) => {
+        {pastEvents.map((event, index) => {
           let css;
-          const isLastSlide = index === pastEventItems.length - 1;
+          const isLastSlide = index === pastEvents.length - 1;
 
           if (!isLastSlide) {
             css = {
@@ -104,11 +104,11 @@ const PastEventsList = ({ pastEventItems }) => {
 };
 
 PastEventsList.propTypes = {
-  pastEventItems: PropTypes.arrayOf(PropTypes.shape(PastEvent.propTypes.event)),
+  pastEvents: PropTypes.arrayOf(PropTypes.shape(PastEvent.propTypes.event)),
 };
 
 PastEventsList.defaultProps = {
-  pastEventItems: [],
+  pastEvents: [],
 };
 
 export default PastEventsList;

@@ -19,6 +19,21 @@ import Video from '../../components/Video';
 
 const pageConfig = config.nav.performance;
 
+const Section = styled.section([
+  {
+    marginBottom: theme.spacing.get(32),
+    [theme.mq.mobileToDesktop]: {
+      marginBottom: theme.spacing.get(56),
+    },
+  },
+  css`
+    ${gutters.margin.mobile};
+    ${theme.mq.mobileToDesktop} {
+      ${gutters.margin.desktop};
+    }
+  `,
+]);
+
 export const performancePageQuery = gql`
   ${UpcomingEvent.fragments.event}
   ${PastEvent.fragments.event}
@@ -42,24 +57,18 @@ export const performancePageQuery = gql`
   }
 `;
 
-const Section = styled.section([
-  {
-    marginBottom: theme.spacing.get(32),
-    [theme.mq.mobileToDesktop]: {
-      marginBottom: theme.spacing.get(56),
-    },
-  },
-  css`
-    ${gutters.margin.mobile};
-    ${theme.mq.mobileToDesktop} {
-      ${gutters.margin.desktop};
-    }
-  `,
-]);
+const propTypes = {
+  upcomingEvents: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  }).isRequired,
+  pastEvents: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  }).isRequired,
+};
 
 const PerformancePage = (props) => {
   const upcomingEvents = getUpcomingEvents(props.upcomingEvents?.items);
-  const pastEventItems = props.pastEvents?.items;
+  const pastEvents = props.pastEvents?.items;
 
   return (
     <SiteLayout pathname={pageConfig.href}>
@@ -80,7 +89,7 @@ const PerformancePage = (props) => {
         </Section>
       )}
 
-      {pastEventItems?.length && (
+      {pastEvents?.length && (
         <Section>
           <SectionHeader
             as="h1"
@@ -91,7 +100,7 @@ const PerformancePage = (props) => {
             Previous <br css={{ [theme.mq.mobileToDesktop]: { display: 'none' } }} />
             Performances
           </SectionHeader>
-          <PastEventsList pastEventItems={pastEventItems} />
+          <PastEventsList pastEvents={pastEvents} />
         </Section>
       )}
 
@@ -177,13 +186,6 @@ const PerformancePage = (props) => {
   );
 };
 
-PerformancePage.propTypes = {
-  upcomingEvents: PropTypes.shape({
-    items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  }).isRequired,
-  pastEvents: PropTypes.shape({
-    items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  }).isRequired,
-};
+PerformancePage.propTypes = propTypes;
 
 export default PerformancePage;
