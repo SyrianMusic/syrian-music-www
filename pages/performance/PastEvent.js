@@ -29,7 +29,7 @@ const truncatedStyle = {
   overflow: 'hidden',
 };
 
-const PastEvent = ({ className, event, isLastSlide }) => {
+const PastEvent = ({ className, event }) => {
   const { image, location, name, slug, startDate } = event;
   const formattedDate = formatDateTime(startDate);
   const url = `/events/${slug}`;
@@ -40,19 +40,9 @@ const PastEvent = ({ className, event, isLastSlide }) => {
       css={{
         width: theme.pxToRem(SLIDE_WIDTH_MOBILE),
         height: theme.pxToRem(theme.closestMultiple(250)),
-        ...(isLastSlide
-          ? {
-              marginRight: 0,
-            }
-          : { marginRight: 21 }),
         [theme.mq.mobileToDesktop]: {
           width: theme.pxToRem(SLIDE_WIDTH_DESKTOP),
           height: theme.pxToRem(theme.closestMultiple(325)),
-          ...(isLastSlide
-            ? {
-                marginRight: 0,
-              }
-            : { marginRight: 40 }),
         },
       }}>
       <Link href={url}>
@@ -105,12 +95,10 @@ PastEvent.propTypes = {
     }),
     slug: PropTypes.string.isRequired,
   }).isRequired,
-  isLastSlide: PropTypes.bool,
 };
 
 PastEvent.defaultProps = {
   className: undefined,
-  isLastSlide: false,
 };
 
 PastEvent.fragments = {

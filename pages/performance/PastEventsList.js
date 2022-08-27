@@ -40,13 +40,21 @@ const PastEventsList = ({ pastEventItems }) => {
         },
       }}>
       <Slider {...settings}>
-        {pastEventItems.map((event, index) => (
-          <PastEvent
-            key={event.sys.id}
-            event={event}
-            isLastSlide={pastEventItems.length - 1 === index}
-          />
-        ))}
+        {pastEventItems.map((event, index) => {
+          let css;
+          const isLastSlide = index === pastEventItems.length - 1;
+
+          if (!isLastSlide) {
+            css = {
+              marginRight: theme.spacing.get(24),
+              [theme.mq.mobileToDesktop]: {
+                marginRight: theme.spacing.get(40),
+              },
+            };
+          }
+
+          return <PastEvent key={event.sys.id} css={css} event={event} />;
+        })}
       </Slider>
     </div>
   );
