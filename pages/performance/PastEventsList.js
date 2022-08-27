@@ -28,6 +28,8 @@ const Arrow = styled.button(({ position }) => {
     transform = 'rotate(-45deg)';
   }
 
+  const border = `${theme.pxToRem(3)} solid ${theme.color.interactive}`;
+
   return {
     top: '25%',
     left,
@@ -35,8 +37,8 @@ const Arrow = styled.button(({ position }) => {
     '&:before': {
       display: 'block',
       background: 'transparent',
-      borderRight: '3px solid pink',
-      borderBottom: '3px solid pink',
+      borderRight: border,
+      borderBottom: border,
       content: '""',
       width: theme.pxToRem(20),
       height: theme.pxToRem(20),
