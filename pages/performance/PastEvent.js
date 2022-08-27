@@ -7,8 +7,6 @@ import theme from '../../styles/theme';
 import { formatDateTime } from '../../utils/date';
 
 const DEFAULT_CTA_TEXT = 'Read more';
-const SLIDE_WIDTH_MOBILE = theme.closestMultiple(232);
-const SLIDE_WIDTH_DESKTOP = theme.closestMultiple(288);
 
 const SlideImage = styled.a(({ backgroundImage }) => ({
   height: theme.pxToRem(theme.closestMultiple(130)),
@@ -66,9 +64,9 @@ const PastEvent = ({ className, event }) => {
     <div
       className={className}
       css={{
-        width: theme.pxToRem(SLIDE_WIDTH_MOBILE),
+        width: theme.pxToRem(theme.closestMultiple(232)),
         [theme.mq.mobileToDesktop]: {
-          width: theme.pxToRem(SLIDE_WIDTH_DESKTOP),
+          width: theme.pxToRem(theme.closestMultiple(288)),
         },
       }}>
       <Link href={url}>
@@ -104,7 +102,7 @@ const PastEvent = ({ className, event }) => {
           {location}
         </Typography>
 
-        <Typography css={{}}>
+        <Typography>
           <Link href={url}>
             <a>{DEFAULT_CTA_TEXT}</a>
           </Link>
