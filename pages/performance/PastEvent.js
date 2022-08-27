@@ -10,21 +10,18 @@ const DEFAULT_CTA_TEXT = 'Read more';
 const SLIDE_WIDTH = 232;
 const SLIDE_WIDTH_DESKTOP = 288;
 
-const SlideImage = styled.a([
-  {
-    width: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH)),
-    height: theme.pxToRem(theme.closestMultiple(130)),
-    display: 'block',
-    backgroundImage: `var(--background-style)`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    [theme.mq.mobileToDesktop]: {
-      width: theme.pxToRem(theme.closestMultiple(SLIDE_WIDTH_DESKTOP)),
-      height: theme.pxToRem(theme.closestMultiple(162)),
-    },
+const SlideImage = styled.a(({ backgroundImage }) => ({
+  width: '100%',
+  height: theme.pxToRem(theme.closestMultiple(130)),
+  display: 'block',
+  backgroundImage: `url(${backgroundImage})`,
+  backgroundPosition: 'center',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  [theme.mq.mobileToDesktop]: {
+    height: theme.pxToRem(theme.closestMultiple(162)),
   },
-]);
+}));
 
 const PastEvent = ({ className, event, isLastSlide }) => {
   const { image, location, name, slug, startDate } = event;
@@ -52,11 +49,7 @@ const PastEvent = ({ className, event, isLastSlide }) => {
             : { marginRight: 40 }),
         },
       }}>
-      <SlideImage
-        style={{ '--background-style': `url(${image.url})` }}
-        href={url}
-        rel="noopener noreferrer"
-      />
+      <SlideImage backgroundImage={image.url} href={url} rel="noopener noreferrer" />
       <div
         css={{
           marginTop: theme.pxToRem(30),
