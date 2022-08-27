@@ -7,48 +7,40 @@ import PastEvent from './PastEvent';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
-const arrowPositions = {
-  left: 'left',
-  right: 'right',
+const arrowBorder = `${theme.pxToRem(3)} solid ${theme.color.interactive}`;
+const arrowPosition = theme.pxToRem(-35);
+
+const arrowBeforeStyles = {
+  display: 'block',
+  background: 'transparent',
+  borderRight: arrowBorder,
+  borderBottom: arrowBorder,
+  content: '""',
+  width: theme.pxToRem(20),
+  height: theme.pxToRem(20),
 };
 
-const Arrow = styled.button(({ position }) => {
-  let left;
-  let right;
-  let transform;
+const Arrow = styled.button({
+  top: '25%',
 
-  const positionValue = theme.pxToRem(-35);
+  '&.slick-prev': {
+    left: arrowPosition,
+    transform: 'rotate(135deg)',
+    '&::before': arrowBeforeStyles,
+  },
 
-  if (position === arrowPositions.left) {
-    left = positionValue;
-    right = 'auto';
-    transform = 'rotate(135deg)';
-  } else if (position === arrowPositions.right) {
-    right = positionValue;
-    transform = 'rotate(-45deg)';
-  }
+  '&.slick-next': {
+    right: arrowPosition,
+    transform: 'rotate(-45deg)',
+    '&::before': arrowBeforeStyles,
+  },
 
-  const border = `${theme.pxToRem(3)} solid ${theme.color.interactive}`;
-
-  return {
-    top: '25%',
-    left,
-    right,
-    '&:before': {
-      display: 'block',
-      background: 'transparent',
-      borderRight: border,
-      borderBottom: border,
-      content: '""',
-      width: theme.pxToRem(20),
-      height: theme.pxToRem(20),
-      transform,
-    },
-    '&.slick-disabled': {
-      display: 'none !important',
-    },
-  };
+  '&.slick-disabled': {
+    visibility: 'hidden',
+  },
 });
+
+const navArrow = <Arrow tabIndex={0} />;
 
 const PastEventsList = ({ pastEvents }) => {
   const settings = {
@@ -58,8 +50,8 @@ const PastEventsList = ({ pastEvents }) => {
     slidesToShow: 2,
     slidesToScroll: 1,
     variableWidth: true,
-    prevArrow: <Arrow position={arrowPositions.left} />,
-    nextArrow: <Arrow position={arrowPositions.right} />,
+    prevArrow: navArrow,
+    nextArrow: navArrow,
     responsive: [
       {
         breakpoint: 800,
@@ -81,6 +73,7 @@ const PastEventsList = ({ pastEvents }) => {
           marginTop: theme.spacing.get(56),
           marginBottom: theme.spacing.get(84),
         },
+        '.slick-track': { marginLeft: 'initial', marginRight: 'initial' },
       }}>
       <Slider {...settings}>
         {pastEvents.map((event, index) => {
