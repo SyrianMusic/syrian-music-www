@@ -1,5 +1,21 @@
 import PropTypes from 'prop-types';
 
+const positions = {
+  left: 'left',
+  right: 'right',
+};
+
+const propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  position: PropTypes.oneOf(Object.values(positions)).isRequired,
+};
+
+const defaultProps = {
+  className: undefined,
+  onClick: () => {},
+};
+
 const CarouselNavArrow = ({ className, onClick, position }) => {
   return (
     <button
@@ -39,16 +55,8 @@ const CarouselNavArrow = ({ className, onClick, position }) => {
   );
 };
 
-CarouselNavArrow.propTypes = {
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-  position: '',
-};
-
-CarouselNavArrow.defaultProps = {
-  className: undefined,
-  onClick: () => {},
-  position: undefined,
-};
+CarouselNavArrow.propTypes = propTypes;
+CarouselNavArrow.defaultProps = defaultProps;
+CarouselNavArrow.positions = positions;
 
 export default CarouselNavArrow;

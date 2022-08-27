@@ -15,8 +15,8 @@ const PastEventsList = ({ pastEventItems }) => {
     slidesToShow: 2,
     slidesToScroll: 1,
     variableWidth: true,
-    nextArrow: <CarouselNavArrow position="right" />,
-    prevArrow: <CarouselNavArrow position="left" />,
+    prevArrow: <CarouselNavArrow position={CarouselNavArrow.positions.left} />,
+    nextArrow: <CarouselNavArrow position={CarouselNavArrow.positions.right} />,
     responsive: [
       {
         breakpoint: 800,
