@@ -1,21 +1,21 @@
 import { gql } from '@apollo/client';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 import Image from '../../components/Image';
 import Rule from '../../components/Rule';
 import SiteLayout from '../../components/SiteLayout';
 import Title from '../../components/Title';
 import Typography, { SectionHeader } from '../../components/Typography';
+import Video from '../../components/Video';
 import config from '../../config.yaml';
 import { gutters } from '../../styles/mixins';
 import theme from '../../styles/theme';
-import UpcomingEvent from './UpcomingEvent';
 import PastEvent from './PastEvent';
 import PastEventsList from './PastEventsList';
+import UpcomingEvent from './UpcomingEvent';
 import UpcomingEventsList from './UpcomingEventsList';
 import { getUpcomingEvents } from './utils';
-import Video from '../../components/Video';
 
 const pageConfig = config.nav.performance;
 
