@@ -11,7 +11,6 @@ const SLIDE_WIDTH_MOBILE = theme.closestMultiple(232);
 const SLIDE_WIDTH_DESKTOP = theme.closestMultiple(288);
 
 const SlideImage = styled.a(({ backgroundImage }) => ({
-  width: '100%',
   height: theme.pxToRem(theme.closestMultiple(130)),
   display: 'block',
   backgroundImage: `url(${backgroundImage})`,
