@@ -70,11 +70,14 @@ const PerformancePage = (props) => {
   const upcomingEvents = getUpcomingEvents(props.upcomingEvents?.items);
   const pastEvents = props.pastEvents?.items;
 
+  const hasUpcomingEvents = upcomingEvents.length > 0;
+  const hasPastEvents = pastEvents?.length > 0;
+
   return (
     <SiteLayout pathname={pageConfig.href}>
       <Title>Performance</Title>
 
-      {upcomingEvents.length > 0 && (
+      {hasUpcomingEvents && (
         <Section id="upcoming-performances" data-testid="upcoming-performances">
           <SectionHeader
             as="h1"
@@ -89,7 +92,7 @@ const PerformancePage = (props) => {
         </Section>
       )}
 
-      {pastEvents?.length && (
+      {hasPastEvents && (
         <Section>
           <SectionHeader
             as="h1"
@@ -101,6 +104,17 @@ const PerformancePage = (props) => {
             Performances
           </SectionHeader>
           <PastEventsList pastEvents={pastEvents} />
+          <Rule
+            color={Rule.colors.accent}
+            css={{
+              marginLeft: 0,
+              marginRight: 0,
+              [theme.mq.mobileToDesktop]: {
+                marginLeft: 0,
+                marginRight: 0,
+              },
+            }}
+          />
         </Section>
       )}
 
