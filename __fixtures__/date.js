@@ -8,6 +8,8 @@ export const addDays = (date, days) =>
 const addMonths = (date, months) =>
   new Date(date.getFullYear(), date.getMonth() + months, date.getDate());
 
+export const lastMonth = addMonths(today, -1);
+export const lastWeek = addDays(today, -7);
 export const yesterday = addDays(today, -1);
 export const tomorrow = addDays(today, 1);
 export const nextWeek = addDays(today, 7);

@@ -1,9 +1,9 @@
-import UpcomingEvent from '../UpcomingEvent';
+import { nextWeek } from '../../../__fixtures__/date';
 import { Event, EventCollection } from '../../../__fixtures__/Event';
-import { Template as PageTemplate, Default as PageDefault } from './PerformancePage.stories';
+import UpcomingEvent from '../UpcomingEvent';
+import { upcomingEvents } from '../__fixtures__/events';
 import { PAGE_PATH } from './config';
-import { nextWeek, nextMonth } from '../../../__fixtures__/date';
-import { syrianOrnaments, quenchTheThirsty } from '../../../__fixtures__/Event';
+import { Default as PageDefault, Template as PageTemplate } from './PerformancePage.stories';
 
 export default {
   title: PAGE_PATH + '/UpcomingEvent',
@@ -27,32 +27,19 @@ const Template = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  events: [
-    {
-      ...syrianOrnaments,
-      startDate: nextWeek.toISOString(),
-      image: {
-        width: 704,
-        height: 352,
-        url: 'https://via.placeholder.com/704x352',
-      },
-    },
-  ],
+  events: upcomingEvents.slice(0, 1),
 };
 
 export const MultipleEvents2 = Template.bind({});
 MultipleEvents2.args = {
   ...Default.args,
-  events: [...Default.args.events, { ...quenchTheThirsty, startDate: nextMonth.toISOString() }],
+  events: upcomingEvents.slice(0, 2),
 };
 
 export const MultipleEvents3 = Template.bind({});
 MultipleEvents3.args = {
-  ...MultipleEvents2.args,
-  events: [
-    ...MultipleEvents2.args.events,
-    { ...quenchTheThirsty, name: 'Another Event', startDate: nextMonth.toISOString() },
-  ],
+  ...Default.args,
+  events: upcomingEvents,
 };
 
 export const ImagePortrait = Template.bind({});
