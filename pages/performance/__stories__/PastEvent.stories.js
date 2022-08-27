@@ -1,4 +1,5 @@
 import { Event, EventCollection } from '../../../__fixtures__/Event';
+import { pageParameters } from '../../__stories__/config';
 import PastEvent from '../PastEvent';
 import { pastEvents } from '../__fixtures__/events';
 import { PAGE_PATH } from './config';
@@ -12,6 +13,7 @@ export default {
       control: { type: null },
     },
   },
+  parameters: pageParameters,
 };
 
 const Template = (args) => {
