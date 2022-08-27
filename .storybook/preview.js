@@ -1,4 +1,4 @@
-import { viewports } from './config';
+import { viewports } from './viewports';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
