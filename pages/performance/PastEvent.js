@@ -28,6 +28,35 @@ const truncatedStyle = {
   overflow: 'hidden',
 };
 
+const fragments = {
+  event: gql`
+    fragment PastEvent on Event {
+      image {
+        url
+      }
+      location
+      name
+      slug
+      startDate
+    }
+  `,
+};
+
+const propTypes = {
+  className: PropTypes.string,
+  event: PropTypes.shape({
+    image: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    }).isRequired,
+    location: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+    startDate: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+const defaultProps = { className: undefined };
+
 const PastEvent = ({ className, event }) => {
   const { image, location, name, slug, startDate } = event;
   const formattedDate = formatDateTime(startDate);
@@ -80,36 +109,8 @@ const PastEvent = ({ className, event }) => {
   );
 };
 
-PastEvent.propTypes = {
-  className: PropTypes.string,
-  // TODO: create typings either with prop types or typescript
-  event: PropTypes.shape({
-    name: PropTypes.string,
-    startDate: PropTypes.string.isRequired,
-    location: PropTypes.string,
-    image: PropTypes.shape({
-      url: PropTypes.string,
-    }),
-    slug: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-PastEvent.defaultProps = {
-  className: undefined,
-};
-
-PastEvent.fragments = {
-  event: gql`
-    fragment PastEvent on Event {
-      name
-      startDate
-      location
-      image {
-        url
-      }
-      slug
-    }
-  `,
-};
+PastEvent.propTypes = propTypes;
+PastEvent.defaultProps = defaultProps;
+PastEvent.fragments = fragments;
 
 export default PastEvent;

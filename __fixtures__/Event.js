@@ -21,6 +21,7 @@ export class Event extends Node {
     startDate = today.toISOString(),
     location = 'Location',
     image = new Image({ width: 702, height: 257 }),
+    slug = 'slug',
     summary = new RichText(),
     url = '#',
     urlText = 'Get tickets',
@@ -128,6 +129,7 @@ export class Event extends Node {
     this.startDate = startDate;
     this.location = location;
     this.image = image;
+    this.slug = slug;
     this.summary = summary;
     this.url = url;
     this.urlText = urlText;

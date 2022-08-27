@@ -8,6 +8,43 @@ import { parseRichText } from '../../utils/text';
 
 const DEFAULT_CTA_TEXT = 'Get tickets';
 
+const fragments = {
+  event: gql`
+    fragment UpcomingEvent on Event {
+      image {
+        url
+      }
+      location
+      name
+      startDate
+      summary {
+        json
+      }
+      url
+      urlText
+    }
+  `,
+};
+
+const propTypes = {
+  className: PropTypes.string,
+  event: PropTypes.shape({
+    image: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    }).isRequired,
+    location: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    startDate: PropTypes.string.isRequired,
+    summary: PropTypes.shape({
+      json: PropTypes.shape({}),
+    }),
+    url: PropTypes.string.isRequired,
+    urlText: PropTypes.string,
+  }).isRequired,
+};
+
+const defaultProps = { className: undefined };
+
 const UpcomingEvent = ({ className, event }) => {
   const { image, location, name, startDate, summary, url, urlText } = event;
   const formattedDate = formatDateTime(startDate);
@@ -55,44 +92,8 @@ const UpcomingEvent = ({ className, event }) => {
   );
 };
 
-UpcomingEvent.propTypes = {
-  className: PropTypes.string,
-  // TODO: create typings either with prop types or typescript
-  event: PropTypes.shape({
-    name: PropTypes.string,
-    startDate: PropTypes.string.isRequired,
-    location: PropTypes.string,
-    image: PropTypes.shape({
-      url: PropTypes.string,
-    }),
-    url: PropTypes.string.isRequired,
-    urlText: PropTypes.string,
-    summary: PropTypes.shape({
-      json: PropTypes.shape({}),
-    }),
-  }).isRequired,
-};
-
-UpcomingEvent.defaultProps = {
-  className: undefined,
-};
-
-UpcomingEvent.fragments = {
-  event: gql`
-    fragment UpcomingEvent on Event {
-      name
-      startDate
-      location
-      image {
-        url
-      }
-      url
-      urlText
-      summary {
-        json
-      }
-    }
-  `,
-};
+UpcomingEvent.propTypes = propTypes;
+UpcomingEvent.defaultProps = defaultProps;
+UpcomingEvent.fragments = fragments;
 
 export default UpcomingEvent;

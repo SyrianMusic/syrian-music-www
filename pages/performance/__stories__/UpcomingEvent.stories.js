@@ -58,17 +58,6 @@ ImagePortrait.args = {
   ],
 };
 
-export const NoLocation = Template.bind({});
-NoLocation.args = {
-  ...Default.args,
-  events: [
-    {
-      ...Default.args.events[0],
-      location: null,
-    },
-  ],
-};
-
 export const NoSummary = Template.bind({});
 NoSummary.args = {
   ...Default.args,
