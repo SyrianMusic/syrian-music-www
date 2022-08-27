@@ -17,12 +17,14 @@ const Arrow = styled.button(({ position }) => {
   let right;
   let transform;
 
+  const positionValue = theme.pxToRem(-35);
+
   if (position === arrowPositions.left) {
-    left = '-35px';
+    left = positionValue;
     right = 'auto';
     transform = 'rotate(135deg)';
   } else if (position === arrowPositions.right) {
-    right = '-35px';
+    right = positionValue;
     transform = 'rotate(-45deg)';
   }
 
@@ -36,8 +38,8 @@ const Arrow = styled.button(({ position }) => {
       borderRight: '3px solid pink',
       borderBottom: '3px solid pink',
       content: '""',
-      width: '20px',
-      height: '20px',
+      width: theme.pxToRem(20),
+      height: theme.pxToRem(20),
       transform,
     },
     '&.slick-disabled': {
