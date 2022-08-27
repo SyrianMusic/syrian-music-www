@@ -59,16 +59,7 @@ const PastEvent = ({ className, event, isLastSlide }) => {
         <SlideImage backgroundImage={image.url} />
       </Link>
 
-      <div
-        css={{
-          marginTop: theme.pxToRem(30),
-          maxWidth: theme.pxToRem(SLIDE_WIDTH_MOBILE),
-          flexGrow: 1,
-          [theme.mq.mobileToDesktop]: {
-            paddingTop: 0,
-            maxWidth: 'initial',
-          },
-        }}>
+      <div css={{ marginTop: theme.spacing.get(32) }}>
         <Typography
           size="lg"
           as="h3"
@@ -77,29 +68,22 @@ const PastEvent = ({ className, event, isLastSlide }) => {
             {
               marginBottom: theme.spacing.get(8),
               [theme.mq.mobileToDesktop]: {
-                marginBottom: theme.spacing.get(24),
+                marginBottom: theme.spacing.get(16),
               },
             },
           ]}>
           {name}
         </Typography>
 
-        <Typography
-          css={{
-            marginBottom: theme.pxToRem(8),
-            [theme.mq.mobileToDesktop]: {
-              marginBottom: theme.pxToRem(6),
-            },
-          }}
-          size="md">
+        <Typography css={{ marginBottom: 0 }} size="md">
           {formattedDate}
         </Typography>
 
-        <Typography size="md" css={truncatedStyle}>
+        <Typography css={truncatedStyle} size="md">
           {location}
         </Typography>
 
-        <Typography css={{ position: 'absolute', bottom: 0 }}>
+        <Typography css={{}}>
           <Link href={url}>
             <a>{DEFAULT_CTA_TEXT}</a>
           </Link>
