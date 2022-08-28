@@ -11,11 +11,13 @@ import {
   RichText,
 } from '../../../__fixtures__';
 import App from '../../_app.page';
+import { pageParameters } from '../../__stories__/config';
 import EventPage from '../EventPage';
 
 export default {
   title: 'Pages/Event',
   component: EventPage,
+  parameters: pageParameters,
 };
 
 const Template = (args) => <App Component={EventPage} pageProps={args} />;
