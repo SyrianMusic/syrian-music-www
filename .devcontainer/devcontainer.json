@@ -5,6 +5,11 @@
   "workspaceFolder": "/workspace",
   "forwardPorts": [],
   "postCreateCommand": "yarn",
-  "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode", "Orta.vscode-jest"],
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "Orta.vscode-jest"
+  ],
   "settings": { "terminal.integrated.shell.linux": "/bin/bash" }
 }
