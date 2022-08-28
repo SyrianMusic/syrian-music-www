@@ -1,16 +1,25 @@
 import jwt from 'jsonwebtoken';
-import { handler as hello } from '../hello';
+import { handler as config } from '../config';
 
 const CLIENT_SECRET = 'clientSecret';
-jest.mock('../../../utils/environment', () => ({ jwtClientSecret: CLIENT_SECRET }));
+const STRIPE_PUBLISHABLE_KEY = 'stripePublishableKey';
+
+jest.mock('../../../utils/environment', () => ({
+  jwtClientSecret: CLIENT_SECRET,
+  stripePublishableKey: STRIPE_PUBLISHABLE_KEY,
+}));
 
 const setupSuccessResponse = async () => {
   const token = jwt.sign({}, CLIENT_SECRET);
-  return await hello({ headers: { authorization: `Bearer ${token}` } });
+  return await config({ headers: { authorization: `Bearer ${token}` } });
 };
 
-describe('hello', () => {
+describe('config', () => {
   beforeEach(() => {
+    jest.resetModules();
+  });
+
+  afterAll(() => {
     jest.resetModules();
   });
 
@@ -19,20 +28,20 @@ describe('hello', () => {
     expect(res.statusCode).toBe(200);
   });
 
-  it('when given a valid JWT token, then it returns a message', async () => {
+  it('when given a valid JWT token, then it returns the Stripe publishable key', async () => {
     const res = await setupSuccessResponse();
-    const { message } = JSON.parse(res.body);
-    expect(message).toBe('Hello World');
+    const { stripePublishableKey } = JSON.parse(res.body);
+    expect(stripePublishableKey).toBe(STRIPE_PUBLISHABLE_KEY);
   });
 
   it('when not given a JWT token, then it returns a 401 status code', async () => {
-    const res = await hello();
+    const res = await config();
     expect(res.statusCode).toBe(401);
   });
 
   it('when given an invalid JWT token, then it returns a 401 status code', async () => {
     const token = jwt.sign({}, 'invalidClientSecret');
-    const res = await hello({ headers: { authorization: `Bearer ${token}` } });
+    const res = await config({ headers: { authorization: `Bearer ${token}` } });
     expect(res.statusCode).toBe(401);
   });
 });
