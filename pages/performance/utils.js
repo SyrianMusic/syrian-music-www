@@ -1,4 +1,4 @@
-export const getUpcomingEvents = (events) => {
+export const sortUpcomingEvents = (events) => {
   let upcomingEvents = [];
 
   if (Array.isArray(events) && events.length) {
@@ -23,7 +23,7 @@ export const getUpcomingEvents = (events) => {
 };
 
 export const getNextEvent = (events) => {
-  let upcomingEvents = getUpcomingEvents(events);
+  let upcomingEvents = sortUpcomingEvents(events);
 
   if (upcomingEvents.length > 0) {
     return upcomingEvents[0];

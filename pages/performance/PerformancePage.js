@@ -12,7 +12,7 @@ import { gutters } from '../../styles/mixins';
 import theme from '../../styles/theme';
 import UpcomingEvent from './UpcomingEvent';
 import UpcomingEventsList from './UpcomingEventsList';
-import { getUpcomingEvents } from './utils';
+import { sortUpcomingEvents } from './utils';
 import Video from '../../components/Video';
 
 const pageConfig = config.nav.performance;
@@ -47,7 +47,7 @@ const Section = styled.section([
 ]);
 
 const PerformancePage = (props) => {
-  const upcomingEvents = getUpcomingEvents(props.upcomingEvents?.items);
+  const upcomingEvents = sortUpcomingEvents(props.upcomingEvents?.items);
 
   return (
     <SiteLayout pathname={pageConfig.href}>
