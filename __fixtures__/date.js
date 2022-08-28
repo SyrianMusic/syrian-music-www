@@ -1,6 +1,6 @@
-import environment from '../utils/environment';
+import faker from '../utils/faker';
 
-export const today = new Date(environment.now());
+export const today = new Date(faker.date.future());
 
 export const addDays = (date, days) =>
   new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
