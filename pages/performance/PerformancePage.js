@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import Image from '../../components/Image';
@@ -9,7 +8,7 @@ import Title from '../../components/Title';
 import Typography, { SectionHeader } from '../../components/Typography';
 import Video from '../../components/Video';
 import config from '../../config.yaml';
-import { gutters } from '../../styles/mixins';
+import { gutterMarginStyles } from '../../styles/mixins';
 import theme from '../../styles/theme';
 import PastEvent from './PastEvent';
 import PastEventsList from './PastEventsList';
@@ -20,18 +19,13 @@ import { getUpcomingEvents } from './utils';
 const pageConfig = config.nav.performance;
 
 const Section = styled.section([
+  gutterMarginStyles,
   {
     marginBottom: theme.spacing.get(32),
     [theme.mq.mobileToDesktop]: {
       marginBottom: theme.spacing.get(56),
     },
   },
-  css`
-    ${gutters.margin.mobile};
-    ${theme.mq.mobileToDesktop} {
-      ${gutters.margin.desktop};
-    }
-  `,
 ]);
 
 export const performancePageQuery = gql`
@@ -104,18 +98,11 @@ const PerformancePage = (props) => {
             Performances
           </SectionHeader>
           <PastEventsList pastEvents={pastEvents} />
-          <Rule
-            color={Rule.colors.accent}
-            css={{
-              marginLeft: 0,
-              marginRight: 0,
-              [theme.mq.mobileToDesktop]: {
-                marginLeft: 0,
-                marginRight: 0,
-              },
-            }}
-          />
         </Section>
+      )}
+
+      {(hasUpcomingEvents || hasPastEvents) && (
+        <Rule color={Rule.colors.accent} css={gutterMarginStyles} />
       )}
 
       <Section>

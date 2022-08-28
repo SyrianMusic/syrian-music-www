@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import theme from './theme';
 
 export const gutters = {
@@ -22,6 +23,13 @@ export const gutters = {
       `,
   },
 };
+
+export const gutterMarginStyles = css`
+  ${gutters.margin.mobile};
+  ${theme.mq.mobileToDesktop} {
+    ${gutters.margin.desktop};
+  }
+`;
 
 export const layout = {
   fullWidth: `

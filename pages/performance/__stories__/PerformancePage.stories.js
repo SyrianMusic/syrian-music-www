@@ -12,9 +12,7 @@ export default {
   parameters: pageParameters,
 };
 
-export const Template = (args) => {
-  return <App Component={PerformancePage} pageProps={args} />;
-};
+export const Template = (args) => <App Component={PerformancePage} pageProps={args} />;
 
 export const Default = Template.bind({});
 Default.args = {
