@@ -1,6 +1,6 @@
 import faker from '../utils/faker';
 
-export const today = new Date(faker.date.future());
+export const today = new Date(faker.date.future(undefined, '2032-03-23T21:13:37.118Z'));
 
 export const addDays = (date, days) =>
   new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);

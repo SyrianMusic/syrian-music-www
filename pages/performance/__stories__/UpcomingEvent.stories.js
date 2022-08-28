@@ -1,3 +1,5 @@
+import faker from '../../../utils/faker';
+import { today } from '../../../__fixtures__';
 import {
   Event,
   EventCollection,
@@ -8,7 +10,6 @@ import { pageParameters } from '../../__stories__/config';
 import UpcomingEvent from '../UpcomingEvent';
 import { PAGE_PATH } from './config';
 import { Default as PageDefault, Template as PageTemplate } from './PerformancePage.stories';
-import faker from '../../../utils/faker';
 
 export default {
   title: PAGE_PATH + '/UpcomingEvent',
@@ -31,10 +32,9 @@ const Template = (args) => {
   return <PageTemplate {...pageArgs} />;
 };
 
-const yearRange = 10;
-const startDate1 = faker.date.future(yearRange);
-const startDate2 = faker.date.future(yearRange, startDate1);
-const startDate3 = faker.date.future(yearRange, startDate2);
+const startDate1 = faker.date.future(undefined, today);
+const startDate2 = faker.date.future(undefined, startDate1);
+const startDate3 = faker.date.future(undefined, startDate2);
 
 export const Default = Template.bind({});
 Default.args = {
