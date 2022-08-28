@@ -1,5 +1,6 @@
-import { addDays, tomorrow, yesterday } from '../../../__fixtures__/date';
+import { addDays, today, yesterday } from '../../../__fixtures__/date';
 import { quenchTheThirsty, syrianOrnaments } from '../../../__fixtures__/Event';
+import faker from '../../../utils/faker';
 
 const events = [
   {
@@ -34,7 +35,13 @@ export const pastEvents = events.map((event, i) => ({
   startDate: addDays(yesterday, i * -7).toISOString(),
 }));
 
-export const upcomingEvents = events.map((event, i) => ({
-  ...event,
-  startDate: addDays(tomorrow, i * 7).toISOString(),
-}));
+let futureDate = faker.date.future(undefined, today);
+
+export const upcomingEvents = events.map((event) => {
+  futureDate = faker.date.future(undefined, futureDate);
+
+  return {
+    ...event,
+    startDate: futureDate.toISOString(),
+  };
+});

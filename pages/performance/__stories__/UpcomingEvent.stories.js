@@ -1,4 +1,3 @@
-import { nextWeek } from '../../../__fixtures__/date';
 import { Event, EventCollection } from '../../../__fixtures__/Event';
 import { pageParameters } from '../../__stories__/config';
 import UpcomingEvent from '../UpcomingEvent';
@@ -114,6 +113,8 @@ LongSummary.args = {
   ],
 };
 
+const testDate = new Date(upcomingEvents[0].startDate);
+
 export const DateAM = Template.bind({});
 DateAM.storyName = 'Date: AM';
 DateAM.args = {
@@ -122,9 +123,9 @@ DateAM.args = {
     {
       ...Default.args.events[0],
       startDate: new Date(
-        nextWeek.getFullYear(),
-        nextWeek.getMonth(),
-        nextWeek.getDate(),
+        testDate.getFullYear(),
+        testDate.getMonth(),
+        testDate.getDate(),
         8,
       ).toISOString(),
     },
@@ -139,9 +140,9 @@ DatePM.args = {
     {
       ...Default.args.events[0],
       startDate: new Date(
-        nextWeek.getFullYear(),
-        nextWeek.getMonth(),
-        nextWeek.getDate(),
+        testDate.getFullYear(),
+        testDate.getMonth(),
+        testDate.getDate(),
         8 + 12,
       ).toISOString(),
     },
@@ -156,9 +157,9 @@ DateMidnight.args = {
     {
       ...Default.args.events[0],
       startDate: new Date(
-        nextWeek.getFullYear(),
-        nextWeek.getMonth(),
-        nextWeek.getDate(),
+        testDate.getFullYear(),
+        testDate.getMonth(),
+        testDate.getDate(),
         0,
       ).toISOString(),
     },
