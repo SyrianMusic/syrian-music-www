@@ -1,4 +1,5 @@
-import { Event, EventCollection } from '../../../__fixtures__/Event';
+import faker from '../../../utils/faker';
+import { Event, EventCollection } from '../../../__fixtures__/';
 import { pageParameters } from '../../__stories__/config';
 import UpcomingEvent from '../UpcomingEvent';
 import { upcomingEvents } from '../__fixtures__/events';
@@ -26,9 +27,11 @@ const Template = (args) => {
   return <PageTemplate {...pageArgs} />;
 };
 
+const defaultEvent = upcomingEvents[0];
+
 export const Default = Template.bind({});
 Default.args = {
-  events: upcomingEvents.slice(0, 1),
+  events: [defaultEvent],
 };
 
 export const MultipleEvents2 = Template.bind({});
@@ -49,7 +52,7 @@ ImagePortrait.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
+      ...defaultEvent,
       image: {
         width: 352,
         height: 704,
@@ -64,7 +67,7 @@ NoSummary.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
+      ...defaultEvent,
       summary: {
         json: {
           data: {},
@@ -107,13 +110,55 @@ LongSummary.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
+      ...defaultEvent,
       summary: getLongSummary(),
     },
   ],
 };
 
-const testDate = new Date(upcomingEvents[0].startDate);
+const defaultStartDate = new Date(defaultEvent.startDate);
+
+export const DateRange = Template.bind({});
+DateRange.args = {
+  ...Default.args,
+  events: [
+    {
+      ...defaultEvent,
+      endDate: faker.date
+        .future(undefined, new Date(defaultStartDate.getFullYear() + 1, 1, 1))
+        .toISOString(),
+    },
+  ],
+};
+
+export const DateRangeSameYear = Template.bind({});
+DateRangeSameYear.args = {
+  ...Default.args,
+  events: [
+    {
+      ...defaultEvent,
+      endDate: faker.date
+        .between(defaultStartDate, new Date(defaultStartDate.getFullYear(), 12, 31))
+        .toISOString(),
+    },
+  ],
+};
+
+export const DateRangeSameMonth = Template.bind({});
+DateRangeSameMonth.args = {
+  ...Default.args,
+  events: [
+    {
+      ...defaultEvent,
+      endDate: faker.date
+        .between(
+          defaultStartDate,
+          new Date(defaultStartDate.getFullYear(), defaultStartDate.getMonth(), 30),
+        )
+        .toISOString(),
+    },
+  ],
+};
 
 export const DateAM = Template.bind({});
 DateAM.storyName = 'Date: AM';
@@ -121,11 +166,11 @@ DateAM.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
+      ...defaultEvent,
       startDate: new Date(
-        testDate.getFullYear(),
-        testDate.getMonth(),
-        testDate.getDate(),
+        defaultStartDate.getFullYear(),
+        defaultStartDate.getMonth(),
+        defaultStartDate.getDate(),
         8,
       ).toISOString(),
     },
@@ -138,11 +183,11 @@ DatePM.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
+      ...defaultEvent,
       startDate: new Date(
-        testDate.getFullYear(),
-        testDate.getMonth(),
-        testDate.getDate(),
+        defaultStartDate.getFullYear(),
+        defaultStartDate.getMonth(),
+        defaultStartDate.getDate(),
         8 + 12,
       ).toISOString(),
     },
@@ -155,11 +200,11 @@ DateMidnight.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
+      ...defaultEvent,
       startDate: new Date(
-        testDate.getFullYear(),
-        testDate.getMonth(),
-        testDate.getDate(),
+        defaultStartDate.getFullYear(),
+        defaultStartDate.getMonth(),
+        defaultStartDate.getDate(),
         0,
       ).toISOString(),
     },
