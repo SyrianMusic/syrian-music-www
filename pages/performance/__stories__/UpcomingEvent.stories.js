@@ -1,4 +1,5 @@
-import { nextMonth, nextWeek } from '../../../__fixtures__/date';
+import faker from '../../../utils/faker';
+import { today } from '../../../__fixtures__';
 import {
   Event,
   EventCollection,
@@ -31,12 +32,16 @@ const Template = (args) => {
   return <PageTemplate {...pageArgs} />;
 };
 
+const startDate1 = faker.date.future(undefined, today);
+const startDate2 = faker.date.future(undefined, startDate1);
+const startDate3 = faker.date.future(undefined, startDate2);
+
 export const Default = Template.bind({});
 Default.args = {
   events: [
     {
       ...syrianOrnaments,
-      startDate: nextWeek.toISOString(),
+      startDate: startDate1.toISOString(),
       image: {
         width: 704,
         height: 352,
@@ -49,7 +54,7 @@ Default.args = {
 export const MultipleEvents2 = Template.bind({});
 MultipleEvents2.args = {
   ...Default.args,
-  events: [...Default.args.events, { ...quenchTheThirsty, startDate: nextMonth.toISOString() }],
+  events: [...Default.args.events, { ...quenchTheThirsty, startDate: startDate2.toISOString() }],
 };
 
 export const MultipleEvents3 = Template.bind({});
@@ -57,7 +62,7 @@ MultipleEvents3.args = {
   ...MultipleEvents2.args,
   events: [
     ...MultipleEvents2.args.events,
-    { ...quenchTheThirsty, name: 'Another Event', startDate: nextMonth.toISOString() },
+    { ...quenchTheThirsty, name: 'Another Event', startDate: startDate3.toISOString() },
   ],
 };
 
@@ -150,9 +155,9 @@ DateAM.args = {
     {
       ...Default.args.events[0],
       startDate: new Date(
-        nextWeek.getFullYear(),
-        nextWeek.getMonth(),
-        nextWeek.getDate(),
+        startDate1.getFullYear(),
+        startDate1.getMonth(),
+        startDate1.getDate(),
         8,
       ).toISOString(),
     },
@@ -167,9 +172,9 @@ DatePM.args = {
     {
       ...Default.args.events[0],
       startDate: new Date(
-        nextWeek.getFullYear(),
-        nextWeek.getMonth(),
-        nextWeek.getDate(),
+        startDate1.getFullYear(),
+        startDate1.getMonth(),
+        startDate1.getDate(),
         8 + 12,
       ).toISOString(),
     },
@@ -184,9 +189,9 @@ DateMidnight.args = {
     {
       ...Default.args.events[0],
       startDate: new Date(
-        nextWeek.getFullYear(),
-        nextWeek.getMonth(),
-        nextWeek.getDate(),
+        startDate1.getFullYear(),
+        startDate1.getMonth(),
+        startDate1.getDate(),
         0,
       ).toISOString(),
     },
