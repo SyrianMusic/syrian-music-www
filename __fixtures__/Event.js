@@ -6,6 +6,7 @@ import { MusicalWork } from './MusicalWork';
 import { Node } from './Node';
 import { Performer, PerformerCollection } from './Performer';
 import { Paragraph, RichText, Text } from './RichText';
+import faker from '../utils/faker';
 
 export class ProgramHeader extends Node {
   constructor({ text = 'Program Header', ...props } = {}) {
@@ -18,7 +19,7 @@ export class ProgramHeader extends Node {
 export class Event extends Node {
   constructor({
     name = 'Event Name',
-    startDate = today.toISOString(),
+    startDate = faker.date.recent(365, today),
     location = 'Location',
     image = new Image({ width: 702, height: 257 }),
     summary = new RichText(),
