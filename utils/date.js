@@ -50,3 +50,33 @@ export const formatDate = (dateString) => {
   const { month, day, year } = formatDateParts(dateString);
   return `${month} ${day}, ${year}`;
 };
+
+export const formatDateRange = (startDate, endDate) => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  const isSameDate = start.toISOString() === end.toISOString();
+
+  if (isSameDate) {
+    return formatDate(start);
+  }
+
+  const separator = '–';
+
+  const hasSameYear = start.getFullYear() === end.getFullYear();
+
+  if (!hasSameYear) {
+    return `${formatDate(start)}${separator}${formatDate(end)}`;
+  }
+
+  const formattedStart = formatDateParts(start);
+  const formattedEnd = formatDateParts(end);
+
+  const hasSameMonth = start.getMonth() === end.getMonth();
+
+  if (!hasSameMonth) {
+    return `${formattedStart.month} ${formattedStart.day}${separator}${formattedEnd.month} ${formattedEnd.day}, ${formattedStart.year}`;
+  }
+
+  return `${formattedStart.month} ${formattedStart.day}${separator}${formattedEnd.day}, ${formattedStart.year}`;
+};
