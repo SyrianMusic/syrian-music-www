@@ -38,6 +38,16 @@ describe('formatDateTime', () => {
 });
 
 describe('formatDateRange', () => {
+  it('when there is no end date, then it returns the formatted start date', () => {
+    const startDate = new Date('1900-01-01').toISOString();
+    const endDate = null;
+    const expected = 'January 1, 1900';
+
+    const actual = formatDateRange(startDate, endDate);
+
+    expect(actual).toBe(expected);
+  });
+
   it('when the days, months, and years are the same, then it returns the formatted date', () => {
     const startDate = new Date('1900-01-01').toISOString();
     const endDate = new Date('1900-01-01').toISOString();

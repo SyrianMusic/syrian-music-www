@@ -1,3 +1,4 @@
+import faker from '../../../utils/faker';
 import {
   Composer,
   emptyEvent,
@@ -81,6 +82,12 @@ Default.args = {
 
 export const Empty = Template.bind({});
 Empty.args = emptyEvent;
+
+export const HasEndDate = Template.bind({});
+HasEndDate.args = {
+  ...Default.args,
+  endDate: faker.date.soon(14, Default.args.startDate).toISOString(),
+};
 
 export const TranscriptionAndTranslation = Template.bind({});
 TranscriptionAndTranslation.args = {

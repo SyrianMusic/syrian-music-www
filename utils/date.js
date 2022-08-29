@@ -52,14 +52,12 @@ export const formatDate = (dateString) => {
 };
 
 export const formatDateRange = (startDate, endDate) => {
+  if (!endDate || startDate === endDate) {
+    return formatDate(startDate);
+  }
+
   const start = new Date(startDate);
   const end = new Date(endDate);
-
-  const isSameDate = start.toISOString() === end.toISOString();
-
-  if (isSameDate) {
-    return formatDate(start);
-  }
 
   const separator = '–';
 
