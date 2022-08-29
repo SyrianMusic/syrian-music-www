@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import Image from '../../components/Image';
 import Typography from '../../components/Typography';
 import theme from '../../styles/theme';
-import { formatDateTime } from '../../utils/date';
+import { formatDateRange } from '../../utils/date';
 import { parseRichText } from '../../utils/text';
 
 const DEFAULT_CTA_TEXT = 'Get tickets';
 
 const UpcomingEvent = ({ className, event }) => {
-  const { image, location, name, startDate, summary, url, urlText } = event;
-  const formattedDate = formatDateTime(startDate);
+  const { image, location, name, startDate, endDate, summary, url, urlText } = event;
+  const formattedDate = formatDateRange(startDate, endDate);
 
   return (
     <div className={className}>
@@ -61,6 +61,7 @@ UpcomingEvent.propTypes = {
   event: PropTypes.shape({
     name: PropTypes.string,
     startDate: PropTypes.string.isRequired,
+    endDate: PropTypes.string,
     location: PropTypes.string,
     image: PropTypes.shape({
       url: PropTypes.string,
@@ -75,6 +76,7 @@ UpcomingEvent.propTypes = {
 
 UpcomingEvent.defaultProps = {
   className: undefined,
+  endDate: null,
 };
 
 UpcomingEvent.fragments = {
