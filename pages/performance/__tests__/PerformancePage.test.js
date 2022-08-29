@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { EventCollection, getFutureEvent, getPastEvent } from '../../../__fixtures__/Event';
+import { EventCollection, getFutureEvent } from '../../../__fixtures__/Event';
 import PerformancePage from '../PerformancePage';
 
 const queryUpcomingPerformancesSection = () =>
@@ -30,15 +30,5 @@ describe('PerformancePage', () => {
     render(<PerformancePage upcomingEvents={upcomingEvents} />);
 
     expect(screen.queryByText(futureEvent.name)).toBeInTheDocument();
-  });
-
-  it('when there is an upcoming event that is in the past (the app was built before the event had passed), then it does not display the event', () => {
-    const pastEvent = getPastEvent();
-    const upcomingEvents = new EventCollection({ events: [pastEvent] });
-
-    render(<PerformancePage upcomingEvents={upcomingEvents} />);
-
-    expect(queryUpcomingPerformancesSection()).not.toBeInTheDocument();
-    expect(screen.queryByText(pastEvent.name)).not.toBeInTheDocument();
   });
 });
