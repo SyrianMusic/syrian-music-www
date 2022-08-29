@@ -17,6 +17,7 @@ const fragments = {
       location
       name
       startDate
+      endDate
       summary {
         json
       }
@@ -35,6 +36,7 @@ const propTypes = {
     location: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     startDate: PropTypes.string.isRequired,
+    endDate: PropTypes.string,
     summary: PropTypes.shape({
       json: PropTypes.shape({}),
     }),
@@ -43,7 +45,7 @@ const propTypes = {
   }).isRequired,
 };
 
-const defaultProps = { className: undefined };
+const defaultProps = { className: undefined, endDate: null };
 
 const UpcomingEvent = ({ className, event }) => {
   const { image, location, name, startDate, summary, url, urlText } = event;

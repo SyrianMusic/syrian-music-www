@@ -1,73 +1,39 @@
-import { render, screen, within } from '@testing-library/react';
-import { mockDateNow, tomorrow, yesterday } from '../../../__fixtures__/date';
+import { render, screen } from '@testing-library/react';
+import faker from '../../../utils/faker';
 import { Event, EventCollection } from '../../../__fixtures__/Event';
 import PerformancePage from '../PerformancePage';
 
+const queryUpcomingPerformancesSection = () =>
+  screen.queryByText('Upcoming Performances', { exact: false });
+
 describe('PerformancePage', () => {
-  mockDateNow();
+  const futureEvent = new Event({ startDate: faker.date.future().toISOString() });
 
-  const eventName = 'Event name';
-
-  const getUpcomingEventsSection = () => {
-    const upcomingEvents = screen.queryByText('Upcoming Performances', { exact: false });
-    return upcomingEvents ? upcomingEvents.closest('section') : null;
-  };
-
-  const getUpcomingEvent = () => {
-    const upcomingEventsSection = getUpcomingEventsSection();
-    return upcomingEventsSection ? within(upcomingEventsSection).queryByText(eventName) : null;
-  };
-
-  describe('given that there is an upcoming performance', () => {
-    beforeEach(() => {
-      const upcomingEvent = new Event({ name: eventName, startDate: tomorrow.toISOString() });
-      const upcomingEvents = new EventCollection({ events: [upcomingEvent] });
-      render(<PerformancePage upcomingEvents={upcomingEvents} />);
+  it('when there is an upcoming event, then it displays the Upcoming Performances section', () => {
+    const upcomingEvents = new EventCollection({
+      events: [futureEvent],
     });
 
-    it('displays the upcoming performances section', () => {
-      const upcomingEventsSection = getUpcomingEventsSection();
-      expect(upcomingEventsSection).toBeInTheDocument();
-    });
+    render(<PerformancePage upcomingEvents={upcomingEvents} />);
 
-    it('displays the event information', () => {
-      const upcomingEvent = getUpcomingEvent();
-      expect(upcomingEvent).toBeInTheDocument();
-    });
+    expect(queryUpcomingPerformancesSection()).toBeInTheDocument();
   });
 
-  describe('given that there is not an upcoming performance', () => {
-    beforeEach(() => {
-      const upcomingEvents = new EventCollection({ events: [] });
-      render(<PerformancePage upcomingEvents={upcomingEvents} />);
-    });
+  it('when there are no upcoming events, then it does not display the Upcoming Performances section', () => {
+    const upcomingEvents = new EventCollection({ events: [] });
 
-    it('does not display the upcoming performances section', () => {
-      const upcomingEventsSection = getUpcomingEventsSection();
-      expect(upcomingEventsSection).toBe(null);
-    });
+    render(<PerformancePage upcomingEvents={upcomingEvents} />);
 
-    it('does not display the event information', () => {
-      const upcomingEvent = getUpcomingEvent();
-      expect(upcomingEvent).toBe(null);
-    });
+    expect(queryUpcomingPerformancesSection()).not.toBeInTheDocument();
   });
 
-  describe('given that the app was built before a performance that has now passed', () => {
-    beforeEach(() => {
-      const pastEvent = new Event({ name: eventName, startDate: yesterday.toISOString() });
-      const upcomingEvents = new EventCollection({ events: [pastEvent] });
-      render(<PerformancePage upcomingEvents={upcomingEvents} />);
+  it('when there is an upcoming event, then it displays the event', () => {
+    const upcomingEvents = new EventCollection({
+      events: [futureEvent],
     });
 
-    it('does not display the upcoming performances section', () => {
-      const upcomingEventsSection = getUpcomingEventsSection();
-      expect(upcomingEventsSection).toBe(null);
-    });
+    render(<PerformancePage upcomingEvents={upcomingEvents} />);
 
-    it('does not display the event information', () => {
-      const upcomingEvent = getUpcomingEvent();
-      expect(upcomingEvent).toBe(null);
-    });
+    expect(screen.queryByText(futureEvent.name)).toBeInTheDocument();
   });
 });

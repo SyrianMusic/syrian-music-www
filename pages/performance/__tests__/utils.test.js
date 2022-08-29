@@ -1,36 +1,51 @@
-import { getNextEvent, getUpcomingEvents } from '../utils';
-import { addDays, mockDateNow, nextWeek, tomorrow, yesterday } from '../../../__fixtures__/date';
+import faker from '../../../utils/faker';
 import { Event } from '../../../__fixtures__/Event';
+import { sortUpcomingEvents } from '../utils';
 
-describe('getUpcomingEvents', () => {
-  mockDateNow();
+describe('sortUpcomingEvents', () => {
+  const date1 = faker.date.future();
+  const date2 = faker.date.future(undefined, date1);
+  const date3 = faker.date.future(undefined, date2);
 
-  const nextEvent = new Event({ startDate: tomorrow.toISOString() });
+  it('when all events have no end date, then the events are sorted in chronological order (today > next year) by start date', () => {
+    const event1 = new Event({ startDate: date1.toISOString(), endDate: null });
+    const event2 = new Event({ startDate: date2.toISOString(), endDate: null });
+    const event3 = new Event({ startDate: date3.toISOString(), endDate: null });
 
-  it('filters out past events', () => {
-    const pastEvent = new Event({ startDate: yesterday.toISOString() });
-    const actual = getUpcomingEvents([pastEvent, nextEvent]);
-    expect(actual.length).toBe(1);
-    expect(actual[0]).toBe(nextEvent);
+    const actual = sortUpcomingEvents([event2, event3, event1]);
+
+    expect(actual[0]).toBe(event1);
+    expect(actual[1]).toBe(event2);
+    expect(actual[2]).toBe(event3);
   });
 
-  it('sorts the upcoming events', () => {
-    const nextEvent = new Event({ startDate: tomorrow.toISOString() });
-    const followingEvent = new Event({ startDate: nextWeek.toISOString() });
-    const actual = getUpcomingEvents([followingEvent, nextEvent]);
-    expect(actual[0]).toBe(nextEvent);
-    expect(actual[1]).toBe(followingEvent);
+  it('when an event has an end date and has started, then it is sorted by end date', () => {
+    const noEndDate1 = new Event({ startDate: date1.toISOString(), endDate: null });
+    const withEndDate = new Event({
+      startDate: faker.date.past().toISOString(),
+      endDate: faker.date.future(undefined, date3).toISOString(),
+    });
+    const noEndDate2 = new Event({ startDate: date3.toISOString(), endDate: null });
+
+    const actual = sortUpcomingEvents([noEndDate2, withEndDate, noEndDate1]);
+
+    expect(actual[0]).toBe(noEndDate1);
+    expect(actual[1]).toBe(noEndDate2);
+    expect(actual[2]).toBe(withEndDate);
   });
-});
 
-describe('getNextEvent', () => {
-  mockDateNow();
+  it('when an event has an end date but has not yet started, then it is sorted by start date', () => {
+    const noEndDate1 = new Event({ startDate: date1.toISOString(), endDate: null });
+    const withEndDate = new Event({
+      startDate: date2.toISOString(),
+      endDate: faker.date.future(undefined, date3).toISOString(),
+    });
+    const noEndDate2 = new Event({ startDate: date3.toISOString(), endDate: null });
 
-  const nextEvent = new Event({ startDate: tomorrow.toISOString() });
+    const actual = sortUpcomingEvents([noEndDate2, withEndDate, noEndDate1]);
 
-  it('returns the next event if there are later events', () => {
-    const laterEvent = new Event({ startDate: addDays(tomorrow, 1).toISOString() });
-    const actual = getNextEvent([laterEvent, nextEvent]);
-    expect(actual).toBe(nextEvent);
+    expect(actual[0]).toBe(noEndDate1);
+    expect(actual[1]).toBe(withEndDate);
+    expect(actual[2]).toBe(noEndDate2);
   });
 });

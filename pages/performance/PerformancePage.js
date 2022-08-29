@@ -14,7 +14,7 @@ import PastEvent from './PastEvent';
 import PastEventsList from './PastEventsList';
 import UpcomingEvent from './UpcomingEvent';
 import UpcomingEventsList from './UpcomingEventsList';
-import { getUpcomingEvents } from './utils';
+import { sortUpcomingEvents } from './utils';
 
 const pageConfig = config.nav.performance;
 
@@ -32,7 +32,11 @@ export const performancePageQuery = gql`
   ${UpcomingEvent.fragments.event}
   ${PastEvent.fragments.event}
   query performancePage($now: DateTime!) {
-    upcomingEvents: eventCollection(where: { startDate_gt: $now }) {
+    upcomingEvents: eventCollection(
+      where: { OR: [{ startDate_gt: $now }, { endDate_gt: $now }] }
+      order: [endDate_ASC, startDate_ASC]
+      limit: 3
+    ) {
       items {
         sys {
           id
@@ -61,7 +65,7 @@ const propTypes = {
 };
 
 const PerformancePage = (props) => {
-  const upcomingEvents = getUpcomingEvents(props.upcomingEvents?.items);
+  const upcomingEvents = sortUpcomingEvents(props.upcomingEvents?.items);
   const pastEvents = props.pastEvents?.items;
 
   const hasUpcomingEvents = upcomingEvents.length > 0;
