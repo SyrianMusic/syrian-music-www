@@ -133,6 +133,12 @@ DateRangeSameMonth.args = {
   events: [{ ...defaultEvent, ...getDateRange({ same: 'month' }) }],
 };
 
+export const DateRangeSameDay = Template.bind({});
+DateRangeSameDay.args = {
+  ...Default.args,
+  events: [{ ...defaultEvent, ...getDateRange({ same: 'day' }) }],
+};
+
 const defaultStartDate = new Date(defaultEvent.startDate);
 
 export const DateAM = Template.bind({});

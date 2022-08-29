@@ -76,5 +76,11 @@ export const formatDateRange = (startDate, endDate) => {
     return `${formattedStart.month} ${formattedStart.day}${separator}${formattedEnd.month} ${formattedEnd.day}, ${formattedStart.year}`;
   }
 
-  return `${formattedStart.month} ${formattedStart.day}${separator}${formattedEnd.day}, ${formattedStart.year}`;
+  const hasSameDate = start.getDate() === end.getDate();
+
+  if (!hasSameDate) {
+    return `${formattedStart.month} ${formattedStart.day}${separator}${formattedEnd.day}, ${formattedStart.year}`;
+  }
+
+  return formatDate(startDate);
 };

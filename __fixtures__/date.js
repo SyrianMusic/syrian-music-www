@@ -20,6 +20,10 @@ export const getDateRange = ({ same = null } = {}) => {
   let endDate;
 
   switch (same) {
+    case 'day':
+      startDate.setHours(20);
+      endDate = new Date(startDate).setHours(22);
+      break;
     case 'month':
       startDate = faker.date.soon(15, new Date(startDate.getFullYear(), startDate.getMonth(), 1));
       endDate = faker.date.between(

@@ -92,6 +92,9 @@ DateRangeSameYear.args = { ...Default.args, ...getDateRange({ same: 'year' }) };
 export const DateRangeSameMonth = Template.bind({});
 DateRangeSameMonth.args = { ...Default.args, ...getDateRange({ same: 'month' }) };
 
+export const DateRangeSameDay = Template.bind({});
+DateRangeSameDay.args = { ...Default.args, ...getDateRange({ same: 'day' }) };
+
 export const TranscriptionAndTranslation = Template.bind({});
 TranscriptionAndTranslation.args = {
   ...Default.args,
