@@ -23,6 +23,7 @@ export class Event extends Node {
     endDate = null,
     location = 'Location',
     image = new Image({ width: 702, height: 257 }),
+    slug = 'slug',
     summary = new RichText(),
     url = '#',
     urlText = 'Get tickets',
@@ -131,6 +132,7 @@ export class Event extends Node {
     this.endDate = endDate;
     this.location = location;
     this.image = image;
+    this.slug = slug;
     this.summary = summary;
     this.url = url;
     this.urlText = urlText;
@@ -202,3 +204,5 @@ export class EventCollection extends Collection {
     super({ items: events });
   }
 }
+
+export const emptyEventCollection = new EventCollection({ events: [] });

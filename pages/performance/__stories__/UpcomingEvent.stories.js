@@ -1,13 +1,7 @@
-import faker from '../../../utils/faker';
-import { today } from '../../../__fixtures__';
-import {
-  Event,
-  EventCollection,
-  quenchTheThirsty,
-  syrianOrnaments,
-} from '../../../__fixtures__/Event';
+import { Event, EventCollection } from '../../../__fixtures__/Event';
 import { pageParameters } from '../../__stories__/config';
 import UpcomingEvent from '../UpcomingEvent';
+import { upcomingEvents } from '../__fixtures__/events';
 import { PAGE_PATH } from './config';
 import { Default as PageDefault, Template as PageTemplate } from './PerformancePage.stories';
 
@@ -32,38 +26,21 @@ const Template = (args) => {
   return <PageTemplate {...pageArgs} />;
 };
 
-const startDate1 = faker.date.future(undefined, today);
-const startDate2 = faker.date.future(undefined, startDate1);
-const startDate3 = faker.date.future(undefined, startDate2);
-
 export const Default = Template.bind({});
 Default.args = {
-  events: [
-    {
-      ...syrianOrnaments,
-      startDate: startDate1.toISOString(),
-      image: {
-        width: 704,
-        height: 352,
-        url: 'https://via.placeholder.com/704x352',
-      },
-    },
-  ],
+  events: upcomingEvents.slice(0, 1),
 };
 
 export const MultipleEvents2 = Template.bind({});
 MultipleEvents2.args = {
   ...Default.args,
-  events: [...Default.args.events, { ...quenchTheThirsty, startDate: startDate2.toISOString() }],
+  events: upcomingEvents.slice(0, 2),
 };
 
 export const MultipleEvents3 = Template.bind({});
 MultipleEvents3.args = {
-  ...MultipleEvents2.args,
-  events: [
-    ...MultipleEvents2.args.events,
-    { ...quenchTheThirsty, name: 'Another Event', startDate: startDate3.toISOString() },
-  ],
+  ...Default.args,
+  events: upcomingEvents,
 };
 
 export const ImagePortrait = Template.bind({});
@@ -78,17 +55,6 @@ ImagePortrait.args = {
         height: 704,
         url: 'https://via.placeholder.com/352x704',
       },
-    },
-  ],
-};
-
-export const NoLocation = Template.bind({});
-NoLocation.args = {
-  ...Default.args,
-  events: [
-    {
-      ...Default.args.events[0],
-      location: null,
     },
   ],
 };
@@ -147,6 +113,8 @@ LongSummary.args = {
   ],
 };
 
+const testDate = new Date(upcomingEvents[0].startDate);
+
 export const DateAM = Template.bind({});
 DateAM.storyName = 'Date: AM';
 DateAM.args = {
@@ -155,9 +123,9 @@ DateAM.args = {
     {
       ...Default.args.events[0],
       startDate: new Date(
-        startDate1.getFullYear(),
-        startDate1.getMonth(),
-        startDate1.getDate(),
+        testDate.getFullYear(),
+        testDate.getMonth(),
+        testDate.getDate(),
         8,
       ).toISOString(),
     },
@@ -172,9 +140,9 @@ DatePM.args = {
     {
       ...Default.args.events[0],
       startDate: new Date(
-        startDate1.getFullYear(),
-        startDate1.getMonth(),
-        startDate1.getDate(),
+        testDate.getFullYear(),
+        testDate.getMonth(),
+        testDate.getDate(),
         8 + 12,
       ).toISOString(),
     },
@@ -189,9 +157,9 @@ DateMidnight.args = {
     {
       ...Default.args.events[0],
       startDate: new Date(
-        startDate1.getFullYear(),
-        startDate1.getMonth(),
-        startDate1.getDate(),
+        testDate.getFullYear(),
+        testDate.getMonth(),
+        testDate.getDate(),
         0,
       ).toISOString(),
     },
