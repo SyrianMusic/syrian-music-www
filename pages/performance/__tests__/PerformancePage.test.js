@@ -1,14 +1,18 @@
 import { render, screen } from '@testing-library/react';
-import { EventCollection, getFutureEvent } from '../../../__fixtures__/Event';
+import faker from '../../../utils/faker';
+import { Event, EventCollection } from '../../../__fixtures__/Event';
 import PerformancePage from '../PerformancePage';
 
 const queryUpcomingPerformancesSection = () =>
   screen.queryByText('Upcoming Performances', { exact: false });
 
 describe('PerformancePage', () => {
+  const futureEvent = new Event({ startDate: faker.date.future().toISOString() });
+
   it('when there is an upcoming event, then it displays the Upcoming Performances section', () => {
-    const futureEvent = getFutureEvent();
-    const upcomingEvents = new EventCollection({ events: [futureEvent] });
+    const upcomingEvents = new EventCollection({
+      events: [futureEvent],
+    });
 
     render(<PerformancePage upcomingEvents={upcomingEvents} />);
 
@@ -24,8 +28,9 @@ describe('PerformancePage', () => {
   });
 
   it('when there is an upcoming event, then it displays the event', () => {
-    const futureEvent = getFutureEvent();
-    const upcomingEvents = new EventCollection({ events: [futureEvent] });
+    const upcomingEvents = new EventCollection({
+      events: [futureEvent],
+    });
 
     render(<PerformancePage upcomingEvents={upcomingEvents} />);
 
