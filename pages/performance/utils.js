@@ -1,7 +1,13 @@
-export const removePastEvents = (events) => {
-  const now = new Date(Date.now());
-  return events.filter((event) => new Date(event.startDate) > now);
+export const isPastEvent = (event) => {
+  const hasStartDatePassed = new Date(event.startDate) < new Date(Date.now());
+
+  if (!event.endDate) return hasStartDatePassed;
+
+  const hasEndDatePassed = new Date(event.endDate) < new Date(Date.now());
+  return hasStartDatePassed && hasEndDatePassed;
 };
+
+export const removePastEvents = (events) => events.filter((event) => !isPastEvent(event));
 
 export const sortUpcomingEvents = (events) => {
   let upcomingEvents = [];

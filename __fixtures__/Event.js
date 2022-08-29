@@ -20,6 +20,7 @@ export class Event extends Node {
   constructor({
     name = faker.music.songName(),
     startDate = today.toISOString(),
+    endDate = null,
     location = 'Location',
     image = new Image({ width: 702, height: 257 }),
     summary = new RichText(),
@@ -127,6 +128,7 @@ export class Event extends Node {
     super(props);
     this.name = name;
     this.startDate = startDate;
+    this.endDate = endDate;
     this.location = location;
     this.image = image;
     this.summary = summary;
@@ -146,21 +148,26 @@ export const emptyEvent = new Event({
   acknowledgements: null,
 });
 
-export const getFutureEvent = ({ after, event = {}, hasEndDate = false, yearRange } = {}) => {
-  const futureDate = faker.date.future(yearRange, after);
+export const getFutureEvent = ({ after, event = {}, setEndDate = false, yearRange } = {}) => {
+  const startDate = faker.date.future(yearRange, after);
 
-  let endDate;
-  if (hasEndDate) {
-    endDate = faker.date.future(yearRange, futureDate);
+  let endDate = event.endDate;
+  if (setEndDate) {
+    endDate = faker.date.future(yearRange, startDate);
   }
 
-  return new Event({ ...event, startDate: futureDate.toISOString(), endDate });
+  return new Event({ ...event, startDate: startDate.toISOString(), endDate });
 };
 
-export const getPastEvent = (options = {}) => {
-  const { before, yearRange } = options;
-  const pastDate = faker.date.past(yearRange, before);
-  return new Event({ startDate: pastDate.toISOString() });
+export const getPastEvent = ({ before, event = {}, setEndDate = false, yearRange } = {}) => {
+  const startDate = faker.date.past(yearRange, before);
+
+  let endDate;
+  if (setEndDate) {
+    endDate = faker.date.future(yearRange, startDate);
+  }
+
+  return new Event({ ...event, startDate: startDate.toISOString(), endDate });
 };
 
 export const syrianOrnaments = new Event({

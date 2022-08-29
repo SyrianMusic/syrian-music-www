@@ -1,8 +1,49 @@
-import { getFutureEvent, getPastEvent } from '../../../__fixtures__/Event';
-import { removePastEvents, sortUpcomingEvents } from '../utils';
+import faker from '../../../utils/faker';
+import { Event, getFutureEvent, getPastEvent } from '../../../__fixtures__/Event';
+import { isPastEvent, removePastEvents, sortUpcomingEvents } from '../utils';
+
+const futureDate = faker.date.future().toISOString();
+const pastDate = faker.date.past().toISOString();
+
+describe('isPastEvent', () => {
+  it('when the event has not yet started, then it returns false', () => {
+    const event = new Event({ startDate: futureDate });
+
+    const actual = isPastEvent(event);
+
+    expect(actual).toBe(false);
+  });
+
+  it('when the event has already started but not yet ended, then it returns false', () => {
+    const event = new Event({ startDate: pastDate, endDate: futureDate });
+
+    const actual = isPastEvent(event);
+
+    expect(actual).toBe(false);
+  });
+
+  it('when the event has already started and has no end date, then it returns true', () => {
+    const event = new Event({ startDate: pastDate, endDate: null });
+
+    const actual = isPastEvent(event);
+
+    expect(actual).toBe(true);
+  });
+
+  it('when the event has already started and ended, then it returns true', () => {
+    const event = new Event({
+      startDate: pastDate,
+      endDate: faker.date.between(pastDate, new Date(Date.now())),
+    });
+
+    const actual = isPastEvent(event);
+
+    expect(actual).toBe(true);
+  });
+});
 
 describe('removePastEvents', () => {
-  it('when there are future and past events, then it removes the past events', () => {
+  it('when there are events with start dates in both the future and the past, then it removes the events with start dates in the past', () => {
     const pastEvent = getPastEvent();
     const futureEvent1 = getFutureEvent();
     const futureEvent2 = getFutureEvent();
@@ -14,7 +55,7 @@ describe('removePastEvents', () => {
     expect(actual).toContain(futureEvent2);
   });
 
-  it('when there are only future events, then it returns all the events', () => {
+  it('when there are only events with start dates in the future, then it returns all the events', () => {
     const futureEvent1 = getFutureEvent();
     const futureEvent2 = getFutureEvent();
     const futureEvent3 = getFutureEvent();
@@ -45,9 +86,9 @@ describe('removePastEvents', () => {
 
 describe('sortUpcomingEvents', () => {
   it('when there are only events without end dates, then it sorts the events in chronological order (now => next year)', () => {
-    const event1 = getFutureEvent({ hasEndDate: false });
-    const event2 = getFutureEvent({ after: event1.startDate, hasEndDate: false });
-    const event3 = getFutureEvent({ after: event2.startDate, hasEndDate: false });
+    const event1 = getFutureEvent({ setEndDate: false });
+    const event2 = getFutureEvent({ after: event1.startDate, setEndDate: false });
+    const event3 = getFutureEvent({ after: event2.startDate, setEndDate: false });
 
     const actual = sortUpcomingEvents([event2, event3, event1]);
 
