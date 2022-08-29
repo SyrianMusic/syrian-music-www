@@ -18,22 +18,12 @@ const getAdobeKey = () => {
   }
 };
 
-const now = () => {
-  switch (nodeEnv) {
-    case TEST:
-      return new Date(1900, 1, 2).valueOf();
-    default:
-      return Date.now();
-  }
-};
-
 const isProduction = nodeEnv === PRODUCTION;
 
 module.exports = {
   nodeEnv,
   isProduction,
   adobeKey: getAdobeKey(),
-  now,
   jwtClientSecret: process.env.JWT_CLIENT_SECRET,
   stripePublishableKey: isProduction ? process.env.STRIPE_KEY_LIVE : process.env.STRIPE_KEY_TEST,
 };

@@ -1,36 +1,16 @@
-import { getNextEvent, getUpcomingEvents } from '../utils';
-import { addDays, mockDateNow, nextWeek, tomorrow, yesterday } from '../../../__fixtures__/date';
-import { Event } from '../../../__fixtures__/Event';
+import { getFutureEvent } from '../../../__fixtures__/Event';
+import { sortUpcomingEvents } from '../utils';
 
-describe('getUpcomingEvents', () => {
-  mockDateNow();
+describe('sortUpcomingEvents', () => {
+  it('when there are only events without end dates, then it sorts the events in chronological order (now => next year)', () => {
+    const event1 = getFutureEvent({ setEndDate: false });
+    const event2 = getFutureEvent({ after: event1.startDate, setEndDate: false });
+    const event3 = getFutureEvent({ after: event2.startDate, setEndDate: false });
 
-  const nextEvent = new Event({ startDate: tomorrow.toISOString() });
+    const actual = sortUpcomingEvents([event2, event3, event1]);
 
-  it('filters out past events', () => {
-    const pastEvent = new Event({ startDate: yesterday.toISOString() });
-    const actual = getUpcomingEvents([pastEvent, nextEvent]);
-    expect(actual.length).toBe(1);
-    expect(actual[0]).toBe(nextEvent);
-  });
-
-  it('sorts the upcoming events', () => {
-    const nextEvent = new Event({ startDate: tomorrow.toISOString() });
-    const followingEvent = new Event({ startDate: nextWeek.toISOString() });
-    const actual = getUpcomingEvents([followingEvent, nextEvent]);
-    expect(actual[0]).toBe(nextEvent);
-    expect(actual[1]).toBe(followingEvent);
-  });
-});
-
-describe('getNextEvent', () => {
-  mockDateNow();
-
-  const nextEvent = new Event({ startDate: tomorrow.toISOString() });
-
-  it('returns the next event if there are later events', () => {
-    const laterEvent = new Event({ startDate: addDays(tomorrow, 1).toISOString() });
-    const actual = getNextEvent([laterEvent, nextEvent]);
-    expect(actual).toBe(nextEvent);
+    expect(actual[0]).toBe(event1);
+    expect(actual[1]).toBe(event2);
+    expect(actual[2]).toBe(event3);
   });
 });
