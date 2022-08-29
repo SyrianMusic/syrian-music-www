@@ -21,13 +21,3 @@ export const sortUpcomingEvents = (events) => {
 
   return upcomingEvents;
 };
-
-export const getNextEvent = (events) => {
-  let upcomingEvents = sortUpcomingEvents(events);
-
-  if (upcomingEvents.length > 0) {
-    return upcomingEvents[0];
-  }
-
-  return null;
-};

@@ -22,15 +22,3 @@ describe('sortUpcomingEvents', () => {
     expect(actual[1]).toBe(followingEvent);
   });
 });
-
-describe('getNextEvent', () => {
-  mockDateNow();
-
-  const nextEvent = new Event({ startDate: tomorrow.toISOString() });
-
-  it('returns the next event if there are later events', () => {
-    const laterEvent = new Event({ startDate: addDays(tomorrow, 1).toISOString() });
-    const actual = getNextEvent([laterEvent, nextEvent]);
-    expect(actual).toBe(nextEvent);
-  });
-});
