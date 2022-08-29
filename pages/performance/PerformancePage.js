@@ -44,7 +44,15 @@ export const performancePageQuery = gql`
         ...UpcomingEvent
       }
     }
-    pastEvents: eventCollection(where: { startDate_lt: $now }, order: [startDate_DESC]) {
+    pastEvents: eventCollection(
+      where: {
+        OR: [
+          { AND: [{ endDate_exists: false }, { startDate_lt: $now }] }
+          { AND: [{ endDate_exists: true }, { endDate_lt: $now }] }
+        ]
+      }
+      order: [startDate_DESC]
+    ) {
       items {
         sys {
           id
