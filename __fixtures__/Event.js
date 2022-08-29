@@ -146,6 +146,16 @@ export const emptyEvent = new Event({
   acknowledgements: null,
 });
 
+export const getFutureEvent = () => {
+  const futureDate = faker.date.future();
+  return new Event({ startDate: futureDate.toISOString() });
+};
+
+export const getPastEvent = () => {
+  const pastDate = faker.date.past();
+  return new Event({ startDate: pastDate.toISOString() });
+};
+
 export const syrianOrnaments = new Event({
   name: 'Syrian Ornaments',
   startDate: today.toISOString(),

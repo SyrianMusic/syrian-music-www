@@ -1,17 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import faker from '../../../utils/faker';
-import { Event, EventCollection } from '../../../__fixtures__/Event';
+import { EventCollection, getFutureEvent, getPastEvent } from '../../../__fixtures__/Event';
 import PerformancePage from '../PerformancePage';
-
-const getFutureEvent = () => {
-  const futureDate = faker.date.future();
-  return new Event({ startDate: futureDate.toISOString() });
-};
-
-const getPastEvent = () => {
-  const pastDate = faker.date.past();
-  return new Event({ startDate: pastDate.toISOString() });
-};
 
 const queryUpcomingPerformancesSection = () =>
   screen.queryByText('Upcoming Performances', { exact: false });
