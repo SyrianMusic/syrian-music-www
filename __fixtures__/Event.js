@@ -1,3 +1,4 @@
+import faker from '../utils/faker';
 import { Image } from './Asset';
 import { Collection } from './Collection';
 import { mahmoudAjjan, majdiAlAqili } from './Composer';
@@ -17,7 +18,7 @@ export class ProgramHeader extends Node {
 
 export class Event extends Node {
   constructor({
-    name = 'Event Name',
+    name = faker.music.songName(),
     startDate = today.toISOString(),
     location = 'Location',
     image = new Image({ width: 702, height: 257 }),
