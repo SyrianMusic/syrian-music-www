@@ -1,5 +1,4 @@
-import faker from '../../../utils/faker';
-import { Event, getFutureEvent, getPastEvent } from '../../../__fixtures__/Event';
+import { getFutureEvent, getPastEvent } from '../../../__fixtures__/Event';
 import { removePastEvents, sortUpcomingEvents } from '../utils';
 
 describe('removePastEvents', () => {
@@ -45,15 +44,15 @@ describe('removePastEvents', () => {
 });
 
 describe('sortUpcomingEvents', () => {
-  it('sorts the upcoming events', () => {
-    const nextDate = faker.date.future();
-    const followingDate = faker.date.future(undefined, nextDate);
-    const nextEvent = new Event({ startDate: nextDate.toISOString() });
-    const followingEvent = new Event({ startDate: followingDate.toISOString() });
+  it('when there are only events without end dates, then it sorts the events in chronological order (now => next year)', () => {
+    const event1 = getFutureEvent({ hasEndDate: false });
+    const event2 = getFutureEvent({ after: event1.startDate, hasEndDate: false });
+    const event3 = getFutureEvent({ after: event2.startDate, hasEndDate: false });
 
-    const actual = sortUpcomingEvents([followingEvent, nextEvent]);
+    const actual = sortUpcomingEvents([event2, event3, event1]);
 
-    expect(actual[0]).toBe(nextEvent);
-    expect(actual[1]).toBe(followingEvent);
+    expect(actual[0]).toBe(event1);
+    expect(actual[1]).toBe(event2);
+    expect(actual[2]).toBe(event3);
   });
 });

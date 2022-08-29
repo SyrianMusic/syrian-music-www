@@ -146,13 +146,20 @@ export const emptyEvent = new Event({
   acknowledgements: null,
 });
 
-export const getFutureEvent = () => {
-  const futureDate = faker.date.future();
-  return new Event({ startDate: futureDate.toISOString() });
+export const getFutureEvent = ({ after, event = {}, hasEndDate = false, yearRange } = {}) => {
+  const futureDate = faker.date.future(yearRange, after);
+
+  let endDate;
+  if (hasEndDate) {
+    endDate = faker.date.future(yearRange, futureDate);
+  }
+
+  return new Event({ ...event, startDate: futureDate.toISOString(), endDate });
 };
 
-export const getPastEvent = () => {
-  const pastDate = faker.date.past();
+export const getPastEvent = (options = {}) => {
+  const { before, yearRange } = options;
+  const pastDate = faker.date.past(yearRange, before);
   return new Event({ startDate: pastDate.toISOString() });
 };
 
