@@ -15,8 +15,9 @@ export const tomorrow = addDays(today, 1);
 export const nextWeek = addDays(today, 7);
 export const nextMonth = addMonths(today, 1);
 
-export const getDateRange = ({ same = null } = {}) => {
-  let startDate = faker.date.future(undefined, '2050-01-01');
+export const getDateRange = ({ same = null, past = false } = {}) => {
+  const startYear = past ? 1950 : 2050;
+  let startDate = faker.date.future(past ? 50 : undefined, `${startYear}-01-01`);
   let endDate;
 
   switch (same) {

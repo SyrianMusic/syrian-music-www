@@ -4,7 +4,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Typography from '../../components/Typography';
 import theme from '../../styles/theme';
-import { formatDateTime } from '../../utils/date';
+import { formatDateRange } from '../../utils/date';
 
 const DEFAULT_CTA_TEXT = 'Read more';
 
@@ -36,6 +36,7 @@ const fragments = {
       name
       slug
       startDate
+      endDate
     }
   `,
 };
@@ -50,14 +51,15 @@ const propTypes = {
     name: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     startDate: PropTypes.string.isRequired,
+    endDate: PropTypes.string,
   }).isRequired,
 };
 
 const defaultProps = { className: undefined };
 
 const PastEvent = ({ className, event }) => {
-  const { image, location, name, slug, startDate } = event;
-  const formattedDate = formatDateTime(startDate);
+  const { image, location, name, slug, startDate, endDate } = event;
+  const formattedDate = formatDateRange(startDate, endDate);
   const url = `/events/${slug}`;
 
   return (
@@ -93,7 +95,7 @@ const PastEvent = ({ className, event }) => {
           suppressHydrationWarning
           dateTime={startDate}
           as="time"
-          css={{ marginBottom: 0 }}
+          css={[truncatedStyle, { marginBottom: 0 }]}
           size="md">
           {formattedDate}
         </Typography>
