@@ -148,28 +148,6 @@ export const emptyEvent = new Event({
   acknowledgements: null,
 });
 
-export const getFutureEvent = ({ after, event = {}, setEndDate = false, yearRange } = {}) => {
-  const startDate = faker.date.future(yearRange, after);
-
-  let endDate = event.endDate;
-  if (setEndDate) {
-    endDate = faker.date.future(yearRange, startDate);
-  }
-
-  return new Event({ ...event, startDate: startDate.toISOString(), endDate });
-};
-
-export const getPastEvent = ({ before, event = {}, setEndDate = false, yearRange } = {}) => {
-  const startDate = faker.date.past(yearRange, before);
-
-  let endDate;
-  if (setEndDate) {
-    endDate = faker.date.future(yearRange, startDate);
-  }
-
-  return new Event({ ...event, startDate: startDate.toISOString(), endDate });
-};
-
 export const syrianOrnaments = new Event({
   name: 'Syrian Ornaments',
   startDate: today.toISOString(),

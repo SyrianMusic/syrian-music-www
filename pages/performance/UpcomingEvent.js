@@ -82,6 +82,7 @@ UpcomingEvent.fragments = {
     fragment UpcomingEvent on Event {
       name
       startDate
+      endDate
       location
       image {
         url
