@@ -1,8 +1,8 @@
-import faker from '../../../utils/faker';
 import {
   Composer,
   emptyEvent,
   Event,
+  getDateRange,
   mahmoudAjjan,
   MusicalWork,
   MusicalWorkCollection,
@@ -83,11 +83,14 @@ Default.args = {
 export const Empty = Template.bind({});
 Empty.args = emptyEvent;
 
-export const HasEndDate = Template.bind({});
-HasEndDate.args = {
-  ...Default.args,
-  endDate: faker.date.soon(14, Default.args.startDate).toISOString(),
-};
+export const DateRange = Template.bind({});
+DateRange.args = { ...Default.args, ...getDateRange() };
+
+export const DateRangeSameYear = Template.bind({});
+DateRangeSameYear.args = { ...Default.args, ...getDateRange({ same: 'year' }) };
+
+export const DateRangeSameMonth = Template.bind({});
+DateRangeSameMonth.args = { ...Default.args, ...getDateRange({ same: 'month' }) };
 
 export const TranscriptionAndTranslation = Template.bind({});
 TranscriptionAndTranslation.args = {

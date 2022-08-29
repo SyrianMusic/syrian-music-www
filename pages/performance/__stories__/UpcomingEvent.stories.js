@@ -1,5 +1,4 @@
-import faker from '../../../utils/faker';
-import { Event, EventCollection } from '../../../__fixtures__/';
+import { Event, EventCollection, getDateRange } from '../../../__fixtures__/';
 import { pageParameters } from '../../__stories__/config';
 import UpcomingEvent from '../UpcomingEvent';
 import { upcomingEvents } from '../__fixtures__/events';
@@ -116,49 +115,25 @@ LongSummary.args = {
   ],
 };
 
-const defaultStartDate = new Date(defaultEvent.startDate);
-
 export const DateRange = Template.bind({});
 DateRange.args = {
   ...Default.args,
-  events: [
-    {
-      ...defaultEvent,
-      endDate: faker.date
-        .future(undefined, new Date(defaultStartDate.getFullYear() + 1, 1, 1))
-        .toISOString(),
-    },
-  ],
+  events: [{ ...defaultEvent, ...getDateRange() }],
 };
 
 export const DateRangeSameYear = Template.bind({});
 DateRangeSameYear.args = {
   ...Default.args,
-  events: [
-    {
-      ...defaultEvent,
-      endDate: faker.date
-        .between(defaultStartDate, new Date(defaultStartDate.getFullYear(), 12, 31))
-        .toISOString(),
-    },
-  ],
+  events: [{ ...defaultEvent, ...getDateRange({ same: 'year' }) }],
 };
 
 export const DateRangeSameMonth = Template.bind({});
 DateRangeSameMonth.args = {
   ...Default.args,
-  events: [
-    {
-      ...defaultEvent,
-      endDate: faker.date
-        .between(
-          defaultStartDate,
-          new Date(defaultStartDate.getFullYear(), defaultStartDate.getMonth(), 30),
-        )
-        .toISOString(),
-    },
-  ],
+  events: [{ ...defaultEvent, ...getDateRange({ same: 'month' }) }],
 };
+
+const defaultStartDate = new Date(defaultEvent.startDate);
 
 export const DateAM = Template.bind({});
 DateAM.storyName = 'Date: AM';
@@ -167,7 +142,7 @@ DateAM.args = {
   events: [
     {
       ...defaultEvent,
-      startDate: new Date(
+      defaultStartDate: new Date(
         defaultStartDate.getFullYear(),
         defaultStartDate.getMonth(),
         defaultStartDate.getDate(),
@@ -184,7 +159,7 @@ DatePM.args = {
   events: [
     {
       ...defaultEvent,
-      startDate: new Date(
+      defaultStartDate: new Date(
         defaultStartDate.getFullYear(),
         defaultStartDate.getMonth(),
         defaultStartDate.getDate(),
@@ -201,7 +176,7 @@ DateMidnight.args = {
   events: [
     {
       ...defaultEvent,
-      startDate: new Date(
+      defaultStartDate: new Date(
         defaultStartDate.getFullYear(),
         defaultStartDate.getMonth(),
         defaultStartDate.getDate(),
