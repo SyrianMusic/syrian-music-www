@@ -102,7 +102,16 @@ export const linkStyles = {
   'a:active': linkStylesMap.active,
 };
 
-export const Typography = ({ className, css, children, as, size, textAlign, variant }) => {
+export const Typography = ({
+  className,
+  css,
+  children,
+  as,
+  size,
+  textAlign,
+  variant,
+  ...props
+}) => {
   let Component = theme.typography.body.tagName;
 
   if (as) {
@@ -131,7 +140,8 @@ export const Typography = ({ className, css, children, as, size, textAlign, vari
         },
         css,
       ]}
-      className={className}>
+      className={className}
+      {...props}>
       {children}
     </Component>
   );
