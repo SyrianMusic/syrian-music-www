@@ -8,7 +8,9 @@ const unauthorizedResponse = {
 };
 
 exports.handler = async function config(event = {}) {
-  const { headers = {} } = event;
+  const { headers = {}, httpMethod } = event;
+
+  if (httpMethod !== 'GET') return { statusCode: STATUS_CODES.METHOD_NOT_ALLOWED };
 
   if (!headers?.authorization) return unauthorizedResponse;
 
