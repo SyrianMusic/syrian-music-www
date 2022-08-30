@@ -30,7 +30,7 @@ exports.handler = async function config(event = {}) {
   }
 
   return {
-    statusCode: STATUS_CODES.OKAY,
+    statusCode: STATUS_CODES.OK,
     body: JSON.stringify({ stripePublishableKey: environment.stripePublishableKey }),
   };
 };
