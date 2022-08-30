@@ -18,12 +18,16 @@ export const nextMonth = addMonths(today, 1);
 export const getDateRange = ({ same = null, past = false } = {}) => {
   const startYear = past ? 1950 : 2050;
   let startDate = faker.date.future(past ? 50 : undefined, `${startYear}-01-01`);
-  let endDate;
+  let endDate = new Date(startDate);
 
   switch (same) {
-    case 'day':
+    case 'dayPeriod':
       startDate.setHours(20);
-      endDate = new Date(startDate).setHours(22);
+      endDate.setHours(22);
+      break;
+    case 'day':
+      startDate.setHours(11);
+      endDate.setHours(12);
       break;
     case 'month':
       startDate = faker.date.soon(15, new Date(startDate.getFullYear(), startDate.getMonth(), 1));

@@ -139,6 +139,13 @@ DateRangeSameDay.args = {
   events: [{ ...defaultEvent, ...getDateRange({ same: 'day' }) }],
 };
 
+export const DateRangeSameDayPeriod = Template.bind({});
+DateRangeSameDayPeriod.storyName = 'Date Range Same AM/PM';
+DateRangeSameDayPeriod.args = {
+  ...Default.args,
+  events: [{ ...defaultEvent, ...getDateRange({ same: 'dayPeriod' }) }],
+};
+
 const defaultStartDate = new Date(defaultEvent.startDate);
 
 export const DateAM = Template.bind({});

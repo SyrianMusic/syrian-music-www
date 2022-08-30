@@ -82,5 +82,13 @@ export const formatDateRange = (startDate, endDate) => {
     return `${formattedStart.month} ${formattedStart.day}${separator}${formattedEnd.day}, ${formattedStart.year}`;
   }
 
-  return formatDateTime(startDate);
+  if (formattedStart.hour === formattedEnd.hour) {
+    return formatDateTime(start);
+  }
+
+  if (formattedStart.dayPeriod === formattedEnd.dayPeriod) {
+    return `${formattedStart.hour}${separator}${formattedEnd.hour}${formattedStart.dayPeriod} ${formattedStart.month} ${formattedStart.day}, ${formattedStart.year}`;
+  }
+
+  return `${formattedStart.hour}${formattedStart.dayPeriod}${separator}${formattedEnd.hour}${formattedEnd.dayPeriod} ${formattedStart.month} ${formattedStart.day}, ${formattedStart.year}`;
 };
