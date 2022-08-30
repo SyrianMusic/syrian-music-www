@@ -23,7 +23,7 @@ describe('config', () => {
     jest.resetModules();
   });
 
-  it('when requested using any other HTTP method but GET, then it returns a 405 status code', async () => {
+  it('when HTTP method is not GET, then it returns a 405 status code', async () => {
     const res = await config({ httpMethod: 'POST' });
     expect(res.statusCode).toBe(405);
   });

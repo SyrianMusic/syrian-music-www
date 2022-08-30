@@ -16,6 +16,9 @@
 [dev]
   framework = "next"
 
+[functions]
+  node_bundler = "esbuild"
+
 [[redirects]]
   from = "http://syrianmusic.net"
   to = "https://syrianmusic.org"
