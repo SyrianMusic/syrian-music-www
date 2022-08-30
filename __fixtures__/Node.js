@@ -1,6 +1,8 @@
+import { v4 as uuidv4 } from 'uuid';
+
 class Sys {
-  constructor({ id = 'id' } = {}) {
-    this.id = id;
+  constructor({ id = null } = {}) {
+    this.id = id || uuidv4();
   }
 }
 
