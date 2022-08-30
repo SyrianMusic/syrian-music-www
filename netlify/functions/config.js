@@ -1,17 +1,16 @@
 const jwt = require('jsonwebtoken');
+const { STATUS_CODES } = require('../utils/http');
 const environment = require('../utils/environment');
 
 const unauthorizedResponse = {
-  statusCode: 401,
+  statusCode: STATUS_CODES.UNAUTHORIZED,
   body: JSON.stringify({ error: 'The request did not contain a valid authorization token.' }),
 };
 
 exports.handler = async function config(event = {}) {
   const { headers = {} } = event;
 
-  if (!headers?.authorization) {
-    return unauthorizedResponse;
-  }
+  if (!headers?.authorization) return unauthorizedResponse;
 
   const token = headers.authorization.replace('Bearer ', '');
 
@@ -23,13 +22,13 @@ exports.handler = async function config(event = {}) {
 
   if (!environment.stripePublishableKey) {
     return {
-      statusCode: 503,
+      statusCode: STATUS_CODES.SERVICE_UNAVAILABLE,
       body: JSON.stringify({ error: 'The Stripe publishable key is not set in this environment.' }),
     };
   }
 
   return {
-    statusCode: 200,
+    statusCode: STATUS_CODES.OKAY,
     body: JSON.stringify({ stripePublishableKey: environment.stripePublishableKey }),
   };
 };
