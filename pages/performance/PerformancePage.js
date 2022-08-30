@@ -14,7 +14,7 @@ import PastEvent from './PastEvent';
 import PastEventsList from './PastEventsList';
 import UpcomingEvent from './UpcomingEvent';
 import UpcomingEventsList from './UpcomingEventsList';
-import { sortUpcomingEvents } from './utils';
+import { sortPastEvents, sortUpcomingEvents } from './utils';
 
 const pageConfig = config.nav.performance;
 
@@ -74,7 +74,7 @@ const propTypes = {
 
 const PerformancePage = (props) => {
   const upcomingEvents = sortUpcomingEvents(props.upcomingEvents?.items);
-  const pastEvents = props.pastEvents?.items;
+  const pastEvents = sortPastEvents(props.pastEvents?.items);
 
   const hasUpcomingEvents = upcomingEvents.length > 0;
   const hasPastEvents = pastEvents?.length > 0;

@@ -36,6 +36,7 @@ const fragments = {
       name
       slug
       startDate
+      endDate
     }
   `,
 };
@@ -50,6 +51,7 @@ const propTypes = {
     name: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     startDate: PropTypes.string.isRequired,
+    endDate: PropTypes.string,
   }).isRequired,
 };
 
