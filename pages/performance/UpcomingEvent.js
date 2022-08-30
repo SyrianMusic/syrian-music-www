@@ -27,22 +27,24 @@ const fragments = {
   `,
 };
 
+export const eventPropShape = {
+  image: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+  location: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  startDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string,
+  summary: PropTypes.shape({
+    json: PropTypes.shape({}),
+  }),
+  url: PropTypes.string.isRequired,
+  urlText: PropTypes.string,
+};
+
 const propTypes = {
   className: PropTypes.string,
-  event: PropTypes.shape({
-    image: PropTypes.shape({
-      url: PropTypes.string.isRequired,
-    }).isRequired,
-    location: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    startDate: PropTypes.string.isRequired,
-    endDate: PropTypes.string,
-    summary: PropTypes.shape({
-      json: PropTypes.shape({}),
-    }),
-    url: PropTypes.string.isRequired,
-    urlText: PropTypes.string,
-  }).isRequired,
+  event: PropTypes.shape(eventPropShape).isRequired,
 };
 
 const defaultProps = { className: undefined, endDate: null };

@@ -10,9 +10,9 @@ import Video from '../../components/Video';
 import config from '../../config.yaml';
 import { gutterMarginStyles } from '../../styles/mixins';
 import theme from '../../styles/theme';
-import PastEvent from './PastEvent';
+import PastEvent, { eventPropShape as pastEventPropShape } from './PastEvent';
 import PastEventsList from './PastEventsList';
-import UpcomingEvent from './UpcomingEvent';
+import UpcomingEvent, { eventPropShape as upcomingEventPropShape } from './UpcomingEvent';
 import UpcomingEventsList from './UpcomingEventsList';
 import { sortPastEvents, sortUpcomingEvents } from './utils';
 
@@ -65,10 +65,10 @@ export const performancePageQuery = gql`
 
 const propTypes = {
   upcomingEvents: PropTypes.shape({
-    items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    items: PropTypes.arrayOf(PropTypes.shape(upcomingEventPropShape)).isRequired,
   }).isRequired,
   pastEvents: PropTypes.shape({
-    items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    items: PropTypes.arrayOf(PropTypes.shape(pastEventPropShape)).isRequired,
   }).isRequired,
 };
 
