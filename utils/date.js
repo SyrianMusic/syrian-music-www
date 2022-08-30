@@ -53,7 +53,7 @@ export const formatDate = (dateString) => {
 
 export const formatDateRange = (startDate, endDate) => {
   if (!endDate || startDate === endDate) {
-    return formatDate(startDate);
+    return formatDateTime(startDate);
   }
 
   const start = new Date(startDate);
@@ -82,5 +82,5 @@ export const formatDateRange = (startDate, endDate) => {
     return `${formattedStart.month} ${formattedStart.day}${separator}${formattedEnd.day}, ${formattedStart.year}`;
   }
 
-  return formatDate(startDate);
+  return formatDateTime(startDate);
 };
