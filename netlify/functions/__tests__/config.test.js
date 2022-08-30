@@ -11,7 +11,7 @@ jest.mock('../../utils/environment', () => ({
 
 const setupSuccessResponse = async () => {
   const token = jwt.sign({}, CLIENT_SECRET);
-  return await config({ headers: { authorization: `Bearer ${token}` } });
+  return await config({ headers: { authorization: `Bearer ${token}` }, httpMethod: 'GET' });
 };
 
 describe('config', () => {
@@ -21,6 +21,11 @@ describe('config', () => {
 
   afterAll(() => {
     jest.resetModules();
+  });
+
+  it('when requested using any other HTTP method but GET, then it returns a 405 status code', async () => {
+    const res = await config({ httpMethod: 'POST' });
+    expect(res.statusCode).toBe(405);
   });
 
   it('when given a valid JWT token, then it returns a 200 status code', async () => {
@@ -35,13 +40,13 @@ describe('config', () => {
   });
 
   it('when not given a JWT token, then it returns a 401 status code', async () => {
-    const res = await config();
+    const res = await config({ httpMethod: 'GET' });
     expect(res.statusCode).toBe(401);
   });
 
   it('when given an invalid JWT token, then it returns a 401 status code', async () => {
     const token = jwt.sign({}, 'invalidClientSecret');
-    const res = await config({ headers: { authorization: `Bearer ${token}` } });
+    const res = await config({ headers: { authorization: `Bearer ${token}` }, httpMethod: 'GET' });
     expect(res.statusCode).toBe(401);
   });
 });
