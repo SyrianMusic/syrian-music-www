@@ -4,7 +4,7 @@ import { handler as config } from '../config';
 const CLIENT_SECRET = 'clientSecret';
 const STRIPE_PUBLISHABLE_KEY = 'stripePublishableKey';
 
-jest.mock('../../../utils/environment', () => ({
+jest.mock('../../utils/environment', () => ({
   jwtClientSecret: CLIENT_SECRET,
   stripePublishableKey: STRIPE_PUBLISHABLE_KEY,
 }));

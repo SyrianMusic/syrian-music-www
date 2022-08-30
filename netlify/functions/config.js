@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const environment = require('../../utils/environment');
+const environment = require('../utils/environment');
 
 const unauthorizedResponse = {
   statusCode: 401,
