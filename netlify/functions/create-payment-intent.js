@@ -1,8 +1,9 @@
+import { withAuth } from '../utils/auth';
 import { STATUS_CODES } from '../utils/http';
 import logger from '../utils/logger';
 import stripe from '../utils/stripe';
 
-export const handler = async function createPaymentIntent(event = {}) {
+export const createPaymentIntent = async (event = {}) => {
   const { httpMethod } = event;
   if (httpMethod !== 'POST') return { statusCode: STATUS_CODES.METHOD_NOT_ALLOWED };
 
@@ -52,3 +53,5 @@ export const handler = async function createPaymentIntent(event = {}) {
     };
   }
 };
+
+export const handler = withAuth(createPaymentIntent);

@@ -1,5 +1,6 @@
 import faker from '../../../utils/faker';
 import stripe from '../../utils/stripe';
+import { testAuth, validAuthHeaders } from '../../utils/__helpers__/auth';
 import { handler as createPaymentIntent } from '../create-payment-intent';
 import StripeAuthenticationError from '../__fixtures__/StripeAuthenticationError';
 import StripeInvalidRequestError from '../__fixtures__/StripeInvalidRequestError';
@@ -7,12 +8,11 @@ import StripeInvalidRequestError from '../__fixtures__/StripeInvalidRequestError
 jest.mock('../../utils/logger');
 jest.mock('../../utils/stripe');
 
-const Request = ({ httpMethod = 'POST', body = { amount: 0.5 } } = {}) => {
-  return Object.freeze({
-    httpMethod,
-    body: JSON.stringify(body),
-  });
-};
+const Request = ({ httpMethod = 'POST', body = { amount: 0.5 } } = {}) => ({
+  headers: validAuthHeaders,
+  httpMethod,
+  body: JSON.stringify(body),
+});
 
 describe('create-payment-intent', () => {
   it('responds with the Stripe client secret', async () => {
@@ -81,4 +81,6 @@ describe('create-payment-intent', () => {
     const { error } = JSON.parse(res.body);
     expect(error.message).toBe('The Stripe secret key is not set in this environment.');
   });
+
+  testAuth(createPaymentIntent, Request());
 });
