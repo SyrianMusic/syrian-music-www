@@ -3,14 +3,55 @@ import PropTypes from 'prop-types';
 import Image from '../../components/Image';
 import Typography from '../../components/Typography';
 import theme from '../../styles/theme';
-import { formatDateTime } from '../../utils/date';
+import { formatDateRange } from '../../utils/date';
 import { parseRichText } from '../../utils/text';
 
 const DEFAULT_CTA_TEXT = 'Get tickets';
 
+const fragments = {
+  event: gql`
+    fragment UpcomingEvent on Event {
+      image {
+        url
+      }
+      location
+      name
+      startDate
+      endDate
+      summary {
+        json
+      }
+      url
+      urlText
+    }
+  `,
+};
+
+export const eventPropShape = {
+  image: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+  location: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  startDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string,
+  summary: PropTypes.shape({
+    json: PropTypes.shape({}),
+  }),
+  url: PropTypes.string.isRequired,
+  urlText: PropTypes.string,
+};
+
+const propTypes = {
+  className: PropTypes.string,
+  event: PropTypes.shape(eventPropShape).isRequired,
+};
+
+const defaultProps = { className: undefined, endDate: null };
+
 const UpcomingEvent = ({ className, event }) => {
-  const { image, location, name, startDate, summary, url, urlText } = event;
-  const formattedDate = formatDateTime(startDate);
+  const { image, location, name, startDate, endDate, summary, url, urlText } = event;
+  const formattedDate = formatDateRange(startDate, endDate);
 
   return (
     <div className={className}>
@@ -35,7 +76,9 @@ const UpcomingEvent = ({ className, event }) => {
           {name}
         </Typography>
         <Typography>
-          {formattedDate}
+          <time suppressHydrationWarning dateTime={startDate}>
+            {formattedDate}
+          </time>
           {location && ` | ${location}`}
         </Typography>
         {parseRichText(summary.json, null, {
@@ -55,44 +98,8 @@ const UpcomingEvent = ({ className, event }) => {
   );
 };
 
-UpcomingEvent.propTypes = {
-  className: PropTypes.string,
-  // TODO: create typings either with prop types or typescript
-  event: PropTypes.shape({
-    name: PropTypes.string,
-    startDate: PropTypes.string.isRequired,
-    location: PropTypes.string,
-    image: PropTypes.shape({
-      url: PropTypes.string,
-    }),
-    url: PropTypes.string.isRequired,
-    urlText: PropTypes.string,
-    summary: PropTypes.shape({
-      json: PropTypes.shape({}),
-    }),
-  }).isRequired,
-};
-
-UpcomingEvent.defaultProps = {
-  className: undefined,
-};
-
-UpcomingEvent.fragments = {
-  event: gql`
-    fragment UpcomingEvent on Event {
-      name
-      startDate
-      location
-      image {
-        url
-      }
-      url
-      urlText
-      summary {
-        json
-      }
-    }
-  `,
-};
+UpcomingEvent.propTypes = propTypes;
+UpcomingEvent.defaultProps = defaultProps;
+UpcomingEvent.fragments = fragments;
 
 export default UpcomingEvent;

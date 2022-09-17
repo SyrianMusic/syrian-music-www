@@ -8,11 +8,13 @@ import {
   Text,
 } from '../../../../__fixtures__';
 import App from '../../../_app.page';
+import { pageParameters } from '../../../__stories__/config';
 import TranscriptionPage from '../TranscriptionPage';
 
 export default {
   title: 'Pages/Transcription',
   component: TranscriptionPage,
+  parameters: pageParameters,
 };
 
 const Template = (args) => <App Component={TranscriptionPage} pageProps={args} />;

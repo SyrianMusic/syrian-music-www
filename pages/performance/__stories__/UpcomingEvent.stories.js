@@ -1,9 +1,9 @@
+import { Event, EventCollection, getDateRange } from '../../../__fixtures__/';
+import { pageParameters } from '../../__stories__/config';
 import UpcomingEvent from '../UpcomingEvent';
-import { Event, EventCollection } from '../../../__fixtures__/Event';
-import { Template as PageTemplate, Default as PageDefault } from './PerformancePage.stories';
+import { upcomingEvents } from '../__fixtures__/events';
 import { PAGE_PATH } from './config';
-import { nextWeek, nextMonth } from '../../../__fixtures__/date';
-import { syrianOrnaments, quenchTheThirsty } from '../../../__fixtures__/Event';
+import { Default as PageDefault, Template as PageTemplate } from './PerformancePage.stories';
 
 export default {
   title: PAGE_PATH + '/UpcomingEvent',
@@ -13,6 +13,7 @@ export default {
       control: { type: null },
     },
   },
+  parameters: pageParameters,
 };
 
 const Template = (args) => {
@@ -25,34 +26,23 @@ const Template = (args) => {
   return <PageTemplate {...pageArgs} />;
 };
 
+const defaultEvent = upcomingEvents[0];
+
 export const Default = Template.bind({});
 Default.args = {
-  events: [
-    {
-      ...syrianOrnaments,
-      startDate: nextWeek.toISOString(),
-      image: {
-        width: 704,
-        height: 352,
-        url: 'https://via.placeholder.com/704x352',
-      },
-    },
-  ],
+  events: [defaultEvent],
 };
 
 export const MultipleEvents2 = Template.bind({});
 MultipleEvents2.args = {
   ...Default.args,
-  events: [...Default.args.events, { ...quenchTheThirsty, startDate: nextMonth.toISOString() }],
+  events: upcomingEvents.slice(0, 2),
 };
 
 export const MultipleEvents3 = Template.bind({});
 MultipleEvents3.args = {
-  ...MultipleEvents2.args,
-  events: [
-    ...MultipleEvents2.args.events,
-    { ...quenchTheThirsty, name: 'Another Event', startDate: nextMonth.toISOString() },
-  ],
+  ...Default.args,
+  events: upcomingEvents,
 };
 
 export const ImagePortrait = Template.bind({});
@@ -61,7 +51,7 @@ ImagePortrait.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
+      ...defaultEvent,
       image: {
         width: 352,
         height: 704,
@@ -71,23 +61,12 @@ ImagePortrait.args = {
   ],
 };
 
-export const NoLocation = Template.bind({});
-NoLocation.args = {
-  ...Default.args,
-  events: [
-    {
-      ...Default.args.events[0],
-      location: null,
-    },
-  ],
-};
-
 export const NoSummary = Template.bind({});
 NoSummary.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
+      ...defaultEvent,
       summary: {
         json: {
           data: {},
@@ -130,11 +109,44 @@ LongSummary.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
+      ...defaultEvent,
       summary: getLongSummary(),
     },
   ],
 };
+
+export const DateRange = Template.bind({});
+DateRange.args = {
+  ...Default.args,
+  events: [{ ...defaultEvent, ...getDateRange() }],
+};
+
+export const DateRangeSameYear = Template.bind({});
+DateRangeSameYear.args = {
+  ...Default.args,
+  events: [{ ...defaultEvent, ...getDateRange({ same: 'year' }) }],
+};
+
+export const DateRangeSameMonth = Template.bind({});
+DateRangeSameMonth.args = {
+  ...Default.args,
+  events: [{ ...defaultEvent, ...getDateRange({ same: 'month' }) }],
+};
+
+export const DateRangeSameDay = Template.bind({});
+DateRangeSameDay.args = {
+  ...Default.args,
+  events: [{ ...defaultEvent, ...getDateRange({ same: 'day' }) }],
+};
+
+export const DateRangeSameDayPeriod = Template.bind({});
+DateRangeSameDayPeriod.storyName = 'Date Range Same AM/PM';
+DateRangeSameDayPeriod.args = {
+  ...Default.args,
+  events: [{ ...defaultEvent, ...getDateRange({ same: 'dayPeriod' }) }],
+};
+
+const defaultStartDate = new Date(defaultEvent.startDate);
 
 export const DateAM = Template.bind({});
 DateAM.storyName = 'Date: AM';
@@ -142,11 +154,11 @@ DateAM.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
-      startDate: new Date(
-        nextWeek.getFullYear(),
-        nextWeek.getMonth(),
-        nextWeek.getDate(),
+      ...defaultEvent,
+      defaultStartDate: new Date(
+        defaultStartDate.getFullYear(),
+        defaultStartDate.getMonth(),
+        defaultStartDate.getDate(),
         8,
       ).toISOString(),
     },
@@ -159,11 +171,11 @@ DatePM.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
-      startDate: new Date(
-        nextWeek.getFullYear(),
-        nextWeek.getMonth(),
-        nextWeek.getDate(),
+      ...defaultEvent,
+      defaultStartDate: new Date(
+        defaultStartDate.getFullYear(),
+        defaultStartDate.getMonth(),
+        defaultStartDate.getDate(),
         8 + 12,
       ).toISOString(),
     },
@@ -176,11 +188,11 @@ DateMidnight.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
-      startDate: new Date(
-        nextWeek.getFullYear(),
-        nextWeek.getMonth(),
-        nextWeek.getDate(),
+      ...defaultEvent,
+      defaultStartDate: new Date(
+        defaultStartDate.getFullYear(),
+        defaultStartDate.getMonth(),
+        defaultStartDate.getDate(),
         0,
       ).toISOString(),
     },

@@ -1,26 +1,42 @@
 import { gql } from '@apollo/client';
-import PropTypes from 'prop-types';
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 import Image from '../../components/Image';
 import Rule from '../../components/Rule';
 import SiteLayout from '../../components/SiteLayout';
 import Title from '../../components/Title';
 import Typography, { SectionHeader } from '../../components/Typography';
-import config from '../../config.yaml';
-import { gutters } from '../../styles/mixins';
-import theme from '../../styles/theme';
-import UpcomingEvent from './UpcomingEvent';
-import UpcomingEventsList from './UpcomingEventsList';
-import { getUpcomingEvents } from './utils';
 import Video from '../../components/Video';
+import config from '../../config.yaml';
+import { gutterMarginStyles } from '../../styles/mixins';
+import theme from '../../styles/theme';
+import PastEvent, { eventPropShape as pastEventPropShape } from './PastEvent';
+import PastEventsList from './PastEventsList';
+import UpcomingEvent, { eventPropShape as upcomingEventPropShape } from './UpcomingEvent';
+import UpcomingEventsList from './UpcomingEventsList';
+import { sortPastEvents, sortUpcomingEvents } from './utils';
 
 const pageConfig = config.nav.performance;
 
+const Section = styled.section([
+  gutterMarginStyles,
+  {
+    marginBottom: theme.spacing.get(32),
+    [theme.mq.mobileToDesktop]: {
+      marginBottom: theme.spacing.get(56),
+    },
+  },
+]);
+
 export const performancePageQuery = gql`
   ${UpcomingEvent.fragments.event}
+  ${PastEvent.fragments.event}
   query performancePage($now: DateTime!) {
-    upcomingEvents: eventCollection(where: { startDate_gt: $now }) {
+    upcomingEvents: eventCollection(
+      where: { OR: [{ startDate_gt: $now }, { endDate_gt: $now }] }
+      order: [endDate_ASC, startDate_ASC]
+      limit: 3
+    ) {
       items {
         sys {
           id
@@ -28,32 +44,46 @@ export const performancePageQuery = gql`
         ...UpcomingEvent
       }
     }
+    pastEvents: eventCollection(
+      where: {
+        OR: [
+          { AND: [{ endDate_exists: false }, { startDate_lt: $now }] }
+          { AND: [{ endDate_exists: true }, { endDate_lt: $now }] }
+        ]
+      }
+      order: [startDate_DESC]
+    ) {
+      items {
+        sys {
+          id
+        }
+        ...PastEvent
+      }
+    }
   }
 `;
 
-const Section = styled.section([
-  {
-    marginBottom: theme.spacing.get(32),
-    [theme.mq.mobileToDesktop]: {
-      marginBottom: theme.spacing.get(56),
-    },
-  },
-  css`
-    ${gutters.margin.mobile};
-    ${theme.mq.mobileToDesktop} {
-      ${gutters.margin.desktop};
-    }
-  `,
-]);
+const propTypes = {
+  upcomingEvents: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.shape(upcomingEventPropShape)).isRequired,
+  }).isRequired,
+  pastEvents: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.shape(pastEventPropShape)).isRequired,
+  }).isRequired,
+};
 
 const PerformancePage = (props) => {
-  const upcomingEvents = getUpcomingEvents(props.upcomingEvents?.items);
+  const upcomingEvents = sortUpcomingEvents(props.upcomingEvents?.items);
+  const pastEvents = sortPastEvents(props.pastEvents?.items);
+
+  const hasUpcomingEvents = upcomingEvents.length > 0;
+  const hasPastEvents = pastEvents?.length > 0;
 
   return (
     <SiteLayout pathname={pageConfig.href}>
       <Title>Performance</Title>
 
-      {upcomingEvents.length > 0 && (
+      {hasUpcomingEvents && (
         <Section id="upcoming-performances" data-testid="upcoming-performances">
           <SectionHeader
             as="h1"
@@ -66,6 +96,25 @@ const PerformancePage = (props) => {
           </SectionHeader>
           <UpcomingEventsList upcomingEvents={upcomingEvents} />
         </Section>
+      )}
+
+      {hasPastEvents && (
+        <Section>
+          <SectionHeader
+            as="h1"
+            css={{
+              marginBottom: theme.spacing.get(24),
+              [theme.mq.mobileToDesktop]: { marginBottom: 0 },
+            }}>
+            Previous <br css={{ [theme.mq.mobileToDesktop]: { display: 'none' } }} />
+            Performances
+          </SectionHeader>
+          <PastEventsList pastEvents={pastEvents} />
+        </Section>
+      )}
+
+      {(hasUpcomingEvents || hasPastEvents) && (
+        <Rule color={Rule.colors.accent} css={gutterMarginStyles} />
       )}
 
       <Section>
@@ -150,10 +199,6 @@ const PerformancePage = (props) => {
   );
 };
 
-PerformancePage.propTypes = {
-  upcomingEvents: PropTypes.shape({
-    items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  }).isRequired,
-};
+PerformancePage.propTypes = propTypes;
 
 export default PerformancePage;

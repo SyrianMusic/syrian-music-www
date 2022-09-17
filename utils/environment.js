@@ -4,7 +4,6 @@ const DEVELOPMENT = 'development';
 const TEST = 'test';
 
 const nodeEnv = process.env.NEXT_PUBLIC_NODE_ENV || process.env.NODE_ENV;
-export const isProduction = nodeEnv === PRODUCTION;
 
 const getAdobeKey = () => {
   switch (nodeEnv) {
@@ -19,19 +18,12 @@ const getAdobeKey = () => {
   }
 };
 
-const now = () => {
-  switch (nodeEnv) {
-    case TEST:
-      return new Date(1900, 1, 2).valueOf();
-    default:
-      return Date.now();
-  }
-};
+const isProduction = nodeEnv === PRODUCTION;
 
 export default {
   nodeEnv,
   isProduction,
   adobeKey: getAdobeKey(),
+  jwtClientSecret: process.env.JWT_CLIENT_SECRET,
   stripeKey: isProduction ? process.env.STRIPE_KEY_PRD : process.env.STRIPE_KEY_TEST,
-  now,
 };

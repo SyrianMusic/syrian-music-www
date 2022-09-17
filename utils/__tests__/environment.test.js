@@ -1,3 +1,10 @@
+const NODE_ENVS = {
+  PRODUCTION: 'production',
+  PREVIEW: 'preview',
+  DEVELOPMENT: 'development',
+  TEST: 'test',
+};
+
 describe('environment', () => {
   let environment;
   let originalEnv;
@@ -117,5 +124,21 @@ describe('environment', () => {
     it('sets adobeKey', () => {
       expect(environment.adobeKey).toBe(null);
     });
+  });
+
+  describe('jwtClientSecret', () => {
+    const JWT_CLIENT_SECRET = 'JWT_CLIENT_SECRET';
+
+    it.each(Object.values(NODE_ENVS))(
+      'when the NODE_ENV is "%s", then it is set to JWT_CLIENT_SECRET',
+      (nodeEnv) => {
+        process.env.JWT_CLIENT_SECRET = JWT_CLIENT_SECRET;
+        process.env.NODE_ENV = nodeEnv;
+        jest.isolateModules(() => {
+          environment = require('../environment').default;
+        });
+        expect(environment.jwtClientSecret).toBe(JWT_CLIENT_SECRET);
+      },
+    );
   });
 });

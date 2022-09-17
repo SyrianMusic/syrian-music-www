@@ -1,3 +1,4 @@
+import faker from '../utils/faker';
 import { Image } from './Asset';
 import { Collection } from './Collection';
 import { mahmoudAjjan, majdiAlAqili } from './Composer';
@@ -17,10 +18,12 @@ export class ProgramHeader extends Node {
 
 export class Event extends Node {
   constructor({
-    name = 'Event Name',
+    name = faker.music.songName(),
     startDate = today.toISOString(),
+    endDate = null,
     location = 'Location',
     image = new Image({ width: 702, height: 257 }),
+    slug = 'slug',
     summary = new RichText(),
     url = '#',
     urlText = 'Get tickets',
@@ -126,8 +129,10 @@ export class Event extends Node {
     super(props);
     this.name = name;
     this.startDate = startDate;
+    this.endDate = endDate;
     this.location = location;
     this.image = image;
+    this.slug = slug;
     this.summary = summary;
     this.url = url;
     this.urlText = urlText;
@@ -199,3 +204,5 @@ export class EventCollection extends Collection {
     super({ items: events });
   }
 }
+
+export const emptyEventCollection = new EventCollection({ events: [] });
