@@ -6,7 +6,7 @@ import SiteLayout from '../../../components/SiteLayout';
 import Title from '../../../components/Title';
 import Typography, { SectionHeader } from '../../../components/Typography';
 import theme from '../../../styles/theme';
-import { formatDate } from '../../../utils/date';
+import { formatDateRange } from '../../../utils/date';
 import logger from '../../../utils/logger';
 import { EM_DASH, parseRichText } from '../../../utils/text';
 import Biography from './Biography';
@@ -48,6 +48,7 @@ export const eventPageQuery = gql`
       }
       name
       startDate
+      endDate
       image {
         ...Image
       }
@@ -103,6 +104,7 @@ const propTypes = {
   }),
   name: PropTypes.string.isRequired,
   startDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string,
   programEnglish: PropTypes.shape({
     items: PropTypes.arrayOf(PropTypes.shape({})),
   }),
@@ -187,6 +189,7 @@ const EventPage = ({
   name,
   performers,
   startDate,
+  endDate,
 }) => {
   const program = transformProgram(programEnglish, programArabic);
   const hasProgram = program?.items.length > 0;
@@ -237,7 +240,7 @@ const EventPage = ({
           {name}
         </Typography>
 
-        <Typography textAlign="center">{formatDate(new Date(startDate))}</Typography>
+        <Typography textAlign="center">{formatDateRange(startDate, endDate)}</Typography>
 
         <Image
           css={{

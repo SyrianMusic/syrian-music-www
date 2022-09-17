@@ -2,6 +2,7 @@ import {
   Composer,
   emptyEvent,
   Event,
+  getDateRange,
   mahmoudAjjan,
   MusicalWork,
   MusicalWorkCollection,
@@ -81,6 +82,22 @@ Default.args = {
 
 export const Empty = Template.bind({});
 Empty.args = emptyEvent;
+
+export const DateRange = Template.bind({});
+DateRange.args = { ...Default.args, ...getDateRange() };
+
+export const DateRangeSameYear = Template.bind({});
+DateRangeSameYear.args = { ...Default.args, ...getDateRange({ same: 'year' }) };
+
+export const DateRangeSameMonth = Template.bind({});
+DateRangeSameMonth.args = { ...Default.args, ...getDateRange({ same: 'month' }) };
+
+export const DateRangeSameDay = Template.bind({});
+DateRangeSameDay.args = { ...Default.args, ...getDateRange({ same: 'day' }) };
+
+export const DateRangeSameDayPeriod = Template.bind({});
+DateRangeSameDayPeriod.storyName = 'Date Range Same AM/PM';
+DateRangeSameDayPeriod.args = { ...Default.args, ...getDateRange({ same: 'dayPeriod' }) };
 
 export const TranscriptionAndTranslation = Template.bind({});
 TranscriptionAndTranslation.args = {

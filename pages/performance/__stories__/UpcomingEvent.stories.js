@@ -1,4 +1,4 @@
-import { Event, EventCollection } from '../../../__fixtures__/Event';
+import { Event, EventCollection, getDateRange } from '../../../__fixtures__/';
 import { pageParameters } from '../../__stories__/config';
 import UpcomingEvent from '../UpcomingEvent';
 import { upcomingEvents } from '../__fixtures__/events';
@@ -26,9 +26,11 @@ const Template = (args) => {
   return <PageTemplate {...pageArgs} />;
 };
 
+const defaultEvent = upcomingEvents[0];
+
 export const Default = Template.bind({});
 Default.args = {
-  events: upcomingEvents.slice(0, 1),
+  events: [defaultEvent],
 };
 
 export const MultipleEvents2 = Template.bind({});
@@ -49,7 +51,7 @@ ImagePortrait.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
+      ...defaultEvent,
       image: {
         width: 352,
         height: 704,
@@ -64,7 +66,7 @@ NoSummary.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
+      ...defaultEvent,
       summary: {
         json: {
           data: {},
@@ -107,13 +109,44 @@ LongSummary.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
+      ...defaultEvent,
       summary: getLongSummary(),
     },
   ],
 };
 
-const testDate = new Date(upcomingEvents[0].startDate);
+export const DateRange = Template.bind({});
+DateRange.args = {
+  ...Default.args,
+  events: [{ ...defaultEvent, ...getDateRange() }],
+};
+
+export const DateRangeSameYear = Template.bind({});
+DateRangeSameYear.args = {
+  ...Default.args,
+  events: [{ ...defaultEvent, ...getDateRange({ same: 'year' }) }],
+};
+
+export const DateRangeSameMonth = Template.bind({});
+DateRangeSameMonth.args = {
+  ...Default.args,
+  events: [{ ...defaultEvent, ...getDateRange({ same: 'month' }) }],
+};
+
+export const DateRangeSameDay = Template.bind({});
+DateRangeSameDay.args = {
+  ...Default.args,
+  events: [{ ...defaultEvent, ...getDateRange({ same: 'day' }) }],
+};
+
+export const DateRangeSameDayPeriod = Template.bind({});
+DateRangeSameDayPeriod.storyName = 'Date Range Same AM/PM';
+DateRangeSameDayPeriod.args = {
+  ...Default.args,
+  events: [{ ...defaultEvent, ...getDateRange({ same: 'dayPeriod' }) }],
+};
+
+const defaultStartDate = new Date(defaultEvent.startDate);
 
 export const DateAM = Template.bind({});
 DateAM.storyName = 'Date: AM';
@@ -121,11 +154,11 @@ DateAM.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
-      startDate: new Date(
-        testDate.getFullYear(),
-        testDate.getMonth(),
-        testDate.getDate(),
+      ...defaultEvent,
+      defaultStartDate: new Date(
+        defaultStartDate.getFullYear(),
+        defaultStartDate.getMonth(),
+        defaultStartDate.getDate(),
         8,
       ).toISOString(),
     },
@@ -138,11 +171,11 @@ DatePM.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
-      startDate: new Date(
-        testDate.getFullYear(),
-        testDate.getMonth(),
-        testDate.getDate(),
+      ...defaultEvent,
+      defaultStartDate: new Date(
+        defaultStartDate.getFullYear(),
+        defaultStartDate.getMonth(),
+        defaultStartDate.getDate(),
         8 + 12,
       ).toISOString(),
     },
@@ -155,11 +188,11 @@ DateMidnight.args = {
   ...Default.args,
   events: [
     {
-      ...Default.args.events[0],
-      startDate: new Date(
-        testDate.getFullYear(),
-        testDate.getMonth(),
-        testDate.getDate(),
+      ...defaultEvent,
+      defaultStartDate: new Date(
+        defaultStartDate.getFullYear(),
+        defaultStartDate.getMonth(),
+        defaultStartDate.getDate(),
         0,
       ).toISOString(),
     },

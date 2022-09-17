@@ -50,3 +50,45 @@ export const formatDate = (dateString) => {
   const { month, day, year } = formatDateParts(dateString);
   return `${month} ${day}, ${year}`;
 };
+
+export const formatDateRange = (startDate, endDate) => {
+  if (!endDate || startDate === endDate) {
+    return formatDateTime(startDate);
+  }
+
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  const separator = '–';
+
+  const hasSameYear = start.getFullYear() === end.getFullYear();
+
+  if (!hasSameYear) {
+    return `${formatDate(start)}${separator}${formatDate(end)}`;
+  }
+
+  const formattedStart = formatDateParts(start);
+  const formattedEnd = formatDateParts(end);
+
+  const hasSameMonth = start.getMonth() === end.getMonth();
+
+  if (!hasSameMonth) {
+    return `${formattedStart.month} ${formattedStart.day}${separator}${formattedEnd.month} ${formattedEnd.day}, ${formattedStart.year}`;
+  }
+
+  const hasSameDate = start.getDate() === end.getDate();
+
+  if (!hasSameDate) {
+    return `${formattedStart.month} ${formattedStart.day}${separator}${formattedEnd.day}, ${formattedStart.year}`;
+  }
+
+  if (formattedStart.hour === formattedEnd.hour) {
+    return formatDateTime(start);
+  }
+
+  if (formattedStart.dayPeriod === formattedEnd.dayPeriod) {
+    return `${formattedStart.hour}${separator}${formattedEnd.hour}${formattedStart.dayPeriod} ${formattedStart.month} ${formattedStart.day}, ${formattedStart.year}`;
+  }
+
+  return `${formattedStart.hour}${formattedStart.dayPeriod}${separator}${formattedEnd.hour}${formattedEnd.dayPeriod} ${formattedStart.month} ${formattedStart.day}, ${formattedStart.year}`;
+};
