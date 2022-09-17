@@ -1,4 +1,4 @@
-import './matchMedia.mock';
+import '../__helpers__/matchMedia.mock';
 import { render, screen } from '@testing-library/react';
 import faker from '../../../utils/faker';
 import { Event, EventCollection } from '../../../__fixtures__/Event';
