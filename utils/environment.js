@@ -20,10 +20,9 @@ const getAdobeKey = () => {
 
 const isProduction = nodeEnv === PRODUCTION;
 
-module.exports = {
+export default {
   nodeEnv,
   isProduction,
   adobeKey: getAdobeKey(),
   jwtClientSecret: process.env.JWT_CLIENT_SECRET,
-  stripePublishableKey: isProduction ? process.env.STRIPE_KEY_LIVE : process.env.STRIPE_KEY_TEST,
 };

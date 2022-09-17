@@ -5,6 +5,8 @@ import '@testing-library/jest-dom/extend-expect';
 
 global.fetch = jest.fn();
 
+jest.mock('./netlify/utils/environment');
+
 export default async () => {
   const projectDir = process.cwd();
   loadEnvConfig(projectDir);
