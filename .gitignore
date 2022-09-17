@@ -100,7 +100,7 @@ dist
 .vuepress/dist
 
 # Serverless directories
-.netlify/
+.netlify/functions*
 
 # FuseBox cache
 .fusebox/
