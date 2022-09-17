@@ -30,7 +30,7 @@ describe('environment', () => {
         process.env.JWT_CLIENT_SECRET = JWT_CLIENT_SECRET;
         process.env.NODE_ENV = nodeEnv;
         jest.isolateModules(() => {
-          environment = require('../environment').default;
+          environment = require('../environment');
         });
         expect(environment.jwtClientSecret).toBe(JWT_CLIENT_SECRET);
       },
@@ -50,7 +50,7 @@ describe('environment', () => {
       process.env.NODE_ENV = NODE_ENVS.PRODUCTION;
       setupStripeEnvVars();
       jest.isolateModules(() => {
-        environment = require('../environment').default;
+        environment = require('../environment');
       });
       expect(environment.stripePublishableKey).toBe(STRIPE_KEY_LIVE);
     });
@@ -61,7 +61,7 @@ describe('environment', () => {
         process.env.NODE_ENV = nodeEnv;
         setupStripeEnvVars();
         jest.isolateModules(() => {
-          environment = require('../environment').default;
+          environment = require('../environment');
         });
         expect(environment.stripePublishableKey).toBe(STRIPE_KEY_TEST);
       },
@@ -81,7 +81,7 @@ describe('environment', () => {
       process.env.NODE_ENV = NODE_ENVS.PRODUCTION;
       setupStripeEnvVars();
       jest.isolateModules(() => {
-        environment = require('../environment').default;
+        environment = require('../environment');
       });
       expect(environment.stripeSecretKey).toBe(STRIPE_SECRET_KEY_LIVE);
     });
@@ -92,7 +92,7 @@ describe('environment', () => {
         process.env.NODE_ENV = nodeEnv;
         setupStripeEnvVars();
         jest.isolateModules(() => {
-          environment = require('../environment').default;
+          environment = require('../environment');
         });
         expect(environment.stripeSecretKey).toBe(STRIPE_SECRET_KEY_TEST);
       },

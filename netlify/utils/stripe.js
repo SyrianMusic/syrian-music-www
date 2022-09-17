@@ -1,7 +1,7 @@
 import Stripe from 'stripe';
-import environment from '../utils/environment';
+import { stripeSecretKey } from '../utils/environment';
 
-const stripe = new Stripe(environment.stripeSecretKey, {
+const stripe = new Stripe(stripeSecretKey, {
   apiVersion: '2022-08-01',
   appInfo: {
     // For sample support and debugging, not required for production:
