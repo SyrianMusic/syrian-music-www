@@ -11,3 +11,9 @@ services:
     command: sleep infinity
     volumes:
       - ..:/workspace:cached
+      - node_modules:/workspace/node_modules
+
+volumes:
+  node_modules:
+    name: syrian_music_node_modules
+    external: false
