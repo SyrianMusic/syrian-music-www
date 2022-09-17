@@ -24,5 +24,6 @@ export default {
   nodeEnv,
   isProduction,
   adobeKey: getAdobeKey(),
-  jwtClientSecret: process.env.JWT_CLIENT_SECRET,
 };
+
+export const jwtClientSecret = process.env.NEXT_PUBLIC_JWT_CLIENT_SECRET;
