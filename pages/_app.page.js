@@ -1,10 +1,12 @@
 import { ThemeProvider } from '@emotion/react';
 import Head from 'next/head';
+import { v4 as uuidv4 } from 'uuid';
 import theme from '../styles/theme';
+import { SessionContext } from '../utils/session';
 
 // eslint-disable-next-line react/prop-types
 const App = ({ Component, pageProps }) => (
-  <>
+  <SessionContext.Provider value={{ id: uuidv4() }}>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       <link rel="stylesheet" href="/stylesheets/reset.css" />
@@ -58,7 +60,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
       `}
     </style>
-  </>
+  </SessionContext.Provider>
 );
 
 export default App;
