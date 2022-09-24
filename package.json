@@ -23,6 +23,8 @@
     "@apollo/client": "^3.4.10",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@stripe/react-stripe-js": "^1.10.0",
+    "@stripe/stripe-js": "^1.36.0",
     "classnames": "^2.2.6",
     "graphql": "^15.5.3",
     "jsonwebtoken": "^8.5.1",
@@ -32,6 +34,7 @@
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
     "stripe": "^10.6.0",
+    "uuid": "^8.3.2",
     "yup": "^0.32.9"
   },
   "devDependencies": {
@@ -66,8 +69,7 @@
     "next-plugin-yaml": "^1.0.1",
     "prettier": "^2.2.1",
     "react-test-renderer": "^17.0.2",
-    "typescript": "^4.1.3",
-    "uuid": "^8.3.2"
+    "typescript": "^4.1.3"
   },
   "engines": {
     "node": "16"

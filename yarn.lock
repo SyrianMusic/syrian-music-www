@@ -3386,7 +3386,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@storybook/addon-actions@6.4.18", "@storybook/addon-actions@^6.2.9":
+"@storybook/addon-actions@6.4.18":
   version "6.4.18"
   resolved "https://registry.npmjs.org/@storybook/addon-actions/-/addon-actions-6.4.18.tgz"
   integrity sha512-qPw5qfbWPmyOdaXxAVAbdVLVVE31gRrkH0ESUps+FXVNypRz1/0lJ6M2VrtOHMrFbGBl94SALdqsHOx6OYZKwg==
@@ -4220,6 +4220,18 @@
     regenerator-runtime "^0.13.7"
     resolve-from "^5.0.0"
     store2 "^2.12.0"
+
+"@stripe/react-stripe-js@^1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@stripe/react-stripe-js/-/react-stripe-js-1.10.0.tgz#5412874b5ed4732e917c6d9bb2b6721ee25615ab"
+  integrity sha512-vuIjJUZJ3nyiaGa5z5iyMCzZfGGsgzOOjWjqknbbhkNsewyyginfeky9EZLSz9+iSAsgC9K6MeNOTLKVGcMycQ==
+  dependencies:
+    prop-types "^15.7.2"
+
+"@stripe/stripe-js@^1.36.0":
+  version "1.36.0"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.36.0.tgz#c055adeb845fc725415af22aa53622b00bbd3662"
+  integrity sha512-m45BD9JxOfIBT0Tz4MupiKzM8M58NX/We8wKlf+54TCZpW1RVAyFpJ58CbtyU/LxAM+opT6cewHRVfs7bTUtBA==
 
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
