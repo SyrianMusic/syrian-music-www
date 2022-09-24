@@ -30,8 +30,6 @@ const DonatePageContainer = () => {
 
   const updateAmount = useCallback(
     async (amount) => {
-      console.log({ amount });
-
       if (!intentSecret && !isIntentPending) {
         setIsIntentPending(true);
         const intent = await createPaymentIntent({

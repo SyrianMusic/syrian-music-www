@@ -1,4 +1,4 @@
-const debounce = (func, timeout = 300) => {
+export const debounce = (func, timeout = 300) => {
   let timer;
 
   return (...args) => {
@@ -13,4 +13,7 @@ const debounce = (func, timeout = 300) => {
   };
 };
 
-export default debounce;
+export const pipe =
+  (...fns) =>
+  (x) =>
+    fns.reduce((v, f) => f(v), x);

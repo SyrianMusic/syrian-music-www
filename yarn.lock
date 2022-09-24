@@ -14415,7 +14415,7 @@ prop-types@15.7.2:
     object-assign "^4.1.1"
     react-is "^16.8.1"
 
-prop-types@^15.0.0, prop-types@^15.6.0, prop-types@^15.7.2:
+prop-types@^15.0.0, prop-types@^15.5.6, prop-types@^15.6.0, prop-types@^15.7.2:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -14825,6 +14825,13 @@ react-test-renderer@^17.0.2:
     react-is "^17.0.2"
     react-shallow-renderer "^16.13.1"
     scheduler "^0.20.2"
+
+react-text-mask@^5.4.3:
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/react-text-mask/-/react-text-mask-5.4.3.tgz#991efb4299e30c2e6c2c46d13f617169463e0d2d"
+  integrity sha512-IQ26CO6YMhc2FBRxLVnckBEDkuMvBQOiHBeAxWdZzoqMMOQvGG6vrVW1Rv6RtqOYsqVQaQd+6zYDW2tEM8VXxA==
+  dependencies:
+    prop-types "^15.5.6"
 
 react-textarea-autosize@^8.3.0:
   version "8.3.3"
@@ -16607,6 +16614,11 @@ text-hex@1.0.x:
   version "1.0.0"
   resolved "https://registry.npmjs.org/text-hex/-/text-hex-1.0.0.tgz"
   integrity sha512-uuVGNWzgJ4yhRaNSiubPY7OjISw4sw4E5Uv0wbjp+OzcbmVU/rsT8ujgcXJhn9ypzsgr5vlzpPqP+MBBKcGvbg==
+
+text-mask-addons@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/text-mask-addons/-/text-mask-addons-3.8.0.tgz#17b61ef665a4f36811f2ea1f01a223b4be61ab26"
+  integrity sha512-VSZSdc/tKn4zGxgpJ+uNBzoW1t472AoAFIlbw1K7hSNXz0DfSBYDJNRxLqgxOfWw1BY2z6DQpm7g0sYZn5qLpg==
 
 text-table@^0.2.0:
   version "0.2.0"

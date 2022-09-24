@@ -1,35 +1,27 @@
 import PropTypes from 'prop-types';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { CurrencyInput } from '../../components/Input';
 import SiteLayout from '../../components/SiteLayout';
-import debounce from '../../utils/debounce';
 
 const DonatePage = ({ CardElement, onChange, onSubmit }) => {
-  const [amount, setAmount] = useState(null);
-  const [isDisabled] = useState(true);
+  const [hasAmount, setHasAmount] = useState(false);
 
-  const debouncedOnChange = useCallback(debounce(onChange), [onChange]);
+  const isDisabled = useMemo(() => !hasAmount, [hasAmount]);
 
-  const handleChange = useCallback((e) => {
-    let name = e.target.name;
-    let value = e.target.value;
+  const handleAmountChange = useCallback(
+    ({ name, value }) => {
+      if (!hasAmount && value) {
+        setHasAmount(true);
+      } else if (hasAmount && !value) {
+        setHasAmount(false);
+      }
 
-    let handler;
-
-    switch (name) {
-      case 'amount':
-        value = parseFloat(value, 10);
-        if (isNaN(value)) {
-          value = null;
-        }
-        handler = setAmount;
-        break;
-      default:
-        console.error(name + ' is not supported');
-    }
-    handler(value);
-
-    debouncedOnChange({ name, value });
-  });
+      if (value) {
+        onChange({ name, value });
+      }
+    },
+    [hasAmount],
+  );
 
   const handleSubmit = useCallback(
     (e) => {
@@ -42,14 +34,7 @@ const DonatePage = ({ CardElement, onChange, onSubmit }) => {
   return (
     <SiteLayout>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="amount">Amount</label>
-        <input
-          id="amount"
-          name="amount"
-          type="number"
-          onChange={handleChange}
-          value={amount === null ? '' : amount}
-        />
+        <CurrencyInput id="amount" name="amount" label="Amount" onChange={handleAmountChange} />
         <CardElement />
         <button type="submit" disabled={isDisabled}>
           Donate
