@@ -6,10 +6,12 @@ export default {
   title: 'Pages/Donate',
   component: DonatePage,
   parameters: pageParameters,
-  argTypes: { onSubmit: { action: 'submit' } },
+  argTypes: { onChange: { action: 'change' }, onSubmit: { action: 'submit' } },
 };
 
 export const Template = (args) => <App Component={DonatePage} pageProps={args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  CardElement: () => <div>Card Element</div>,
+};
