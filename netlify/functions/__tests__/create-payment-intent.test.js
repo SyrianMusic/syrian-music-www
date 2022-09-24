@@ -8,23 +8,55 @@ import StripeInvalidRequestError from '../__fixtures__/StripeInvalidRequestError
 jest.mock('../../utils/logger');
 jest.mock('../../utils/stripe');
 
-const Request = ({ httpMethod = 'POST', body = { amount: 0.5 } } = {}) => ({
-  headers: validAuthHeaders,
-  httpMethod,
-  body: JSON.stringify(body),
-});
+const Request = ({ httpMethod = 'POST', body = {} } = {}) => {
+  const { amount = faker.finance.amount(0.5), idempotencyKey } = body;
+
+  return {
+    headers: validAuthHeaders,
+    httpMethod,
+    body: JSON.stringify({ amount, idempotencyKey }),
+  };
+};
 
 describe('create-payment-intent', () => {
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+
   it('responds with the Stripe client secret', async () => {
     const req = Request();
     const mockClientSecret = faker.datatype.uuid();
-    stripe.paymentIntents.create.mockResolvedValueOnce({ client_secret: mockClientSecret });
+    stripe.paymentIntents.create.mockResolvedValue({ client_secret: mockClientSecret });
 
     const res = await createPaymentIntent(req);
 
     expect(res.statusCode).toBe(200);
     const { clientSecret } = JSON.parse(res.body);
     expect(clientSecret).toBe(mockClientSecret);
+  });
+
+  it('multiplies the amount by 100', async () => {
+    const amount = 50;
+    const req = Request({ body: { amount } });
+
+    await createPaymentIntent(req);
+
+    expect(stripe.paymentIntents.create).toHaveBeenCalledWith(
+      expect.objectContaining({ amount: 5000 }),
+      expect.anything(),
+    );
+  });
+
+  it('sends the idempotency key as an option', async () => {
+    const idempotencyKey = faker.datatype.uuid();
+    const req = Request({ body: { idempotencyKey } });
+
+    await createPaymentIntent(req);
+
+    expect(stripe.paymentIntents.create).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({ idempotencyKey }),
+    );
   });
 
   it('when the HTTP method is not POST, then it responds with an error', async () => {
@@ -73,7 +105,7 @@ describe('create-payment-intent', () => {
 
   it('when the Stripe secret key is not set, then it responds with an error', async () => {
     const req = Request();
-    stripe.paymentIntents.create.mockRejectedValueOnce(StripeAuthenticationError);
+    stripe.paymentIntents.create.mockRejectedValue(StripeAuthenticationError);
 
     const res = await createPaymentIntent(req);
 
