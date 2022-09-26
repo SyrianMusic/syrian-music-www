@@ -3,6 +3,7 @@ import { typography } from '../../styles/mixins';
 import theme from '../../styles/theme';
 
 const sizes = {
+  xs: 'xs',
   sm: 'sm',
   md: 'md',
   lg: 'lg',
@@ -10,6 +11,8 @@ const sizes = {
 
 const getSizeStyles = (size) => {
   switch (size) {
+    case sizes.xs:
+      return [{ [theme.mq.mobileToDesktop]: [{}, typography.xs.desktop] }, typography.xs.mobile];
     case sizes.sm:
       return [{ [theme.mq.mobileToDesktop]: [{}, typography.sm.desktop] }, typography.sm.mobile];
     case sizes.md:
