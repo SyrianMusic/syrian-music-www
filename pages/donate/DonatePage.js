@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useCallback, useMemo, useState } from 'react';
+import Button from '../../components/Button';
 import { CurrencyInput } from '../../components/Input';
 import SiteLayout from '../../components/SiteLayout';
 import Typography from '../../components/Typography';
@@ -53,9 +54,9 @@ const DonatePage = ({ CardElement, onChange, onSubmit }) => {
 
         <CardElement />
 
-        <button type="submit" disabled={isDisabled}>
+        <Button css={{ marginTop: theme.spacing.get(32) }} type="submit" disabled={isDisabled}>
           Donate
-        </button>
+        </Button>
       </form>
     </SiteLayout>
   );

@@ -6,8 +6,9 @@ const Button = styled(UnstyledButton)({
   backgroundColor: theme.color.interactive,
   border: `1px solid ${theme.color.interactive}`,
   color: theme.color.white,
-  padding: `${theme.pxToRem(24)} ${theme.pxToRem(21)}`,
+  padding: '1em 1.25em',
   textDecoration: 'none',
+  minWidth: theme.pxToRem(137),
 
   '&:enabled:hover, :enabled:focus': {
     color: theme.color.white,
