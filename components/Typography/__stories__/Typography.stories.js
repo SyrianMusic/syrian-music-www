@@ -134,15 +134,17 @@ export const All = () => {
           Typography
         </Typography>
 
-        <Title name="Title 1" variant="h1" />
+        <Title name="H1" variant="h1" />
 
-        <Title name="Title 3" variant="h3" />
+        <Title name="H3" variant="h3" />
 
-        <Body size="lg" name="Body 1" />
+        <Body size="lg" name="Body lg" />
 
-        <Body size="md" name="Body 2" />
+        <Body size="md" name="Body md" />
 
-        <Body size="sm" name="Caption" />
+        <Body size="sm" name="Body sm" />
+
+        <Body size="xs" name="Body xs" />
       </div>
     </div>
   );
