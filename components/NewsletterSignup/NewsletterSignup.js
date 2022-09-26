@@ -151,9 +151,7 @@ export const NewsletterSignup = ({ className, onSubmit }) => {
           <Button
             className="component-NewsletterSignup-submit"
             type="submit"
-            color={Button.colors.primary}
-            disabled={!isValid() || submitted}
-            variant={Button.variants.filled}>
+            disabled={!isValid() || submitted}>
             Sign up
           </Button>
         </div>
@@ -248,7 +246,8 @@ export const NewsletterSignup = ({ className, onSubmit }) => {
                 inputPadding.bottom +
                 inputBorderWidth * 2,
             )};
-            width: ${theme.pxToRem(150)};
+            padding-top: 0;
+            padding-bottom: 0;
           }
         }
 
