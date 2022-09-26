@@ -86,10 +86,10 @@ const typography = {
 // TODO: Organize colors by function: http://lonelyplanet.github.io/backpack-ui/?path=/story/styles--design-tokens
 const colors = {
   white: '#ffffff',
+  gainsboro: '#d9d9d9',
   dimGray: '#666666',
   spanishGray: '#999999',
   lightGray: '#cccccc',
-  cultured: '#eeeeee',
   black: '#000000',
   linen: '#fbecdd',
   windsorTan: '#a95b00',
@@ -106,7 +106,7 @@ const theme = {
     primary: colors.black,
     secondary: colors.spanishGray,
     interactive: colors.lightCoral,
-    disabled: colors.cultured,
+    disabled: colors.gainsboro,
     error: colors.red,
     success: colors.spanishVeridian,
     salmon: colors.lightCoral,

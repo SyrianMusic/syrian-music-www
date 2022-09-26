@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import theme from '../../styles/theme';
+import theme from '../styles/theme';
 
 const colors = {
   none: 'none',
@@ -17,16 +17,7 @@ const variants = {
   outlined: 'outlined',
 };
 
-export const Button = ({
-  className,
-  children,
-  color,
-  disabled,
-  onClick,
-  type,
-  variant,
-  ...props
-}) => (
+const Button = ({ className, children, color, disabled, onClick, type, variant, ...props }) => (
   <button
     className={cx(
       { [`color--${color}`]: color, [`variant--${variant}`]: variant !== 'none' },
@@ -179,3 +170,5 @@ Button.defaultProps = {
 Button.colors = colors;
 Button.types = types;
 Button.variants = variants;
+
+export default Button;
