@@ -117,7 +117,7 @@ const theme = {
     },
   },
   font: {
-    family: 'Graphik, sans-serif',
+    family: "'Graphik Arabic', sans-serif",
     weight: 300,
     mobile: {
       fontSizeMin: rootFontSize,
