@@ -19,7 +19,11 @@ function getPackageDir(filepath) {
 }
 
 module.exports = {
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    'storybook-addon-pseudo-states',
+  ],
   staticDirs: ['../public'],
   stories: [
     '../components/**/*.stories.mdx',
