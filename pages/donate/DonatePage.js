@@ -3,6 +3,8 @@ import { useCallback, useMemo, useState } from 'react';
 import { CurrencyInput } from '../../components/Input';
 import SiteLayout from '../../components/SiteLayout';
 import Typography from '../../components/Typography';
+import { gutterMarginStyles } from '../../styles/mixins';
+import theme from '../../styles/theme';
 
 const DonatePage = ({ CardElement, onChange, onSubmit }) => {
   const [hasAmount, setHasAmount] = useState(false);
@@ -34,11 +36,19 @@ const DonatePage = ({ CardElement, onChange, onSubmit }) => {
 
   return (
     <SiteLayout>
-      <Typography variant="h1" textAlign="center">
+      <Typography
+        css={{
+          marginBottom: theme.spacing.get(32),
+          [theme.mq.mobileToDesktop]: {
+            marginBottom: theme.spacing.get(48),
+          },
+        }}
+        variant="h1"
+        textAlign="center">
         Donate Today
       </Typography>
 
-      <form onSubmit={handleSubmit}>
+      <form css={[gutterMarginStyles]} onSubmit={handleSubmit}>
         <CurrencyInput id="amount" name="amount" label="Amount" onChange={handleAmountChange} />
 
         <CardElement />
