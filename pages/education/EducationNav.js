@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Link from 'next/link';
-import config from '../../config.yaml';
-import theme from '../../styles/theme';
-import Button from '../../components/Button';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import Image from '../../components/Image';
 import Nav from '../../components/Nav';
 import Rule from '../../components/Rule';
 import Typography from '../../components/Typography';
+import UnstyledButton from '../../components/UnstyledButton';
+import config from '../../config.yaml';
+import theme from '../../styles/theme';
 
 const EducationNavLink = ({ text, href, description }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -47,14 +47,14 @@ const EducationNavLink = ({ text, href, description }) => {
 
   return (
     <li className={cx({ expanded: isExpanded }, 'gutters')}>
-      <Button onClick={() => setIsExpanded(!isExpanded)}>
+      <UnstyledButton onClick={() => setIsExpanded(!isExpanded)}>
         <Image
           className="component-EducationNavLink-button-icon"
           src={isExpanded ? '/images/icons/minus.svg' : '/images/icons/plus.svg'}
           height={26}
           width={26}
         />
-      </Button>
+      </UnstyledButton>
 
       {contentEl}
 

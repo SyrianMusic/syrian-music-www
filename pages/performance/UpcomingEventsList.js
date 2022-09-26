@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import UpcomingEvent from './UpcomingEvent';
-import Button from '../../components/Button';
+import UnstyledButton from '../../components/UnstyledButton';
 import theme from '../../styles/theme';
 import { useCallback, useState } from 'react';
 
@@ -25,18 +25,17 @@ const CarouselButton = ({ id, isSelected, selectEvent }) => {
   }, [id, selectEvent]);
 
   return (
-    <Button
-      css={{
-        // Temporary override until Button is converted to Emotion
-        '&&': {
-          ...carouselButtonStyles,
+    <UnstyledButton
+      css={[
+        carouselButtonStyles,
+        {
           borderBottomColor: theme.color.lightGray,
 
           '&:active, &:focus, &:hover': {
             borderBottomColor: theme.color.interactive,
           },
         },
-      }}
+      ]}
       onClick={onClick}
     />
   );

@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
-import Button from '../Button';
-import Rule from '../Rule';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 import PlusIcon from '../../icons/Plus';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
+import Rule from '../Rule';
+import UnstyledButton from '../UnstyledButton';
 
 export const Tabs = ({ renderLabel, tabs }) => {
   const { id: initialSelectedTab } = tabs[0];
@@ -37,23 +37,23 @@ export const Tabs = ({ renderLabel, tabs }) => {
 
   return (
     <div className={cx('tabs', { 'tabs--menu-expanded': isMenuOpen })}>
-      <Button className="tabs__menu-toggle" onClick={toggleMenu}>
+      <UnstyledButton className="tabs__menu-toggle" onClick={toggleMenu}>
         {selectedTabLabel}
         <PlusIcon />
-      </Button>
+      </UnstyledButton>
 
       <Rule />
 
       <div role="tablist" aria-label={renderLabel({ selectedTab })}>
         {tabs.map(({ id, label } = {}) => (
-          <Button
+          <UnstyledButton
             key={id}
             id={id}
             onClick={handleSelectTab(id)}
             role="tab"
             aria-selected={id === selectedTab}>
             {label}
-          </Button>
+          </UnstyledButton>
         ))}
       </div>
       {panel}

@@ -1,57 +1,56 @@
 import cx from 'classnames';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import config from '../config.yaml';
 import * as mixins from '../styles/mixins';
 import theme from '../styles/theme';
-import Button from './Button';
 import Image from './Image';
 import Nav from './Nav';
 import Typography from './Typography';
+import UnstyledButton from './UnstyledButton';
 
 const Header = ({ className, pathname }) => {
-  const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleClose = () => setIsOpen(false);
-
-  const handleNavigate = (href) => () => {
-    router.push(href);
-    handleClose();
-  };
+  const toggleMenu = useCallback(() => setIsMenuOpen(!isMenuOpen), [isMenuOpen]);
+  const closeMenu = useCallback(() => setIsMenuOpen(false));
 
   useEffect(() => {
-    if (isOpen) {
+    if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'initial';
     }
-  }, [isOpen]);
+  }, [isMenuOpen]);
 
   return (
-    <header className={cx({ 'is-open': isOpen }, className)}>
-      <Button className="component-Header-logo-link" onClick={handleNavigate('/')}>
-        <Image
-          className="component-Header-logo"
-          alt="Syrian Music Preservation Initiative – Home"
-          src="/images/logos/syrian-music-preservation-initiative-logo-icon.svg"
-          width={51}
-          height={96}
-        />
-      </Button>
-      <Button className="component-Header-menu-button" onClick={() => setIsOpen(!isOpen)}>
+    <header className={cx({ 'is-open': isMenuOpen }, className)}>
+      <Link href="/">
+        <UnstyledButton className="component-Header-logo-link" as="a" onClick={closeMenu}>
+          <Image
+            className="component-Header-logo"
+            alt="Syrian Music Preservation Initiative – Home"
+            src="/images/logos/syrian-music-preservation-initiative-logo-icon.svg"
+            width={51}
+            height={96}
+          />
+        </UnstyledButton>
+      </Link>
+      <UnstyledButton className="component-Header-menu-button" onClick={toggleMenu}>
         <Typography size="lg" as="span">
           Menu
         </Typography>
-      </Button>
+      </UnstyledButton>
       <Nav className="component-Header-nav">
         <ul>
           {Object.values(config.nav).map(({ href, text }) => {
             let navItem = (
-              <Button className="component-Header-nav-button" onClick={handleNavigate(href)}>
-                {text}
-              </Button>
+              <Link href={href}>
+                <UnstyledButton className="component-Header-nav-button" as="a">
+                  {text}
+                </UnstyledButton>
+              </Link>
             );
 
             if (href === pathname) {
@@ -61,19 +60,21 @@ const Header = ({ className, pathname }) => {
             return <li key={text}>{navItem}</li>;
           })}
         </ul>
-        <Button className="component-Header-close-menu-button" onClick={handleClose}>
+        <UnstyledButton className="component-Header-close-menu-button" onClick={closeMenu}>
           <Image src="/images/icons/close.svg" alt="Close the menu" height={32} width={32} />
-        </Button>
+        </UnstyledButton>
       </Nav>
-      <Button className="component-Header-logo-text-link" onClick={handleNavigate('/')}>
-        <Image
-          className="component-Header-logo-text"
-          src="/images/logos/syrian-music-preservation-initiative-logo.svg"
-          alt="Syrian Music Preservation Initiative – Home"
-          width={189}
-          height={94}
-        />
-      </Button>
+      <Link href="/">
+        <UnstyledButton className="component-Header-logo-text-link" as="a" onClick={closeMenu}>
+          <Image
+            className="component-Header-logo-text"
+            src="/images/logos/syrian-music-preservation-initiative-logo.svg"
+            alt="Syrian Music Preservation Initiative – Home"
+            width={189}
+            height={94}
+          />
+        </UnstyledButton>
+      </Link>
       <style jsx>{`
         header {
           display: flex;

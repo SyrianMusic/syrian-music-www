@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
 import Button from '../Button';
 import Input, { inputBorderWidth, inputPadding } from '../Input';
 import Typography from '../Typography';
+import UnstyledButton from '../UnstyledButton';
 
 const MESSAGES = {
   input: 'Enter your email',
@@ -100,9 +101,9 @@ export const NewsletterSignup = ({ className, onSubmit }) => {
     successMessage = (
       <>
         {MESSAGES.success}
-        <Button className="component-NewsletterSignup-resubmit" onClick={resetForm}>
+        <UnstyledButton className="component-NewsletterSignup-resubmit" onClick={resetForm}>
           Sign up another email address.
-        </Button>
+        </UnstyledButton>
       </>
     );
   }
