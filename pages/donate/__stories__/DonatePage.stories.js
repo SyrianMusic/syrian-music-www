@@ -9,7 +9,7 @@ export default {
   argTypes: { onChange: { action: 'change' }, onSubmit: { action: 'submit' } },
 };
 
-export const Template = (args) => <App Component={DonatePage} pageProps={args} />;
+const Template = (args) => <App Component={DonatePage} pageProps={args} />;
 
 export const Default = Template.bind({});
 Default.args = {
