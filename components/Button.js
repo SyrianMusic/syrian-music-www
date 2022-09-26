@@ -4,7 +4,7 @@ import UnstyledButton, { focusColor } from './UnstyledButton';
 
 const Button = styled(UnstyledButton)({
   backgroundColor: theme.color.interactive,
-  border: `2px solid ${theme.color.interactive}`,
+  border: `1px solid ${theme.color.interactive}`,
   color: theme.color.white,
   padding: `${theme.pxToRem(24)} ${theme.pxToRem(21)}`,
   textDecoration: 'none',
