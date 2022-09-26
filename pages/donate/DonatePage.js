@@ -52,7 +52,41 @@ const DonatePage = ({ CardElement, onChange, onSubmit }) => {
       <form css={[gutterMarginStyles]} onSubmit={handleSubmit}>
         <CurrencyInput id="amount" name="amount" label="Amount" onChange={handleAmountChange} />
 
-        <CardElement />
+        <Typography
+          css={{
+            marginTop: theme.spacing.get(48),
+            marginBottom: theme.spacing.get(16),
+
+            [theme.mq.mobileToDesktop]: {
+              marginTop: theme.spacing.get(64),
+              marginBottom: theme.spacing.get(24),
+            },
+          }}
+          variant="h3">
+          Payment
+        </Typography>
+
+        <Typography css={{ marginBottom: '1em' }}>Card Details</Typography>
+
+        <CardElement
+          css={{
+            border: `1px solid ${theme.color.accentTan}`,
+            padding: `${theme.pxToRem(16)} ${theme.pxToRem(12)}`,
+
+            [theme.mq.mobileToDesktop]: {
+              paddingTop: theme.pxToRem(24),
+            },
+          }}
+        />
+
+        <Typography
+          css={{
+            marginTop: theme.spacing.get(8),
+            marginBottom: 0,
+          }}
+          size="sm">
+          Transactions are secure and encrypted.
+        </Typography>
 
         <Button css={{ marginTop: theme.spacing.get(32) }} type="submit" disabled={isDisabled}>
           Donate

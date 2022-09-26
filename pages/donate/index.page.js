@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import PropTypes from 'prop-types';
@@ -6,6 +7,8 @@ import { createPaymentIntent } from '../../api';
 import { stripePublishableKey } from '../../utils/environment';
 import { SessionContext } from '../../utils/session';
 import DonatePage from './DonatePage';
+
+const StyledCardElement = styled(CardElement)({});
 
 const updatePaymentIntent = (amount) => {
   console.log('update payment intent', amount);
@@ -87,14 +90,32 @@ const DonatePageContainer = () => {
     console.log(paymentIntent);
   };
 
-  return <DonatePage CardElement={CardElement} onChange={onChange} onSubmit={onSubmit} />;
+  return <DonatePage CardElement={StyledCardElement} onChange={onChange} onSubmit={onSubmit} />;
 };
 
 const StripeWrapper = ({ stripeKey }) => {
+  const host = typeof window !== 'undefined' ? window.location.host : '';
+
   const [stripePromise] = useState(loadStripe(stripeKey));
 
   return (
-    <Elements stripe={stripePromise}>
+    <Elements
+      stripe={stripePromise}
+      options={{
+        fonts: [
+          {
+            family: 'Graphik Arabic Web Light',
+            src: `url('https://${host}/fonts/GraphikArabic-Light-Web.woff2') format('woff2'), url('https://${host}/fonts/GraphikArabic-Light-Web.woff') format('woff')`,
+          },
+        ],
+        appearance: {
+          theme: 'stripe',
+          variables: {
+            fontFamily: 'Graphik Arabic Web Light',
+            colorBackground: 'red',
+          },
+        },
+      }}>
       <DonatePageContainer stripeKey={stripeKey} />
     </Elements>
   );
