@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import theme from '../styles/theme';
-import UnstyledButton from './UnstyledButton';
-
-const focusColor = `${theme.color.interactive}BF`;
+import UnstyledButton, { focusColor } from './UnstyledButton';
 
 const Button = styled(UnstyledButton)({
   backgroundColor: theme.color.interactive,
