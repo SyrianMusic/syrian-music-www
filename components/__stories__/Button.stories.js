@@ -48,22 +48,28 @@ export const Default = Template.bind({});
 Default.args = { children: 'Label' };
 
 export const Hover = Template.bind({});
-Hover.args = { ...Default.args, pseudo: { hover: true } };
+Hover.args = Default.args;
+Hover.parameters = { pseudo: { hover: true } };
 
 export const Active = Template.bind({});
-Active.args = { ...Default.args, pseudo: { active: true } };
+Active.args = Default.args;
+Active.parameters = { pseudo: { active: true } };
 
 export const Focus = Template.bind({});
-Focus.args = { ...Default.args, pseudo: { focus: true } };
+Focus.args = Default.args;
+Focus.parameters = { pseudo: { focus: true } };
 
 export const HoverFocus = Template.bind({});
-HoverFocus.args = { ...Default.args, pseudo: { hover: true, focus: true } };
+HoverFocus.args = Default.args;
+HoverFocus.parameters = { pseudo: { hover: true, focus: true } };
 
 export const HoverActive = Template.bind({});
-HoverActive.args = { ...Default.args, pseudo: { hover: true, active: true } };
+HoverActive.args = Default.args;
+HoverActive.parameters = { pseudo: { hover: true, active: true } };
 
 export const HoverFocusActive = Template.bind({});
-HoverFocusActive.args = { ...Default.args, pseudo: { hover: true, focus: true, active: true } };
+HoverFocusActive.args = Default.args;
+HoverFocusActive.parameters = { pseudo: { hover: true, focus: true, active: true } };
 
 export const Disabled = Template.bind({});
 Disabled.args = { ...Default.args, disabled: true };
