@@ -7,21 +7,25 @@ import Typography from '../../components/Typography';
 import { gutterMarginStyles } from '../../styles/mixins';
 import theme from '../../styles/theme';
 
-const DonatePage = ({ CardElement, onChange, onSubmit }) => {
+const DonatePage = ({ CardElement, updateAmount, onSubmit }) => {
   const [hasAmount, setHasAmount] = useState(false);
 
   const isDisabled = useMemo(() => !hasAmount, [hasAmount]);
 
   const handleAmountChange = useCallback(
-    ({ name, value }) => {
-      if (!hasAmount && value) {
+    (value, e) => {
+      let amount;
+      const { valid } = e.target.validity;
+
+      if (!hasAmount && valid && value) {
         setHasAmount(true);
-      } else if (hasAmount && !value) {
+        amount = value;
+      } else if (hasAmount && (!valid || !value)) {
         setHasAmount(false);
       }
 
-      if (value) {
-        onChange({ name, value });
+      if (typeof updateAmount === 'function' && amount) {
+        updateAmount(amount);
       }
     },
     [hasAmount],
@@ -51,9 +55,10 @@ const DonatePage = ({ CardElement, onChange, onSubmit }) => {
 
       <form css={[gutterMarginStyles]} onSubmit={handleSubmit}>
         <Label htmlFor="email">Your Email</Label>
-        <EmailInput id="email" />
+        <EmailInput id="email" required />
 
-        <CurrencyInput id="amount" name="amount" label="Amount" onChange={handleAmountChange} />
+        <Label htmlFor="amount">Your Contribution</Label>
+        <CurrencyInput id="amount" name="amount" onChange={handleAmountChange} required />
 
         <Label
           css={{
@@ -83,10 +88,12 @@ const DonatePage = ({ CardElement, onChange, onSubmit }) => {
 
 DonatePage.propTypes = {
   CardElement: PropTypes.elementType.isRequired,
-  onChange: PropTypes.func.isRequired,
+  updateAmount: PropTypes.func,
   onSubmit: PropTypes.func.isRequired,
 };
 
-DonatePage.defaultProps = {};
+DonatePage.defaultProps = {
+  updateAmount: undefined,
+};
 
 export default DonatePage;

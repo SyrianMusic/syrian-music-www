@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { useCallback, useState } from 'react';
+import { useRef } from 'react';
 import MaskedInput from 'react-text-mask';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
-import { debounce, pipe } from '../../utils/functions';
-import { inputStyles } from './Input';
-import Label from './Label';
+import { pipe } from '../../utils/functions';
+import { ErrorText } from './HelperText';
+import { StyledInput } from './Input';
+import useValidation from './useValidation';
 
 const mask = createNumberMask({ allowDecimal: true, integerLimit: 7 });
 
@@ -12,43 +13,65 @@ const removePrefix = (str) => str.replace(/^\$/, '');
 const removeSeparators = (str) => str.replace(/,/g, '');
 const toFloat = (str) => parseFloat(str, 10);
 
-const CurrencyInput = ({ id, label, name, onChange }) => {
-  const [amount, setAmount] = useState(null);
+const CurrencyInput = ({ onChange: onChangeProp, required, ...props }) => {
+  const input = useRef(null);
 
-  const debouncedOnChange = useCallback(debounce(onChange), [onChange]);
+  let onChange;
 
-  const handleChange = (e) => {
-    setAmount(e.target.value);
+  if (typeof onChangeProp === 'function') {
+    onChange = (e) => {
+      let value = pipe(removePrefix, removeSeparators, toFloat)(e.target.value);
+      if (isNaN(value)) {
+        value = null;
+      }
+      onChangeProp(value, e);
+    };
+  }
 
-    let value = pipe(removePrefix, removeSeparators, toFloat)(e.target.value);
-    if (isNaN(value)) {
-      value = null;
-    }
-
-    debouncedOnChange({ name: e.target.name, value });
-  };
+  const { error, isRequired, handleBlur, handleChange, handleInvalid } = useValidation(input, {
+    onChange,
+    required,
+  });
 
   return (
     <>
-      <Label htmlFor={id}>{label}</Label>
       <MaskedInput
-        css={inputStyles}
+        ref={(ref) => {
+          input.current = ref?.inputElement || null;
+        }}
         mask={mask}
         inputMode="numeric"
-        id={id}
-        name={name}
-        onChange={handleChange}
+        onInvalid={handleInvalid}
         placeholder="$"
-        value={amount === null ? '' : amount}
+        required={isRequired}
+        render={(ref, inputProps) => {
+          return (
+            <StyledInput
+              ref={ref}
+              {...inputProps}
+              onBlur={(e) => {
+                if (typeof inputProps.onBlur === 'function') {
+                  inputProps.onBlur(e);
+                }
+                handleBlur(e);
+              }}
+              onChange={(e) => {
+                if (typeof inputProps.onChange === 'function') {
+                  inputProps.onChange(e);
+                }
+                handleChange(e);
+              }}
+            />
+          );
+        }}
+        {...props}
       />
+      <ErrorText>{error}</ErrorText>
     </>
   );
 };
 
 CurrencyInput.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
 };
 

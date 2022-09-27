@@ -1,7 +1,5 @@
-import { StyledInput } from './Input';
+import Input from './Input';
 
-const EmailInput = ({ ...props }) => {
-  return <StyledInput type="email" {...props} />;
-};
+const EmailInput = (props) => <Input type="email" {...props} />;
 
 export default EmailInput;

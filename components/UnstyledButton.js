@@ -4,7 +4,7 @@ import theme from '../styles/theme';
 export const focusColor = `${theme.color.interactive}BF`;
 
 const UnstyledButton = styled.button({
-  '-webkit-appearance': 'none',
+  WebkitAppearance: 'none',
   background: 'none',
   border: 'none',
   color: theme.color.primary,

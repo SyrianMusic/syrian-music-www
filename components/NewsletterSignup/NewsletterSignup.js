@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
 import Button from '../Button';
-import EmailInput, { inputBorderWidth, inputPadding } from '../Input';
+import { EmailInput, inputBorderWidth, inputPadding } from '../Input';
 import Typography from '../Typography';
 import UnstyledButton from '../UnstyledButton';
 

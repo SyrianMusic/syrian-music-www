@@ -1,4 +1,4 @@
-import { Input, inputBorderWidth, inputPadding, inputStyles } from './Input';
+import Input, { inputBorderWidth, inputPadding, inputStyles } from './Input';
 
 export { default as CurrencyInput } from './CurrencyInput';
 export { default as EmailInput } from './EmailInput';

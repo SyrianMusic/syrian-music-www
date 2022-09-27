@@ -108,7 +108,7 @@ const theme = {
     interactive: colors.lightCoral,
     placeholder: colors.gainsboro,
     disabled: colors.gainsboro,
-    error: colors.red,
+    error: colors.lightCoral,
     success: colors.spanishVeridian,
     salmon: colors.lightCoral,
     accentTan: colors.windsorTan,

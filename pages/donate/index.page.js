@@ -90,7 +90,9 @@ const DonatePageContainer = () => {
     console.log(paymentIntent);
   };
 
-  return <DonatePage CardElement={StyledCardElement} onChange={onChange} onSubmit={onSubmit} />;
+  return (
+    <DonatePage CardElement={StyledCardElement} updateAmount={updateAmount} onSubmit={onSubmit} />
+  );
 };
 
 const StripeWrapper = ({ stripeKey }) => {

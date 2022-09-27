@@ -9,14 +9,17 @@ export default {
 const Template = (args) => <EmailInput {...args} />;
 
 export const Default = Template.bind({});
-Default.args = { label: 'Label', defaultValue: 'info@syrianmusic.org' };
+Default.args = { defaultValue: 'info@syrianmusic.org' };
+
+export const Empty = Template.bind({});
+Empty.args = {};
 
 export const Focus = Template.bind({});
 Focus.args = Default.args;
 Focus.parameters = { pseudo: { focus: true } };
 
 export const Error = Template.bind({});
-Error.args = { ...Default.args, error: true };
+Error.args = { ...Default.args, defaultValue: 'not an email address' };
 
 export const Disabled = Template.bind({});
 Disabled.args = { ...Default.args, disabled: true };
