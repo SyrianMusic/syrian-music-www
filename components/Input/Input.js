@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
@@ -10,6 +10,129 @@ export const inputPadding = {
   left: 16,
   bottom: 16,
 };
+
+const Wrapper = styled.div(({ isDisabled, hasError, hasSuccess }) => {
+  let disabledStyles;
+
+  if (isDisabled) {
+    disabledStyles = {
+      '& label, &:focus + label': {
+        backgroundColor: theme.color.dimGray,
+      },
+    };
+  }
+
+  let inputStyles;
+
+  if (hasError) {
+    inputStyles = {
+      input: {
+        borderColor: theme.color.error,
+      },
+    };
+  } else if (hasSuccess) {
+    inputStyles = {
+      input: {
+        borderColor: theme.color.success,
+      },
+    };
+  }
+
+  return [disabledStyles, inputStyles, { position: 'relative' }];
+});
+
+const StyledInput = styled.input([
+  { [theme.mq.mobileToDesktop]: [{}, mixins.typography.lg.desktop] },
+  {
+    WebkitAppearance: 'none',
+    font: 'inherit',
+    backgroundColor: theme.color.withOpacity(theme.color.white, 0.9),
+    border: `${theme.pxToRem(inputBorderWidth)} solid ${theme.color.interactive}`,
+    borderRadius: 0,
+    display: 'block',
+    marginTop: theme.pxToRem(8),
+    marginBottom: 0,
+    outline: 'none',
+    padding: `${theme.pxToRem(inputPadding.top)} ${theme.pxToRem(
+      inputPadding.left,
+    )} ${theme.pxToRem(inputPadding.bottom)}`,
+    transition: `border-color 0.2s ease-in-out, font-size 0.2s ease-in-out, line-height 0.2s ease-in-out`,
+    width: '100%',
+
+    '&::placeholder': {
+      color: theme.color.withOpacity(theme.color.primary, 0.4),
+    },
+
+    '&:focus': {
+      borderColor: theme.color.primary,
+    },
+
+    '&:disabled': {
+      backgroundColor: theme.color.withOpacity(theme.color.dimGray, 0.2),
+      borderColor: theme.color.dimGray,
+      cursor: 'not-allowed',
+
+      '&, &::placeholder': {
+        color: theme.color.dimGray,
+      },
+    },
+
+    '&:not(:placeholder-shown) + label': {
+      opacity: 1,
+      top: theme.pxToRem(theme.typography.body.sm.fontSizeMobile / -2),
+    },
+  },
+  mixins.typography.lg.mobile,
+]);
+
+const Label = styled.label([
+  { [theme.mq.mobileToDesktop]: [{}, mixins.typography.sm.desktop] },
+  {
+    backgroundColor: theme.color.interactive,
+    color: theme.color.white,
+    position: 'absolute',
+    top: 0,
+    left: theme.pxToRem(inputPadding.left),
+    opacity: 0,
+    padding: `${theme.pxToRem(4)} ${theme.pxToRem(8)}`,
+    transition: 'all 0.2s ease-in-out',
+  },
+  mixins.typography.sm.mobile,
+]);
+
+const HelperText = styled.div(({ isError, isSuccess }) => {
+  let color = 'transparent';
+
+  if (isError || isSuccess) {
+    color = theme.color.white;
+  }
+
+  let backgroundColor;
+
+  if (isError) {
+    backgroundColor = theme.color.withOpacity(theme.color.error, 0.8);
+  } else if (isSuccess) {
+    backgroundColor = theme.color.withOpacity(theme.color.success, 0.8);
+  }
+
+  return [
+    { [theme.mq.mobileToDesktop]: [{}, mixins.typography.sm.desktop] },
+    {
+      backgroundColor,
+      boxSizing: 'content-box',
+      color,
+      display: 'inline-block',
+      minHeight: `${theme.typography.body.sm.lineHeightMobile}px`,
+      padding: `${theme.pxToRem(2)} ${theme.pxToRem(8)} ${theme.pxToRem(4)}`,
+      transition: `background-color 0.2s ease-in-out, color 0.2s ease-in-out`,
+
+      [theme.mq.mobileToDesktop]: {
+        minHeight: `${theme.typography.body.sm.lineHeightDesktop}px`,
+      },
+    },
+    mixins.typography.sm.mobile,
+  ];
+});
 
 export const Input = ({
   className,
@@ -36,17 +159,8 @@ export const Input = ({
   }
 
   return (
-    <div
-      className={cx(
-        'component-Input-root',
-        {
-          'component-Input-disabled': disabled,
-          'component-Input-error': error,
-          'component-Input-success': success,
-        },
-        className,
-      )}>
-      <input
+    <Wrapper className={className} isDisabled={disabled} hasError={error} hasSuccess={success}>
+      <StyledInput
         id={id}
         name={name}
         disabled={disabled}
@@ -56,141 +170,31 @@ export const Input = ({
         type={type}
         value={value}
       />
-      <label htmlFor={id}>
-        {label} {required && <span className="component-Input-required">Required</span>}
-      </label>
 
-      <div className="component-Input-message">{message}</div>
+      <Label htmlFor={id}>
+        {label}{' '}
+        {required && (
+          <span
+            css={[
+              { [theme.mq.mobileToDesktop]: [{}, mixins.typography.xs.desktop] },
+              {
+                display: 'inline-block',
+                marginLeft: '0.1em',
+                letterSpacing: '0.03em',
+                opacity: 0.8,
+                textTransform: 'uppercase',
+              },
+              mixins.typography.xs.mobile,
+            ]}>
+            Required
+          </span>
+        )}
+      </Label>
 
-      <style jsx>{`
-        .component-Input-root {
-          position: relative;
-        }
-
-        input {
-          -webkit-appearance: none;
-          font: inherit;
-          ${mixins.typography.lg.mobile};
-          background-color: ${theme.color.withOpacity(theme.color.white, 0.9)};
-          border: ${theme.pxToRem(inputBorderWidth)} solid ${theme.color.interactive};
-          border-radius: 0;
-          display: block;
-          margin-top: ${theme.pxToRem(8)};
-          margin-bottom: 0;
-          outline: none;
-          padding: ${theme.pxToRem(inputPadding.top)} ${theme.pxToRem(inputPadding.left)}
-            ${theme.pxToRem(inputPadding.bottom)};
-          transition: border-color 0.2s ease-in-out, font-size 0.2s ease-in-out,
-            line-height 0.2s ease-in-out;
-          width: 100%;
-        }
-
-        input::placeholder {
-          color: ${theme.color.withOpacity(theme.color.primary, 0.4)};
-        }
-
-        input:focus {
-          border-color: ${theme.color.primary};
-        }
-
-        label {
-          ${mixins.typography.sm.mobile};
-          background-color: ${theme.color.interactive};
-          color: ${theme.color.white};
-          position: absolute;
-          top: 0;
-          left: ${theme.pxToRem(inputPadding.left)};
-          opacity: 0;
-          padding: ${theme.pxToRem(4)} ${theme.pxToRem(8)};
-          transition: all 0.2s ease-in-out;
-        }
-
-        label .component-Input-required {
-          ${mixins.typography.xs.mobile};
-          display: inline-block;
-          margin-left: 0.1em;
-          letter-spacing: 0.03em;
-          opacity: 0.8;
-          text-transform: uppercase;
-        }
-
-        input:not(:placeholder-shown) + label {
-          opacity: 1;
-          top: -${theme.pxToRem(theme.typography.body.sm.fontSizeMobile / 2)};
-        }
-
-        .component-Input-message {
-          ${mixins.typography.sm.mobile};
-          box-sizing: content-box;
-          color: transparent;
-          display: inline-block;
-          min-height: ${theme.typography.body.sm.lineHeightMobile}px;
-          padding: ${theme.pxToRem(2)} ${theme.pxToRem(8)} ${theme.pxToRem(4)};
-          transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-        }
-
-        .component-Input-disabled input {
-          background-color: ${theme.color.withOpacity(theme.color.dimGray, 0.2)};
-          border-color: ${theme.color.dimGray};
-          cursor: not-allowed;
-        }
-
-        .component-Input-disabled input,
-        .component-Input-disabled input::placeholder {
-          color: ${theme.color.dimGray};
-        }
-
-        .component-Input-disabled label,
-        .component-Input-disabled input:focus + label {
-          background-color: ${theme.color.dimGray};
-        }
-
-        .component-Input-error .component-Input-message,
-        .component-Input-success .component-Input-message {
-          color: ${theme.color.white};
-        }
-
-        .component-Input-error .component-Input-message {
-          background-color: ${theme.color.withOpacity(theme.color.error, 0.8)};
-        }
-
-        .component-Input-error input {
-          border-color: ${theme.color.error};
-        }
-
-        .component-Input-success .component-Input-message {
-          background-color: ${theme.color.withOpacity(theme.color.success, 0.8)};
-        }
-
-        .component-Input-success input {
-          border-color: ${theme.color.success};
-        }
-
-        @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
-          input {
-            ${mixins.typography.lg.desktop};
-          }
-
-          label {
-            ${mixins.typography.sm.desktop};
-          }
-
-          label .component-Input-required {
-            ${mixins.typography.xs.desktop};
-          }
-
-          .component-Input-message {
-            ${mixins.typography.sm.desktop};
-            min-height: ${theme.typography.body.sm.lineHeightDesktop}px;
-          }
-
-          .component-Input-error-message {
-            ${mixins.typography.sm.desktop};
-            min-height: ${theme.typography.body.sm.lineHeightDesktop}px;
-          }
-        }
-      `}</style>
-    </div>
+      <HelperText isError={error} isSuccess={success}>
+        {message}
+      </HelperText>
+    </Wrapper>
   );
 };
 
