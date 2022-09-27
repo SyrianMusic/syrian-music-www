@@ -1,5 +1,4 @@
 import UnstyledButton from '../UnstyledButton';
-import './grid.css';
 
 export default {
   title: 'UnstyledButton',

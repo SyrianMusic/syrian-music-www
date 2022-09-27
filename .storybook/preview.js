@@ -1,4 +1,5 @@
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
+import './grid.css';
 
 const viewports = {
   ...MINIMAL_VIEWPORTS,
