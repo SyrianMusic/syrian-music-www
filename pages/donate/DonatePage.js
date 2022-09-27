@@ -6,6 +6,7 @@ import SiteLayout from '../../components/SiteLayout';
 import Typography from '../../components/Typography';
 import { gutterMarginStyles } from '../../styles/mixins';
 import theme from '../../styles/theme';
+import { Label, HelperText } from '../../components/Input';
 
 const DonatePage = ({ CardElement, onChange, onSubmit }) => {
   const [hasAmount, setHasAmount] = useState(false);
@@ -52,7 +53,7 @@ const DonatePage = ({ CardElement, onChange, onSubmit }) => {
       <form css={[gutterMarginStyles]} onSubmit={handleSubmit}>
         <CurrencyInput id="amount" name="amount" label="Amount" onChange={handleAmountChange} />
 
-        <Typography
+        <Label
           css={{
             marginTop: theme.spacing.get(48),
             marginBottom: theme.spacing.get(16),
@@ -61,14 +62,11 @@ const DonatePage = ({ CardElement, onChange, onSubmit }) => {
               marginTop: theme.spacing.get(64),
               marginBottom: theme.spacing.get(24),
             },
-          }}
-          variant="h3">
+          }}>
           Payment
-        </Typography>
+        </Label>
 
-        <Typography css={{ marginBottom: '1em' }}>Card Details</Typography>
-
-        <CardElement
+        <div
           css={{
             border: `1px solid ${theme.color.accentTan}`,
             padding: `${theme.pxToRem(16)} ${theme.pxToRem(12)}`,
@@ -76,17 +74,11 @@ const DonatePage = ({ CardElement, onChange, onSubmit }) => {
             [theme.mq.mobileToDesktop]: {
               paddingTop: theme.pxToRem(24),
             },
-          }}
-        />
+          }}>
+          <CardElement />
+        </div>
 
-        <Typography
-          css={{
-            marginTop: theme.spacing.get(8),
-            marginBottom: 0,
-          }}
-          size="sm">
-          Transactions are secure and encrypted.
-        </Typography>
+        <HelperText>Transactions are secure and encrypted.</HelperText>
 
         <Button css={{ marginTop: theme.spacing.get(32) }} type="submit" disabled={isDisabled}>
           Donate
