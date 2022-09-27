@@ -41,49 +41,43 @@ const Wrapper = styled.div(({ isDisabled, hasError, hasSuccess }) => {
   return [disabledStyles, inputStyles, { position: 'relative' }];
 });
 
-const StyledInput = styled.input([
+const borderColor = theme.color.accentTan;
+
+export const inputStyles = [
   { [theme.mq.mobileToDesktop]: [{}, mixins.typography.lg.desktop] },
   {
     WebkitAppearance: 'none',
     font: 'inherit',
-    backgroundColor: theme.color.withOpacity(theme.color.white, 0.9),
-    border: `${theme.pxToRem(inputBorderWidth)} solid ${theme.color.interactive}`,
+    backgroundColor: theme.color.white,
+    border: `1px solid ${theme.color.withOpacity(borderColor, 0.4)}`,
     borderRadius: 0,
     display: 'block',
-    marginTop: theme.pxToRem(8),
-    marginBottom: 0,
     outline: 'none',
     padding: `${theme.pxToRem(inputPadding.top)} ${theme.pxToRem(
       inputPadding.left,
     )} ${theme.pxToRem(inputPadding.bottom)}`,
-    transition: `border-color 0.2s ease-in-out, font-size 0.2s ease-in-out, line-height 0.2s ease-in-out`,
+    transition: 'border-color 0.2s ease-in-out',
     width: '100%',
 
     '&::placeholder': {
-      color: theme.color.withOpacity(theme.color.primary, 0.4),
+      color: theme.color.placeholder,
     },
 
-    '&:focus': {
-      borderColor: theme.color.primary,
-    },
+    '&:focus': { borderColor },
 
     '&:disabled': {
-      backgroundColor: theme.color.withOpacity(theme.color.dimGray, 0.2),
-      borderColor: theme.color.dimGray,
+      borderColor: theme.color.disabled,
       cursor: 'not-allowed',
 
       '&, &::placeholder': {
-        color: theme.color.dimGray,
+        color: theme.color.disabled,
       },
-    },
-
-    '&:not(:placeholder-shown) + label': {
-      opacity: 1,
-      top: theme.pxToRem(theme.typography.body.sm.fontSizeMobile / -2),
     },
   },
   mixins.typography.lg.mobile,
-]);
+];
+
+export const StyledInput = styled.input(inputStyles);
 
 const Label = styled.label([
   { [theme.mq.mobileToDesktop]: [{}, mixins.typography.sm.desktop] },

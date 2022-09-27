@@ -3,6 +3,8 @@ import { useCallback, useState } from 'react';
 import MaskedInput from 'react-text-mask';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { debounce, pipe } from '../../utils/functions';
+import { inputStyles } from './Input';
+import Label from './Label';
 
 const mask = createNumberMask({ allowDecimal: true, integerLimit: 7 });
 
@@ -28,13 +30,15 @@ const CurrencyInput = ({ id, label, name, onChange }) => {
 
   return (
     <>
-      <label htmlFor={id}>{label}</label>
+      <Label htmlFor={id}>{label}</Label>
       <MaskedInput
+        css={inputStyles}
         mask={mask}
         inputMode="numeric"
         id={id}
         name={name}
         onChange={handleChange}
+        placeholder="$"
         value={amount === null ? '' : amount}
       />
     </>

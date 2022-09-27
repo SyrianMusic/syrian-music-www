@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
 import Button from '../Button';
-import Input, { inputBorderWidth, inputPadding } from '../Input';
+import EmailInput, { inputBorderWidth, inputPadding } from '../Input';
 import Typography from '../Typography';
 import UnstyledButton from '../UnstyledButton';
 
@@ -133,7 +133,7 @@ export const NewsletterSignup = ({ className, onSubmit }) => {
         </div>
 
         <div className="component-NewsletterSignup-input-wrapper">
-          <Input
+          <EmailInput
             className="component-NewsletterSignup-input"
             label={MESSAGES.input}
             name="EMAIL"
@@ -206,10 +206,6 @@ export const NewsletterSignup = ({ className, onSubmit }) => {
           text-decoration-color: ${theme.color.white};
         }
 
-        form :global(.component-NewsletterSignup-submit) {
-          margin-top: ${theme.pxToRem(4)};
-        }
-
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
           .component-NewsletterSignup-content {
             background-image: image-set(
@@ -239,7 +235,6 @@ export const NewsletterSignup = ({ className, onSubmit }) => {
 
           form :global(.component-NewsletterSignup-submit) {
             ${mixins.typography.lg.desktop};
-            margin-top: ${theme.pxToRem(8)};
             height: ${theme.pxToRem(
               inputPadding.top +
                 theme.typography.body.lg.lineHeightDesktop +

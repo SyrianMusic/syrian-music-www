@@ -106,6 +106,7 @@ const theme = {
     primary: colors.black,
     secondary: colors.spanishGray,
     interactive: colors.lightCoral,
+    placeholder: colors.gainsboro,
     disabled: colors.gainsboro,
     error: colors.red,
     success: colors.spanishVeridian,
