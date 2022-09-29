@@ -53,7 +53,7 @@ const DonatePage = ({ CardElement, updateAmount, onSubmit }) => {
         Donate Today
       </Typography>
 
-      <form css={[gutterMarginStyles]} onSubmit={handleSubmit}>
+      <form css={gutterMarginStyles} onSubmit={handleSubmit}>
         <Label htmlFor="email">Your Email</Label>
         <EmailInput id="email" required />
 
