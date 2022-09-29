@@ -23,6 +23,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-links',
     'storybook-addon-pseudo-states',
+    '@storybook/addon-interactions',
   ],
   staticDirs: ['../public'],
   stories: [
