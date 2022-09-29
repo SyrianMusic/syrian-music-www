@@ -1,7 +1,8 @@
 import CurrencyInput from '../CurrencyInput';
+import { getStoryTitle } from './utils';
 
 export default {
-  title: 'CurrencyInput',
+  title: getStoryTitle('CurrencyInput'),
   component: CurrencyInput,
   parameters: { layout: 'centered' },
 };

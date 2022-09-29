@@ -1,7 +1,8 @@
 import EmailInput from '../EmailInput';
+import { getStoryTitle } from './utils';
 
 export default {
-  title: 'EmailInput',
+  title: getStoryTitle('EmailInput'),
   component: EmailInput,
   parameters: { layout: 'centered' },
 };

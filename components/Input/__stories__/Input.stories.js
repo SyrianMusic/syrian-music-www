@@ -1,7 +1,8 @@
 import Input from '../Input';
+import { getStoryTitle } from './utils';
 
 export default {
-  title: 'Input',
+  title: getStoryTitle('Input'),
   component: Input,
   argTypes: {
     className: {
