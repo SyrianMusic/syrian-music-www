@@ -7,36 +7,38 @@ import Typography from '../../components/Typography';
 import { gutterMarginStyles } from '../../styles/mixins';
 import theme from '../../styles/theme';
 
-const DonatePage = ({ CardElement, updateAmount, onSubmit }) => {
-  const [hasAmount, setHasAmount] = useState(false);
+const DonatePage = ({ amountInput, emailInput, CardElement, submitPayment }) => {
+  const { isValid: isAmountValid } = amountInput;
+  const { isValid: isEmailValid } = emailInput;
 
-  const isDisabled = useMemo(() => !hasAmount, [hasAmount]);
+  const [isSubmitting] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [helperText, setHelperText] = useState(null);
+  const [hasError, setHasError] = useState(false);
 
-  const handleAmountChange = useCallback(
-    (value, e) => {
-      let amount;
-      const { valid } = e.target.validity;
+  const isInputDisabled = useMemo(() => hasSubmitted, [hasSubmitted]);
 
-      if (!hasAmount && valid && value) {
-        setHasAmount(true);
-        amount = value;
-      } else if (hasAmount && (!valid || !value)) {
-        setHasAmount(false);
-      }
-
-      if (typeof updateAmount === 'function' && amount) {
-        updateAmount(amount);
-      }
-    },
-    [hasAmount],
+  const isFormDisabled = useMemo(
+    () => (hasSubmitted && !hasError) || !isAmountValid || !isEmailValid,
+    [isAmountValid, isEmailValid, hasError, hasSubmitted],
   );
 
   const handleSubmit = useCallback(
-    (e) => {
+    async (e) => {
       e.preventDefault();
-      onSubmit();
+      setHelperText(null);
+      setHasSubmitted(true);
+      const { error } = await submitPayment();
+
+      if (error) {
+        setHasError(true);
+        setHelperText(error.message);
+      } else {
+        setHasError(false);
+        setHelperText('Thank you for your donation.');
+      }
     },
-    [onSubmit],
+    [hasSubmitted, submitPayment],
   );
 
   return (
@@ -55,10 +57,16 @@ const DonatePage = ({ CardElement, updateAmount, onSubmit }) => {
 
       <form css={gutterMarginStyles} onSubmit={handleSubmit}>
         <Label htmlFor="email">Your Email</Label>
-        <EmailInput id="email" required />
+        <EmailInput id="email" name="email" {...emailInput} disabled={isInputDisabled} required />
 
         <Label htmlFor="amount">Your Contribution</Label>
-        <CurrencyInput id="amount" name="amount" onChange={handleAmountChange} required />
+        <CurrencyInput
+          id="amount"
+          name="amount"
+          {...amountInput}
+          disabled={isInputDisabled}
+          required
+        />
 
         <Label
           css={{
@@ -74,26 +82,35 @@ const DonatePage = ({ CardElement, updateAmount, onSubmit }) => {
           Payment
         </Label>
 
-        <CardElement id="card-details" css={inputStyles} />
+        <CardElement
+          id="card-details"
+          css={[inputStyles, { ...(hasError ? { borderColor: theme.color.error } : {}) }]}
+          disabled={isSubmitting}
+        />
 
         <HelperText>Transactions are secure and encrypted.</HelperText>
 
-        <Button css={{ marginTop: theme.spacing.get(32) }} type="submit" disabled={isDisabled}>
+        <Button css={{ marginTop: theme.spacing.get(32) }} type="submit" disabled={isFormDisabled}>
           Donate
         </Button>
+
+        <HelperText
+          error={hasError}
+          css={{ marginTop: theme.spacing.get(32), marginBottom: theme.spacing.get(32) }}>
+          {helperText}
+        </HelperText>
       </form>
     </SiteLayout>
   );
 };
 
-DonatePage.propTypes = {
-  CardElement: PropTypes.elementType.isRequired,
-  updateAmount: PropTypes.func,
-  onSubmit: PropTypes.func.isRequired,
-};
+const inputPropShape = { isValid: PropTypes.bool };
 
-DonatePage.defaultProps = {
-  updateAmount: undefined,
+DonatePage.propTypes = {
+  amountInput: PropTypes.shape(inputPropShape).isRequired,
+  emailInput: PropTypes.shape(inputPropShape).isRequired,
+  CardElement: PropTypes.elementType.isRequired,
+  submitPayment: PropTypes.func.isRequired,
 };
 
 export default DonatePage;

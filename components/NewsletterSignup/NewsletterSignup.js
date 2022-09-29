@@ -1,85 +1,29 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import * as Yup from 'yup';
+import { useMemo, useState } from 'react';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
 import Button from '../Button';
-import { EmailInput, inputBorderWidth, inputPadding } from '../Input';
+import { EmailInput, inputBorderWidth, inputPadding, useInput } from '../Input';
 import Typography from '../Typography';
-import UnstyledButton from '../UnstyledButton';
 
 const MESSAGES = {
   input: 'Enter your email',
   success:
     'Thank you for signing up! Please follow the instructions in the next window to complete your registration.',
-  error: {
-    invalidEmail: 'Please provide a valid email address.',
-  },
-};
-
-const NEWSLETTER_SIGNUP_SCHEMA = Yup.object().shape({
-  email: Yup.string().email(MESSAGES.error.invalidEmail).required(MESSAGES.error.invalidEmail),
-});
-
-const INITIAL_STATE = {
-  email: '',
-  error: null,
-  handleSubmit: null,
-  submitted: false,
-  touched: false,
 };
 
 export const NewsletterSignup = ({ className, onSubmit }) => {
-  const [email, setEmail] = useState(INITIAL_STATE.email);
-  const [error, setError] = useState(INITIAL_STATE.error);
-  const [submitted, setSubmitted] = useState(INITIAL_STATE.submitted);
-  const [touched, setTouched] = useState(INITIAL_STATE.touched);
+  const emailInput = useInput(null);
 
-  const isValid = ({ onSuccess, onError } = {}) => {
-    try {
-      NEWSLETTER_SIGNUP_SCHEMA.validateSync({ email });
-      if (typeof onSuccess === 'function') {
-        onSuccess();
-      }
-      return true;
-    } catch (err) {
-      if (typeof onError === 'function') {
-        onError(err);
-      }
-      return false;
-    }
-  };
+  const { isValid: isEmailValid } = emailInput;
 
-  const validate = () => {
-    isValid({
-      onSuccess: () => {
-        setError(null);
-      },
-      onError: (err) => {
-        setError(err.message);
-      },
-    });
-  };
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const onBlur = () => {
-    if (!touched) {
-      setTouched(true);
-    }
-  };
-
-  const onChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  useEffect(() => {
-    if (touched) {
-      validate();
-    }
-  }, [email, touched]);
+  const isDisabled = useMemo(() => isSubmitted || !isEmailValid, [isEmailValid, isSubmitted]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitted(true);
 
     if (typeof onSubmit === 'function') {
       onSubmit(e);
@@ -88,24 +32,10 @@ export const NewsletterSignup = ({ className, onSubmit }) => {
     }
   };
 
-  const resetForm = () => {
-    setEmail(INITIAL_STATE.email);
-    setError(INITIAL_STATE.error);
-    setSubmitted(INITIAL_STATE.submitted);
-    setTouched(INITIAL_STATE.touched);
-  };
-
   let successMessage;
 
-  if (submitted) {
-    successMessage = (
-      <>
-        {MESSAGES.success}
-        <UnstyledButton className="component-NewsletterSignup-resubmit" onClick={resetForm}>
-          Sign up another email address.
-        </UnstyledButton>
-      </>
-    );
+  if (isSubmitted) {
+    successMessage = MESSAGES.success;
   }
 
   return (
@@ -120,7 +50,6 @@ export const NewsletterSignup = ({ className, onSubmit }) => {
         <Typography className="component-NewsletterSignup-title" textAlign="center" variant="h3">
           Stay up to date
         </Typography>
-
         <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
           <input type="text" name="SIGNUPCOMP" tabIndex="-1" value="Footer" readOnly />
           <input
@@ -131,30 +60,23 @@ export const NewsletterSignup = ({ className, onSubmit }) => {
             readOnly
           />
         </div>
-
         <div className="component-NewsletterSignup-input-wrapper">
           <EmailInput
+            {...emailInput}
             className="component-NewsletterSignup-input"
-            label={MESSAGES.input}
             name="EMAIL"
-            disabled={submitted}
-            error={error}
-            onBlur={onBlur}
-            onChange={onChange}
             placeholder={MESSAGES.input}
-            success={successMessage}
-            type="email"
-            value={email}
+            disabled={isSubmitted}
             required
           />
 
-          <Button
-            className="component-NewsletterSignup-submit"
-            type="submit"
-            disabled={!isValid() || submitted}>
+          <Button className="component-NewsletterSignup-submit" type="submit" disabled={isDisabled}>
             Sign up
           </Button>
         </div>
+        <Typography css={{ marginTop: theme.spacing.get(16) }} textAlign="center">
+          {successMessage || ' '}
+        </Typography>
       </div>
 
       <style jsx>{`

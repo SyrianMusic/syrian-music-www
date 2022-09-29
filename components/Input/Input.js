@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
 import { ErrorText } from './HelperText';
-import useValidation from './useValidation';
 
 export const inputBorderWidth = 1;
 
@@ -38,10 +36,6 @@ export const inputStyles = [
 
     '&:focus': { borderColor },
 
-    '&:invalid': {
-      borderColor: theme.color.error,
-    },
-
     '&:disabled': {
       borderColor: theme.color.disabled,
       cursor: 'not-allowed',
@@ -54,32 +48,33 @@ export const inputStyles = [
   mixins.typography.lg.mobile,
 ];
 
-export const StyledInput = styled.input(inputStyles);
+const inputErrorStyles = {
+  '&:not(:focus):invalid': {
+    borderColor: theme.color.error,
+  },
+};
 
-const Input = ({ required, ...props }) => {
-  const input = useRef(null);
+export const StyledInput = styled.input(({ isTouched }) => {
+  let styles = [inputStyles];
 
-  const { error, isRequired, handleBlur, handleChange, handleInvalid } = useValidation(input, {
-    required,
-  });
+  if (isTouched) {
+    styles = [...styles, inputErrorStyles];
+  }
 
+  return styles;
+});
+
+const Input = ({ className, error, value, ...props }) => {
   return (
-    <>
-      <StyledInput
-        ref={input}
-        onBlur={handleBlur}
-        onInvalid={handleInvalid}
-        onChange={handleChange}
-        required={isRequired}
-        {...props}
-      />
+    <div className={className}>
+      <StyledInput {...props} value={value || ''} />
       <ErrorText>{error}</ErrorText>
-    </>
+    </div>
   );
 };
 
-Input.propTypes = { required: PropTypes.bool };
+Input.propTypes = { className: PropTypes.string, error: PropTypes.string, value: PropTypes.string };
 
-Input.defaultProps = { required: false };
+Input.defaultProps = { className: undefined, error: null, value: null };
 
 export default Input;

@@ -1,5 +1,5 @@
 import Input from './Input';
 
-const EmailInput = (props) => <Input type="email" {...props} />;
+const EmailInput = (props) => <Input {...props} type="email" />;
 
 export default EmailInput;
