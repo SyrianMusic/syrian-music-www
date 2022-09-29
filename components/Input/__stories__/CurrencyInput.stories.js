@@ -20,7 +20,7 @@ Focus.args = Default.args;
 Focus.parameters = { pseudo: { focus: true } };
 
 export const Error = Template.bind({});
-Error.args = { ...Empty.args, required: true };
+Error.args = { isTouched: true, required: true, error: 'Error message' };
 
 export const Disabled = Template.bind({});
 Disabled.args = { ...Default.args, disabled: true };
