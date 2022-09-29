@@ -5,7 +5,7 @@ import PlusIcon from '../../icons/Plus';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
 import Rule from '../Rule';
-import UnstyledButton from '../UnstyledButton';
+import { UnstyledButton } from '../Button';
 
 export const Tabs = ({ renderLabel, tabs }) => {
   const { id: initialSelectedTab } = tabs[0];

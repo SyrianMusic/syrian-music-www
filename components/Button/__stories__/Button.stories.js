@@ -1,7 +1,8 @@
 import Button from '../Button';
+import { getStoryTitle } from './utils';
 
 export default {
-  title: 'Button',
+  title: getStoryTitle('Button'),
   component: Button,
   parameters: {
     controls: { expanded: true },

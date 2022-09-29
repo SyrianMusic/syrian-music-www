@@ -1,7 +1,8 @@
 import UnstyledButton from '../UnstyledButton';
+import { getStoryTitle } from './utils';
 
 export default {
-  title: 'UnstyledButton',
+  title: getStoryTitle('UnstyledButton'),
   component: UnstyledButton,
   parameters: {
     controls: { expanded: true },
