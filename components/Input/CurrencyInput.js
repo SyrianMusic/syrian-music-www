@@ -30,6 +30,7 @@ const CurrencyInput = ({ error, ...props }) => {
         {...props}
         mask={mask}
         inputMode="numeric"
+        placeholder="$"
         render={(ref, inputProps) => {
           return <StyledInput {...inputProps} ref={ref} />;
         }}
