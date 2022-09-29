@@ -64,17 +64,29 @@ export const StyledInput = styled.input(({ isTouched }) => {
   return styles;
 });
 
-const Input = ({ className, error, value, ...props }) => {
+const Input = ({ className, error, value, type, ...props }) => {
   return (
     <div className={className}>
-      <StyledInput {...props} value={value || ''} />
+      <StyledInput {...props} type={type} value={value} />
       <ErrorText>{error}</ErrorText>
     </div>
   );
 };
 
-Input.propTypes = { className: PropTypes.string, error: PropTypes.string, value: PropTypes.string };
+Input.propTypes = {
+  className: PropTypes.string,
+  error: PropTypes.string,
+  value: PropTypes.string,
+  defaultValue: PropTypes.string,
+  type: PropTypes.string,
+};
 
-Input.defaultProps = { className: undefined, error: null, value: null };
+Input.defaultProps = {
+  className: undefined,
+  error: null,
+  value: undefined,
+  defaultValue: null,
+  type: 'text',
+};
 
 export default Input;

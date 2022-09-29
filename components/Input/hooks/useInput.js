@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const useInput = (initialValue, options = {}) => {
-  const [value, setValue] = useState(initialValue);
+const useInput = (defaultValue, options = {}) => {
+  const [value, setValue] = useState(defaultValue);
   const [isValid, setIsValid] = useState(false);
   const [error, setError] = useState(null);
   const [isTouched, setIsTouched] = useState(false);
