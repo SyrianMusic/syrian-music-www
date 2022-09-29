@@ -6,8 +6,6 @@ import { ErrorText } from './HelperText';
 import { StyledInput } from './Input';
 import useInput from './useInput';
 
-const mask = createNumberMask({ allowDecimal: true, integerLimit: 7 });
-
 const removePrefix = (str) => str.replace(/^\$/, '');
 const removeSeparators = (str) => str.replace(/,/g, '');
 const toFloat = (str) => parseFloat(str, 10);
@@ -22,6 +20,8 @@ const parseValue = (value, initialValue) => {
 
 export const useCurrencyInput = (initialValue, options) =>
   useInput(initialValue, { ...options, parseValue });
+
+const mask = createNumberMask({ allowDecimal: true, integerLimit: 7 });
 
 const CurrencyInput = ({ error, ...props }) => {
   return (
