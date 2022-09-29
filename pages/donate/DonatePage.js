@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import { useCallback, useMemo, useState } from 'react';
 import Button from '../../components/Button';
@@ -6,6 +7,11 @@ import SiteLayout from '../../components/SiteLayout';
 import Typography from '../../components/Typography';
 import { gutterMarginStyles } from '../../styles/mixins';
 import theme from '../../styles/theme';
+
+const StyledLabel = styled(Label)({
+  marginTop: theme.spacing.get(24),
+  marginBottom: theme.spacing.get(16),
+});
 
 const DonatePage = ({ amountInput, emailInput, CardElement, submitPayment }) => {
   const { isValid: isAmountValid } = amountInput;
@@ -56,10 +62,10 @@ const DonatePage = ({ amountInput, emailInput, CardElement, submitPayment }) => 
       </Typography>
 
       <form css={gutterMarginStyles} onSubmit={handleSubmit}>
-        <Label htmlFor="email">Your Email</Label>
+        <StyledLabel htmlFor="email">Your Email</StyledLabel>
         <EmailInput id="email" name="email" {...emailInput} disabled={isInputDisabled} required />
 
-        <Label htmlFor="amount">Your Contribution</Label>
+        <StyledLabel htmlFor="amount">Your Contribution</StyledLabel>
         <CurrencyInput
           id="amount"
           name="amount"
@@ -68,19 +74,7 @@ const DonatePage = ({ amountInput, emailInput, CardElement, submitPayment }) => 
           required
         />
 
-        <Label
-          css={{
-            marginTop: theme.spacing.get(48),
-            marginBottom: theme.spacing.get(16),
-
-            [theme.mq.mobileToDesktop]: {
-              marginTop: theme.spacing.get(64),
-              marginBottom: theme.spacing.get(24),
-            },
-          }}
-          htmlFor="card-details">
-          Payment
-        </Label>
+        <StyledLabel htmlFor="card-details">Payment</StyledLabel>
 
         <CardElement
           id="card-details"
