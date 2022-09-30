@@ -4,7 +4,7 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { ErrorText } from './HelperText';
 import { StyledInput } from './Input';
 
-const mask = createNumberMask({ allowDecimal: true, integerLimit: 7 });
+const mask = createNumberMask({ allowDecimal: true, integerLimit: 6 });
 
 const CurrencyInput = ({ error, placeholder, ...props }) => {
   return (
