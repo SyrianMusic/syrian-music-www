@@ -51,13 +51,11 @@ export const Footer = ({ className, pathname }) => (
                           return null;
                         }
 
-                        const relativeLink = `${section.href}${link.href}`;
-
-                        if (pathname === relativeLink) {
+                        if (pathname === link.href) {
                           linkEl = <span>{linkText}</span>;
                         } else if (/^\//.test(link.href)) {
                           linkEl = (
-                            <Link href={relativeLink}>
+                            <Link href={link.href}>
                               <a>{linkText}</a>
                             </Link>
                           );
