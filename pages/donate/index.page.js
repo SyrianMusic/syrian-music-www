@@ -15,22 +15,33 @@ const DonatePageContainer = () => {
 
   const submitPayment = useCallback(
     async ({ amount, email }) => {
-      const { clientSecret } = await createPaymentIntent({ amount, idempotencyKey: session.id });
-      const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-          billing_details: { email },
-        },
-      });
+      try {
+        const { clientSecret } = await createPaymentIntent({ amount, idempotencyKey: session.id });
+        const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(
+          clientSecret,
+          {
+            payment_method: {
+              card: elements.getElement(CardElement),
+              billing_details: { email },
+            },
+          },
+        );
 
-      if (stripeError) {
-        return { error: stripeError };
-      }
+        if (stripeError) {
+          return { error: stripeError };
+        }
 
-      if (paymentIntent) {
-        return paymentIntent;
+        if (paymentIntent) {
+          return paymentIntent;
+        }
+        return {};
+      } catch (e) {
+        console.error(e);
+        return {
+          error:
+            'Something went wrong, and your donation was not made. Please reload the page and try again.',
+        };
       }
-      return {};
     },
     [elements],
   );
