@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
 import Button from '../Button';
-import { EmailInput, inputBorderWidth, inputPadding, useInput } from '../Input';
+import { EmailInput, inputBorderWidth, inputPadding, useEmailInput } from '../Input';
 import Typography from '../Typography';
 
 const MESSAGES = {
@@ -13,7 +13,7 @@ const MESSAGES = {
 };
 
 export const NewsletterSignup = ({ className, onSubmit }) => {
-  const emailInput = useInput(null);
+  const emailInput = useEmailInput();
 
   const { isValid: isEmailValid } = emailInput;
 

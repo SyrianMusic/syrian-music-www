@@ -13,7 +13,7 @@ const parseValue = (value, initialValue) => {
   return initialValue;
 };
 
-const useCurrencyInput = (initialValue, options) =>
+const useCurrencyInput = (initialValue = null, options) =>
   useInput(initialValue, { ...options, parseValue });
 
 export default useCurrencyInput;

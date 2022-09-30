@@ -9,7 +9,7 @@ import {
   inputStyles,
   Label,
   useCurrencyInput,
-  useInput,
+  useEmailInput,
 } from '../../components/Input';
 import SiteLayout from '../../components/SiteLayout';
 import Typography from '../../components/Typography';
@@ -24,8 +24,8 @@ const DonatePage = ({ CardElement, submitPayment }) => {
   const [helperText, setHelperText] = useState(null);
   const [hasError, setHasError] = useState(false);
 
-  const amountInput = useCurrencyInput(null);
-  const emailInput = useInput(null);
+  const amountInput = useCurrencyInput();
+  const emailInput = useEmailInput();
 
   const { value: amount, isValid: isAmountValid } = amountInput;
   const { value: email, isValid: isEmailValid } = emailInput;
