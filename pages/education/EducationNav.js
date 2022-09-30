@@ -2,11 +2,11 @@ import cx from 'classnames';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { UnstyledButton } from '../../components/Button';
 import Image from '../../components/Image';
 import Nav from '../../components/Nav';
 import Rule from '../../components/Rule';
 import Typography from '../../components/Typography';
-import UnstyledButton from '../../components/UnstyledButton';
 import config from '../../config.yaml';
 import theme from '../../styles/theme';
 
