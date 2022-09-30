@@ -1,6 +1,3 @@
-import { expect } from '@storybook/jest';
-import { userEvent, within } from '@storybook/testing-library';
-import { waitFor } from '@testing-library/react';
 import Button from '../Button';
 import './grid.css';
 
@@ -49,15 +46,6 @@ const Template = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = { children: 'Label' };
-
-export const Clicked = Template.bind({});
-Clicked.args = Default.args;
-Clicked.argTypes = { onClick: { action: true } };
-Clicked.play = async ({ args, canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByRole('button'));
-  await waitFor(() => expect(args.onClick).toHaveBeenCalled());
-};
 
 export const Hover = Template.bind({});
 Hover.args = Default.args;
