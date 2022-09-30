@@ -1,10 +1,12 @@
 import Input from '../Input';
 import Label from '../Label';
-import { getStoryTitle, InputGrid } from './utils';
+import { getStoryTitle } from './utils';
+import { withStoryGrid } from '../../../.storybook/decorators';
 
 export default {
   title: getStoryTitle('Input'),
   component: Input,
+
   parameters: { layout: 'centered' },
 };
 
@@ -30,7 +32,7 @@ export const Placeholder = Template.bind({});
 Placeholder.args = { ...Default.args, placeholder: 'Placeholder', defaultValue: null };
 
 export const All = () => (
-  <InputGrid>
+  <>
     <div>
       <Label>Default</Label>
       <Default {...Default.args} />
@@ -55,5 +57,6 @@ export const All = () => (
       <Label>Placeholder</Label>
       <Placeholder {...Placeholder.args} />
     </div>
-  </InputGrid>
+  </>
 );
+All.decorators = [withStoryGrid];

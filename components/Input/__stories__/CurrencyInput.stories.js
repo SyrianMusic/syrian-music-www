@@ -1,6 +1,7 @@
+import { withStoryGrid } from '../../../.storybook/decorators';
 import CurrencyInput from '../CurrencyInput';
 import Label from '../Label';
-import { getStoryTitle, InputGrid } from './utils';
+import { getStoryTitle } from './utils';
 
 export default {
   title: getStoryTitle('CurrencyInput'),
@@ -30,7 +31,7 @@ export const Placeholder = Template.bind({});
 Placeholder.args = { ...Default.args, placeholder: '$100.00', defaultValue: null };
 
 export const All = () => (
-  <InputGrid>
+  <>
     <div>
       <Label>Default</Label>
       <Default {...Default.args} />
@@ -55,5 +56,6 @@ export const All = () => (
       <Label>Placeholder</Label>
       <Placeholder {...Placeholder.args} />
     </div>
-  </InputGrid>
+  </>
 );
+All.decorators = [withStoryGrid];

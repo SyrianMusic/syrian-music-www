@@ -1,6 +1,7 @@
+import { withStoryGrid } from '../../../.storybook/decorators';
 import EmailInput from '../EmailInput';
 import Label from '../Label';
-import { getStoryTitle, InputGrid } from './utils';
+import { getStoryTitle } from './utils';
 
 export default {
   title: getStoryTitle('EmailInput'),
@@ -35,7 +36,7 @@ export const Placeholder = Template.bind({});
 Placeholder.args = { ...Default.args, placeholder: 'email@example.com', defaultValue: null };
 
 export const All = () => (
-  <InputGrid>
+  <>
     <div>
       <Label>Default</Label>
       <Default {...Default.args} />
@@ -60,5 +61,6 @@ export const All = () => (
       <Label>Placeholder</Label>
       <Placeholder {...Placeholder.args} />
     </div>
-  </InputGrid>
+  </>
 );
+All.decorators = [withStoryGrid];
