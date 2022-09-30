@@ -16,10 +16,7 @@ import Typography from '../../components/Typography';
 import { gutterMarginStyles } from '../../styles/mixins';
 import theme from '../../styles/theme';
 
-const StyledLabel = styled(Label)({
-  marginTop: theme.spacing.get(24),
-  marginBottom: theme.spacing.get(16),
-});
+const StyledLabel = styled(Label)({ marginTop: theme.spacing.get(24) });
 
 const DonatePage = ({ CardElement, submitPayment }) => {
   const [isSubmitting] = useState(false);

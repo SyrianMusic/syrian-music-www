@@ -6,14 +6,14 @@ import { StyledInput } from './Input';
 
 const mask = createNumberMask({ allowDecimal: true, integerLimit: 7 });
 
-const CurrencyInput = ({ error, ...props }) => {
+const CurrencyInput = ({ error, placeholder, ...props }) => {
   return (
     <>
       <MaskedInput
         {...props}
         mask={mask}
         inputMode="numeric"
-        placeholder="$"
+        placeholder={placeholder}
         render={(ref, inputProps) => {
           return <StyledInput {...inputProps} ref={ref} />;
         }}
@@ -23,8 +23,8 @@ const CurrencyInput = ({ error, ...props }) => {
   );
 };
 
-CurrencyInput.propTypes = { error: PropTypes.string };
+CurrencyInput.propTypes = { error: PropTypes.string, placeholder: PropTypes.string };
 
-CurrencyInput.defaultProps = { error: null };
+CurrencyInput.defaultProps = { error: null, placeholder: '$' };
 
 export default CurrencyInput;
