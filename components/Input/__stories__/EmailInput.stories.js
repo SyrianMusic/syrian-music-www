@@ -1,6 +1,6 @@
 import EmailInput from '../EmailInput';
 import Label from '../Label';
-import { getStoryTitle, InputGrid, InputStory } from './utils';
+import { getStoryTitle, InputGrid } from './utils';
 
 export default {
   title: getStoryTitle('EmailInput'),
@@ -36,29 +36,29 @@ Placeholder.args = { ...Default.args, placeholder: 'email@example.com', defaultV
 
 export const All = () => (
   <InputGrid>
-    <InputStory>
+    <div>
       <Label>Default</Label>
       <Default {...Default.args} />
-    </InputStory>
-    <InputStory>
+    </div>
+    <div>
       <Label>Empty</Label>
       <Empty {...Empty.args} />
-    </InputStory>
-    <InputStory className="pseudo-focus">
+    </div>
+    <div className="pseudo-focus">
       <Label>Focus</Label>
       <Focus {...Focus.args} />
-    </InputStory>
-    <InputStory>
+    </div>
+    <div>
       <Label>Error</Label>
       <Error {...Error.args} />
-    </InputStory>
-    <InputStory>
+    </div>
+    <div>
       <Label>Disabled</Label>
       <Disabled {...Disabled.args} />
-    </InputStory>
-    <InputStory>
+    </div>
+    <div>
       <Label>Placeholder</Label>
       <Placeholder {...Placeholder.args} />
-    </InputStory>
+    </div>
   </InputGrid>
 );
