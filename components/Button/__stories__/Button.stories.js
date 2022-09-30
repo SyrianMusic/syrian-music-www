@@ -1,6 +1,7 @@
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
 import { waitFor } from '@testing-library/react';
+import { withStoryGrid } from '../../../.storybook/decorators';
 import Button from '../Button';
 import { getStoryTitle } from './utils';
 
@@ -12,38 +13,6 @@ export default {
     layout: 'centered',
   },
 };
-
-export const All = () => (
-  <div className="story-grid">
-    <div>
-      <Button>Default</Button>
-    </div>
-    <div className="pseudo-hover">
-      <Button>Hover</Button>
-    </div>
-    <div className="pseudo-focus">
-      <Button>Focus</Button>
-    </div>
-    <div className="pseudo-active">
-      <Button>Active</Button>
-    </div>
-    <div className="pseudo-hover pseudo-focus">
-      <Button>Hover Focus</Button>
-    </div>
-    <div className="pseudo-hover pseudo-active">
-      <Button>Hover Active</Button>
-    </div>
-    <div className="pseudo-focus pseudo-active">
-      <Button>Focus Active</Button>
-    </div>
-    <div className="pseudo-hover pseudo-focus pseudo-active">
-      <Button>Hover Focus Active</Button>
-    </div>
-    <div className="disabled">
-      <Button disabled>Disabled</Button>
-    </div>
-  </div>
-);
 
 const Template = (args) => <Button {...args} />;
 
@@ -79,9 +48,46 @@ export const HoverActive = Template.bind({});
 HoverActive.args = Default.args;
 HoverActive.parameters = { pseudo: { hover: true, active: true } };
 
+export const FocusActive = Template.bind({});
+FocusActive.args = Default.args;
+FocusActive.parameters = { pseudo: { focus: true, active: true } };
+
 export const HoverFocusActive = Template.bind({});
 HoverFocusActive.args = Default.args;
 HoverFocusActive.parameters = { pseudo: { hover: true, focus: true, active: true } };
 
 export const Disabled = Template.bind({});
 Disabled.args = { ...Default.args, disabled: true };
+
+export const All = () => (
+  <>
+    <div>
+      <Default>Default</Default>
+    </div>
+    <div className="pseudo-hover">
+      <Hover {...Hover.args}>Hover</Hover>
+    </div>
+    <div className="pseudo-focus">
+      <Focus {...Focus.args}>Focus</Focus>
+    </div>
+    <div className="pseudo-active">
+      <Active {...Active.args}>Active</Active>
+    </div>
+    <div className="pseudo-hover pseudo-focus">
+      <HoverFocus {...HoverFocus.args}>Hover Focus</HoverFocus>
+    </div>
+    <div className="pseudo-hover pseudo-active">
+      <HoverActive {...HoverActive.args}>Hover Active</HoverActive>
+    </div>
+    <div className="pseudo-focus pseudo-active">
+      <FocusActive {...FocusActive.args}>Focus Active</FocusActive>
+    </div>
+    <div className="pseudo-hover pseudo-focus pseudo-active">
+      <HoverFocusActive {...HoverFocusActive.args}>Hover Focus Active</HoverFocusActive>
+    </div>
+    <div>
+      <Disabled {...Disabled.args}>Disabled</Disabled>
+    </div>
+  </>
+);
+All.decorators = [withStoryGrid];
