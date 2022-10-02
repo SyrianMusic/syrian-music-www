@@ -45,12 +45,13 @@ const CarnegieLandingPage = () => {
         <SectionHeader>Overview</SectionHeader>
 
         <Typography>
-          Education is an important part of SMPI’s mission. Because of this, we will be offering a
-          unique opportunity as part of our Carnegie Hall performance on May 19, 2023. For one piece
-          on our program, we will open the stage to advanced amateurs and enthusiasts to join Takht
-          al-Nagham. Participants will be required to audition on the piece in <TBD>DATE-TBD</TBD>{' '}
-          and if accepted, will participate in a number of workshops and special rehearsals in
-          addition to the dress rehearsal<sup>*</sup> at Carnegie Hall and the performance.
+          Education is an important part of SMPI&rsquo;s mission. Because of this, we will be
+          offering a unique opportunity as part of our Carnegie Hall performance on May 19, 2023.
+          For one piece on our program, we will open the stage to advanced amateurs and enthusiasts
+          to join Takht al-Nagham. Participants will be required to audition on the piece in{' '}
+          <TBD>DATE-TBD</TBD> and if accepted, will participate in a number of workshops and special
+          rehearsals in addition to the dress rehearsal<sup>*</sup> at Carnegie Hall and the
+          performance.
         </Typography>
 
         <Typography>
@@ -82,20 +83,24 @@ const CarnegieLandingPage = () => {
         <SectionHeader>How To Apply</SectionHeader>
 
         <Typography>
-          Download your application here and submit it to info@syrianmusic.org no later than 11:59PM
-          EST on January 2, 2023.
+          <TBD>Download your application</TBD> and submit it to{' '}
+          <a href="mailto:info@syrianmusic.org?subject=Carnegie Hall Audition">
+            info@syrianmusic.org
+          </a>{' '}
+          no later than 11:59PM EST on January 2, 2023.
         </Typography>
-
-        <Typography>Donate $XX by January XX, 2023, for your application fee.</Typography>
 
         <Typography>
-          Only XX number of applications will be accepted. If your application is not accepted, your
-          application fee will be refunded.
+          <Link href="/donate">
+            <a>Donate</a>
+          </Link>{' '}
+          $50 by <TBD>January XX, 2023</TBD>, for your application fee.
         </Typography>
-      </Section>
 
-      <Section>
-        <SectionHeader>Audition Resources</SectionHeader>
+        <Typography>
+          Only <TBD>XX</TBD> number of applications will be accepted. If your application is not
+          accepted, your application fee will be refunded.
+        </Typography>
       </Section>
 
       <Section>
