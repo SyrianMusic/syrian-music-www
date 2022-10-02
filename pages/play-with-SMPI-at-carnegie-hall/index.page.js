@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
+import PropTypes from 'prop-types';
 import SiteLayout from '../../components/SiteLayout';
 import Typography, { SectionHeader } from '../../components/Typography';
 import { gutterMarginStyles } from '../../styles/mixins';
@@ -18,6 +20,11 @@ const Section = styled.section([
 const Body = styled(Typography)({
   fontSize: theme.pxToRem(15),
   lineHeight: theme.pxToRem(20),
+
+  [theme.mq.mobileToDesktop]: {
+    fontSize: theme.pxToRem(20),
+    lineHeight: theme.pxToRem(25),
+  },
 });
 
 const Footnote = styled(Typography)({
@@ -38,6 +45,51 @@ const TBD = styled.span({
   backgroundColor: theme.color.interactive,
   color: theme.color.white,
 });
+
+const Table = styled.table({
+  fontSize: theme.pxToRem(12),
+  lineHeight: theme.pxToRem(20),
+  width: '100%',
+
+  [theme.mq.mobileToDesktop]: {
+    fontSize: theme.pxToRem(18),
+    lineHeight: theme.pxToRem(20),
+  },
+
+  tr: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  'tr:nth-child(odd)': {
+    backgroundColor: '#fff5ea',
+  },
+
+  td: {
+    padding: theme.spacing.get(24),
+  },
+
+  'td:nth-child(1)': {
+    color: theme.color.accentTan,
+  },
+
+  'td:nth-child(2)': {
+    flex: 1,
+    paddingLeft: 0,
+  },
+});
+
+const TimelineEvent = ({ date, children }) => (
+  <tr>
+    <td>{date}</td>
+    <td>{children}</td>
+  </tr>
+);
+
+TimelineEvent.propTypes = { date: PropTypes.string, children: PropTypes.node };
+
+TimelineEvent.defaultProps = { date: 'XX/XX/XX', children: undefined };
 
 const CarnegieLandingPage = () => {
   return (
@@ -110,6 +162,20 @@ const CarnegieLandingPage = () => {
 
       <Section>
         <SectionHeader>Timeline</SectionHeader>
+
+        <Table>
+          <tbody>
+            <TimelineEvent>Application submission due</TimelineEvent>
+            <TimelineEvent>Deadline to sign up for audition time</TimelineEvent>
+            <TimelineEvent>Live Audition</TimelineEvent>
+            <TimelineEvent>Acceptance Announcements and posting</TimelineEvent>
+            <TimelineEvent>1st winner Orientation</TimelineEvent>
+            <TimelineEvent>3rd winner rehearsal / workshop</TimelineEvent>
+            <TimelineEvent>Rehearsal with all musicians</TimelineEvent>
+            <TimelineEvent>Carnegie Hall Dress rehearsal</TimelineEvent>
+            <TimelineEvent>Carnegie Hall performance</TimelineEvent>
+          </tbody>
+        </Table>
       </Section>
     </SiteLayout>
   );
