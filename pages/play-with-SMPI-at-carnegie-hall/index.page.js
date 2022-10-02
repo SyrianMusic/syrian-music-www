@@ -177,6 +177,13 @@ const CarnegieLandingPage = () => {
           </tbody>
         </Table>
       </Section>
+
+      <Typography
+        css={{ marginTop: theme.spacing.get(32), marginBottom: theme.spacing.get(32) }}
+        variant="h3"
+        textAlign="center">
+        Good Luck!
+      </Typography>
     </SiteLayout>
   );
 };
