@@ -164,7 +164,13 @@ const CarnegieLandingPage = () => {
         <SectionHeader>How To Apply</SectionHeader>
 
         <Body>
-          <TBD>Download your application</TBD> and submit it to{' '}
+          <a
+            href="/assets/SMPI Carnegie Hall Application.pdf"
+            target="_blank"
+            rel="noopener noreferrer">
+            Download your application
+          </a>{' '}
+          and submit it to{' '}
           <a href="mailto:info@syrianmusic.org?subject=Carnegie Hall Audition">
             info@syrianmusic.org
           </a>{' '}
