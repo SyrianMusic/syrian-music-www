@@ -91,6 +91,8 @@ TimelineEvent.propTypes = { date: PropTypes.string, children: PropTypes.node };
 
 TimelineEvent.defaultProps = { date: 'XX/XX/XX', children: undefined };
 
+const APPLICATION_FEE = '$20';
+
 const CarnegieLandingPage = () => {
   return (
     <SiteLayout>
@@ -134,8 +136,8 @@ const CarnegieLandingPage = () => {
         </Body>
 
         <Body>
-          The application will require a fee of $50 and those who pass the audition will be asked to
-          donate $500 to cover the costs of participation.
+          The application will require a fee of {APPLICATION_FEE} and those who pass the audition
+          will be asked to donate $500 to cover the costs of participation.
         </Body>
 
         <Body>
@@ -173,7 +175,7 @@ const CarnegieLandingPage = () => {
           <Link href="/donate">
             <a>Donate</a>
           </Link>{' '}
-          $50 by <TBD>January XX, 2023</TBD>, for your application fee.
+          {APPLICATION_FEE} by <TBD>January XX, 2023</TBD>, for your application fee.
         </Body>
 
         <Body>
