@@ -111,6 +111,10 @@ const CarnegieLandingPage = () => {
           </li>
 
           <li>
+            <a href="#audition-resources">Audition Resources</a>
+          </li>
+
+          <li>
             <a href="#timeline">Timeline</a>
           </li>
         </Body>
@@ -175,6 +179,18 @@ const CarnegieLandingPage = () => {
         <Body>
           Only <TBD>XX</TBD> number of applications will be accepted. If your application is not
           accepted, your application fee will be refunded.
+        </Body>
+      </Section>
+
+      <Section id="audition-resources">
+        <SectionHeader>Audition Resources</SectionHeader>
+
+        <Body>Sama&rsquo;i Bayati Qadim</Body>
+
+        <Body>
+          <Link href="/education/transcriptions/1u52qDSIT2505qfBqtRMgP">
+            <a>View transcription here</a>
+          </Link>
         </Body>
       </Section>
 
