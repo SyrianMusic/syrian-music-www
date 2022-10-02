@@ -122,6 +122,42 @@ const CarnegieLandingPage = () => {
         </Body>
       </Section>
 
+      <div
+        css={{
+          marginTop: theme.spacing.get(24),
+          marginBottom: theme.spacing.get(32),
+
+          [theme.mq.mobileToDesktop]: gutterMarginStyles,
+        }}>
+        <picture
+          css={{
+            display: 'block',
+            width: theme.pxToRem(375),
+            height: theme.pxToRem(192),
+
+            [theme.mq.mobileToDesktop]: {
+              width: '100%',
+              height: 'auto',
+            },
+          }}>
+          <source
+            media={`(min-width: ${theme.breakpoint.mobileToDesktop}px)`}
+            srcSet="/images/events/takht-al-nagham-roulette-700x394.png 1x, /images/events/takht-al-nagham-roulette-700x394@2x.png 2x, /images/events/takht-al-nagham-roulette-700x394@3x.png 3x"
+          />
+          <source
+            media={`(max-width: ${theme.breakpoint.mobileToDesktop - 1}px)`}
+            srcSet="/images/events/takht-al-nagham-roulette-375x192.png 1x, /images/events/takht-al-nagham-roulette-375x192@2x.png 2x, /images/events/takht-al-nagham-roulette-375x192@3x.png 3x"
+          />
+          <img
+            css={{ width: '100%', height: 'auto' }}
+            src="/images/events/takht-al-nagham-roulette-375x192.png"
+            alt=""
+            height="192"
+            width="375"
+          />
+        </picture>
+      </div>
+
       <Section id="overview">
         <SectionHeader>Overview</SectionHeader>
 
