@@ -30,8 +30,8 @@ const Footnote = styled(Typography)({
 });
 
 const TBD = styled.span({
-  backgroundColor: 'red',
-  color: 'white',
+  backgroundColor: theme.color.interactive,
+  color: theme.color.white,
 });
 
 const CarnegieLandingPage = () => {
