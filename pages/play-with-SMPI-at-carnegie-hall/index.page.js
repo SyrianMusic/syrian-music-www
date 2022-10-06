@@ -41,11 +41,6 @@ const Footnote = styled(Typography)({
   },
 });
 
-const TBD = styled.span({
-  backgroundColor: theme.color.interactive,
-  color: theme.color.white,
-});
-
 const Table = styled.table({
   fontSize: theme.pxToRem(12),
   lineHeight: theme.pxToRem(20),
@@ -214,7 +209,7 @@ const CarnegieLandingPage = () => {
           <Link href="/donate">
             <a>Donate</a>
           </Link>{' '}
-          {APPLICATION_FEE} by <TBD>January XX, 2023</TBD>, for your application fee.
+          {APPLICATION_FEE} by January 31, 2023, for your application fee.
         </Body>
       </Section>
 
