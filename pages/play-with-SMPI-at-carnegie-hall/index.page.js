@@ -172,9 +172,8 @@ const CarnegieLandingPage = () => {
         </Body>
 
         <Body>
-          Participants will be able to purchase tickets within a block of seats dedicated to winners
-          and their guests. Participants and 2 guests will be invited to attend the post-concert
-          reception at Carnegie Hall.
+          Guests of participants will be able to purchase special tickets and will be invited to
+          special events surrounding the performance.
         </Body>
 
         <Footnote>
