@@ -168,7 +168,7 @@ const CarnegieLandingPage = () => {
           to join Takht al-Nagham. Participants will be required to audition on the piece in{' '}
           <TBD>DATE-TBD</TBD> and if accepted, will participate in a number of workshops and special
           rehearsals in addition to the dress rehearsal<sup>*</sup> at Carnegie Hall and the
-          performance.
+          performance<sup>**</sup>.
         </Body>
 
         <Body>
@@ -188,11 +188,8 @@ const CarnegieLandingPage = () => {
         </Footnote>
 
         <Footnote>
-          <TBD>
-            <sup>**</sup>
-          </TBD>{' '}
-          Participants are responsible for their own transportation and accommodation for all
-          audition, rehearsal and performance activities.
+          <sup>**</sup> Participants are responsible for their own transportation and accommodation
+          for all audition, rehearsal and performance activities.
         </Footnote>
       </Section>
 
