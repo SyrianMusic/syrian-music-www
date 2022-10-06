@@ -165,9 +165,9 @@ const CarnegieLandingPage = () => {
           Education is an important part of SMPI&rsquo;s mission. Because of this, we will be
           offering a unique opportunity as part of our Carnegie Hall performance on May 19, 2023.
           For one piece on our program, we will open the stage to advanced amateurs and enthusiasts
-          to join Takht al-Nagham. Participants will be required to audition on the piece in{' '}
-          <TBD>DATE-TBD</TBD> and if accepted, will participate in a number of workshops and special
-          rehearsals in addition to the dress rehearsal<sup>*</sup> at Carnegie Hall and the
+          to join Takht al-Nagham. Participants will be required to audition on the piece in
+          February 2022 (date TBD) and if accepted, will participate in a number of workshops and
+          special rehearsals in addition to the dress rehearsal<sup>*</sup> at Carnegie Hall and the
           performance<sup>**</sup>.
         </Body>
 
