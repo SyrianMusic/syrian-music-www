@@ -168,7 +168,7 @@ const CarnegieLandingPage = () => {
 
         <Body>
           The application will require a fee of {APPLICATION_FEE} and those who pass the audition
-          will be asked to donate $500 to cover the costs of participation.
+          will be asked to donate $200 to cover the costs of participation.
         </Body>
 
         <Body>
