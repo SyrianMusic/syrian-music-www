@@ -216,11 +216,6 @@ const CarnegieLandingPage = () => {
           </Link>{' '}
           {APPLICATION_FEE} by <TBD>January XX, 2023</TBD>, for your application fee.
         </Body>
-
-        <Body>
-          Only <TBD>XX</TBD> number of applications will be accepted. If your application is not
-          accepted, your application fee will be refunded.
-        </Body>
       </Section>
 
       <Section id="audition-resources">
