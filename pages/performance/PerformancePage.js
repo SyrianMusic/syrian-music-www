@@ -118,7 +118,7 @@ const PerformancePage = (props) => {
       )}
 
       <Section>
-        <Video id="'n6VjsvT6o3s'" title="Zakhrafa زخرفة" />
+        <Video id="n6VjsvT6o3s" title="Zakhrafa زخرفة" />
         <Typography css={{ marginTop: theme.spacing.get(32) }} variant="h3" as="div">
           Zakhrafa | Roulette
         </Typography>
