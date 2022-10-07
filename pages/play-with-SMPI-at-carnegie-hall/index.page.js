@@ -67,6 +67,7 @@ const Table = styled.table({
 
   'td:nth-child(1)': {
     color: theme.color.accentTan,
+    textAlign: 'center',
   },
 
   'td:nth-child(2)': {
@@ -229,15 +230,26 @@ const CarnegieLandingPage = () => {
 
         <Table>
           <tbody>
-            <TimelineEvent>Application submission due</TimelineEvent>
-            <TimelineEvent>Deadline to sign up for audition time</TimelineEvent>
-            <TimelineEvent>Live Audition</TimelineEvent>
-            <TimelineEvent>Acceptance Announcements and posting</TimelineEvent>
-            <TimelineEvent>1st winner Orientation</TimelineEvent>
-            <TimelineEvent>3rd winner rehearsal / workshop</TimelineEvent>
-            <TimelineEvent>Rehearsal with all musicians</TimelineEvent>
-            <TimelineEvent>Carnegie Hall Dress rehearsal</TimelineEvent>
-            <TimelineEvent>Carnegie Hall performance</TimelineEvent>
+            <TimelineEvent date="01/22/2023">Application Submission Due</TimelineEvent>
+            <TimelineEvent date="02/08/2023">Deadline to Sign up for Audition Time</TimelineEvent>
+            <TimelineEvent date="02/11/2023">Live Audition</TimelineEvent>
+            <TimelineEvent date="02/21/2023">Acceptance announcements</TimelineEvent>
+            <TimelineEvent date="03/02/2023">Winner Orientation and Workshop</TimelineEvent>
+            <TimelineEvent date="03/11/2023">Winner In Person Rehearsal</TimelineEvent>
+            <TimelineEvent date="03/30/2023">Winner Workshop</TimelineEvent>
+            <TimelineEvent date="04/15/2023">Winner Rehearsal</TimelineEvent>
+            <TimelineEvent date="05/06/2023">Full Rehearsal</TimelineEvent>
+            <TimelineEvent
+              date={
+                <>
+                  Week of
+                  <br />
+                  05/15/2023
+                </>
+              }>
+              Dress rehearsal at Carnegie Hall
+            </TimelineEvent>
+            <TimelineEvent date="05/19/2023">Performance</TimelineEvent>
           </tbody>
         </Table>
       </Section>
