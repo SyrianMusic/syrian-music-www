@@ -21,8 +21,8 @@ const StyledLabel = styled(Label)({ marginTop: theme.spacing.get(24) });
 const DonatePage = ({ CardElement, submitPayment }) => {
   const [isSubmitting] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  const [helperText, setHelperText] = useState(null);
-  const [hasError, setHasError] = useState(false);
+  const [stripeError, setStripeError] = useState(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const amountInput = useCurrencyInput();
   const emailInput = useEmailInput();
@@ -33,8 +33,8 @@ const DonatePage = ({ CardElement, submitPayment }) => {
   const areInputsDisabled = useMemo(() => hasSubmitted, [hasSubmitted]);
 
   const isFormDisabled = useMemo(
-    () => (hasSubmitted && !hasError) || !isAmountValid || !isEmailValid,
-    [isAmountValid, isEmailValid, hasError, hasSubmitted],
+    () => (hasSubmitted && !stripeError) || !isAmountValid || !isEmailValid,
+    [isAmountValid, isEmailValid, hasSubmitted, stripeError],
   );
 
   const handleSubmit = useCallback(
@@ -43,17 +43,14 @@ const DonatePage = ({ CardElement, submitPayment }) => {
 
       if (isFormDisabled) return;
 
-      setHelperText(null);
       setHasSubmitted(true);
 
       const { error } = await submitPayment({ amount, email });
 
       if (error) {
-        setHasError(true);
-        setHelperText(error.message);
+        setStripeError(error.message);
       } else {
-        setHasError(false);
-        setHelperText('Thank you for your donation.');
+        setShowConfirmation(true);
       }
     },
     [amount, email, hasSubmitted, isFormDisabled, submitPayment],
@@ -74,38 +71,47 @@ const DonatePage = ({ CardElement, submitPayment }) => {
         Donate Today
       </Typography>
 
-      <form css={gutterMarginStyles} onSubmit={handleSubmit}>
-        <StyledLabel htmlFor="email">Your Email</StyledLabel>
-        <EmailInput id="email" name="email" {...emailInput} disabled={areInputsDisabled} required />
+      {showConfirmation ? (
+        <Typography textAlign="center">Thank you for your donation.</Typography>
+      ) : (
+        <form css={gutterMarginStyles} onSubmit={handleSubmit}>
+          <StyledLabel htmlFor="email">Your Email</StyledLabel>
+          <EmailInput
+            id="email"
+            name="email"
+            {...emailInput}
+            disabled={areInputsDisabled}
+            required
+          />
 
-        <StyledLabel htmlFor="amount">Your Contribution</StyledLabel>
-        <CurrencyInput
-          id="amount"
-          name="amount"
-          {...amountInput}
-          helperText="Your donation is tax-deductible."
-          disabled={areInputsDisabled}
-          required
-        />
+          <StyledLabel htmlFor="amount">Your Contribution</StyledLabel>
+          <CurrencyInput
+            id="amount"
+            name="amount"
+            {...amountInput}
+            helperText="Your donation is tax-deductible."
+            disabled={areInputsDisabled}
+            required
+          />
 
-        <StyledLabel htmlFor="card-details">Payment</StyledLabel>
-        <CardElement
-          id="card-details"
-          css={[inputStyles, { ...(hasError ? { borderColor: theme.color.error } : {}) }]}
-          disabled={isSubmitting}
-        />
-        <HelperText>Transactions are secure and encrypted.</HelperText>
+          <StyledLabel htmlFor="card-details">Payment</StyledLabel>
+          <CardElement
+            id="card-details"
+            css={[inputStyles, { ...(stripeError ? { borderColor: theme.color.error } : {}) }]}
+            disabled={isSubmitting}
+          />
+          <HelperText error={Boolean(stripeError)}>
+            {stripeError ? stripeError : 'Transactions are secure and encrypted.'}
+          </HelperText>
 
-        <Button css={{ marginTop: theme.spacing.get(32) }} type="submit" disabled={isFormDisabled}>
-          Donate
-        </Button>
-
-        <HelperText
-          error={hasError}
-          css={{ marginTop: theme.spacing.get(32), marginBottom: theme.spacing.get(32) }}>
-          {helperText}
-        </HelperText>
-      </form>
+          <Button
+            css={{ marginTop: theme.spacing.get(32) }}
+            type="submit"
+            disabled={isFormDisabled}>
+            Donate
+          </Button>
+        </form>
+      )}
     </SiteLayout>
   );
 };
