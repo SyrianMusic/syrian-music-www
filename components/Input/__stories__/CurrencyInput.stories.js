@@ -30,6 +30,12 @@ Disabled.args = { ...Default.args, disabled: true };
 export const Placeholder = Template.bind({});
 Placeholder.args = { ...Default.args, placeholder: '$100.00', defaultValue: null };
 
+export const HelperText = Template.bind({});
+HelperText.args = { ...Default.args, helperText: 'Helper text' };
+
+export const HelperTextAndError = Template.bind({});
+HelperTextAndError.args = { ...Error.args, helperText: 'Helper text' };
+
 export const All = () => (
   <>
     <div>

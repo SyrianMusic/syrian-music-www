@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
-import { ErrorText } from './HelperText';
+import HelperText, { ErrorText } from './HelperText';
 
 export const inputBorderWidth = 1;
 
@@ -64,11 +64,11 @@ export const StyledInput = styled.input(({ isTouched }) => {
   return styles;
 });
 
-const Input = ({ className, error, type, ...props }) => {
+const Input = ({ className, error, helperText, type, ...props }) => {
   return (
     <div className={className}>
       <StyledInput {...props} type={type} />
-      <ErrorText>{error}</ErrorText>
+      <HelperText error={Boolean(error)}>{error ? error : helperText}</HelperText>
     </div>
   );
 };
@@ -76,12 +76,14 @@ const Input = ({ className, error, type, ...props }) => {
 Input.propTypes = {
   className: PropTypes.string,
   error: PropTypes.string,
+  helperText: PropTypes.string,
   type: PropTypes.string,
 };
 
 Input.defaultProps = {
   className: undefined,
   error: null,
+  helperText: null,
   type: 'text',
 };
 

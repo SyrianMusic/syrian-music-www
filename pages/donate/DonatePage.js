@@ -81,6 +81,7 @@ const DonatePage = ({ CardElement, submitPayment }) => {
           id="amount"
           name="amount"
           {...amountInput}
+          helperText="Your donation is tax-deductible."
           disabled={areInputsDisabled}
           required
         />
