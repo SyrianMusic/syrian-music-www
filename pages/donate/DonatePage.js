@@ -41,6 +41,8 @@ const DonatePage = ({ CardElement, submitPayment }) => {
     async (e) => {
       e.preventDefault();
 
+      if (isFormDisabled) return;
+
       setHelperText(null);
       setHasSubmitted(true);
 
@@ -54,7 +56,7 @@ const DonatePage = ({ CardElement, submitPayment }) => {
         setHelperText('Thank you for your donation.');
       }
     },
-    [amount, email, hasSubmitted, submitPayment],
+    [amount, email, hasSubmitted, isFormDisabled, submitPayment],
   );
 
   return (
