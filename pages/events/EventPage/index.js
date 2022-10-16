@@ -49,9 +49,15 @@ export const eventPageQuery = gql`
       name
       startDate
       endDate
+      location
       image {
         ...Image
       }
+      summary {
+        json
+      }
+      url
+      urlText
       programEnglish: programCollection(locale: "en-US") {
         items {
           ...ProgramWorkEnglish
@@ -105,6 +111,12 @@ const propTypes = {
   name: PropTypes.string.isRequired,
   startDate: PropTypes.string.isRequired,
   endDate: PropTypes.string,
+  location: PropTypes.string.isRequired,
+  summary: PropTypes.shape({
+    json: PropTypes.shape({}),
+  }),
+  url: PropTypes.string,
+  urlText: PropTypes.string,
   programEnglish: PropTypes.shape({
     items: PropTypes.arrayOf(PropTypes.shape({})),
   }),
@@ -190,7 +202,14 @@ const EventPage = ({
   performers,
   startDate,
   endDate,
+  location,
+  summary,
+  url,
+  urlText,
 }) => {
+  const now = Date.now();
+  let isUpcomingEvent = new Date(startDate) > now || (endDate && new Date(endDate) > now);
+
   const program = transformProgram(programEnglish, programArabic);
   const hasProgram = program?.items.length > 0;
 
@@ -240,7 +259,9 @@ const EventPage = ({
           {name}
         </Typography>
 
-        <Typography textAlign="center">{formatDateRange(startDate, endDate)}</Typography>
+        <Typography textAlign="center">
+          {formatDateRange(startDate, endDate)} | {location}
+        </Typography>
 
         <Image
           css={{
@@ -255,6 +276,23 @@ const EventPage = ({
           width={image.width}
           height={image.height}
         />
+
+        {isUpcomingEvent && (
+          <>
+            {parseRichText(summary.json, null, {
+              paragraph: {
+                css: {
+                  marginTop: theme.pxToRem(theme.typography.body.lg.lineHeightMobile),
+                },
+              },
+            })}
+            <Typography>
+              <a href={url} target="_blank" rel="noopener noreferrer">
+                {urlText}
+              </a>
+            </Typography>
+          </>
+        )}
 
         {hasProgram && (
           <Section>
