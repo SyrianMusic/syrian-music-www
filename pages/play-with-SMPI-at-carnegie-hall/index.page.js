@@ -3,6 +3,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import SiteLayout from '../../components/SiteLayout';
 import Typography, { SectionHeader } from '../../components/Typography';
+import Video from '../../components/Video';
 import { gutterMarginStyles } from '../../styles/mixins';
 import theme from '../../styles/theme';
 
@@ -215,6 +216,12 @@ const CarnegieLandingPage = () => {
 
       <Section id="audition-resources">
         <SectionHeader>Audition Resources</SectionHeader>
+
+        <Video
+          css={{ marginTop: theme.spacing.get(32), marginBottom: theme.spacing.get(32) }}
+          id="-StVc2u293w"
+          title="Sama’i Bayati Qadim"
+        />
 
         <Body>Sama&rsquo;i Bayati Qadim</Body>
 
