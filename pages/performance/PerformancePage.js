@@ -91,8 +91,7 @@ const PerformancePage = (props) => {
               marginBottom: theme.spacing.get(24),
               [theme.mq.mobileToDesktop]: { marginBottom: 0 },
             }}>
-            Upcoming <br css={{ [theme.mq.mobileToDesktop]: { display: 'none' } }} />
-            Performances
+            Upcoming Events
           </SectionHeader>
           <UpcomingEventsList upcomingEvents={upcomingEvents} />
         </Section>
@@ -106,8 +105,7 @@ const PerformancePage = (props) => {
               marginBottom: theme.spacing.get(24),
               [theme.mq.mobileToDesktop]: { marginBottom: 0 },
             }}>
-            Previous <br css={{ [theme.mq.mobileToDesktop]: { display: 'none' } }} />
-            Performances
+            Previous Events
           </SectionHeader>
           <PastEventsList pastEvents={pastEvents} />
         </Section>
