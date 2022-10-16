@@ -20,10 +20,10 @@ import theme from '../../styles/theme';
 const spacingStyles = { marginTop: theme.spacing.get(24) };
 
 const TwoColumnContainer = styled.div({ display: 'flex' });
-const TwoColumnChild = styled.div({
+const twoColumnChildStyles = {
   flex: 1,
   '&:not(:last-child)': { marginRight: theme.spacing.get(24) },
-});
+};
 
 const DonatePage = ({ CardElement, submitPayment }) => {
   const [isSubmitting] = useState(false);
@@ -34,16 +34,42 @@ const DonatePage = ({ CardElement, submitPayment }) => {
   const amountInput = useCurrencyInput();
   const emailInput = useEmailInput();
   const nameInput = useInput('');
+  const address1Input = useInput('');
+  const address2Input = useInput('');
+  const cityInput = useInput('');
+  const stateInput = useInput('');
 
   const { value: amount, isValid: isAmountValid } = amountInput;
   const { value: email, isValid: isEmailValid } = emailInput;
   const { value: name, isValid: isNameValid } = nameInput;
+  const { value: address1, isValid: isAddress1Valid } = address1Input;
+  const { value: address2, isValid: isAddress2Valid } = address2Input;
+  const { value: city, isValid: isCityValid } = cityInput;
+  const { value: state, isValid: isStateValid } = stateInput;
 
   const areInputsDisabled = useMemo(() => hasSubmitted, [hasSubmitted]);
 
   const isFormDisabled = useMemo(
-    () => (hasSubmitted && !stripeError) || !isAmountValid || !isEmailValid || !isNameValid,
-    [isAmountValid, isEmailValid, isNameValid, hasSubmitted, stripeError],
+    () =>
+      (hasSubmitted && !stripeError) ||
+      !isAmountValid ||
+      !isEmailValid ||
+      !isNameValid ||
+      !isAddress1Valid ||
+      !isAddress2Valid ||
+      !isCityValid ||
+      !isStateValid,
+    [
+      isAmountValid,
+      isEmailValid,
+      isNameValid,
+      isAddress1Valid,
+      isAddress2Valid,
+      isCityValid,
+      isStateValid,
+      hasSubmitted,
+      stripeError,
+    ],
   );
 
   const handleSubmit = useCallback(
@@ -54,7 +80,15 @@ const DonatePage = ({ CardElement, submitPayment }) => {
 
       setHasSubmitted(true);
 
-      const { error } = await submitPayment({ amount, email, name });
+      const { error } = await submitPayment({
+        amount,
+        email,
+        name,
+        address1,
+        address2,
+        city,
+        state,
+      });
 
       if (error) {
         setStripeError(error.message);
@@ -107,10 +141,53 @@ const DonatePage = ({ CardElement, submitPayment }) => {
             required
           />
 
-          <Label css={spacingStyles} htmlFor="name">
-            Name
-          </Label>
-          <Input id="name" name="name" {...nameInput} required />
+          <Label css={{ marginTop: theme.spacing.get(40) }}>Billing Address</Label>
+
+          <Input
+            css={spacingStyles}
+            id="name"
+            name="name"
+            placeholder="Name"
+            {...nameInput}
+            required
+          />
+
+          <Input
+            css={spacingStyles}
+            id="address1"
+            name="address1"
+            placeholder="Address 1"
+            {...address1Input}
+            required
+          />
+
+          <Input
+            css={spacingStyles}
+            id="address2"
+            name="address2"
+            placeholder="Address 2"
+            {...address2Input}
+          />
+
+          <TwoColumnContainer css={spacingStyles}>
+            <Input
+              css={twoColumnChildStyles}
+              id="city"
+              name="city"
+              placeholder="City"
+              {...cityInput}
+              required
+            />
+
+            <Input
+              css={twoColumnChildStyles}
+              id="state"
+              name="state"
+              placeholder="State"
+              {...stateInput}
+              required
+            />
+          </TwoColumnContainer>
 
           <Label css={spacingStyles} htmlFor="card-details">
             Payment

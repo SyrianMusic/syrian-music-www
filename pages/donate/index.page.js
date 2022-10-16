@@ -14,7 +14,7 @@ const DonatePageContainer = () => {
   const session = useContext(SessionContext);
 
   const submitPayment = useCallback(
-    async ({ amount, email, name }) => {
+    async ({ amount, email, name, address1, address2, city, state }) => {
       try {
         const { clientSecret } = await createPaymentIntent({ amount, idempotencyKey: session.id });
         const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(
@@ -22,7 +22,17 @@ const DonatePageContainer = () => {
           {
             payment_method: {
               card: elements.getElement(CardElement),
-              billing_details: { email, name },
+              billing_details: {
+                email,
+                name,
+                address: {
+                  line1: address1,
+                  line2: address2,
+                  city,
+                  state,
+                  country: 'US',
+                },
+              },
             },
           },
         );
