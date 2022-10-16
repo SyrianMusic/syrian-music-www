@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import theme from '../../styles/theme';
+import theme from '../../../styles/theme';
 import carouselButton from './carouselButton';
 import PastEvent from './PastEvent';
 

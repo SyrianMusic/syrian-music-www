@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import theme from '../../styles/theme';
+import theme from '../../../styles/theme';
 
 const border = `${theme.pxToRem(3)} solid ${theme.color.interactive}`;
 const position = theme.pxToRem(-35);

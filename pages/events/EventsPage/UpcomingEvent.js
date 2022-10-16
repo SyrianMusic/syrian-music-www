@@ -1,10 +1,10 @@
 import { gql } from '@apollo/client';
 import PropTypes from 'prop-types';
-import Image from '../../components/Image';
-import Typography from '../../components/Typography';
-import theme from '../../styles/theme';
-import { formatDateRange } from '../../utils/date';
-import { parseRichText } from '../../utils/text';
+import Image from '../../../components/Image';
+import Typography from '../../../components/Typography';
+import theme from '../../../styles/theme';
+import { formatDateRange } from '../../../utils/date';
+import { parseRichText } from '../../../utils/text';
 
 const DEFAULT_CTA_TEXT = 'Get tickets';
 

@@ -1,9 +1,9 @@
 import { Event, EventCollection, getDateRange } from '../../../__fixtures__/';
 import { pageParameters } from '../../__stories__/config';
-import PastEvent from '../PastEvent';
+import PastEvent from '../EventsPage/PastEvent';
 import { pastEvents } from '../__fixtures__/events';
 import { PAGE_PATH } from './config';
-import { Default as PageDefault, Template as PageTemplate } from './PerformancePage.stories';
+import { Default as PageDefault, Template as PageTemplate } from './EventsPage.stories';
 
 export default {
   title: PAGE_PATH + '/PastEvent',

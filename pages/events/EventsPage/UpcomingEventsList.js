@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import UpcomingEvent from './UpcomingEvent';
-import UnstyledButton from '../../components/UnstyledButton';
-import theme from '../../styles/theme';
 import { useCallback, useState } from 'react';
+import UnstyledButton from '../../../components/UnstyledButton';
+import theme from '../../../styles/theme';
+import UpcomingEvent from './UpcomingEvent';
 
 const MAX_EVENTS = 3;
 

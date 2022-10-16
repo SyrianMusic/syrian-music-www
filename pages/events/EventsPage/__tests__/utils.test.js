@@ -1,5 +1,5 @@
-import faker from '../../../utils/faker';
-import { Event } from '../../../__fixtures__/Event';
+import faker from '../../../../utils/faker';
+import { Event } from '../../../../__fixtures__/Event';
 import { sortPastEvents, sortUpcomingEvents } from '../utils';
 
 describe('sortPastEvents', () => {

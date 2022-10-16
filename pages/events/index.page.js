@@ -1,11 +1,11 @@
 import { BaseAPI } from '../../api';
-import PerformancePage, { performancePageQuery } from './PerformancePage';
+import EventsPage, { eventsPageQuery } from './EventsPage';
 
 export const getStaticProps = async () => {
-  const { data } = await BaseAPI.query(performancePageQuery, {
+  const { data } = await BaseAPI.query(eventsPageQuery, {
     variables: { now: new Date(Date.now()).toISOString() },
   });
   return { props: data };
 };
 
-export default PerformancePage;
+export default EventsPage;

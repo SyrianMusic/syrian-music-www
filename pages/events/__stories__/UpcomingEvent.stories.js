@@ -3,7 +3,7 @@ import { pageParameters } from '../../__stories__/config';
 import UpcomingEvent from '../UpcomingEvent';
 import { upcomingEvents } from '../__fixtures__/events';
 import { PAGE_PATH } from './config';
-import { Default as PageDefault, Template as PageTemplate } from './PerformancePage.stories';
+import { Default as PageDefault, Template as PageTemplate } from './EventsPage.stories';
 
 export default {
   title: PAGE_PATH + '/UpcomingEvent',

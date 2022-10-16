@@ -68,5 +68,5 @@
   force = true
 
 [[redirects]]
-  from = "/events"
-  to = "/performance"
+  from = "/performance"
+  to = "/events"

@@ -1,15 +1,15 @@
 import { gql } from '@apollo/client';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import Image from '../../components/Image';
-import Rule from '../../components/Rule';
-import SiteLayout from '../../components/SiteLayout';
-import Title from '../../components/Title';
-import Typography, { SectionHeader } from '../../components/Typography';
-import Video from '../../components/Video';
-import config from '../../config.yaml';
-import { gutterMarginStyles } from '../../styles/mixins';
-import theme from '../../styles/theme';
+import Image from '../../../components/Image';
+import Rule from '../../../components/Rule';
+import SiteLayout from '../../../components/SiteLayout';
+import Title from '../../../components/Title';
+import Typography, { SectionHeader } from '../../../components/Typography';
+import Video from '../../../components/Video';
+import config from '../../../config.yaml';
+import { gutterMarginStyles } from '../../../styles/mixins';
+import theme from '../../../styles/theme';
 import PastEvent, { eventPropShape as pastEventPropShape } from './PastEvent';
 import PastEventsList from './PastEventsList';
 import UpcomingEvent, { eventPropShape as upcomingEventPropShape } from './UpcomingEvent';
@@ -28,10 +28,10 @@ const Section = styled.section([
   },
 ]);
 
-export const performancePageQuery = gql`
+export const eventsPageQuery = gql`
   ${UpcomingEvent.fragments.event}
   ${PastEvent.fragments.event}
-  query performancePage($now: DateTime!) {
+  query eventsPage($now: DateTime!) {
     upcomingEvents: eventCollection(
       where: { OR: [{ startDate_gt: $now }, { endDate_gt: $now }] }
       order: [endDate_ASC, startDate_ASC]
@@ -72,7 +72,7 @@ const propTypes = {
   }).isRequired,
 };
 
-const PerformancePage = (props) => {
+const EventsPage = (props) => {
   const upcomingEvents = sortUpcomingEvents(props.upcomingEvents?.items);
   const pastEvents = sortPastEvents(props.pastEvents?.items);
 
@@ -199,6 +199,6 @@ const PerformancePage = (props) => {
   );
 };
 
-PerformancePage.propTypes = propTypes;
+EventsPage.propTypes = propTypes;
 
-export default PerformancePage;
+export default EventsPage;
