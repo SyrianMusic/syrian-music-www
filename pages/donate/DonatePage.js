@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import { useCallback, useMemo, useState } from 'react';
 import Button from '../../components/Button';
-import {
+import Input, {
   CurrencyInput,
   EmailInput,
   HelperText,
@@ -10,13 +10,20 @@ import {
   Label,
   useCurrencyInput,
   useEmailInput,
+  useInput,
 } from '../../components/Input';
 import SiteLayout from '../../components/SiteLayout';
 import Typography from '../../components/Typography';
 import { gutterMarginStyles } from '../../styles/mixins';
 import theme from '../../styles/theme';
 
-const StyledLabel = styled(Label)({ marginTop: theme.spacing.get(24) });
+const spacingStyles = { marginTop: theme.spacing.get(24) };
+
+const TwoColumnContainer = styled.div({ display: 'flex' });
+const TwoColumnChild = styled.div({
+  flex: 1,
+  '&:not(:last-child)': { marginRight: theme.spacing.get(24) },
+});
 
 const DonatePage = ({ CardElement, submitPayment }) => {
   const [isSubmitting] = useState(false);
@@ -26,15 +33,17 @@ const DonatePage = ({ CardElement, submitPayment }) => {
 
   const amountInput = useCurrencyInput();
   const emailInput = useEmailInput();
+  const nameInput = useInput('');
 
   const { value: amount, isValid: isAmountValid } = amountInput;
   const { value: email, isValid: isEmailValid } = emailInput;
+  const { value: name, isValid: isNameValid } = nameInput;
 
   const areInputsDisabled = useMemo(() => hasSubmitted, [hasSubmitted]);
 
   const isFormDisabled = useMemo(
-    () => (hasSubmitted && !stripeError) || !isAmountValid || !isEmailValid,
-    [isAmountValid, isEmailValid, hasSubmitted, stripeError],
+    () => (hasSubmitted && !stripeError) || !isAmountValid || !isEmailValid || !isNameValid,
+    [isAmountValid, isEmailValid, isNameValid, hasSubmitted, stripeError],
   );
 
   const handleSubmit = useCallback(
@@ -45,7 +54,7 @@ const DonatePage = ({ CardElement, submitPayment }) => {
 
       setHasSubmitted(true);
 
-      const { error } = await submitPayment({ amount, email });
+      const { error } = await submitPayment({ amount, email, name });
 
       if (error) {
         setStripeError(error.message);
@@ -75,7 +84,9 @@ const DonatePage = ({ CardElement, submitPayment }) => {
         <Typography textAlign="center">Thank you for your donation.</Typography>
       ) : (
         <form css={gutterMarginStyles} onSubmit={handleSubmit}>
-          <StyledLabel htmlFor="email">Your Email</StyledLabel>
+          <Label css={spacingStyles} htmlFor="email">
+            Your Email
+          </Label>
           <EmailInput
             id="email"
             name="email"
@@ -84,7 +95,9 @@ const DonatePage = ({ CardElement, submitPayment }) => {
             required
           />
 
-          <StyledLabel htmlFor="amount">Your Contribution</StyledLabel>
+          <Label css={spacingStyles} htmlFor="amount">
+            Your Contribution
+          </Label>
           <CurrencyInput
             id="amount"
             name="amount"
@@ -94,7 +107,14 @@ const DonatePage = ({ CardElement, submitPayment }) => {
             required
           />
 
-          <StyledLabel htmlFor="card-details">Payment</StyledLabel>
+          <Label css={spacingStyles} htmlFor="name">
+            Name
+          </Label>
+          <Input id="name" name="name" {...nameInput} required />
+
+          <Label css={spacingStyles} htmlFor="card-details">
+            Payment
+          </Label>
           <CardElement
             id="card-details"
             css={[inputStyles, { ...(stripeError ? { borderColor: theme.color.error } : {}) }]}
