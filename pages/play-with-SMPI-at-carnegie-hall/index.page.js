@@ -203,7 +203,7 @@ const CarnegieLandingPage = () => {
           <a href="mailto:info@syrianmusic.org?subject=Carnegie Hall Audition">
             info@syrianmusic.org
           </a>{' '}
-          no later than 11:59PM EST on January 2, 2023.
+          no later than 11:59PM EST on January 22, 2023.
         </Body>
 
         <Body>
