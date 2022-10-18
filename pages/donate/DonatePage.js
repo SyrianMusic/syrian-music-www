@@ -1,16 +1,17 @@
 import styled from '@emotion/styled';
+import { Form, Formik } from 'formik';
 import PropTypes from 'prop-types';
 import { useCallback, useMemo, useState } from 'react';
+import * as Yup from 'yup';
 import Button from '../../components/Button';
-import Input, {
-  CurrencyInput,
-  EmailInput,
+import {
+  FormikCurrencyInput,
+  FormikEmailInput,
+  FormikInput,
   HelperText,
   inputStyles,
   Label,
-  useCurrencyInput,
-  useEmailInput,
-  useInput,
+  parseCurrencyInput,
 } from '../../components/Input';
 import SiteLayout from '../../components/SiteLayout';
 import Typography from '../../components/Typography';
@@ -25,78 +26,45 @@ const twoColumnChildStyles = {
   '&:not(:last-child)': { marginRight: theme.spacing.get(24) },
 };
 
+const INITIAL_VALUES = {
+  amount: '',
+  email: '',
+  name: '',
+  address1: '',
+  address2: '',
+  city: '',
+  state: '',
+};
+
+const VALIDATION_SCHEMA = Yup.object({
+  amount: Yup.string().required('Please enter an amount.'),
+  email: Yup.string()
+    .email('Please enter a valid email address.')
+    .required('Please enter a valid email address.'),
+  name: Yup.string().required('Please enter your name.'),
+  address1: Yup.string().required('Please enter your address.'),
+  address2: Yup.string(),
+  city: Yup.string().required('Please enter your city.'),
+  state: Yup.string().required('Please enter your state.'),
+});
+
 const DonatePage = ({ CardElement, submitPayment }) => {
-  const [isSubmitting] = useState(false);
-  const [hasSubmitted, setHasSubmitted] = useState(false);
   const [stripeError, setStripeError] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  const amountInput = useCurrencyInput();
-  const emailInput = useEmailInput();
-  const nameInput = useInput('');
-  const address1Input = useInput('');
-  const address2Input = useInput('');
-  const cityInput = useInput('');
-  const stateInput = useInput('');
-
-  const { value: amount, isValid: isAmountValid } = amountInput;
-  const { value: email, isValid: isEmailValid } = emailInput;
-  const { value: name, isValid: isNameValid } = nameInput;
-  const { value: address1, isValid: isAddress1Valid } = address1Input;
-  const { value: address2, isValid: isAddress2Valid } = address2Input;
-  const { value: city, isValid: isCityValid } = cityInput;
-  const { value: state, isValid: isStateValid } = stateInput;
-
-  const areInputsDisabled = useMemo(() => hasSubmitted, [hasSubmitted]);
-
-  const isFormDisabled = useMemo(
-    () =>
-      (hasSubmitted && !stripeError) ||
-      !isAmountValid ||
-      !isEmailValid ||
-      !isNameValid ||
-      !isAddress1Valid ||
-      !isAddress2Valid ||
-      !isCityValid ||
-      !isStateValid,
-    [
-      isAmountValid,
-      isEmailValid,
-      isNameValid,
-      isAddress1Valid,
-      isAddress2Valid,
-      isCityValid,
-      isStateValid,
-      hasSubmitted,
-      stripeError,
-    ],
-  );
-
   const handleSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-
-      if (isFormDisabled) return;
-
-      setHasSubmitted(true);
-
+    async (values) => {
       const { error } = await submitPayment({
-        amount,
-        email,
-        name,
-        address1,
-        address2,
-        city,
-        state,
+        ...values,
+        amount: parseCurrencyInput(values.amount),
       });
-
       if (error) {
         setStripeError(error.message);
       } else {
         setShowConfirmation(true);
       }
     },
-    [amount, email, hasSubmitted, isFormDisabled, submitPayment],
+    [submitPayment],
   );
 
   return (
@@ -117,97 +85,103 @@ const DonatePage = ({ CardElement, submitPayment }) => {
       {showConfirmation ? (
         <Typography textAlign="center">Thank you for your donation.</Typography>
       ) : (
-        <form css={gutterMarginStyles} onSubmit={handleSubmit}>
-          <Label css={spacingStyles} htmlFor="email">
-            Your Email
-          </Label>
-          <EmailInput
-            id="email"
-            name="email"
-            {...emailInput}
-            disabled={areInputsDisabled}
-            required
-          />
+        <Formik
+          initialValues={INITIAL_VALUES}
+          validationSchema={VALIDATION_SCHEMA}
+          onSubmit={handleSubmit}>
+          {({ errors, isSubmitting, isValidating, touched }) => {
+            const isTouched = useMemo(
+              () => Object.values(touched).some((value) => value === true),
+              [touched],
+            );
 
-          <Label css={spacingStyles} htmlFor="amount">
-            Your Contribution
-          </Label>
-          <CurrencyInput
-            id="amount"
-            name="amount"
-            {...amountInput}
-            helperText="Your donation is tax-deductible."
-            disabled={areInputsDisabled}
-            required
-          />
+            const hasErrors = useMemo(() => Object.keys(errors).length > 0, [errors]);
 
-          <Label css={{ marginTop: theme.spacing.get(40) }}>Billing Address</Label>
+            const isDisabled = useMemo(
+              () => !isTouched || hasErrors || isValidating || isSubmitting,
+              [hasErrors, isSubmitting, isTouched, isValidating],
+            );
 
-          <Input
-            css={spacingStyles}
-            id="name"
-            name="name"
-            placeholder="Name"
-            {...nameInput}
-            required
-          />
+            return (
+              <Form
+                css={[
+                  gutterMarginStyles,
+                  { [theme.mq.mobileToDesktop]: { marginBottom: theme.spacing.get(24) } },
+                ]}>
+                <Label css={spacingStyles} htmlFor="email">
+                  Your Email
+                </Label>
+                <FormikEmailInput id="email" name="email" />
 
-          <Input
-            css={spacingStyles}
-            id="address1"
-            name="address1"
-            placeholder="Address 1"
-            {...address1Input}
-            required
-          />
+                <Label css={spacingStyles} htmlFor="amount">
+                  Your Contribution
+                </Label>
+                <FormikCurrencyInput
+                  id="amount"
+                  name="amount"
+                  helperText="Your donation is tax-deductible."
+                  required
+                />
 
-          <Input
-            css={spacingStyles}
-            id="address2"
-            name="address2"
-            placeholder="Address 2"
-            {...address2Input}
-          />
+                <Label css={{ marginTop: theme.spacing.get(40) }}>Billing Address</Label>
 
-          <TwoColumnContainer css={spacingStyles}>
-            <Input
-              css={twoColumnChildStyles}
-              id="city"
-              name="city"
-              placeholder="City"
-              {...cityInput}
-              required
-            />
+                <FormikInput css={spacingStyles} id="name" name="name" placeholder="Name" />
 
-            <Input
-              css={twoColumnChildStyles}
-              id="state"
-              name="state"
-              placeholder="State"
-              {...stateInput}
-              required
-            />
-          </TwoColumnContainer>
+                <FormikInput
+                  css={spacingStyles}
+                  id="address1"
+                  name="address1"
+                  placeholder="Address 1"
+                />
 
-          <Label css={spacingStyles} htmlFor="card-details">
-            Payment
-          </Label>
-          <CardElement
-            id="card-details"
-            css={[inputStyles, { ...(stripeError ? { borderColor: theme.color.error } : {}) }]}
-            disabled={isSubmitting}
-          />
-          <HelperText error={Boolean(stripeError)}>
-            {stripeError ? stripeError : 'Transactions are secure and encrypted.'}
-          </HelperText>
+                <FormikInput
+                  css={spacingStyles}
+                  id="address2"
+                  name="address2"
+                  placeholder="Address 2"
+                />
 
-          <Button
-            css={{ marginTop: theme.spacing.get(32) }}
-            type="submit"
-            disabled={isFormDisabled}>
-            Donate
-          </Button>
-        </form>
+                <TwoColumnContainer css={spacingStyles}>
+                  <FormikInput
+                    css={twoColumnChildStyles}
+                    id="city"
+                    name="city"
+                    placeholder="City"
+                  />
+
+                  <FormikInput
+                    css={twoColumnChildStyles}
+                    id="state"
+                    name="state"
+                    placeholder="State"
+                  />
+                </TwoColumnContainer>
+
+                <Label css={spacingStyles} htmlFor="card-details">
+                  Payment
+                </Label>
+                <CardElement
+                  id="card-details"
+                  css={[
+                    inputStyles,
+                    { ...(stripeError ? { borderColor: theme.color.error } : {}) },
+                  ]}
+                  disabled={isSubmitting}
+                />
+                <HelperText error={Boolean(stripeError)}>
+                  {stripeError ? stripeError : 'Transactions are secure and encrypted.'}
+                </HelperText>
+
+                <Button
+                  css={{ marginTop: theme.spacing.get(32) }}
+                  type="submit"
+                  disabled={isDisabled}>
+                  Donate
+                </Button>
+              </Form>
+            );
+          }}
+        </Formik>
       )}
     </SiteLayout>
   );

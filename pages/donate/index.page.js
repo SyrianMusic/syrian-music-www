@@ -48,8 +48,9 @@ const DonatePageContainer = () => {
       } catch (e) {
         console.error(e);
         return {
-          error:
+          error: new Error(
             'Something went wrong, and your donation was not made. Please reload the page and try again.',
+          ),
         };
       }
     },

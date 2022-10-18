@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useField } from 'formik';
 import PropTypes from 'prop-types';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
@@ -48,17 +49,11 @@ export const inputStyles = [
   mixins.typography.lg.mobile,
 ];
 
-const inputErrorStyles = {
-  '&:not(:focus):invalid': {
-    borderColor: theme.color.error,
-  },
-};
-
-export const StyledInput = styled.input(({ isTouched }) => {
+export const StyledInput = styled.input(({ error }) => {
   let styles = [inputStyles];
 
-  if (isTouched) {
-    styles = [...styles, inputErrorStyles];
+  if (error) {
+    styles = [...styles, { borderColor: theme.color.error }];
   }
 
   return styles;
@@ -67,7 +62,7 @@ export const StyledInput = styled.input(({ isTouched }) => {
 const Input = ({ className, error, helperText, type, ...props }) => {
   return (
     <div className={className}>
-      <StyledInput {...props} type={type} />
+      <StyledInput {...props} error={error} type={type} />
       <HelperText error={Boolean(error)}>{error ? error : helperText}</HelperText>
     </div>
   );
@@ -88,3 +83,15 @@ Input.defaultProps = {
 };
 
 export default Input;
+
+export const FormikInput = (props) => {
+  const [field, meta] = useField(props);
+
+  let error;
+
+  if (meta.touched && meta.error) {
+    error = meta.error;
+  }
+
+  return <Input {...field} {...props} error={error} />;
+};

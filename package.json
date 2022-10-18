@@ -26,6 +26,7 @@
     "@stripe/react-stripe-js": "^1.10.0",
     "@stripe/stripe-js": "^1.36.0",
     "classnames": "^2.2.6",
+    "formik": "^2.2.9",
     "graphql": "^15.5.3",
     "jsonwebtoken": "^8.5.1",
     "next": "^10.0.5",
@@ -37,7 +38,7 @@
     "stripe": "^10.6.0",
     "text-mask-addons": "^3.8.0",
     "uuid": "^8.3.2",
-    "yup": "^0.32.9"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
