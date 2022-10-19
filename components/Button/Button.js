@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import theme from '../../styles/theme';
 import * as mixins from '../../styles/mixins';
-import UnstyledButton, { focusColor } from './UnstyledButton';
+import UnstyledButton from './UnstyledButton';
 
 const Button = styled(UnstyledButton)([
   mixins.typography.lg.mobile,
@@ -22,7 +22,7 @@ const Button = styled(UnstyledButton)([
     },
 
     '&:enabled:focus': {
-      backgroundColor: focusColor,
+      backgroundColor: theme.color.focus,
     },
 
     '&:enabled:active': {
@@ -31,7 +31,7 @@ const Button = styled(UnstyledButton)([
     },
 
     '&:enabled:focus:active': {
-      color: focusColor,
+      color: theme.color.focus,
     },
 
     '&:disabled': {

@@ -96,6 +96,7 @@ const colors = {
   lightCoral: '#ff7878',
   red: '#f30000',
   spanishVeridian: '#007f5c',
+  lightCoralLight: '#ff9393',
 };
 
 const theme = {
@@ -107,6 +108,7 @@ const theme = {
     secondary: colors.spanishGray,
     interactive: colors.lightCoral,
     placeholder: colors.gainsboro,
+    focus: colors.lightCoralLight,
     disabled: colors.gainsboro,
     error: colors.lightCoral,
     success: colors.spanishVeridian,
