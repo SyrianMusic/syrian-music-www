@@ -7,6 +7,33 @@ import { stripePublishableKey } from '../../utils/environment';
 import { SessionContext } from '../../utils/session';
 import DonatePage from './DonatePage';
 
+const getDeclinedMessage = (stripeError) => {
+  switch (stripeError.decline_code) {
+    case 'generic_decline':
+      return 'There was a problem processing your donation and the payment was not completed. Please check the card details entered and try again.';
+    case 'insufficient_funds':
+      return 'There was a problem processing your donation and the payment was not completed. Please check the card details entered and try another payment method if this issue persists.';
+    case 'lost_card':
+      return 'There was a problem processing your donation and the payment was not completed. Please check the card details entered and try another payment method if this issue persists.';
+    default:
+      return stripeError.message;
+  }
+};
+
+const getErrorMessage = (stripeError) => {
+  console.log(stripeError);
+  switch (stripeError.code) {
+    case 'card_declined':
+      return getDeclinedMessage(stripeError);
+    case 'expired_card':
+      return 'Your credit card is expired and we were unable to complete your donation. Please check the card details entered and try again.';
+    case 'incorrect_cvc':
+      return 'There was a problem processing your donation and the payment was not completed. Please check the card details entered and try again.';
+    default:
+      return stripeError.message;
+  }
+};
+
 const DonatePageContainer = () => {
   const elements = useElements();
   const stripe = useStripe();
@@ -38,7 +65,8 @@ const DonatePageContainer = () => {
         );
 
         if (stripeError) {
-          return { error: stripeError };
+          const errorMessage = getErrorMessage(stripeError);
+          return { error: new Error(errorMessage) };
         }
 
         if (paymentIntent) {
