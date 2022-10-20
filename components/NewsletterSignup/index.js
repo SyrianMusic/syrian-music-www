@@ -1,3 +1,3 @@
-import { NewsletterSignup } from './NewsletterSignup';
+import NewsletterSignup from './NewsletterSignup';
 
 export default NewsletterSignup;

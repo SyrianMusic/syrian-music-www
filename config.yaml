@@ -16,7 +16,7 @@ nav:
           src: /images/takht-al-nagham/takht-al-nagham-1@3x.png
     links:
       - text: Takht al-Nagham
-        href: /#takht-al-nagham
+        href: /performance/#takht-al-nagham
   education:
     text: Education
     homeText: Repertoire
@@ -35,7 +35,7 @@ nav:
           src: /images/sheet-music/open-book-with-syrian-sheet-music@3x.png
     links:
       - text: Repertoire
-        href: /transcriptions
+        href: /education/transcriptions
         description: >
           View our archive of transcribed works.
       - text: Biographies
@@ -71,11 +71,11 @@ nav:
           src: /images/instruments/syrian-oud-side-profile@3x.png
     links:
       - text: Mission
-        href: /#mission
+        href: /about/#mission
       - text: Our Story
-        href: /#our-story
+        href: /about/#our-story
       - text: Who We Are
-        href: /#who-we-are
+        href: /about/#who-we-are
   connect:
     text: Connect
     href: /connect
@@ -93,7 +93,7 @@ nav:
     links:
       donate:
         text: Donate
-        href: https://secure.squarespace.com/checkout/donate?donatePageId=5bc627f90852298e0d320f3d&ss_cid=98821902-8f9b-4383-bf30-abb211822fb7&ss_cvr=f522a8b6-588a-417b-b949-6da49a78d160%7C1583903323850%7C1585024825658%7C1585072215232%7C18
+        href: /donate
       facebook:
         text: Facebook
         href: https://facebook.com/syrianmusicpi
