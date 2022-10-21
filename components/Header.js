@@ -5,10 +5,10 @@ import { useCallback, useEffect, useState } from 'react';
 import config from '../config.yaml';
 import * as mixins from '../styles/mixins';
 import theme from '../styles/theme';
-import { UnstyledButton } from './Button';
 import Image from './Image';
 import Nav from './Nav';
 import Typography from './Typography';
+import UnstyledButton from './UnstyledButton';
 
 const Header = ({ className, pathname }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
-import theme from '../../styles/theme';
+import theme from '../styles/theme';
+
+export const focusColor = `${theme.color.interactive}BF`;
 
 const UnstyledButton = styled.button({
-  WebkitAppearance: 'none',
+  '-webkit-appearance': 'none',
   background: 'none',
   border: 'none',
   color: theme.color.primary,
@@ -21,8 +23,8 @@ const UnstyledButton = styled.button({
   },
 
   '&:enabled:focus': {
-    color: theme.color.focus,
-    textDecorationColor: theme.color.focus,
+    color: focusColor,
+    textDecorationColor: focusColor,
   },
 
   '&:enabled:active': {

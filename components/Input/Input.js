@@ -1,9 +1,7 @@
 import styled from '@emotion/styled';
-import { useField } from 'formik';
 import PropTypes from 'prop-types';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
-import HelperText, { ErrorText } from './HelperText';
 
 export const inputBorderWidth = 1;
 
@@ -13,85 +11,216 @@ export const inputPadding = {
   bottom: 16,
 };
 
-const borderColor = theme.color.accentTan;
+const Wrapper = styled.div(({ isDisabled, hasError, hasSuccess }) => {
+  let disabledStyles;
 
-export const inputStyles = [
+  if (isDisabled) {
+    disabledStyles = {
+      '& label, &:focus + label': {
+        backgroundColor: theme.color.dimGray,
+      },
+    };
+  }
+
+  let inputStyles;
+
+  if (hasError) {
+    inputStyles = {
+      input: {
+        borderColor: theme.color.error,
+      },
+    };
+  } else if (hasSuccess) {
+    inputStyles = {
+      input: {
+        borderColor: theme.color.success,
+      },
+    };
+  }
+
+  return [disabledStyles, inputStyles, { position: 'relative' }];
+});
+
+const StyledInput = styled.input([
   { [theme.mq.mobileToDesktop]: [{}, mixins.typography.lg.desktop] },
   {
     WebkitAppearance: 'none',
     font: 'inherit',
-    backgroundColor: theme.color.white,
-    border: `1px solid ${theme.color.withOpacity(borderColor, 0.4)}`,
+    backgroundColor: theme.color.withOpacity(theme.color.white, 0.9),
+    border: `${theme.pxToRem(inputBorderWidth)} solid ${theme.color.interactive}`,
     borderRadius: 0,
     display: 'block',
+    marginTop: theme.pxToRem(8),
+    marginBottom: 0,
     outline: 'none',
     padding: `${theme.pxToRem(inputPadding.top)} ${theme.pxToRem(
       inputPadding.left,
     )} ${theme.pxToRem(inputPadding.bottom)}`,
-    transition: 'border-color 0.2s ease-in-out',
+    transition: `border-color 0.2s ease-in-out, font-size 0.2s ease-in-out, line-height 0.2s ease-in-out`,
     width: '100%',
 
     '&::placeholder': {
-      color: theme.color.placeholder,
+      color: theme.color.withOpacity(theme.color.primary, 0.4),
     },
 
-    '&:focus': { borderColor },
+    '&:focus': {
+      borderColor: theme.color.primary,
+    },
 
     '&:disabled': {
-      borderColor: theme.color.disabled,
+      backgroundColor: theme.color.withOpacity(theme.color.dimGray, 0.2),
+      borderColor: theme.color.dimGray,
       cursor: 'not-allowed',
 
       '&, &::placeholder': {
-        color: theme.color.disabled,
+        color: theme.color.dimGray,
       },
+    },
+
+    '&:not(:placeholder-shown) + label': {
+      opacity: 1,
+      top: theme.pxToRem(theme.typography.body.sm.fontSizeMobile / -2),
     },
   },
   mixins.typography.lg.mobile,
-];
+]);
 
-export const StyledInput = styled.input(({ error }) => {
-  let styles = [inputStyles];
+const Label = styled.label([
+  { [theme.mq.mobileToDesktop]: [{}, mixins.typography.sm.desktop] },
+  {
+    backgroundColor: theme.color.interactive,
+    color: theme.color.white,
+    position: 'absolute',
+    top: 0,
+    left: theme.pxToRem(inputPadding.left),
+    opacity: 0,
+    padding: `${theme.pxToRem(4)} ${theme.pxToRem(8)}`,
+    transition: 'all 0.2s ease-in-out',
+  },
+  mixins.typography.sm.mobile,
+]);
 
-  if (error) {
-    styles = [...styles, { borderColor: theme.color.error }];
+const HelperText = styled.div(({ isError, isSuccess }) => {
+  let color = 'transparent';
+
+  if (isError || isSuccess) {
+    color = theme.color.white;
   }
 
-  return styles;
+  let backgroundColor;
+
+  if (isError) {
+    backgroundColor = theme.color.withOpacity(theme.color.error, 0.8);
+  } else if (isSuccess) {
+    backgroundColor = theme.color.withOpacity(theme.color.success, 0.8);
+  }
+
+  return [
+    { [theme.mq.mobileToDesktop]: [{}, mixins.typography.sm.desktop] },
+    {
+      backgroundColor,
+      boxSizing: 'content-box',
+      color,
+      display: 'inline-block',
+      minHeight: `${theme.typography.body.sm.lineHeightMobile}px`,
+      padding: `${theme.pxToRem(2)} ${theme.pxToRem(8)} ${theme.pxToRem(4)}`,
+      transition: `background-color 0.2s ease-in-out, color 0.2s ease-in-out`,
+
+      [theme.mq.mobileToDesktop]: {
+        minHeight: `${theme.typography.body.sm.lineHeightDesktop}px`,
+      },
+    },
+    mixins.typography.sm.mobile,
+  ];
 });
 
-const Input = ({ className, error, helperText, type, ...props }) => {
+export const Input = ({
+  className,
+  disabled,
+  error,
+  name,
+  label,
+  onBlur,
+  onChange,
+  placeholder,
+  required,
+  success,
+  type,
+  value,
+}) => {
+  const id = `${name}-input`;
+
+  let message;
+
+  if (error) {
+    message = error;
+  } else if (success) {
+    message = success;
+  }
+
   return (
-    <div className={className}>
-      <StyledInput {...props} error={error} type={type} />
-      <HelperText error={Boolean(error)}>{error ? error : helperText}</HelperText>
-    </div>
+    <Wrapper className={className} isDisabled={disabled} hasError={error} hasSuccess={success}>
+      <StyledInput
+        id={id}
+        name={name}
+        disabled={disabled}
+        onBlur={onBlur}
+        onChange={onChange}
+        placeholder={placeholder}
+        type={type}
+        value={value}
+      />
+
+      <Label htmlFor={id}>
+        {label}{' '}
+        {required && (
+          <span
+            css={[
+              { [theme.mq.mobileToDesktop]: [{}, mixins.typography.xs.desktop] },
+              {
+                display: 'inline-block',
+                marginLeft: '0.1em',
+                letterSpacing: '0.03em',
+                opacity: 0.8,
+                textTransform: 'uppercase',
+              },
+              mixins.typography.xs.mobile,
+            ]}>
+            Required
+          </span>
+        )}
+      </Label>
+
+      <HelperText isError={error} isSuccess={success}>
+        {message}
+      </HelperText>
+    </Wrapper>
   );
 };
 
 Input.propTypes = {
   className: PropTypes.string,
-  error: PropTypes.string,
-  helperText: PropTypes.string,
-  type: PropTypes.string,
+  disabled: PropTypes.bool,
+  error: PropTypes.node,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string.isRequired,
+  required: PropTypes.bool,
+  success: PropTypes.node,
+  type: PropTypes.oneOf(['email', 'text']),
+  value: PropTypes.any,
 };
 
 Input.defaultProps = {
   className: undefined,
-  error: null,
-  helperText: null,
+  disabled: false,
+  error: undefined,
+  onBlur: undefined,
+  onChange: undefined,
+  required: false,
+  success: undefined,
   type: 'text',
-};
-
-export default Input;
-
-export const FormikInput = (props) => {
-  const [field, meta] = useField(props);
-
-  let error;
-
-  if (meta.touched && meta.error) {
-    error = meta.error;
-  }
-
-  return <Input {...field} {...props} error={error} />;
+  value: undefined,
 };

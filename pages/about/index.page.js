@@ -15,7 +15,7 @@ const pageData = data.pages.about;
 const AboutPage = () => (
   <SiteLayout pathname={config.nav.about.href}>
     <Title>About</Title>
-    <Typography variant="h1" textAlign="center">
+    <Typography className="page-About-title" variant="h1" textAlign="center">
       About
     </Typography>
 

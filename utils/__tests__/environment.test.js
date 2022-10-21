@@ -109,18 +109,17 @@ describe('environment', () => {
   });
 
   describe('jwtClientSecret', () => {
-    const NEXT_PUBLIC_JWT_CLIENT_SECRET = 'NEXT_PUBLIC_JWT_CLIENT_SECRET';
+    const JWT_CLIENT_SECRET = 'JWT_CLIENT_SECRET';
 
     it.each(Object.values(NODE_ENVS))(
-      'when the NODE_ENV is "%s", then it is set to NEXT_PUBLIC_JWT_CLIENT_SECRET',
+      'when the NODE_ENV is "%s", then it is set to JWT_CLIENT_SECRET',
       (nodeEnv) => {
-        process.env.NEXT_PUBLIC_JWT_CLIENT_SECRET = NEXT_PUBLIC_JWT_CLIENT_SECRET;
+        process.env.JWT_CLIENT_SECRET = JWT_CLIENT_SECRET;
         process.env.NODE_ENV = nodeEnv;
-        let jwtClientSecret;
         jest.isolateModules(() => {
-          jwtClientSecret = require('../environment').jwtClientSecret;
+          environment = require('../environment').default;
         });
-        expect(jwtClientSecret).toBe(NEXT_PUBLIC_JWT_CLIENT_SECRET);
+        expect(environment.jwtClientSecret).toBe(JWT_CLIENT_SECRET);
       },
     );
   });

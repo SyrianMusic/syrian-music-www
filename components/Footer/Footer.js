@@ -3,6 +3,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import config from '../../config.yaml';
 import theme from '../../styles/theme';
+import * as mixins from '../../styles/mixins';
 import LogoLockup from '../../icons/LogoLockup';
 import FacebookIcon from '../../icons/Facebook';
 import InstagramIcon from '../../icons/Instagram';
@@ -50,11 +51,13 @@ export const Footer = ({ className, pathname }) => (
                           return null;
                         }
 
-                        if (pathname === link.href) {
+                        const relativeLink = `${section.href}${link.href}`;
+
+                        if (pathname === relativeLink) {
                           linkEl = <span>{linkText}</span>;
                         } else if (/^\//.test(link.href)) {
                           linkEl = (
-                            <Link href={link.href}>
+                            <Link href={relativeLink}>
                               <a>{linkText}</a>
                             </Link>
                           );
@@ -186,6 +189,7 @@ export const Footer = ({ className, pathname }) => (
 
         @media screen and (min-width: ${theme.breakpoint.mobileToDesktop}px) {
           .component-Footer-content {
+            ${mixins.layout.fullWidth};
             padding-left: ${theme.pxToRem(25)};
             padding-right: ${theme.pxToRem(25)};
           }
