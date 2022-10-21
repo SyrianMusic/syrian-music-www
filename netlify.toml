@@ -6,15 +6,12 @@
 
 [build.environment]
   NEXT_PUBLIC_NODE_ENV = "development"
-  NODE_ENV = "development"
 
 [context.production.environment]
   NEXT_PUBLIC_NODE_ENV = "production"
-  NODE_ENV = "production"
 
 [context.deploy-preview.environment]
   NEXT_PUBLIC_NODE_ENV = "preview"
-  NODE_ENV = "preview"
 
 [dev]
   framework = "next"
