@@ -57,9 +57,7 @@ const NewsletterSignup = ({ className }) => {
             css={{
               backgroundColor: theme.color.linen,
 
-              [`@media screen and (min-width: ${theme.layout.contentWidthMax}px)`]: [
-                mixins.layout.fullWidth,
-              ],
+              [theme.mq.contentWidthMax]: [{}, mixins.layout.fullWidth],
             }}
             action="https://syrianmusic.us1.list-manage.com/subscribe/post?u=8b74a47300fb2a26103dd07aa&amp;id=66a839666b"
             method="POST"

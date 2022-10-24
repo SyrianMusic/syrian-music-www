@@ -1,8 +1,10 @@
 const mobileToDesktop = 800;
+const contentWidthMax = 960;
 
 const breakpoints = {
   mobileToDesktop,
   md: mobileToDesktop,
+  contentWidthMax,
 };
 
 const mq = Object.entries(breakpoints).reduce((acc, [key, breakpoint]) => {
@@ -133,7 +135,7 @@ const theme = {
   },
   layout: {
     contentWidthMin: 375,
-    contentWidthMax: 960,
+    contentWidthMax,
     gutter: {
       mobile: {
         left: 40,
