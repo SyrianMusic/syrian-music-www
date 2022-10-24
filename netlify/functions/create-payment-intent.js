@@ -27,6 +27,7 @@ const createPaymentIntent = async (event = {}) => {
     const paymentIntent = await stripe.paymentIntents.create(
       {
         amount: amount * 100,
+        description: body.description,
         currency: 'usd',
       },
       { idempotencyKey: body.idempotencyKey },
