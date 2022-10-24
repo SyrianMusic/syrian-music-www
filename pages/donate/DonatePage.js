@@ -75,7 +75,7 @@ const DonatePage = ({ CardElement, submitPayment }) => {
   );
 
   return (
-    <SiteLayout>
+    <SiteLayout pathname="/donate">
       <Typography
         css={{
           marginBottom: theme.spacing.get(32),

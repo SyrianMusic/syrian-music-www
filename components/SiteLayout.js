@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import PropTypes from 'prop-types';
 import theme from '../styles/theme';
 import Footer from './Footer';
@@ -5,6 +6,9 @@ import Header from './Header';
 
 const SiteLayout = ({ className, children, pathname }) => (
   <>
+    <Head>
+      <link rel="canonical" href={`https://syrianmusic.org${pathname}/`} />
+    </Head>
     <Header className="component-SiteLayout-header" pathname={pathname} />
     <main className={className}>{children}</main>
     <Footer className="component-SiteLayout-footer" pathname={pathname} />

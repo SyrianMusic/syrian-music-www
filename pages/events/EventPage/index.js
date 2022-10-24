@@ -53,6 +53,7 @@ export const eventPageQuery = gql`
       image {
         ...Image
       }
+      slug
       summary {
         json
       }
@@ -112,6 +113,7 @@ const propTypes = {
   startDate: PropTypes.string.isRequired,
   endDate: PropTypes.string,
   location: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
   summary: PropTypes.shape({
     json: PropTypes.shape({}),
   }),
@@ -203,6 +205,7 @@ const EventPage = ({
   startDate,
   endDate,
   location,
+  slug,
   summary,
   url,
   urlText,
@@ -243,7 +246,7 @@ const EventPage = ({
   };
 
   return (
-    <SiteLayout>
+    <SiteLayout pathname={`/events/${slug}`}>
       <Title>{name + ' | Event'}</Title>
 
       <div className="gutters">
