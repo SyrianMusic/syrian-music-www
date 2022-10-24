@@ -1,6 +1,6 @@
-import { v4 as uuidv4 } from 'uuid';
 import { createContext } from 'react';
+import { getSessionId } from './utils';
 
-const SessionContext = createContext({ id: uuidv4() });
+const SessionContext = createContext({ id: getSessionId() });
 
 export default SessionContext;
