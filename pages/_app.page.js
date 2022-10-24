@@ -1,15 +1,16 @@
 import { ThemeProvider } from '@emotion/react';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import theme from '../styles/theme';
-import { getSessionId, SessionContext } from '../utils/session';
+import { SessionContext } from '../utils/session';
 
 // eslint-disable-next-line react/prop-types
 const App = ({ Component, pageProps }) => {
   const [sessionId, setSessionId] = useState(null);
 
   useEffect(() => {
-    const sessionId = getSessionId();
+    const sessionId = uuidv4();
     setSessionId(sessionId);
   }, []);
 
