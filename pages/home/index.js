@@ -6,7 +6,7 @@ import theme from '../../styles/theme';
 import HomeLinks from './HomeLinks';
 
 const HomePage = () => (
-  <SiteLayout pathname="/">
+  <SiteLayout pathname="">
     <Title>Home</Title>
     <h1 className="visually-hidden">Home</h1>
     <Hero
