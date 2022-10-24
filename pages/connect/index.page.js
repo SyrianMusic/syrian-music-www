@@ -22,8 +22,9 @@ const ConnectPage = () => (
         </a>
         . To become a donor,{' '}
         <Link href="/donate">
-          <a>fill out our donation&nbsp;form</a>.
+          <a>fill out our donation&nbsp;form</a>
         </Link>
+        .
       </Typography>
       <Typography size="lg">
         Follow us on{' '}
