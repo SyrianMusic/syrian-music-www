@@ -3,7 +3,7 @@ import { STATUS_CODES } from '../utils/http';
 import logger from '../utils/logger';
 import stripe from '../utils/stripe';
 
-export const createPaymentIntent = async (event = {}) => {
+const createPaymentIntent = async (event = {}) => {
   const { httpMethod } = event;
   if (httpMethod !== 'POST') return { statusCode: STATUS_CODES.METHOD_NOT_ALLOWED };
 
@@ -24,10 +24,13 @@ export const createPaymentIntent = async (event = {}) => {
       throw error;
     }
 
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount * 100,
-      currency: 'usd',
-    });
+    const paymentIntent = await stripe.paymentIntents.create(
+      {
+        amount: amount * 100,
+        currency: 'usd',
+      },
+      { idempotencyKey: body.idempotencyKey },
+    );
 
     return {
       statusCode: 200,

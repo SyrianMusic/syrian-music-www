@@ -24,5 +24,10 @@ export default {
   nodeEnv,
   isProduction,
   adobeKey: getAdobeKey(),
-  jwtClientSecret: process.env.JWT_CLIENT_SECRET,
 };
+
+export const jwtClientSecret = process.env.NEXT_PUBLIC_JWT_CLIENT_SECRET;
+
+export const stripePublishableKey = isProduction
+  ? process.env.STRIPE_KEY_LIVE
+  : process.env.STRIPE_KEY_TEST;
