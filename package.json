@@ -73,6 +73,7 @@
     "jest-transform-yaml": "^1.0.0",
     "js-yaml-loader": "^1.2.2",
     "netlify-cli": "^8.16.1",
+    "netlify-plugin-inline-functions-env": "^1.0.9",
     "prettier": "^2.2.1",
     "react-test-renderer": "^17.0.2",
     "storybook-addon-pseudo-states": "^1.15.1",

@@ -22,6 +22,9 @@
 [functions]
   node_bundler = "esbuild"
 
+[[plugins]]
+  package = "netlify-plugin-inline-functions-env"
+
 [[redirects]]
   from = "http://syrianmusic.net"
   to = "https://syrianmusic.org"
