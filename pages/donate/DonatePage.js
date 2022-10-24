@@ -20,11 +20,18 @@ import theme from '../../styles/theme';
 
 const spacingStyles = { marginTop: theme.spacing.get(24) };
 
-const TwoColumnContainer = styled.div({ display: 'flex' });
-const twoColumnChildStyles = {
-  flex: 1,
-  '&:not(:last-child)': { marginRight: theme.spacing.get(24) },
-};
+const TwoColumnContainer = styled.div({ [theme.mq.mobileToDesktop]: { display: 'flex' } });
+
+const twoColumnChildStyles = [
+  spacingStyles,
+  {
+    [theme.mq.mobileToDesktop]: {
+      flex: 1,
+      marginTop: 0,
+      '&:not(:last-child)': { marginRight: theme.spacing.get(24) },
+    },
+  },
+];
 
 const INITIAL_VALUES = {
   amount: '',
