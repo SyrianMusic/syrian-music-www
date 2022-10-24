@@ -166,6 +166,17 @@ const DonatePage = ({ CardElement, submitPayment }) => {
                     inputStyles,
                     { ...(stripeError ? { borderColor: theme.color.error } : {}) },
                   ]}
+                  options={{
+                    style: {
+                      base: {
+                        fontFamily: theme.font.family,
+                        color: theme.color.primary,
+                        '::placeholder': {
+                          color: theme.color.placeholder,
+                        },
+                      },
+                    },
+                  }}
                   disabled={isSubmitting}
                 />
                 <HelperText error={Boolean(stripeError)}>
