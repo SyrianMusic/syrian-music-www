@@ -15,6 +15,10 @@ nav:
         - densityFactor: 3
           src: /images/takht-al-nagham/takht-al-nagham-1@3x.png
     links:
+      - text: Upcoming Events
+        href: /#upcoming-events
+      - text: Previous Events
+        href: /#previous-events
       - text: Takht al-Nagham
         href: /#takht-al-nagham
   education:
