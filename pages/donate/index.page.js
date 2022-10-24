@@ -103,13 +103,6 @@ const StripeWrapper = ({ stripeKey }) => {
             src: `url('https://${host}/fonts/GraphikArabic-Light-Web.woff2') format('woff2'), url('https://${host}/fonts/GraphikArabic-Light-Web.woff') format('woff')`,
           },
         ],
-        appearance: {
-          theme: 'stripe',
-          variables: {
-            fontFamily: 'Graphik Arabic Web Light',
-            colorBackground: 'red',
-          },
-        },
       }}>
       <DonatePageContainer stripeKey={stripeKey} />
     </Elements>
