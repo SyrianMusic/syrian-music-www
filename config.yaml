@@ -16,9 +16,9 @@ nav:
           src: /images/takht-al-nagham/takht-al-nagham-1@3x.png
     links:
       - text: Upcoming Events
-        href: /#upcoming-events
+        href: /performance/#upcoming-events
       - text: Previous Events
-        href: /#previous-events
+        href: /performance/#previous-events
       - text: Takht al-Nagham
         href: /performance/#takht-al-nagham
   education:
