@@ -84,7 +84,7 @@ const PerformancePage = (props) => {
       <Title>Performance</Title>
 
       {hasUpcomingEvents && (
-        <Section id="upcoming-performances" data-testid="upcoming-performances">
+        <Section id="upcoming-events">
           <SectionHeader
             as="h1"
             css={{
@@ -98,7 +98,7 @@ const PerformancePage = (props) => {
       )}
 
       {hasPastEvents && (
-        <Section>
+        <Section id="previous-events">
           <SectionHeader
             as="h1"
             css={{
