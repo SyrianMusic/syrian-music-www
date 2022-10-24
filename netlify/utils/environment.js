@@ -1,11 +1,4 @@
-const nodeEnv = process.env.NEXT_PUBLIC_NODE_ENV || process.env.NODE_ENV;
-
-console.log({
-  NEXT_PUBLIC_NODE_ENV: process.env.NEXT_PUBLIC_NODE_ENV,
-  NODE_ENV: process.env.NODE_ENV,
-});
-
-const isProduction = nodeEnv === 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 
 export const jwtClientSecret = process.env.NEXT_PUBLIC_JWT_CLIENT_SECRET;
 
