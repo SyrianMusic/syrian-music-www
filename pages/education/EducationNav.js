@@ -37,7 +37,7 @@ const EducationNavLink = ({ text, href, description }) => {
         </div>
       </div>
     ) : (
-      <Link href={`/education${href}`}>
+      <Link href={href}>
         <a className="component-EducationNavLink-text">
           {titleEl}
           <div className="component-EducationNavLink-details">{descriptionEl}</div>
