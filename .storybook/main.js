@@ -20,8 +20,8 @@ function getPackageDir(filepath) {
 
 module.exports = {
   addons: [
-    '@storybook/addon-links',
     '@storybook/addon-essentials',
+    '@storybook/addon-links',
     'storybook-addon-pseudo-states',
     '@storybook/addon-interactions',
   ],

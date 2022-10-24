@@ -6,18 +6,24 @@
 
 [build.environment]
   NEXT_PUBLIC_NODE_ENV = "development"
+  NODE_ENV = "development"
 
 [context.production.environment]
   NEXT_PUBLIC_NODE_ENV = "production"
+  NODE_ENV = "production"
 
 [context.deploy-preview.environment]
   NEXT_PUBLIC_NODE_ENV = "preview"
+  NODE_ENV = "preview"
 
 [dev]
   framework = "next"
 
 [functions]
   node_bundler = "esbuild"
+
+[[plugins]]
+  package = "netlify-plugin-inline-functions-env"
 
 [[redirects]]
   from = "http://syrianmusic.net"

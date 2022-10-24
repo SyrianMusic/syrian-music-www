@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import SiteLayout from '../../components/SiteLayout';
 import Title from '../../components/Title';
 import Typography from '../../components/Typography';
@@ -20,9 +21,9 @@ const ConnectPage = () => (
           info@syrianmusic.org
         </a>
         . To become a donor,{' '}
-        <a href={pageConfig.links.donate.href} target="_blank" rel="noopener noreferrer">
-          fill out our donation&nbsp;form
-        </a>
+        <Link href="/donate">
+          <a>fill out our donation&nbsp;form</a>
+        </Link>
         .
       </Typography>
       <Typography size="lg">

@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { css } from '@emotion/react';
-import Image from 'components/Image';
-import Nav from 'components/Nav';
-import Typography from 'components/Typography';
-import config from 'config.yaml';
-import { gutters } from 'styles/mixins';
-import theme from 'styles/theme';
+import Image from '../../components/Image';
+import Nav from '../../components/Nav';
+import Typography from '../../components/Typography';
+import config from '../../config.yaml';
+import { gutters } from '../../styles/mixins';
+import theme from '../../styles/theme';
 
 const textClass = css({
   [theme.mq.mobileToDesktop]: {

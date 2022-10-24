@@ -1,8 +1,10 @@
 const mobileToDesktop = 800;
+const contentWidthMax = 960;
 
 const breakpoints = {
   mobileToDesktop,
   md: mobileToDesktop,
+  contentWidthMax,
 };
 
 const mq = Object.entries(breakpoints).reduce((acc, [key, breakpoint]) => {
@@ -96,6 +98,7 @@ const colors = {
   lightCoral: '#ff7878',
   red: '#f30000',
   spanishVeridian: '#007f5c',
+  lightCoralLight: '#ff9393',
 };
 
 const theme = {
@@ -106,8 +109,10 @@ const theme = {
     primary: colors.black,
     secondary: colors.spanishGray,
     interactive: colors.lightCoral,
+    placeholder: colors.gainsboro,
+    focus: colors.lightCoralLight,
     disabled: colors.gainsboro,
-    error: colors.red,
+    error: colors.lightCoral,
     success: colors.spanishVeridian,
     salmon: colors.lightCoral,
     accentTan: colors.windsorTan,
@@ -130,7 +135,7 @@ const theme = {
   },
   layout: {
     contentWidthMin: 375,
-    contentWidthMax: 960,
+    contentWidthMax,
     gutter: {
       mobile: {
         left: 40,
