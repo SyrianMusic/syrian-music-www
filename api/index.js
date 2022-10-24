@@ -4,11 +4,11 @@ import { jwtClientSecret } from '../utils/environment';
 const token = jwt.sign({}, jwtClientSecret);
 const authorization = `Bearer ${token}`;
 
-export const createPaymentIntent = async ({ amount, idempotencyKey }) => {
+export const createPaymentIntent = async ({ amount, description, idempotencyKey }) => {
   const res = await fetch('/.netlify/functions/create-payment-intent', {
     method: 'POST',
     headers: { authorization, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ amount, idempotencyKey }),
+    body: JSON.stringify({ amount, description, idempotencyKey }),
   });
 
   if (!res.ok) throw new Error(res.statusText);
