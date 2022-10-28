@@ -19,8 +19,8 @@ const EmailService = () => {
       try {
         const res = await mailchimp.lists.setListMember(LIST_ID, email, {
           email_address: email,
-          status_if_new: 'subscribed',
-          status: 'subscribed',
+          status_if_new: 'pending',
+          status: 'pending',
           merge_fields: {
             SIGNUPCOMP: component,
             SIGNUPURL: url,
