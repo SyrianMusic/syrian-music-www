@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik';
 import PropTypes from 'prop-types';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import * as Yup from 'yup';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
@@ -8,37 +8,52 @@ import Button from '../Button';
 import { FormikEmailInput, inputBorderWidth, inputPadding } from '../Input';
 import Typography from '../Typography';
 
-const INITIAL_VALUES = { EMAIL: '' };
+const INITIAL_VALUES = { email: '' };
 
 const VALIDATION_SCHEMA = Yup.object({
-  EMAIL: Yup.string()
+  email: Yup.string()
     .email('Please enter a valid email address.')
     .required('Please enter a valid email address.'),
 });
 
-const NewsletterSignup = ({ className }) => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+const NewsletterSignup = ({ className, subscribe }) => {
+  const [error, setError] = useState(null);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    e.target.submit();
-    setIsSubmitted(true);
-  };
+  const handleSubmit = useCallback(
+    async (values) => {
+      setError(null);
+
+      const { error } = await subscribe({
+        email: values.email,
+        component: 'Footer',
+        url: window.location.href,
+      });
+
+      if (error) {
+        setError(error.message);
+      } else {
+        setIsSubscribed(true);
+      }
+    },
+    [subscribe],
+  );
 
   let successMessage;
 
-  if (isSubmitted) {
+  if (isSubscribed) {
     successMessage =
-      'Thank you for signing up! Please follow the instructions in the next window to complete your registration.';
+      'Thank you for signing up! Check your inbox for a message to confirm your email address.';
   }
 
   return (
     <Formik
       initialValues={INITIAL_VALUES}
       validationSchema={VALIDATION_SCHEMA}
-      validateOnChange
       onSubmit={handleSubmit}>
       {({ errors, isSubmitting, isValidating, touched }) => {
+        // const [isSubmitted, setIsSubmitted] = useState(false);
+
         const isTouched = useMemo(
           () => Object.values(touched).some((value) => value === true),
           [touched],
@@ -47,8 +62,8 @@ const NewsletterSignup = ({ className }) => {
         const hasErrors = useMemo(() => Object.keys(errors).length > 0, [errors]);
 
         const isDisabled = useMemo(
-          () => !isTouched || hasErrors || isValidating || isSubmitting || isSubmitted,
-          [hasErrors, isSubmitting, isTouched, isValidating, isSubmitted],
+          () => !isTouched || hasErrors || isValidating || isSubmitting || isSubscribed,
+          [hasErrors, isSubmitting, isTouched, isValidating, isSubscribed],
         );
 
         return (
@@ -59,10 +74,6 @@ const NewsletterSignup = ({ className }) => {
 
               [theme.mq.contentWidthMax]: [{}, mixins.layout.fullWidth],
             }}
-            action="https://syrianmusic.us1.list-manage.com/subscribe/post?u=8b74a47300fb2a26103dd07aa&amp;id=66a839666b"
-            method="POST"
-            target="_blank"
-            onSubmit={handleSubmit}
             noValidate>
             <div
               css={{
@@ -103,16 +114,6 @@ const NewsletterSignup = ({ className }) => {
                 variant="h3">
                 Stay up to date
               </Typography>
-              <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
-                <input type="text" name="SIGNUPCOMP" tabIndex="-1" value="Footer" readOnly />
-                <input
-                  type="text"
-                  name="SIGNUPURL"
-                  tabIndex="-1"
-                  value={typeof window !== 'undefined' ? window.location.href : ''}
-                  readOnly
-                />
-              </div>
               <div
                 css={{
                   display: 'flex',
@@ -130,9 +131,10 @@ const NewsletterSignup = ({ className }) => {
                 }}>
                 <FormikEmailInput
                   css={{ width: '100%', [theme.mq.mobileToDesktop]: { flex: 1 } }}
-                  name="EMAIL"
+                  id="email"
+                  name="email"
                   placeholder="Enter your email"
-                  disabled={isSubmitted}
+                  disabled={isSubscribed}
                 />
 
                 <Button
@@ -154,8 +156,13 @@ const NewsletterSignup = ({ className }) => {
                   Sign up
                 </Button>
               </div>
-              <Typography css={{ marginTop: theme.spacing.get(16) }} textAlign="center">
-                {successMessage || ' '}
+              <Typography
+                css={{
+                  color: error ? theme.color.error : theme.color.primary,
+                  marginTop: theme.spacing.get(16),
+                }}
+                textAlign="center">
+                {successMessage || error || ' '}
               </Typography>
             </div>
           </Form>
@@ -165,7 +172,7 @@ const NewsletterSignup = ({ className }) => {
   );
 };
 
-NewsletterSignup.propTypes = { className: PropTypes.string };
+NewsletterSignup.propTypes = { className: PropTypes.string, subscribe: PropTypes.func.isRequired };
 
 NewsletterSignup.defaultProps = { className: undefined };
 

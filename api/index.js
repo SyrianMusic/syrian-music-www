@@ -20,5 +20,19 @@ export const createPaymentIntent = async ({ amount, description, idempotencyKey 
   return { clientSecret };
 };
 
+export const subscribe = async ({ component, email, url }) => {
+  const res = await fetch('/.netlify/functions/subscribe', {
+    method: 'POST',
+    headers: { authorization, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ component, email, url }),
+  });
+
+  if (res.ok) return { ok: true };
+
+  const { error } = await res.json();
+
+  if (error) throw new Error(error.message);
+};
+
 // TODO: Move to Contentful Service
 export { BaseAPI } from './BaseAPI';

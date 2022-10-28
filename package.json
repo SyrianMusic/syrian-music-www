@@ -23,6 +23,7 @@
     "@apollo/client": "^3.4.10",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@mailchimp/mailchimp_marketing": "^3.0.78",
     "@stripe/react-stripe-js": "^1.10.0",
     "@stripe/stripe-js": "^1.36.0",
     "classnames": "^2.2.6",
