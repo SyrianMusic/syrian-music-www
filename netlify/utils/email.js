@@ -26,7 +26,9 @@ const EmailService = () => {
             SIGNUPURL: url,
           },
         });
-        logger.info(res);
+
+        logger.info('%s was successfully subscribed to the mailing list.', res.email_address);
+
         return res;
       } catch (e) {
         logger.error(JSON.stringify(e));
