@@ -27,13 +27,11 @@ export const subscribe = async ({ component, email, url }) => {
     body: JSON.stringify({ component, email, url }),
   });
 
-  if (!res.ok) throw new Error(res.statusText);
+  if (res.ok) return { ok: true };
 
   const { error } = await res.json();
 
   if (error) throw new Error(error.message);
-
-  return { ok: true };
 };
 
 // TODO: Move to Contentful Service

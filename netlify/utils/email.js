@@ -47,7 +47,7 @@ const EmailService = () => {
           error: {
             status: error.status || 500,
             message:
-              'Unfortunately, we are unable to sign you up to our mailing list. Refresh the page and try again with a different email address.',
+              'Unfortunately, we are unable to sign you up to our mailing list. Please try again with a different email address.',
           },
         };
       }

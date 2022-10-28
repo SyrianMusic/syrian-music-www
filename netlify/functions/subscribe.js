@@ -14,7 +14,7 @@ const subscribe = async (event) => {
 
     if (error) throw error;
 
-    return { statusCode: 201 };
+    return { statusCode: 201, body: JSON.stringify({ email }) };
   } catch (error) {
     logger.error(error);
     return {
