@@ -2682,6 +2682,14 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@mailchimp/mailchimp_marketing@^3.0.78":
+  version "3.0.78"
+  resolved "https://registry.yarnpkg.com/@mailchimp/mailchimp_marketing/-/mailchimp_marketing-3.0.78.tgz#8d09cbb143d0e05370b440a1c6a2fcc1e196d945"
+  integrity sha512-LAerA09fQ7opelydPolYez12mZ+TLQ+zDvHzweeAk9S+yI1bqBpuOvJVbe+3G0fsOqSbDTEUUBwUlncdAmShRA==
+  dependencies:
+    dotenv "^8.2.0"
+    superagent "3.8.1"
+
 "@mapbox/node-pre-gyp@^1.0.5":
   version "1.0.8"
   resolved "https://registry.npmjs.org/@mapbox/node-pre-gyp/-/node-pre-gyp-1.0.8.tgz"
@@ -7394,7 +7402,7 @@ colorspace@1.1.x:
     color "^3.1.3"
     text-hex "1.0.x"
 
-combined-stream@^1.0.8:
+combined-stream@^1.0.6, combined-stream@^1.0.8:
   version "1.0.8"
   resolved "https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.8.tgz"
   integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
@@ -7446,7 +7454,7 @@ commondir@^1.0.1:
   resolved "https://registry.npmjs.org/commondir/-/commondir-1.0.1.tgz"
   integrity sha1-3dgA2gxmEnOTzKWVDqloo6rxJTs=
 
-component-emitter@^1.2.1:
+component-emitter@^1.2.0, component-emitter@^1.2.1:
   version "1.3.0"
   resolved "https://registry.npmjs.org/component-emitter/-/component-emitter-1.3.0.tgz"
   integrity sha512-Rd3se6QB+sO1TwqZjscQrurpEPIfO0/yYnSin6Q/rD3mOutHvUrCAhJub3r90uNb+SESBuE0QYoB90YdfatsRg==
@@ -7582,6 +7590,11 @@ cookie@^0.4.0:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.2.tgz#0e41f24de5ecf317947c82fc789e06a884824432"
   integrity sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==
+
+cookiejar@^2.1.0:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/cookiejar/-/cookiejar-2.1.3.tgz#fc7a6216e408e74414b90230050842dacda75acc"
+  integrity sha512-JxbCBUdrfr6AQjOXrxoTvAMJO4HBTUIlBzslcJPAz+/KT8yk53fXun51u+RenNYvad/+Vc2DIz5o9UxlCDymFQ==
 
 copy-concurrently@^1.0.0:
   version "1.0.5"
@@ -7961,7 +7974,7 @@ debug@4, debug@^4.0.0, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1:
   dependencies:
     ms "2.1.2"
 
-debug@^3.0.0, debug@^3.2.6:
+debug@^3.0.0, debug@^3.1.0, debug@^3.2.6:
   version "3.2.7"
   resolved "https://registry.npmjs.org/debug/-/debug-3.2.7.tgz"
   integrity sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==
@@ -8507,7 +8520,7 @@ dotenv@^10.0.0:
   resolved "https://registry.npmjs.org/dotenv/-/dotenv-10.0.0.tgz"
   integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
 
-dotenv@^8.0.0:
+dotenv@^8.0.0, dotenv@^8.2.0:
   version "8.6.0"
   resolved "https://registry.npmjs.org/dotenv/-/dotenv-8.6.0.tgz"
   integrity sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==
@@ -9738,6 +9751,15 @@ fork-ts-checker-webpack-plugin@^6.0.4:
     semver "^7.3.2"
     tapable "^1.0.0"
 
+form-data@^2.3.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.5.1.tgz#f2cbec57b5e59e23716e128fe44d4e5dd23895f4"
+  integrity sha512-m21N3WOmEEURgk6B9GLOE4RuWOFf28Lhh9qGYeNlGq4VDXUlJy2th2slBNU8Gp8EzloYZOibZJ7t5ecIrFSjVA==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.6"
+    mime-types "^2.1.12"
+
 form-data@^3.0.0:
   version "3.0.1"
   resolved "https://registry.npmjs.org/form-data/-/form-data-3.0.1.tgz"
@@ -9758,6 +9780,11 @@ formdata-polyfill@^4.0.10:
   integrity sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==
   dependencies:
     fetch-blob "^3.1.2"
+
+formidable@^1.1.1:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.2.6.tgz#d2a51d60162bbc9b4a055d8457a7c75315d1a168"
+  integrity sha512-KcpbcpuLNOwrEjnbpMC0gS+X8ciDoZE1kkqzat4a8vrprf+s9pKNQ/QIwWfbfs4ltgmFl3MD177SNTkve3BwGQ==
 
 formik@^2.2.9:
   version "2.2.9"
@@ -13021,7 +13048,7 @@ merge2@^1.2.3, merge2@^1.3.0, merge2@^1.4.1:
   resolved "https://registry.npmjs.org/merge2/-/merge2-1.4.1.tgz"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-methods@~1.1.2:
+methods@^1.1.1, methods@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/methods/-/methods-1.1.2.tgz"
   integrity sha1-VSmk1nZUE07cxSZmVoNbD4Ua/O4=
@@ -13093,7 +13120,7 @@ mime-types@^2.1.12, mime-types@^2.1.27, mime-types@~2.1.24, mime-types@~2.1.34:
   dependencies:
     mime-db "1.51.0"
 
-mime@1.6.0, mime@^1.2.11:
+mime@1.6.0, mime@^1.2.11, mime@^1.4.1:
   version "1.6.0"
   resolved "https://registry.npmjs.org/mime/-/mime-1.6.0.tgz"
   integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
@@ -15200,7 +15227,7 @@ qs@^6.10.0, qs@^6.9.6:
   dependencies:
     side-channel "^1.0.4"
 
-qs@^6.10.3:
+qs@^6.10.3, qs@^6.5.1:
   version "6.11.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.11.0.tgz#fd0d963446f7a65e1367e01abd85429453f0c37a"
   integrity sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==
@@ -17030,6 +17057,22 @@ stylis@4.0.13:
   version "4.0.13"
   resolved "https://registry.npmjs.org/stylis/-/stylis-4.0.13.tgz"
   integrity sha512-xGPXiFVl4YED9Jh7Euv2V220mriG9u4B2TA6Ybjc1catrstKD2PpIdU3U0RKpkVBC2EhmL/F0sPCr9vrFTNRag==
+
+superagent@3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/superagent/-/superagent-3.8.1.tgz#2571fd921f3fcdba43ac68c3b35c91951532701f"
+  integrity sha512-VMBFLYgFuRdfeNQSMLbxGSLfmXL/xc+OO+BZp41Za/NRDBet/BNbkRJrYzCUu0u4GU0i/ml2dtT8b9qgkw9z6Q==
+  dependencies:
+    component-emitter "^1.2.0"
+    cookiejar "^2.1.0"
+    debug "^3.1.0"
+    extend "^3.0.0"
+    form-data "^2.3.1"
+    formidable "^1.1.1"
+    methods "^1.1.1"
+    mime "^1.4.1"
+    qs "^6.5.1"
+    readable-stream "^2.0.5"
 
 supports-color@^0.2.0:
   version "0.2.0"
