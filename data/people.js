@@ -33,7 +33,7 @@ class Block {
       throw new Error('Block children are not an array.');
     }
     this.children = children.map((childConfig) => new Child({ ...childConfig, key: this.key }));
-    this.key = key;
+    this._key = key;
   }
 
   // TODO: Actually implement this
@@ -59,7 +59,7 @@ export default {
         key: KEYS.samerAli,
         children: [
           {
-            text: 'A native of Syria, Samer Ali is a physician, violinist, composer, founder and artistic director of the Syrian Music Preservation Initiative.',
+            text: 'A native of Syria, Samer Ali is a physician, violinist, oudist, composer, and founder and artistic director of the Syrian Music Preservation Initiative.',
           },
         ],
       }),
@@ -67,10 +67,7 @@ export default {
         key: KEYS.samerAli,
         children: [
           {
-            text:
-              'Samer has led Takht al-Nagham, SMPI' +
-              apostrophe +
-              's ensemble, in New York at Alwan for the Arts, Scandinavia House, and Roulette Intermedium; as well as at the Kennedy center in Washington, DC with Syrian soprano Lubana al-Quntar.',
+            text: "He has led Takht al-Nagham, SMPI's Arab chamber music ensemble, in New York at Roulette Intermedium; Florida at Miami Beach Bandshell; and Washington, DC at Kennedy Center.",
           },
         ],
       }),
@@ -78,7 +75,7 @@ export default {
         key: KEYS.samerAli,
         children: [
           {
-            text: 'He began studying western classical violin at the age of eight with Fawaz al-Ali and Ali Farran, and later pursued intensive conservatory studies with Ali Mukhtar Babayev. He studied the Arab music traditions with Simon Shaheen, Anwar Hariri, and Muhammad Qadri Dalal.',
+            text: 'Samer began studying western classical violin at the age of eight with Fawaz al-Ali and Ali Farran and later pursued intensive conservatory studies with Ali Mukhtar Babayev.',
           },
         ],
       }),
@@ -86,7 +83,7 @@ export default {
         key: KEYS.samerAli,
         children: [
           {
-            text: 'In Damascus, he co-founded Awj Ensemble, and has continued to perform in the US with groups like the Bronx Orchestra and the National Arab Orchestra.',
+            text: 'An apprentice of Muhammad Qadri Dalal, the oud virtuoso, musicologist and prolific scholar of Arab maqam musical system and traditional music of Syria, Samer also studied the Arab classical violin with Simon Shaheen and Anwar Hariri.',
           },
         ],
       }),
@@ -94,7 +91,15 @@ export default {
         key: KEYS.samerAli,
         children: [
           {
-            text: 'In medicine, Samer received his M.D. from Syria and later graduated from medical residency in Anatomic and Clinical Pathology at Mount Sinai Hospital. He is currently a Surgical Pathology Fellow at Lenox Hill Hospital in New York.',
+            text: 'He co-founded Awj ensemble in Damascus, and has continued to perform in the US with groups like the Orchestra of the Bronx and the National Arab Orchestra.',
+          },
+        ],
+      }),
+      new Block({
+        key: KEYS.samerAli,
+        children: [
+          {
+            text: 'In medicine, Samer received his M.D. from Syria and is currently an Attending Pathologist and Assistant Professor at Lenox Hill Hospital in Manhattan, New York.',
           },
         ],
       }),
