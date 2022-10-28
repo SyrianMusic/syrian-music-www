@@ -8,9 +8,9 @@ const subscribe = async (event) => {
   if (httpMethod !== 'POST') return { statusCode: STATUS_CODES.METHOD_NOT_ALLOWED };
 
   try {
-    const { email } = JSON.parse(event.body);
+    const { component, email, url } = JSON.parse(event.body);
 
-    const { error } = await EmailService().subscribe({ email });
+    const { error } = await EmailService().subscribe({ component, email, url });
 
     if (error) throw error;
 

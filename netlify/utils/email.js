@@ -15,12 +15,16 @@ const EmailService = () => {
       return await mailchimp.ping.get();
     },
 
-    async subscribe({ email } = {}) {
+    async subscribe({ component, email, url } = {}) {
       try {
         const res = await mailchimp.lists.setListMember(LIST_ID, email, {
           email_address: email,
           status_if_new: 'subscribed',
           status: 'subscribed',
+          merge_fields: {
+            SIGNUPCOMP: component,
+            SIGNUPURL: url,
+          },
         });
         logger.info(res);
         return res;
