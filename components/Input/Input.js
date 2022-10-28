@@ -3,7 +3,7 @@ import { useField } from 'formik';
 import PropTypes from 'prop-types';
 import * as mixins from '../../styles/mixins';
 import theme from '../../styles/theme';
-import HelperText, { ErrorText } from './HelperText';
+import HelperText from './HelperText';
 
 export const inputBorderWidth = 1;
 
