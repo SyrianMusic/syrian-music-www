@@ -163,7 +163,7 @@ const CarnegieLandingPage = () => {
           offering a unique opportunity as part of our Carnegie Hall performance on May 19, 2023.
           For one piece on our program, we will open the stage to advanced amateurs and enthusiasts
           to join Takht al-Nagham. Participants will be required to audition on the piece in
-          February 2022 (date TBD) and if accepted, will participate in a number of workshops and
+          February 2023 (date TBD) and if accepted, will participate in a number of workshops and
           special rehearsals in addition to the dress rehearsal<sup>*</sup> at Carnegie Hall and the
           performance<sup>**</sup>.
         </Body>
@@ -180,7 +180,7 @@ const CarnegieLandingPage = () => {
 
         <Footnote>
           <sup>*</sup> Attendance at all workshops and rehearsals will be required for final
-          participation
+          participation.
         </Footnote>
 
         <Footnote>
