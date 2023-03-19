@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import styled from '@emotion/styled';
+import Head from 'next/head';
 import PropTypes from 'prop-types';
 import { useCallback, useEffect, useState } from 'react';
 import Button from '../../../components/Button';
@@ -219,7 +220,9 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
     <SiteLayout
       className="page-Transcriptions-root"
       pathname={`/education/transcriptions/${musicalWork?.sys?.id}`}>
-      <script src="https://documentcloud.adobe.com/view-sdk/main.js" async defer></script>
+      <Head>
+        <script src="https://documentcloud.adobe.com/view-sdk/main.js" async defer></script>
+      </Head>
 
       <Title>{title}</Title>
 
