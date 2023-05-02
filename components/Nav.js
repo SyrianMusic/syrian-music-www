@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import theme from '../styles/theme';
 
 const Nav = styled.nav({
-  '& a:link, & a:visited': {
+  '& a': {
     color: 'inherit',
     outline: 'none',
     textDecoration: 'underline',
