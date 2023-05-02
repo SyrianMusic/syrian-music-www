@@ -11,6 +11,9 @@ jobs:
   chromatic-deployment:
     # Operating System
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
     # Job steps
     steps:
       - uses: actions/checkout@v1
@@ -23,3 +26,4 @@ jobs:
         with:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          node-version: 16
