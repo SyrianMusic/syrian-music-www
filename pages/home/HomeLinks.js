@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types';
-import Link from 'next/link';
 import { css } from '@emotion/react';
+import Link from 'next/link';
 import Image from '../../components/Image';
 import Nav from '../../components/Nav';
 import Typography from '../../components/Typography';
@@ -15,8 +14,8 @@ const textClass = css({
   },
 });
 
-const HomeLinks = ({ className }) => (
-  <Nav className={className}>
+const HomeLinks = () => (
+  <Nav css={{ a: { textDecoration: 'none' } }}>
     <ul>
       {Object.values(config.nav).map((section, i) => {
         const isFlipped = i % 2 != 0;
@@ -39,11 +38,10 @@ const HomeLinks = ({ className }) => (
                 },
               },
             ]}>
-            <Link href={section.homeHref ?? section.href}>
+            <Link href={section.homeHref ?? section.href} passHref legacyBehavior>
               <a
                 css={{
                   display: 'block',
-                  textDecoration: 'none',
 
                   [theme.mq.mobileToDesktop]: {
                     display: 'flex',
@@ -104,13 +102,5 @@ const HomeLinks = ({ className }) => (
     </ul>
   </Nav>
 );
-
-HomeLinks.propTypes = {
-  className: PropTypes.string,
-};
-
-HomeLinks.defaultProps = {
-  className: undefined,
-};
 
 export default HomeLinks;

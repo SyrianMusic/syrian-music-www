@@ -73,7 +73,7 @@ const PastEvent = ({ className, event }) => {
           width: theme.pxToRem(theme.closestMultiple(288)),
         },
       }}>
-      <Link href={url}>
+      <Link href={url} passHref legacyBehavior>
         <SlideImage backgroundImage={image.url} />
       </Link>
 
@@ -107,7 +107,7 @@ const PastEvent = ({ className, event }) => {
         </Typography>
 
         <Typography>
-          <Link href={url}>
+          <Link href={url} passHref legacyBehavior>
             <a>{DEFAULT_CTA_TEXT}</a>
           </Link>
         </Typography>
