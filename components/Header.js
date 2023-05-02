@@ -26,7 +26,7 @@ const Header = ({ className, pathname }) => {
 
   return (
     <header className={cx({ 'is-open': isMenuOpen }, className)}>
-      <Link href="/">
+      <Link href="/" passHref legacyBehavior>
         <UnstyledButton className="component-Header-logo-link" as="a" onClick={closeMenu}>
           <Image
             className="component-Header-logo"
@@ -46,7 +46,7 @@ const Header = ({ className, pathname }) => {
         <ul>
           {Object.values(config.nav).map(({ href, text }) => {
             let navItem = (
-              <Link href={href}>
+              <Link href={href} passHref legacyBehavior>
                 <UnstyledButton className="component-Header-nav-button" as="a">
                   {text}
                 </UnstyledButton>
@@ -64,7 +64,7 @@ const Header = ({ className, pathname }) => {
           <Image src="/images/icons/close.svg" alt="Close the menu" height={32} width={32} />
         </UnstyledButton>
       </Nav>
-      <Link href="/">
+      <Link href="/" passHref legacyBehavior>
         <UnstyledButton className="component-Header-logo-text-link" as="a" onClick={closeMenu}>
           <Image
             className="component-Header-logo-text"
