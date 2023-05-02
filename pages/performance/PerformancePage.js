@@ -15,18 +15,45 @@ import PastEventsList from './PastEventsList';
 import UpcomingEvent, { eventPropShape as upcomingEventPropShape } from './UpcomingEvent';
 import UpcomingEventsList from './UpcomingEventsList';
 import { sortPastEvents, sortUpcomingEvents } from './utils';
+import { css } from '@emotion/react';
 
 const pageConfig = config.nav.performance;
 
-const Section = styled.section([
-  gutterMarginStyles,
-  {
-    marginBottom: theme.spacing.get(32),
-    [theme.mq.mobileToDesktop]: {
-      marginBottom: theme.spacing.get(56),
-    },
+const spacingStyles = css({
+  marginBottom: theme.spacing.get(32),
+  [theme.mq.mobileToDesktop]: {
+    marginBottom: theme.spacing.get(56),
   },
-]);
+});
+
+const Section = styled.section([gutterMarginStyles, spacingStyles]);
+
+const Ensemble = styled.article([spacingStyles]);
+
+const ensembleRuleStyles = css({
+  display: 'none',
+
+  [theme.mq.mobileToDesktop]: {
+    display: 'block',
+    marginTop: theme.spacing.get(56),
+    marginLeft: 0,
+    marginRight: 0,
+  },
+});
+
+const ensembleImageStyles = css({
+  margin: `${theme.spacing.get(8)} auto ${theme.spacing.get(24)}`,
+  height: 'auto',
+  width: theme.pxToRem(232),
+  [theme.mq.mobileToDesktop]: {
+    float: 'right',
+    marginBottom: theme.spacing.get(72),
+    marginLeft: theme.spacing.get(72),
+    position: 'relative',
+    top: (theme.typography.h3.lineHeightDesktop + theme.typography.h3.marginBottomDesktop) * -1,
+    width: theme.pxToRem(240),
+  },
+});
 
 export const performancePageQuery = gql`
   ${UpcomingEvent.fragments.event}
@@ -131,38 +158,13 @@ const PerformancePage = (props) => {
       <Section>
         <h1 className="visually-hidden">Performing Groups</h1>
 
-        <Rule
-          color={Rule.colors.accent}
-          css={{
-            display: 'none',
-            [theme.mq.mobileToDesktop]: {
-              display: 'block',
-              marginLeft: 0,
-              marginRight: 0,
-            },
-          }}
-        />
+        <Rule color={Rule.colors.accent} css={ensembleRuleStyles} />
 
-        <article id="takht-al-nagham">
+        <Ensemble id="takht-al-nagham">
           <Typography variant="h3">Takht al-Nagham</Typography>
 
           <Image
-            css={{
-              margin: `${theme.spacing.get(8)} auto ${theme.spacing.get(24)}`,
-              height: 'auto',
-              width: theme.pxToRem(232),
-              [theme.mq.mobileToDesktop]: {
-                float: 'right',
-                marginBottom: theme.spacing.get(72),
-                marginLeft: theme.spacing.get(72),
-                position: 'relative',
-                top:
-                  (theme.typography.h3.lineHeightDesktop +
-                    theme.typography.h3.marginBottomDesktop) *
-                  -1,
-                width: theme.pxToRem(240),
-              },
-            }}
+            css={ensembleImageStyles}
             src="/images/logos/takht-al-nagham-logo.svg"
             width={197.5}
             height={214.5}
@@ -191,40 +193,15 @@ const PerformancePage = (props) => {
           <Typography>
             The Takht al-Nagham logo was created by celebrated Syrian artist Mouneer al-Shaarani.
           </Typography>
-        </article>
+        </Ensemble>
 
-        <Rule
-          color={Rule.colors.accent}
-          css={{
-            display: 'none',
-            [theme.mq.mobileToDesktop]: {
-              display: 'block',
-              marginLeft: 0,
-              marginRight: 0,
-            },
-          }}
-        />
+        <Rule color={Rule.colors.accent} css={ensembleRuleStyles} />
 
-        <article id="youth-ensemble">
+        <Ensemble id="youth-ensemble">
           <Typography variant="h3">Youth Ensemble</Typography>
 
           <Image
-            css={{
-              margin: `${theme.spacing.get(8)} auto ${theme.spacing.get(24)}`,
-              height: 'auto',
-              width: theme.pxToRem(232),
-              [theme.mq.mobileToDesktop]: {
-                float: 'right',
-                marginBottom: theme.spacing.get(72),
-                marginLeft: theme.spacing.get(72),
-                position: 'relative',
-                top:
-                  (theme.typography.h3.lineHeightDesktop +
-                    theme.typography.h3.marginBottomDesktop) *
-                  -1,
-                width: theme.pxToRem(240),
-              },
-            }}
+            css={ensembleImageStyles}
             src="http://via.placeholder.com/198x215&text=%20"
             width={198}
             height={215}
@@ -251,7 +228,7 @@ const PerformancePage = (props) => {
             odio in porttitor semper, nulla mauris lobortis sem, vel volutpat ipsum arcu nec lectus.
             Ut faucibus, tellus eget cursus sodales, neque odio tincidunt risus.
           </Typography>
-        </article>
+        </Ensemble>
       </Section>
     </SiteLayout>
   );
