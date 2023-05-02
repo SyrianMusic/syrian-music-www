@@ -192,6 +192,66 @@ const PerformancePage = (props) => {
             The Takht al-Nagham logo was created by celebrated Syrian artist Mouneer al-Shaarani.
           </Typography>
         </article>
+
+        <Rule
+          color={Rule.colors.accent}
+          css={{
+            display: 'none',
+            [theme.mq.mobileToDesktop]: {
+              display: 'block',
+              marginLeft: 0,
+              marginRight: 0,
+            },
+          }}
+        />
+
+        <article id="youth-ensemble">
+          <Typography variant="h3">Youth Ensemble</Typography>
+
+          <Image
+            css={{
+              margin: `${theme.spacing.get(8)} auto ${theme.spacing.get(24)}`,
+              height: 'auto',
+              width: theme.pxToRem(232),
+              [theme.mq.mobileToDesktop]: {
+                float: 'right',
+                marginBottom: theme.spacing.get(72),
+                marginLeft: theme.spacing.get(72),
+                position: 'relative',
+                top:
+                  (theme.typography.h3.lineHeightDesktop +
+                    theme.typography.h3.marginBottomDesktop) *
+                  -1,
+                width: theme.pxToRem(240),
+              },
+            }}
+            src="http://via.placeholder.com/198x215&text=%20"
+            width={198}
+            height={215}
+          />
+
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque finibus lectus
+            vitae odio condimentum porta. Sed bibendum odio eu lobortis ultrices. Nunc in tellus
+            sapien. Vivamus at eros vitae lacus vulputate imperdiet. Morbi malesuada lorem et elit
+            blandit luctus. Quisque congue ex id ipsum efficitur hendrerit. Nam convallis quis magna
+            non laoreet. Nunc bibendum cursus urna et tristique. Aliquam volutpat arcu at justo
+            commodo, eget ornare lectus fringilla. Suspendisse ac malesuada diam. Nulla orci libero,
+            suscipit at ipsum nec, vulputate malesuada libero. Phasellus auctor ultricies ligula sit
+            amet dignissim. Mauris sit amet hendrerit sapien. Curabitur purus nunc, eleifend et
+            sollicitudin sed, euismod id tortor. Curabitur condimentum pretium orci, nec scelerisque
+            magna lobortis ut. Ut pretium.
+          </Typography>
+          <Typography>
+            Aenean eu maximus nibh. Fusce egestas diam velit, semper vulputate velit tincidunt
+            vitae. Etiam dictum pellentesque urna, et blandit ante hendrerit eu. Integer eget
+            euismod ipsum. Nulla eleifend, dui et rhoncus cursus, ante mauris posuere lorem, et
+            volutpat erat velit ut eros. Donec sit amet quam eu libero mattis dignissim id id felis.
+            Vivamus lacus velit, sollicitudin eget nisl eget, interdum dapibus mauris. Sed euismod,
+            odio in porttitor semper, nulla mauris lobortis sem, vel volutpat ipsum arcu nec lectus.
+            Ut faucibus, tellus eget cursus sodales, neque odio tincidunt risus.
+          </Typography>
+        </article>
       </Section>
     </SiteLayout>
   );
