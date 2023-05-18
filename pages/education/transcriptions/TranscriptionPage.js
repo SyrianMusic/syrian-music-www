@@ -169,7 +169,7 @@ const TranscriptionPage = ({ adobeKey, musicalWork, arabic }) => {
   const [isAdobeReady, setIsAdobeReady] = useState(false);
   const [hasError, setHasError] = useState(false);
   const composer = musicalWork?.composer || DEFAULT_COMPOSER_ENGLISH;
-  const title = `${musicalWork?.title} - ${composer}`;
+  const title = `${musicalWork?.title} - ${composer.firstName} ${composer.lastName}`;
   const transcriptionUrl = musicalWork?.transcription?.url;
 
   useEffect(() => {
