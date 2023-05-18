@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Image from '../../components/Image';
 import Rule from '../../components/Rule';
@@ -143,15 +144,18 @@ const PerformancePage = (props) => {
       )}
 
       <Section>
-        <Video id="n6VjsvT6o3s" title="Zakhrafa زخرفة" />
+        <Video
+          id="CAV5mtbuuC8"
+          title="Muwashah Maqam Huzam Takht al-Nagham Lubana AlQuntar موشح غزالٌ, مقام هزام, تخت النغم, لبانة القنطار"
+        />
         <Typography css={{ marginTop: theme.spacing.get(32) }} variant="h3" as="div">
-          Zakhrafa | Roulette
+          Muwashah in Huzam maqam | Roulette
         </Typography>
         <Typography css={{ marginTop: theme.spacing.get(16) }}>
-          Zakhrafa, composed by Samer Ali, was performed at Roulette Intermedium as part of the
-          first anniversary celebration of Brooklyn Maqam Hang in 2019. The piece is in Nahawand
-          Maqam and written in a new perspective of the Longa form. It features a newly-composed
-          rhythm in 12/8 named&nbsp;Muzakhraf.
+          Muwashah Ghazalon Zarani, composed by Khalil Haj Hussein from Latakia, Syria. The piece is
+          in Huzam maqam and Murabba’ rhythm (13/4) and was performed by Takht al-Nagham featuring
+          Lubana al-Quntar in March 2022 as part of a concert co-produced by Robert Browning
+          Associates and Roulette Intermedium.
         </Typography>
       </Section>
 
