@@ -8,8 +8,8 @@
       "name": "Start Dev Server",
       "request": "launch",
       "type": "node",
-      "runtimeExecutable": "yarn",
-      "runtimeArgs": ["netlify", "dev", "--debug"],
+      "runtimeExecutable": "netlify",
+      "runtimeArgs": ["dev", "--debug"],
       "skipFiles": ["<node_internals>/**"]
     },
     {
@@ -24,7 +24,7 @@
       "request": "launch",
       "type": "node",
       "runtimeExecutable": "yarn",
-      "runtimeArgs": ["start-storybook", "--no-open", "--port", "9999"],
+      "runtimeArgs": ["start-storybook"],
       "skipFiles": ["<node_internals>/**"]
     }
   ],

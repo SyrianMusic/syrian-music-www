@@ -1,19 +1,20 @@
-version: "3"
+version: '3'
 
 services:
   app:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
     image: syrian-music/syrian-music-www
     env_file: .env
     container_name: syrian-music-www
     command: sleep infinity
     volumes:
-      - ..:/workspace:cached
-      - node_modules:/workspace/node_modules
+      - ../yarn-cache:/root/.yarn
+      - ..:/workspace/app
+      - ../package.json:/workspace/package.json
+      - ../yarn.lock:/workspace/yarn.lock
+      - notused:/workspace/app/node_modules
 
 volumes:
-  node_modules:
-    name: syrian_music_node_modules
-    external: false
+  notused:

@@ -1,7 +1,13 @@
-ARG NODE_VERSION="16"
-FROM node:${NODE_VERSION}-alpine
+ARG NODE_VERSION="18"
+FROM node:${NODE_VERSION}
 
-RUN apk update
-RUN apk add bash
-RUN apk add git
-RUN apk add xdg-utils
+RUN apt-get update && apt-get install -y --no-install-recommends xdg-utils
+
+WORKDIR /workspace
+COPY ../package.json .
+
+RUN --mount=type=cache,target=/root/.yarn YARN_CACHE_FOLDER=/root/.yarn yarn
+
+ENV PATH=/workspace/node_modules/.bin:$PATH
+
+WORKDIR /workspace/app

@@ -1,3 +1,21 @@
 {
-	"siteId": "e1805e90-b0d1-4488-afb3-28f955de3c39"
+	"siteId": "e1805e90-b0d1-4488-afb3-28f955de3c39",
+	"geolocation": {
+		"data": {
+			"city": "Brooklyn",
+			"country": {
+				"code": "US",
+				"name": "United States"
+			},
+			"subdivision": {
+				"code": "NY",
+				"name": "New York"
+			},
+			"timezone": "America/New_York",
+			"latitude": 40.6643,
+			"longitude": -73.9763,
+			"postalCode": "11215"
+		},
+		"timestamp": 1746419793071
+	}
 }

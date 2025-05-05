@@ -1,0 +1,16 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["/.eslintrc"],
+      "url": "http://json.schemastore.org/eslintrc"
+    },
+    {
+      "fileMatch": ["/.prettierrc"],
+      "url": "http://json.schemastore.org/prettierrc"
+    },
+    {
+      "fileMatch": ["/.cloudbuild.yaml"],
+      "url": "https://json.schemastore.org/cloudbuild"
+    }
+  ]
+}
