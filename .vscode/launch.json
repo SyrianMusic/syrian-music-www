@@ -13,13 +13,6 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
-      "name": "Attach to Chrome",
-      "port": 9222,
-      "request": "attach",
-      "type": "chrome",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
       "name": "Start Storybook",
       "request": "launch",
       "type": "node",
@@ -31,7 +24,7 @@
   "compounds": [
     {
       "name": "Debug All",
-      "configurations": ["Start Dev Server", "Start Storybook", "Attach to Chrome"]
+      "configurations": ["Start Dev Server", "Start Storybook"]
     }
   ]
 }
